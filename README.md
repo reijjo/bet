@@ -1,0 +1,2 @@
+# bet
+Track your bets
