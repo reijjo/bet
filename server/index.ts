@@ -1,12 +1,14 @@
-import express from "express";
+import * as http from "http";
+import app from "./app";
+import chalk from "chalk";
 
-const app = express();
-const port = 3000;
+const { PORT } = Bun.env;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!5");
-});
+const server = http.createServer(app);
 
-app.listen(port, () => {
-  console.log(`Server on port ${port}!`);
+server.listen(PORT, () => {
+  console.log("-------------------");
+  console.log(chalk.magentaBright(`ENV = '${Bun.env.NODE_ENV}'`));
+  console.log(chalk.cyanBright(`Server running on port ${PORT}!`));
+  console.log("-------------------");
 });
