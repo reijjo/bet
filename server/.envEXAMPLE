@@ -3,3 +3,12 @@
 
 # Random
 #TESTI=envtestii
+
+# PostgreSQL
+# POSTGRES_USER=myuser
+# POSTGRES_PASSWORD=mypassword
+# POSTGRES_DB=mydatabase
+
+# pgAdmin
+#PGADMIN_DEFAULT_EMAIL=myemail@example.com
+#PGADMIN_DEFAULT_PASSWORD=mysecurepassword

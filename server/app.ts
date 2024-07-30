@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import userRouter from "./routes/usersRoute";
 
 const { TESTI } = Bun.env;
 
@@ -15,5 +16,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+app.use("/users", userRouter);
 
 export default app;

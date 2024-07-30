@@ -15,7 +15,9 @@
     "chalk": "3.0.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3"
   },
   "scripts": {
     "dev": "NODE_ENV=development bun --hot index.ts"
