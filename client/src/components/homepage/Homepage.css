@@ -1,0 +1,29 @@
+.hero-section {
+  width: calc(10 * 8.33%);
+  margin: 0 auto;
+  padding-top: 24px;
+  /* border: 1px solid red; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  & h1 {
+    background: linear-gradient(
+      to right,
+      var(--primary),
+      var(--text),
+      var(--secondary)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  & p {
+    width: 50%;
+  }
+}

@@ -1,0 +1,15 @@
+footer {
+  z-index: 5;
+  width: 100%;
+
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 -2px 4px hsla(330, 100%, 87%, 0.1);
+
+  & p {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

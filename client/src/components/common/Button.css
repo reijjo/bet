@@ -1,0 +1,77 @@
+.btn {
+  border: none;
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: inherit;
+  color: var(--text);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.text-btn:hover {
+  cursor: pointer;
+
+  & a.underline-hover {
+    display: inline-block;
+    position: relative;
+  }
+
+  & a.underline-hover:after {
+    content: ""; /* Add content after the element */
+    position: absolute; /* Position absolute for pseudo-element */
+    width: 100%; /* Full width */
+    transform: scaleX(0); /* Initial scale of 0 for underline effect */
+    height: 1px; /* Height of the underline */
+    bottom: -4px; /* Align to bottom */
+    left: 0; /* Align to left */
+    background-color: white; /* Background color of the underline */
+    transform-origin: bottom right; /* Set transform origin */
+    transition: transform 0.3s ease-out; /* Transition effect for the underline */
+  }
+
+  & a.underline-hover:hover:after {
+    transform: scaleX(1); /* Scale the underline on hover */
+    transform-origin: bottom left; /* Set transform origin */
+  }
+}
+
+.outline-btn {
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
+  transition: box-shadow 0.1s ease-out;
+
+  &:hover {
+    box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
+  }
+}
+
+.big-btn {
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+
+  background: var(--primary);
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  color: var(--text-dark);
+  font-size: 1.5em;
+  font-weight: 800;
+
+  width: max(200px, 50%);
+  padding: 16px 32px;
+  margin: 16px 0;
+
+  transition: background-color 0.3s ease-out;
+
+  &:hover {
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(
+      to right,
+      var(--primary),
+      var(--secondary-light)
+    );
+
+    border: 1px solid black;
+  }
+}

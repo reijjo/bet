@@ -1,12 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Dashboard, Homepage, Layout, UserLayout } from "./components";
+
 function App() {
   return (
-    <>
-      <h1>bun header1</h1>
-      <h2>bun header2</h2>
-      <h3>bun header3</h3>
-      <h4>bun header4</h4>
-      <p>normal stufgf</p>
-    </>
+    <Router>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/about" element={<h1>About</h1>} />
+        </Route>
+        <Route element={<UserLayout />}>
+          <Route path="/dash" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

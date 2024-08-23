@@ -4,52 +4,150 @@
   padding: 0;
 }
 
+body {
+  font-family: "Source Serif 4", serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+
+  color: var(--text);
+  background: url("./assets/images/circle-bg.svg") no-repeat center / cover;
+  /* background: linear-gradient(to bottom, var(--background), var(--background2)); */
+
+  width: 100%;
+}
+
+/* Main */
+.main-normal {
+  display: grid;
+  grid-template-rows: 8vh 1fr 8vh;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.wrapper {
+  width: min(100%, 1366px);
+  height: 100%;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.main-logged {
+  display: grid;
+  grid-template-rows: 8vh 1fr 8vh;
+
+  min-height: 100vh;
+  height: 100%;
+
+  position: relative;
+}
+/* END Main */
+
+/* Headers */
+:is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Bebas Neue", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: capitalize;
+
+  color: var(--text);
+}
+
+h1 {
+  /* font-size: clamp(32px, 5vw, 48px); */
+  font-size: 80px;
+}
+
+h2 {
+  font-size: clamp(24px, 4vw, 40px);
+  font-size: 40px;
+}
+
+h3 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-weight: 100;
+}
+/* END Headers */
+
+/* Button */
+button {
+  font-family: "Bebas Neue", sans-serif;
+  /* font-family: "Source Serif 4", serif; */
+
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 18px;
+  letter-spacing: 0.125em;
+}
+/* END Button */
+
+/* Link */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* END Link */
+
 :root {
   /* Colors */
-  --text: hsl(158, 22%, 10%);
-  --background: hsl(192, 38%, 95%);
-  --primary: hsl(157, 62%, 78%);
-  --secondary: hsl(158, 22%, 10%);
-  --accent: hsl(40, 100%, 79%);
-
-  --info: rgb(41, 97, 238);
+  --info: hsl(223, 85%, 55%);
   --success: rgb(96, 182, 84);
   --warning: rgb(243, 176, 77);
   --error: rgb(235, 78, 50);
-}
 
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 18px;
+  /* Primary */
+  --primary: hsl(47, 100%, 67%);
+  --primary-dark: hsl(47, 100%, 47%);
+  --primary-light: hsl(47, 100%, 87%);
+  /* xdard dark base medium light xlight xxlight xxxlight */
 
-  color: var(--text);
+  /* Secondary */
+  --secondary: #ff6bb5;
+  --secondary-dark: hsl(330, 90%, 47%);
+  --secondary-light: hsl(330, 100%, 87%);
 
-  /* Headers */
-  :is(h1, h2, h3, h4, h5, h6) {
-    font-family: "Barlow Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    text-transform: capitalize;
+  /* Background */
+  --background: rgb(25, 25, 113);
+  --background2: rgb(43, 43, 145);
+  /* surface(white), base, medium, light, xlight, xxlight */
 
-    color: var(--text);
-  }
+  /* Text */
+  --text: hsl(47, 100%, 98%);
+  --text-dark: hsl(47, 100%, 5%);
+  --text-disabled: gray;
+  /* base, secondary, muted, inactive, disabled(gray), inverted(white) */
 
-  h1 {
-    /* font-size: clamp(32px, 5vw, 48px); */
-    font-size: 48px;
-  }
+  /* Border */
+  /* light, base, medium, dark, extraDark */
 
-  h2 {
-    font-size: clamp(24px, 4vw, 40px);
-    font-size: 40px;
-  }
+  /* Success */
+  --success-dark: hsla(139, 54%, 29%, 1);
+  --success: hsl(142, 99%, 33%);
+  --success-light: hsla(141, 46%, 88%, 1);
+  --success-xlight: hsla(141, 44%, 94%, 1);
 
-  h3 {
-    /* font-size: 1.1rem; */
-    text-transform: uppercase;
-  }
-  /* END Headers */
+  /* Error */
+  --error-dark: hsla(0, 83%, 31%, 1);
+  --error: hsla(12, 73%, 47%, 1);
+  --error-light: hsla(0, 71%, 90%, 1);
+  --error-xlight: hsla(0, 75%, 95%, 1);
+
+  /* Warning */
+  --warning-dark: hsla(37, 86%, 38%, 1);
+  --warning: hsla(44, 82%, 52%, 1);
+  --warning-medium: hsla(46, 87%, 76%, 1);
+  --warning-light: hsla(37, 100%, 89%, 1);
+  --warning-xlight: hsla(37, 100%, 92%, 1);
+
+  /* Accent */
+  /* surface, dark, hover, base, medium, light, xlight, xxlight */
 }
