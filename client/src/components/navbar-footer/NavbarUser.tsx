@@ -3,34 +3,17 @@ import "../common/Button.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
-type NavbarUserProps = {
-  smallScreen: boolean;
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-};
-
-export const NavbarUser = ({
-  smallScreen,
-  // sidebarOpen,
-  setSidebarOpen,
-}: NavbarUserProps) => {
+export const NavbarUser = () => {
   return (
     <nav>
       <div className="wrapper">
-        <div
-          className="nav-links"
-          style={!smallScreen ? { justifyContent: "flex-end" } : {}}
-        >
-          {smallScreen && (
-            <>
-              <div className="nav-menu">
-                <a className="hamburger" onClick={() => setSidebarOpen(true)}>
-                  <FontAwesomeIcon icon={faBars} />
-                </a>
-              </div>
-              <div className="nav-logo">Logo</div>
-            </>
-          )}
+        <div className="nav-links">
+          <div className="nav-menu">
+            <a className="hamburger">
+              <FontAwesomeIcon icon={faBars} />
+            </a>
+          </div>
+          <div className="nav-logo">Logo</div>
           <div className="nav-profile">
             <div className="nav-profile-img">
               <img

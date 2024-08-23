@@ -41,16 +41,6 @@ body {
   display: grid;
   grid-template-rows: 8vh 1fr 8vh;
 }
-
-.main-logged-small {
-  display: grid;
-  grid-template-rows: 8vh 1fr 8vh;
-
-  min-height: 100vh;
-  height: 100%;
-
-  position: relative;
-}
 /* END Main */
 
 /* Headers */

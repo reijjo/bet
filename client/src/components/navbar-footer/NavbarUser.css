@@ -1,16 +1,21 @@
 .nav-menu {
-  border: 1px solid var(--background);
-  border-radius: 4px;
-  overflow: hidden;
-  width: 40px;
-  aspect-ratio: 1/1;
+  display: none;
 
-  box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
-  transition: box-shadow 0.1s ease-out;
+  @media (width < 1000px) {
+    display: block;
+    border: 1px solid var(--background);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 40px;
+    aspect-ratio: 1/1;
 
-  &:hover {
-    cursor: pointer;
-    box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
+    box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
+    transition: box-shadow 0.1s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
+    }
   }
 }
 
@@ -21,6 +26,14 @@
   place-items: center;
 
   background-color: var(--background2);
+}
+
+.nav-logo {
+  display: none;
+
+  @media (width < 1000px) {
+    display: block;
+  }
 }
 
 .nav-profile {

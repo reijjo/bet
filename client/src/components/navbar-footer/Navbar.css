@@ -14,8 +14,12 @@ nav {
 .nav-links {
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
+
+  @media (width < 1000px) {
+    justify-content: space-between;
+  }
 }
 
 .nav-login {

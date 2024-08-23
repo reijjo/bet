@@ -14,6 +14,7 @@
   height: 100vh;
   min-width: 250px;
   width: calc(2 * 8.33%);
+  max-width: 300px;
 
   border-right: 2px solid var(--secondary-light);
 
@@ -71,20 +72,25 @@
 }
 
 .sidebar-close {
-  position: absolute;
-  right: 8px;
+  display: none;
 
-  border: 1px solid var(--background);
-  border-radius: 4px;
-  overflow: hidden;
-  width: 40px;
-  aspect-ratio: 1/1;
+  @media (width < 1000px) {
+    display: block;
+    position: absolute;
+    right: 8px;
 
-  box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
-  transition: box-shadow 0.1s ease-out;
+    border: 1px solid var(--background);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 40px;
+    aspect-ratio: 1/1;
 
-  &:hover {
-    cursor: pointer;
-    box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
+    box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
+    transition: box-shadow 0.1s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
+    }
   }
 }
