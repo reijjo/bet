@@ -12,14 +12,26 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Sidebar = () => {
+type SidebarProps = {
+  smallScreen?: boolean;
+  setSidebarOpen: (open: boolean) => void;
+  sidebarOpen?: boolean;
+};
+
+export const Sidebar = ({
+  smallScreen,
+  setSidebarOpen,
+  sidebarOpen,
+}: SidebarProps) => {
   return (
-    <div className="sidebar">
-      <div className="sidebar-close">
-        <a className="hamburger">
-          <FontAwesomeIcon icon={faXmark} />
-        </a>
-      </div>
+    <div className="sidebar" style={sidebarOpen ? { position: "fixed" } : {}}>
+      {smallScreen && (
+        <div className="sidebar-close">
+          <a className="hamburger" onClick={() => setSidebarOpen(false)}>
+            <FontAwesomeIcon icon={faXmark} />
+          </a>
+        </div>
+      )}
 
       <div className="sidebar-logo">
         <h3>Logo</h3>
