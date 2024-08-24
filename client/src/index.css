@@ -35,6 +35,12 @@ body {
 .main-logged {
   display: grid;
   grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+  height: 100%;
+
+  @media (width < 1000px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .main-dashboard {

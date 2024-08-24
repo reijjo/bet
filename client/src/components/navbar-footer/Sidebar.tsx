@@ -12,11 +12,16 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Sidebar = () => {
+type SidebarProps = {
+  open: boolean;
+  handleSidebar: () => void;
+};
+
+export const Sidebar = ({ open, handleSidebar }: SidebarProps) => {
   return (
-    <div className={`sidebar`}>
+    <div className={`sidebar ${open ? "active" : ""}`}>
       <div className="sidebar-close">
-        <a className="hamburger">
+        <a className="hamburger" onClick={handleSidebar}>
           <FontAwesomeIcon icon={faXmark} />
         </a>
       </div>
