@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import sidebarReducer from "../slices/sidebarSlice";
+import betReducer from "../slices/betSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    sidebar: sidebarReducer,
+    bets: betReducer,
+  },
 });
 
 export type AppStore = typeof store;

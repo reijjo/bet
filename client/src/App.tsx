@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Dashboard, Homepage, Layout, UserLayout } from "./components";
-import { useState } from "react";
+import { Bets, Dashboard, Homepage, Layout, UserLayout } from "./components";
+import { useAppSelector } from "./store/hooks";
+import { RootState } from "./store/store";
 
 function App() {
-  const [open, setOpen] = useState(false);
+  const reduxState = useAppSelector((state: RootState) => state);
 
-  const handleSidebar = () => {
-    setOpen(!open);
-  };
-
-  console.log("APP side open", open);
+  // const testDate = new Date();
+  // console.log("TEST DATE", testDate);
+  console.log("REDUX STATE", reduxState);
 
   return (
     <Router>
@@ -18,10 +17,9 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<h1>About</h1>} />
         </Route>
-        <Route
-          element={<UserLayout open={open} handleSidebar={handleSidebar} />}
-        >
+        <Route element={<UserLayout />}>
           <Route path="/dash" element={<Dashboard />} />
+          <Route path="/bets" element={<Bets />} />
         </Route>
       </Routes>
     </Router>

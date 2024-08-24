@@ -1,7 +1,7 @@
 .nav-menu {
   display: none;
 
-  @media (width < 1000px) {
+  @media (width < 1150px) {
     display: block;
     border: 1px solid var(--background);
     border-radius: 4px;
@@ -31,7 +31,7 @@
 .nav-logo {
   display: none;
 
-  @media (width < 1000px) {
+  @media (width < 1150px) {
     display: block;
   }
 }

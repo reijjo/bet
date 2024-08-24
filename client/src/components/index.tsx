@@ -8,3 +8,4 @@ export { UserLayout } from "./common/UserLayout";
 export { Button } from "./common/Button";
 export { Divider } from "./common/Divider";
 export { Dashboard } from "./dashboard/Dashboard";
+export { Bets } from "./bets/Bets";

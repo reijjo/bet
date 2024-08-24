@@ -1,21 +1,20 @@
 import "./NavbarUser.css";
-import "../common/Button.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { openSidebar } from "../../slices/sidebarSlice";
 
-type NavbarUserProps = {
-  open: boolean;
-  handleSidebar: () => void;
-};
+export const NavbarUser = () => {
+  const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
+  const dispatch = useAppDispatch();
 
-export const NavbarUser = ({ open, handleSidebar }: NavbarUserProps) => {
-  console.log("side open", open);
+  console.log("side open", sideBarOpen);
   return (
     <nav>
       <div className="wrapper">
         <div className="nav-links">
           <div className="nav-menu">
-            <a className="hamburger" onClick={handleSidebar}>
+            <a className="hamburger" onClick={() => dispatch(openSidebar())}>
               <FontAwesomeIcon icon={faBars} />
             </a>
           </div>

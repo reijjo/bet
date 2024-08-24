@@ -1,18 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Footer, NavbarUser, Sidebar } from "../index";
-// import { useEffect, useState } from "react";
 
-type UserLayoutProps = {
-  open: boolean;
-  handleSidebar: () => void;
-};
-
-export const UserLayout = ({ open, handleSidebar }: UserLayoutProps) => {
+export const UserLayout = () => {
   return (
     <main className="main-logged">
-      <Sidebar open={open} handleSidebar={handleSidebar} />
+      <Sidebar />
       <div className="main-dashboard">
-        <NavbarUser open={open} handleSidebar={handleSidebar} />
+        <NavbarUser />
         <Outlet />
         <Footer />
       </div>

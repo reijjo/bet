@@ -26,7 +26,7 @@
 
   box-shadow: 4px 0 8px hsla(330, 100%, 87%, 0.2);
 
-  @media (width < 1000px) {
+  @media (width < 1150px) {
     position: fixed;
     /* left: -300px; */
     transform: translateX(-100%);
@@ -71,6 +71,15 @@
   }
 }
 
+.active-link {
+  color: var(--primary-dark);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--primary-dark) !important;
+  }
+}
+
 .bottom-links {
   margin-top: auto;
   padding-bottom: 24px;
@@ -83,7 +92,7 @@
 .sidebar-close {
   display: none;
 
-  @media (width < 1000px) {
+  @media (width < 1150px) {
     display: block;
     position: absolute;
     right: 8px;

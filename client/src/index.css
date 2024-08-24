@@ -38,7 +38,7 @@ body {
   min-height: 100vh;
   height: 100%;
 
-  @media (width < 1000px) {
+  @media (width < 1150px) {
     grid-template-columns: 1fr;
   }
 }
@@ -77,6 +77,11 @@ h3 {
 
 h4 {
   font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25em;
+  letter-spacing: 1px;
 }
 
 h6 {
@@ -120,6 +125,7 @@ a {
   --secondary: #ff6bb5;
   --secondary-dark: hsl(330, 90%, 47%);
   --secondary-light: hsl(330, 100%, 87%);
+  --secondary-xlight: hsl(330, 100%, 97%);
 
   /* Background */
   --background: #191971;
@@ -130,6 +136,9 @@ a {
   --text: hsl(47, 100%, 98%);
   --text-dark: hsl(47, 100%, 5%);
   --text-disabled: gray;
+  --text-primary: hsl(47, 100%, 95%);
+  --text-secondary: hsl(330, 100%, 95%);
+
   /* base, secondary, muted, inactive, disabled(gray), inverted(white) */
 
   /* Border */

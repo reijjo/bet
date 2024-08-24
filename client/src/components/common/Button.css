@@ -39,7 +39,7 @@
 
 .outline-btn {
   border: 1px solid var(--primary);
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.2);
   transition: box-shadow 0.1s ease-out;
 
@@ -48,9 +48,32 @@
   }
 }
 
+.big-btn-style {
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+
+  padding: 8px 32px;
+
+  background: var(--primary);
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  color: var(--text-dark);
+  transition: background-color 0.3s ease-out;
+
+  &:hover {
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(
+      to right,
+      var(--primary),
+      var(--secondary-light)
+    );
+
+    border: 1px solid black;
+  }
+}
+
 .big-btn {
   border: 1px solid var(--primary);
-  border-radius: 4px;
+  border-radius: 8px;
 
   background: var(--primary);
   background: linear-gradient(to right, var(--primary), var(--primary-light));
