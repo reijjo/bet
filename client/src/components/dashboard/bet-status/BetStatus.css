@@ -1,0 +1,60 @@
+.bet-status-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bet-status-ball {
+  height: 1.5cap;
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+
+  margin-right: 4px;
+}
+
+.bet-status-lost {
+  background-color: var(--secondary);
+  border: 2px solid var(--secondary-light);
+}
+
+.bet-status-won {
+  background-color: var(--success);
+  border: 2px solid var(--success-light);
+}
+
+.bet-status-void {
+  background-color: var(--warning);
+  border: 2px solid var(--warning-light);
+}
+
+.bet-status-pending {
+  background-color: var(--info);
+  border: 2px solid var(--info-light);
+}
+
+.bet-status,
+.bet-profit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.bet-profit {
+  font-size: 1.125em;
+  font-variant-numeric: tabular-nums;
+}
+
+.bet-profit-lost {
+  color: var(--secondary-light);
+}
+
+.bet-profit-won {
+  color: var(--success-light);
+}
+
+.bet-profit-void {
+  color: var(--warning-light);
+}

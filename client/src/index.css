@@ -111,6 +111,7 @@ a {
 :root {
   /* Colors */
   --info: hsl(223, 85%, 55%);
+  --info-light: hsl(223, 75%, 75%);
   --success: rgb(96, 182, 84);
   --warning: rgb(243, 176, 77);
   --error: rgb(235, 78, 50);
@@ -153,8 +154,9 @@ a {
   /* Error */
   --error-dark: hsla(0, 83%, 31%, 1);
   --error: hsla(12, 73%, 47%, 1);
-  --error-light: hsla(0, 71%, 90%, 1);
-  --error-xlight: hsla(0, 75%, 95%, 1);
+  --error-light: hsla(12, 73%, 57%, 1);
+  --error-xlight: hsla(0, 71%, 90%, 1);
+  --error-xxlight: hsla(0, 75%, 95%, 1);
 
   /* Warning */
   --warning-dark: hsla(37, 86%, 38%, 1);

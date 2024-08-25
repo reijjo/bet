@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "../index";
+import { BetStatus, Button } from "../index";
 import "./Dashboard.css";
 import {
   faCoins,
@@ -8,15 +8,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
-import { initMyBets } from "../../slices/betSlice";
+import { initAllBets, initMyBets } from "../../slices/betSlice";
 import { Bet } from "../../utils/types";
 import dayjs from "dayjs";
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
-  const userId = 1;
+  const userId = 2;
 
   useEffect(() => {
+    console.log("in useeffect");
+    dispatch(initAllBets());
     dispatch(initMyBets(userId));
   }, [dispatch, userId]);
 
@@ -94,6 +96,9 @@ export const Dashboard = () => {
   const last7DaysSummary = calculateSummary(last7DaysBets);
   const thisMonthSummary = calculateSummary(thisMonthBets);
 
+  const latestBets = mybets.slice(0, 2);
+  console.log("LATEST BETS", latestBets);
+
   return (
     <div className="wrapper dashboard-grid" style={{ border: "1px solid red" }}>
       <div className="dash-first">
@@ -142,28 +147,28 @@ export const Dashboard = () => {
           <div className="summary-today">
             <p>Today</p>
             <p>{todaySummary.totalStake.toFixed(2)} &euro;</p>
-            <p>{todaySummary.payout.toFixed(2)}&euro;</p>
+            <p>{todaySummary.payout.toFixed(2)} &euro;</p>
             <p>{todaySummary.realProfit.toFixed(2)} &euro;</p>
             <p>{todaySummary.totalBets}</p>
           </div>
           <div className="summary-yesterday">
             <p>Yesterday</p>
             <p>{yesterdaySummary.totalStake.toFixed(2)} &euro;</p>
-            <p>{yesterdaySummary.payout.toFixed(2)}&euro;</p>
+            <p>{yesterdaySummary.payout.toFixed(2)} &euro;</p>
             <p>{yesterdaySummary.realProfit.toFixed(2)} &euro;</p>
             <p>{yesterdaySummary.totalBets}</p>
           </div>
           <div className="summary-7days">
             <p>Last 7 days</p>
             <p>{last7DaysSummary.totalStake.toFixed(2)} &euro;</p>
-            <p>{last7DaysSummary.payout.toFixed(2)}&euro;</p>
+            <p>{last7DaysSummary.payout.toFixed(2)} &euro;</p>
             <p>{last7DaysSummary.realProfit.toFixed(2)} &euro;</p>
             <p>{last7DaysSummary.totalBets}</p>
           </div>
           <div className="summary-month">
             <p>This month</p>
             <p>{thisMonthSummary.totalStake.toFixed(2)} &euro;</p>
-            <p>{thisMonthSummary.payout.toFixed(2)}&euro;</p>
+            <p>{thisMonthSummary.payout.toFixed(2)} &euro;</p>
             <p>{thisMonthSummary.realProfit.toFixed(2)} &euro;</p>
             <p>{thisMonthSummary.totalBets}</p>
           </div>
@@ -178,6 +183,30 @@ export const Dashboard = () => {
         </div>
         <div className="dash-latestbets">
           <h5>Latest bets</h5>
+          <div className="latest-headers">
+            <p className="latest-bet-header-date">Date</p>
+            <p className="latest-bet-header-match">Match</p>
+            <p className="latest-bet-header-selection">Selection</p>
+            <p className="latest-bet-header-stake">Stake</p>
+            <p className="latest-bet-header-odds">Odds</p>
+            <p className="latest-bet-header-status">Status</p>
+          </div>
+          {latestBets.map((bet) => {
+            return (
+              <div className="latest-bets" key={bet.id}>
+                <p>{dayjs(bet.date).format("D MMM")}</p>
+                <div className="bets-match">
+                  <p className="bet-home-team">{bet.home_team}</p>
+                  <p>-</p>
+                  <p className="bet-away-team">{bet.away_team}</p>
+                </div>
+                <p className="bet-selection">{bet.selection}</p>
+                <p className="bet-stake">{bet.stake}</p>
+                <p className="bet-odds">{bet.odds}</p>
+                <BetStatus bet={bet} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

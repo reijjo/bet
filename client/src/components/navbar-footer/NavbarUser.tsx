@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { openSidebar } from "../../slices/sidebarSlice";
+import profilepic from "../../assets/images/stockprofilepic.jpg";
 
 export const NavbarUser = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
@@ -22,13 +23,13 @@ export const NavbarUser = () => {
           <div className="nav-profile">
             <div className="nav-profile-img">
               <img
-                src="https://via.placeholder.com/150"
-                alt="profile"
-                title="username"
+                src={profilepic}
+                alt="profilePicture"
+                title="Profile Picture"
               />
             </div>
             <div className="nav-profile">
-              <p>Username</p>
+              <p>TestUser</p>
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
           </div>

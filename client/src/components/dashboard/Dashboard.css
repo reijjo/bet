@@ -84,7 +84,7 @@
 
 .dash-summary {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: max-content repeat(5, 1fr);
 
   /* grid-area: 2 / 1 / 4 / 4; */
 }
@@ -115,6 +115,7 @@
 
   p {
     text-align: end;
+    font-variant-numeric: tabular-nums;
   }
 
   p:first-child {
@@ -129,6 +130,79 @@
 /* .dash-monthly { */
 /* grid-area: 4 / 1 / 6 / 3; */
 /* } */
-/* .dash-latestbets { */
-/* grid-area: 4 / 3 / 6 / 6; */
-/* } */
+.dash-latestbets {
+  display: grid;
+  grid-template-rows: max-content max-content repeat(2, 1fr);
+
+  /* grid-area: 4 / 3 / 6 / 6; */
+}
+
+.latest-headers,
+.latest-bets {
+  display: grid;
+  grid-template-columns: 0.75fr 2fr 1fr 0.5fr 0.5fr 1fr;
+  gap: 8px;
+
+  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+}
+
+.latest-headers {
+  padding: 6px 0;
+  color: rgba(255, 255, 255, 0.703);
+  color: var(--secondary-xlight);
+  font-size: 0.925em;
+}
+
+.latest-bet-header-match {
+  text-align: center;
+}
+
+.latest-bet-header-stake,
+.latest-bet-header-odds,
+.latest-bet-header-status,
+.bet-stake,
+.bet-odds,
+.bet-status {
+  text-align: right;
+}
+
+.latest-bets {
+  align-items: center;
+  gap: 8px;
+
+  font-size: 0.825em;
+
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.bets-match {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 4px;
+  text-align: center;
+}
+
+.bet-selection {
+  border-radius: 4px;
+  padding: 4px;
+
+  background-color: var(--info);
+  width: max-content;
+  max-width: 100%;
+}
+
+.bet-status-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}

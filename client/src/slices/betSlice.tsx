@@ -37,6 +37,7 @@ export const initAllBets = () => {
 export const initMyBets = (id: number) => {
   return async (dispatch: AppDispatch) => {
     // const res = await betApi.getMyBets(id);
+
     dispatch(myBets(id));
   };
 };

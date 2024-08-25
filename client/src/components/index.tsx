@@ -9,3 +9,4 @@ export { Button } from "./common/Button";
 export { Divider } from "./common/Divider";
 export { Dashboard } from "./dashboard/Dashboard";
 export { Bets } from "./bets/Bets";
+export { BetStatus } from "./dashboard/bet-status/BetStatus";
