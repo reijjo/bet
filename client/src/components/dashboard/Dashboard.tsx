@@ -1,20 +1,17 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BetStatus, Button } from "../index";
+import { BetStatus } from "../index";
 import "./Dashboard.css";
-import {
-  faCoins,
-  faPenToSquare,
-  faPercent,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
 import { initAllBets, initMyBets } from "../../slices/betSlice";
 import { Bet } from "../../utils/types";
 import dayjs from "dayjs";
+import { MiniSummaryCards } from "./dashboard-cards";
+import { SummaryCard } from "./dashboard-cards/big-summary-cards/SummaryCard";
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
-  const userId = 2;
+  const userId = 1;
 
   useEffect(() => {
     console.log("in useeffect");
@@ -56,14 +53,6 @@ export const Dashboard = () => {
     return bets.reduce((acc, bet) => acc + bet.stake, 0);
   };
 
-  const totalStake = calculateTotalStake(mybets);
-  // Calculate ROI
-
-  const totalProfit = calculateProfit(mybets);
-  const totalLosses = calculateTotalLosses(mybets);
-  const realProfit = totalProfit - totalLosses;
-  const returnPercentage = totalStake > 0 ? (realProfit / totalStake) * 100 : 0;
-
   const isToday = (date: string) => dayjs(date).isSame(dayjs(), "day");
   const isYesterday = (date: string) =>
     dayjs(date).isSame(dayjs().subtract(1, "day"), "day");
@@ -102,49 +91,12 @@ export const Dashboard = () => {
   return (
     <div className="wrapper dashboard-grid" style={{ border: "1px solid red" }}>
       <div className="dash-first">
-        <div className="dash-totalbets">
-          <FontAwesomeIcon icon={faPenToSquare} size="4x" />
-          <div className="dash-helper">
-            <h2>{mybets.length}</h2>
-            <p>Total bets</p>
-          </div>
-        </div>
-        <div className="dash-returnpercent">
-          <FontAwesomeIcon icon={faPercent} size="4x" />
-          <div className="dash-helper">
-            <h2>{returnPercentage.toFixed(2)}</h2>
-            <p>Return %</p>
-          </div>
-        </div>
-        <div className="dash-saldo">
-          <FontAwesomeIcon icon={faCoins} size="4x" />
-          <div className="dash-helper">
-            <h2>{realProfit.toFixed(2)} &euro;</h2>
-            <p>Total Profit</p>
-          </div>
-        </div>
-        <div className="dash-addbet">
-          <Button
-            className="btn big-btn-style"
-            type="button"
-            children="Add bet"
-          />
-        </div>
+        <MiniSummaryCards />
       </div>
 
       <div className="dash-second">
-        <div className="dash-summary">
-          <div className="summary-main-header">
-            <h5>Summary</h5>
-          </div>
-          <div className="summary-headers">
-            <div></div>
-            <p>At Risk</p>
-            <p>Payout</p>
-            <p>Profit / Loss</p>
-            <p>Total Bets</p>
-          </div>
-          <div className="summary-today">
+        <SummaryCard />
+        {/* <div className="summary-today">
             <p>Today</p>
             <p>{todaySummary.totalStake.toFixed(2)} &euro;</p>
             <p>{todaySummary.payout.toFixed(2)} &euro;</p>
@@ -171,8 +123,8 @@ export const Dashboard = () => {
             <p>{thisMonthSummary.payout.toFixed(2)} &euro;</p>
             <p>{thisMonthSummary.realProfit.toFixed(2)} &euro;</p>
             <p>{thisMonthSummary.totalBets}</p>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
         <div className="dash-winpercent">
           <h5>Win %</h5>
         </div>

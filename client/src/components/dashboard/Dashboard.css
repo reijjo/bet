@@ -59,21 +59,6 @@
   /* grid-area: 1 / 1 / 2 / 2; */
 }
 
-.dash-helper {
-  text-transform: capitalize;
-  text-align: end;
-
-  h2 {
-    font-size: clamp(24px, 3.5vw, 36px);
-    font-size: 30px;
-  }
-
-  p {
-    color: var(--secondary-light);
-    text-align: end;
-  }
-}
-
 .dash-addbet {
   /* grid-area: 1 / 5 / 2 / 6; */
   display: flex;
@@ -87,41 +72,6 @@
   grid-template-rows: max-content repeat(5, 1fr);
 
   /* grid-area: 2 / 1 / 4 / 4; */
-}
-
-.summary-main-header {
-  display: flex;
-  align-items: center;
-}
-
-.summary-headers {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  text-align: end;
-  gap: 4px;
-
-  color: var(--secondary-xlight);
-}
-
-.summary-today,
-.summary-yesterday,
-.summary-7days,
-.summary-month {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-  gap: 4px;
-
-  p {
-    text-align: end;
-    font-variant-numeric: tabular-nums;
-  }
-
-  p:first-child {
-    text-align: start;
-    color: var(--secondary-xlight);
-  }
 }
 
 /* .dash-winpercent { */

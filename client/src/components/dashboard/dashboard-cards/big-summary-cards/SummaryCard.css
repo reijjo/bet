@@ -1,0 +1,37 @@
+.dash-summary {
+  display: grid;
+  grid-template-rows: max-content repeat(5, 1fr);
+  /* grid-area: 2 / 1 / 4 / 4; */
+}
+
+.summary-main-header {
+  display: flex;
+  align-items: center;
+}
+
+.summary-headers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  text-align: end;
+  gap: 4px;
+
+  color: var(--secondary-xlight);
+}
+
+.summary-section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: 4px;
+
+  p {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  p:first-child {
+    text-align: start;
+    color: var(--secondary-xlight);
+  }
+}
