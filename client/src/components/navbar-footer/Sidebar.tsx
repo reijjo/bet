@@ -27,9 +27,9 @@ export const Sidebar = () => {
         </a>
       </div>
 
-      <div className="sidebar-logo">
+      <Link to="/" className="sidebar-logo">
         <h3>Logo</h3>
-      </div>
+      </Link>
       <div className="sidebar-links">
         <Link
           to="/dash"

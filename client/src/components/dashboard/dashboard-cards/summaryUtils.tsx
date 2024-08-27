@@ -39,6 +39,7 @@ export const betCalculations = (bets: Bet[]) => {
   const realProfit = totalProfit - totalLosses;
 
   const returnPercentage = totalStake > 0 ? (realProfit / totalStake) * 100 : 0;
+  const totalBets = bets.length;
 
   return {
     totalStake,
@@ -46,5 +47,28 @@ export const betCalculations = (bets: Bet[]) => {
     totalLosses,
     realProfit,
     returnPercentage,
+    totalBets,
+  };
+};
+
+// By period
+const isToday = (date: string) => dayjs(date).isSame(dayjs(), "day");
+const isYesterday = (date: string) =>
+  dayjs(date).isSame(dayjs().subtract(1, "day"), "day");
+const isLast7Days = (date: string) =>
+  dayjs(date).isAfter(dayjs().subtract(7, "day"));
+const isThisMonth = (date: string) => dayjs(date).isSame(dayjs(), "month");
+
+export const periodParser = (myBets: Bet[]) => {
+  const todayBets = myBets.filter((bet) => isToday(bet.date));
+  const yesterdayBets = myBets.filter((bet) => isYesterday(bet.date));
+  const last7DaysBets = myBets.filter((bet) => isLast7Days(bet.date));
+  const thisMonthBets = myBets.filter((bet) => isThisMonth(bet.date));
+
+  return {
+    todayBets,
+    yesterdayBets,
+    last7DaysBets,
+    thisMonthBets,
   };
 };

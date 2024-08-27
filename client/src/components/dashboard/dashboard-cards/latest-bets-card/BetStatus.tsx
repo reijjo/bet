@@ -1,4 +1,4 @@
-import { Bet } from "../../../utils/types";
+import { Bet } from "../../../../utils/types";
 import "./BetStatus.css";
 
 type BetStatusProps = {
@@ -6,12 +6,6 @@ type BetStatusProps = {
 };
 
 export const BetStatus = ({ bet }: BetStatusProps) => {
-  // const sign = bet.status === "Won" || bet.status === "Half Won" ? "+" : "-";
-  // const noSign =
-  //   bet.status === "Push" || bet.status === "Void" || bet.status === "Pending"
-  //     ? ""
-  //     : sign;
-
   const endedBetSign = (bet: Bet) => {
     if (bet.status === "Won" || bet.status === "Half Won") {
       return "+";

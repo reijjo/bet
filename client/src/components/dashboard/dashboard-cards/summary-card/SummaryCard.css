@@ -1,7 +1,17 @@
 .dash-summary {
   display: grid;
   grid-template-rows: max-content repeat(5, 1fr);
-  /* grid-area: 2 / 1 / 4 / 4; */
+
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 6px 12px;
+
+  backdrop-filter: blur(4px);
+  box-shadow: 2px 2px 4px hsla(0, 0%, 100%, 0.2);
+
+  &:hover {
+    box-shadow: 2px 2px 4px hsla(0, 0%, 97%, 0.5);
+  }
 }
 
 .summary-main-header {
