@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
 import { initAllBets, initMyBets } from "../../slices/betSlice";
 import {
-  // LatestBetsCard,
   MiniSummaryCards,
   MonthlyCard,
   WinPercentCard,
