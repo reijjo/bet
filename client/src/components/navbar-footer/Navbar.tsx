@@ -8,7 +8,7 @@ export const Navbar = () => {
     <nav>
       <div className="wrapper">
         <div className="nav-links">
-          <div className="nav-logo">Logo</div>
+          <div className="nav-logo">OnlyTsäänssi</div>
           <div className="nav-login">
             <Button
               children={

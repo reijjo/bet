@@ -28,7 +28,7 @@ export const Sidebar = () => {
       </div>
 
       <Link to="/" className="sidebar-logo">
-        <h3>Logo</h3>
+        <h3>OnlyTsäänssi</h3>
       </Link>
       <div className="sidebar-links">
         <Link

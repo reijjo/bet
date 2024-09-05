@@ -19,7 +19,7 @@ export const NavbarUser = () => {
               <FontAwesomeIcon icon={faBars} />
             </a>
           </div>
-          <div className="nav-logo">Logo</div>
+          <div className="nav-logo">OnlyTsäänssi</div>
           <div className="nav-profile">
             <div className="nav-profile-img">
               <img
