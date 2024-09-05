@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 12px 24px;
+  /* padding: 12px 24px; */
 
   z-index: 6;
 
@@ -26,6 +26,10 @@
 
   box-shadow: 4px 0 8px hsla(330, 100%, 87%, 0.2);
 
+  & > * {
+    margin: 12px 24px;
+  }
+
   @media (width < 1150px) {
     position: fixed;
     /* left: -300px; */
@@ -41,6 +45,8 @@
 .sidebar-logo {
   padding-top: 2px;
   width: 100%;
+  font-variant-caps: small-caps;
+  padding-left: 24px;
 }
 
 .sidebar-links {
@@ -48,7 +54,7 @@
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  gap: 24px;
+  /* gap: 24px; */
   width: 100%;
 
   text-transform: capitalize;
@@ -59,14 +65,18 @@
     display: flex;
     align-items: center;
 
+    padding: 12px 0;
     gap: 16px;
+    padding-left: 24px;
 
     &:hover:not(.logout-button) {
       color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
     &:hover:is(.logout-button) {
       color: var(--secondary);
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }
@@ -95,7 +105,7 @@
   @media (width < 1150px) {
     display: block;
     position: absolute;
-    right: 8px;
+    right: -4px;
 
     border: 1px solid var(--background);
     border-radius: 4px;

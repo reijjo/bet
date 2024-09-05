@@ -13,7 +13,7 @@ import {
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
-  const userId = 2;
+  const userId = 1;
 
   useEffect(() => {
     console.log("in useeffect");

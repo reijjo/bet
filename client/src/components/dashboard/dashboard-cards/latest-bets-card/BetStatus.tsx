@@ -46,7 +46,7 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
     } else if (bet.status === "Push" || bet.status === "Void") {
       return "0";
     } else {
-      return "...";
+      return "... ";
     }
   };
 

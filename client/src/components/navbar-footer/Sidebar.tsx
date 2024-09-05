@@ -1,6 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
-import { Divider } from "../index";
 import "./Sidebar.css";
+
+import { Link } from "react-router-dom";
+import { Divider, LinkWithIcon } from "../index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -11,13 +12,13 @@ import {
   faPenToSquare,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { closeSidebar } from "../../slices/sidebarSlice";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const dispatch = useAppDispatch();
-  const location = useLocation();
 
   return (
     <div className={`sidebar ${sideBarOpen ? "active" : ""}`}>
@@ -31,50 +32,47 @@ export const Sidebar = () => {
         <h3>OnlyTsäänssi</h3>
       </Link>
       <div className="sidebar-links">
-        <Link
-          to="/dash"
-          className={location.pathname === "/dash" ? "active-link" : ""}
-        >
-          <FontAwesomeIcon icon={faTableColumns} size="xs" />
-          <p>Dashboard</p>
-        </Link>
-        <Link
-          to="/bets"
-          className={location.pathname === "/bets" ? "active-link" : ""}
-        >
-          <FontAwesomeIcon icon={faPenToSquare} size="xs" />
-          <p>Bets</p>
-        </Link>
-        <Link
-          to="/analytics"
-          className={location.pathname === "/analytics" ? "active-link" : ""}
-        >
-          <FontAwesomeIcon icon={faChartLine} size="xs" />
-          <p>Analytics</p>
-        </Link>
+        <LinkWithIcon
+          link="/dash"
+          icon={faTableColumns}
+          iconSize="xs"
+          linkText="Dashboard"
+        />
+        <LinkWithIcon
+          link="/bets"
+          icon={faPenToSquare}
+          iconSize="xs"
+          linkText="Bets"
+        />
+        <LinkWithIcon
+          link="/analytics"
+          icon={faChartLine}
+          iconSize="xs"
+          linkText="Analytics"
+        />
       </div>
       <div className="sidebar-links bottom-links">
         <Divider />
-        <Link
-          to="/profile"
-          className={location.pathname === "/profile" ? "active-link" : ""}
-        >
-          <FontAwesomeIcon icon={faUser} size="xs" />
-          <p>Profile</p>
-        </Link>
-        <Link
-          to="/settings"
-          className={location.pathname === "/settings" ? "active-link" : ""}
-        >
-          <FontAwesomeIcon icon={faGear} size="xs" />
-          <p>Settings</p>
-        </Link>
-
+        <LinkWithIcon
+          link="/profile"
+          icon={faUser}
+          iconSize="xs"
+          linkText="Profile"
+        />
+        <LinkWithIcon
+          link="/settings"
+          icon={faGear}
+          iconSize="xs"
+          linkText="Settings"
+        />
         <Divider />
-        <Link to="/dash" className="logout-button">
-          <FontAwesomeIcon icon={faArrowRightFromBracket} size="xs" />
-          <p>Logout</p>
-        </Link>
+        <LinkWithIcon
+          link="/logout"
+          className="logout-button"
+          icon={faArrowRightFromBracket}
+          iconSize="xs"
+          linkText="Logout"
+        />
       </div>
     </div>
   );
