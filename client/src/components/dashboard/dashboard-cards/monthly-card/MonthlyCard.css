@@ -1,4 +1,7 @@
 .dash-monthly {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
   padding: 6px 12px;
