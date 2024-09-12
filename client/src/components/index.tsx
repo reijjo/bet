@@ -11,3 +11,4 @@ export { LinkWithIcon } from "./common/LinkWithIcon";
 export { Dashboard } from "./dashboard/Dashboard";
 export { Bets } from "./bets/Bets";
 export { BetStatus } from "./dashboard/dashboard-cards/latest-bets-card/BetStatus";
+export { AddBet } from "./add-bet/AddBet";

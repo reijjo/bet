@@ -31,7 +31,7 @@ export const Dashboard = () => {
   console.log("LATEST BETS", latestBets);
 
   return (
-    <div className="wrapper dashboard-grid" style={{ border: "1px solid red" }}>
+    <div className="wrapper dashboard-grid">
       <div className="dash-first">
         <MiniSummaryCards />
       </div>
@@ -44,33 +44,6 @@ export const Dashboard = () => {
       <div className="dash-third">
         <MonthlyCard />
         <LatestBetsCard />
-        {/* <div className="dash-latestbets">
-          <h5>Latest bets</h5>
-          <div className="latest-headers">
-            <p className="latest-bet-header-date">Date</p>
-            <p className="latest-bet-header-match">Match</p>
-            <p className="latest-bet-header-selection">Selection</p>
-            <p className="latest-bet-header-stake">Stake</p>
-            <p className="latest-bet-header-odds">Odds</p>
-            <p className="latest-bet-header-status">Status</p>
-          </div>
-          {latestBets.map((bet) => {
-            return (
-              <div className="latest-bets" key={bet.id}>
-                <p>{dayjs(bet.date).format("D MMM")}</p>
-                <div className="bets-match">
-                  <p className="bet-home-team">{bet.home_team}</p>
-                  <p>-</p>
-                  <p className="bet-away-team">{bet.away_team}</p>
-                </div>
-                <p className="bet-selection">{bet.selection}</p>
-                <p className="bet-stake">{bet.stake}</p>
-                <p className="bet-odds">{bet.odds}</p>
-                <BetStatus bet={bet} />
-              </div>
-            );
-          })}
-        </div> */}
       </div>
     </div>
   );

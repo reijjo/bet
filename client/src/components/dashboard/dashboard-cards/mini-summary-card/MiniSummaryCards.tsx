@@ -9,6 +9,7 @@ import { Button } from "../../../index";
 import "./MiniSummaryCards.css";
 import { useAppSelector } from "../../../../store/hooks";
 import { betCalculations } from "../summaryUtils";
+import { useNavigate } from "react-router-dom";
 
 type MiniSummaryCardProps = {
   icon: IconDefinition;
@@ -28,6 +29,7 @@ const MiniSummaryCard = ({ icon, header, info }: MiniSummaryCardProps) => (
 
 export const MiniSummaryCards = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -51,6 +53,7 @@ export const MiniSummaryCards = () => {
           className="btn big-btn-style"
           type="button"
           children="Add bet"
+          onClick={() => navigate("/add-bet")}
         />
       </div>
     </>

@@ -136,7 +136,7 @@ a {
   /* Text */
   --text: hsl(47, 100%, 98%);
   --text-dark: hsl(47, 100%, 5%);
-  --text-disabled: gray;
+  --text-disabled: #808080;
   --text-primary: hsl(47, 100%, 95%);
   --text-secondary: hsl(330, 100%, 95%);
 
@@ -147,16 +147,16 @@ a {
 
   /* Success */
   --success-dark: hsla(139, 54%, 29%, 1);
-  --success: hsl(142, 99%, 33%);
-  --success-light: hsla(141, 46%, 88%, 1);
-  --success-xlight: hsla(141, 44%, 94%, 1);
+  --success: #01a73e;
+  --success-light: #d2eedc;
+  --success-xlight: #e9f6ee;
 
   /* Error */
   --error-dark: hsla(0, 83%, 31%, 1);
   --error: hsla(12, 73%, 47%, 1);
-  --error-light: hsla(12, 73%, 57%, 1);
-  --error-xlight: hsla(0, 71%, 90%, 1);
-  --error-xxlight: hsla(0, 75%, 95%, 1);
+  --error-light: #e16141;
+  --error-xlight: #f8d3d3;
+  --error-xxlight: #fce9e9;
 
   /* Warning */
   --warning-dark: hsla(37, 86%, 38%, 1);

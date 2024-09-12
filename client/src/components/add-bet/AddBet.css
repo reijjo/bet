@@ -1,0 +1,17 @@
+.addbet-container {
+  width: 80%;
+  height: 100%;
+
+  margin: 0 auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  padding: 8px 16px;
+}
+
+.container-header {
+  text-align: center;
+}

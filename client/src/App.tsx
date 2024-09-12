@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Bets, Dashboard, Homepage, Layout, UserLayout } from "./components";
+import {
+  Bets,
+  Dashboard,
+  Homepage,
+  Layout,
+  UserLayout,
+  AddBet,
+} from "./components";
 import { useAppSelector } from "./store/hooks";
 import { RootState } from "./store/store";
 
@@ -20,6 +27,7 @@ function App() {
         <Route element={<UserLayout />}>
           <Route path="/dash" element={<Dashboard />} />
           <Route path="/bets" element={<Bets />} />
+          <Route path="/add-bet" element={<AddBet />} />
         </Route>
       </Routes>
     </Router>
