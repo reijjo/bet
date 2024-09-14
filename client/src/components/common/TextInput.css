@@ -1,0 +1,18 @@
+input[type="text"] {
+  padding: 8px 6px;
+  margin-top: 4px;
+
+  border-radius: 4px;
+}
+
+.text-input {
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 4px;
+
+  label {
+    font-size: 0.925em;
+    padding-left: 4px;
+  }
+}
