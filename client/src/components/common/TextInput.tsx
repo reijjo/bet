@@ -8,11 +8,13 @@ type TextInputProps = {
   name: string;
   size?: number;
   label?: string;
+  optional?: boolean;
 };
 
 export const TextInput = ({
   className,
   label,
+  optional,
   type,
   placeholder,
   id,
@@ -21,7 +23,11 @@ export const TextInput = ({
 }: TextInputProps) => {
   return (
     <div className={className}>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && (
+        <label htmlFor={name}>
+          {label} {optional && <p>(optional)</p>}
+        </label>
+      )}
       <input
         type={type}
         placeholder={placeholder}

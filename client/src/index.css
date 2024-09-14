@@ -135,6 +135,7 @@ a {
 
   /* Text */
   --text: hsl(47, 100%, 98%);
+  --text-light: hsla(0, 0%, 100%, 0.8);
   --text-dark: hsl(47, 100%, 5%);
   --text-disabled: #808080;
   --text-primary: hsl(47, 100%, 95%);

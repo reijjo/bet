@@ -31,6 +31,7 @@ export const AddBet = () => {
             <TextInput
               className="text-input"
               label="Sport / League"
+              optional
               type="text"
               placeholder="Sport / League"
               id="sport"
@@ -53,6 +54,7 @@ export const AddBet = () => {
             <TextInput
               className="text-input"
               label="Bet type"
+              optional
               type="text"
               placeholder="Bet type"
               id="bet-amount"
@@ -60,12 +62,12 @@ export const AddBet = () => {
               size={20}
             />
           </div>
-          <div className="stake-input">
+          <div className="odds-input">
             <TextInput
               className="text-input"
-              label="Stake"
+              label="Odds"
               type="text"
-              placeholder="Stake &euro;"
+              placeholder="Odds"
               id="bet-amount"
               name="bet-amount"
               size={20}

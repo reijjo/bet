@@ -14,5 +14,15 @@ input[type="text"] {
   label {
     font-size: 0.925em;
     padding-left: 4px;
+
+    display: inline-flex;
+    align-items: center;
+
+    p {
+      margin-left: 8px;
+      font-size: 0.8em;
+      letter-spacing: 0.5px;
+      color: var(--text-light);
+    }
   }
 }
