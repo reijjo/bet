@@ -31,15 +31,30 @@
 .sport-input,
 .bet-type-input,
 .odds-input,
-.add-bet-buttons {
+.add-bet-buttons,
+.fields-dropdown,
+.date-input,
+.bookmaker-input,
+.tipper-input,
+.notes-input,
+.add-bet-checks {
   padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
+
+  &:hover {
+    box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.add-bet-buttons {
+  border: none;
 }
 
 .match-input {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   grid-row: 1 / 2;
   grid-column: 1 / 3;
@@ -76,8 +91,51 @@
   grid-column: 3 / 4;
 }
 
-.add-bet-buttons {
+.fields-dropdown {
   grid-row: 3 / 4;
+  grid-column: 1 / 4;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+  }
+}
+
+.date-input {
+  grid-row: 4 / 5;
+  grid-column: 1 / 2;
+}
+
+.bookmaker-input {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+}
+
+.tipper-input {
+  grid-row: 4 / 5;
+  grid-column: 3 / 4;
+}
+
+.notes-input {
+  grid-row: 5 / 6;
+  grid-column: 1 / 3;
+}
+
+.add-bet-checks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.add-bet-buttons {
+  grid-row: 4 / 5;
   grid-column: 1 / 4;
 
   display: flex;
@@ -85,6 +143,10 @@
 
   button {
     width: 45%;
-    padding: 16px;
+    padding: 12px;
   }
+}
+
+.add-bet-buttons-extra-fields {
+  grid-row: 6 / 7;
 }

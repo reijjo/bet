@@ -1,14 +1,18 @@
+import { ChangeEvent } from "react";
 import "./TextInput.css";
 
 type TextInputProps = {
   className?: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   id: string;
   name: string;
   size?: number;
   label?: string;
-  optional?: boolean;
+  optional?: string;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  defaultValue?: string;
 };
 
 export const TextInput = ({
@@ -20,12 +24,15 @@ export const TextInput = ({
   id,
   name,
   size,
+  onChange,
+  defaultValue,
 }: TextInputProps) => {
   return (
     <div className={className}>
       {label && (
         <label htmlFor={name}>
-          {label} {optional && <p>(optional)</p>}
+          {label}{" "}
+          {optional && <p className="text-input-paragraph">({optional})</p>}
         </label>
       )}
       <input
@@ -34,6 +41,8 @@ export const TextInput = ({
         id={id}
         name={name}
         size={size}
+        onChange={onChange}
+        defaultValue={defaultValue}
       />
     </div>
   );
