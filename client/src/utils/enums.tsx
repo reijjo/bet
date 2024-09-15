@@ -4,6 +4,11 @@ export enum SportLeague {
   MLB = "MLB",
   NHL = "NHL",
   MLS = "MLS",
+  Soccer = "Soccer",
+  IceHockey = "Ice Hockey",
+  Basketball = "Basketball",
+  AmFootball = "American Football",
+  None = "",
 }
 
 export enum BetStatus {
@@ -17,13 +22,18 @@ export enum BetStatus {
 }
 
 export enum Bookmaker {
-  Bet365 = "Bet365",
-  Veikkaus = "Veikkaus",
   EpicBet = "EpicBet",
+  Bet365 = "Bet365",
+  Unibet = "Unibet",
+  Veikkaus = "Veikkaus",
+  Other = "Other",
 }
 
 export enum BetType {
   Single = "Single",
+  Double = "Double",
+  Triple = "Triple",
+  Parlayx4 = "Parlay x4",
   Over = "Over",
   Under = "Under",
   BetBuilder = "Bet Builder",

@@ -1,15 +1,32 @@
+import "./AddBet.css";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { Button, Checkbox, Select, TextArea, TextInput } from "../index";
-import "./AddBet.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { Bet } from "../../utils/types";
+import { BetType, BetStatus, Bookmaker, SportLeague } from "../../utils/enums";
 
 export const AddBet = () => {
-  const [moreFields, setMoreFields] = useState(false);
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
-  const [liveBet, setLiveBet] = useState(false);
+  const [newBet, setNewBet] = useState<Bet>({
+    home_team: "",
+    away_team: "",
+    selection: "",
+    sport: SportLeague.None,
+    status: BetStatus.Pending,
+    bet_type: BetType.Single,
+    odds: 0,
+    stake: 0,
+    date: new Date().toISOString().split("T")[0],
+    bookmaker: Bookmaker.Other,
+    tipper: "",
+    freebet: false,
+    livebet: false,
+    notes: "",
+    result: "",
+  });
 
-  console.log("date", date);
+  const [moreFields, setMoreFields] = useState(false);
+  const [liveBet, setLiveBet] = useState(false);
 
   const handleMoreFields = () => {
     setMoreFields(!moreFields);
@@ -21,11 +38,25 @@ export const AddBet = () => {
     console.log("liveBet", liveBet);
   };
 
+  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewBet((newBet) => {
+      return {
+        ...newBet,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const handleNewBet = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log("newBet", newBet);
+  };
+
   return (
     <div className="wrapper">
       <div className="addbet-container">
         <h3 className="container-header">Add Bet</h3>
-        <form className="addbet-form">
+        <form className="addbet-form" onSubmit={handleNewBet}>
           <div className="match-input">
             <div
               style={{
@@ -42,17 +73,19 @@ export const AddBet = () => {
               <TextInput
                 type="text"
                 placeholder="Home Team"
-                id="home-team"
-                name="home-team"
+                id="home_team"
+                name="home_team"
                 size={20}
+                onChange={handleTextInput}
               />
               <p className="match-dash">-</p>
               <TextInput
                 type="text"
                 placeholder="Away Team"
-                id="away-team"
-                name="away-team"
+                id="away_team"
+                name="away_team"
                 size={20}
+                onChange={handleTextInput}
               />
             </div>
           </div>
@@ -127,9 +160,8 @@ export const AddBet = () => {
                   id="date"
                   name="date"
                   size={20}
-                  value={date}
-                  defaultValue={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={newBet.date}
+                  defaultValue={newBet.date}
                 />
               </div>
               <div className="bookmaker-input">
@@ -166,7 +198,7 @@ export const AddBet = () => {
                   name="notes"
                   rows={3}
                   cols={1}
-                  placeholder="Your own notes for the bet..."
+                  placeholder="Your own notes about the bet..."
                 />
               </div>
               <div className="add-bet-checks">
@@ -200,7 +232,7 @@ export const AddBet = () => {
           >
             <Button
               children="Continue"
-              type="button"
+              type="submit"
               className="btn big-btn-style"
               style={{ fontSize: "1.25em" }}
             />
