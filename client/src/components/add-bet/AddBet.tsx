@@ -7,6 +7,7 @@ import { Bet } from "../../utils/types";
 import { BetType, BetStatus, Bookmaker, SportLeague } from "../../utils/enums";
 
 export const AddBet = () => {
+  const [myBet, setMyBet] = useState<Bet[]>([]);
   const [newBet, setNewBet] = useState<Bet>({
     home_team: "",
     away_team: "",
