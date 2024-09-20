@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sidebarReducer from "../slices/sidebarSlice";
-import betReducer from "../slices/betSlice";
+import { modalReducer, sidebarReducer, betReducer } from "../slices";
 
 export const store = configureStore({
   reducer: {
+    modal: modalReducer,
     sidebar: sidebarReducer,
     bets: betReducer,
   },

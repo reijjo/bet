@@ -5,8 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { Bet } from "../../utils/types";
 import { BetType, BetStatus, Bookmaker, SportLeague } from "../../utils/enums";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { openModal } from "../../slices/modalSlice";
 
 export const AddBet = () => {
+  const modalOpen = useAppSelector((state) => state.modal.modalOpen);
+  const dispatch = useAppDispatch();
+
   const [myBet, setMyBet] = useState<Bet[]>([]);
   const [newBet, setNewBet] = useState<Bet>({
     home_team: "",
@@ -51,6 +56,7 @@ export const AddBet = () => {
   const handleNewBet = (e: SyntheticEvent) => {
     e.preventDefault();
     console.log("newBet", newBet);
+    dispatch(openModal());
   };
 
   return (

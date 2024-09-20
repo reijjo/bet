@@ -9,6 +9,7 @@ export { Layout } from "./common/Layout";
 export { UserLayout } from "./common/UserLayout";
 export { Button } from "./common/Button";
 export { Divider } from "./common/Divider";
+export { Modal } from "./common/Modal";
 export { LinkWithIcon } from "./common/LinkWithIcon";
 export { TextInput } from "./common/inputs/TextInput";
 export { Select } from "./common/inputs/Select";
