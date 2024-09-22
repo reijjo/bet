@@ -15,9 +15,10 @@
 }
 
 .modal-container {
+  position: relative;
   height: max-content;
-  height: 200px;
-  width: min(200px, 90%);
+  height: auto;
+  width: 90%;
 
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
