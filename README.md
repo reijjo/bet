@@ -8,36 +8,49 @@ TÄÄ VERSIO
 ## Frontend
 <details>
   <summary>General</summary>
-  <p>Whole UI (font & color etc)</p>
-  <p>Logo & Name?</p>
-  <p>Mobile + tablet + etc</p>
+  <ul>
+    <li>Whole UI (font & color etc)</li>
+    <li>Logo & Name?</li>
+    <li>Responsive</li>
+    <li>Tests (unit test & e2e)</li>
+  </ul>
 </details>
 
 <details>
   <summary>Login / Register</summary>
-  <p>Everything</p>
+  <ul>
+    <li>Everything</li>
+  </ul>
 </details>
 
 <details>
   <summary>Add Bet</summary>
-  <p>Single / Parlay modal</p>
-  <p>My Bet for there and My Bets section</p>
+  <ul>
+    <li>Single / Parlay modal</li>
+    <li>My Bet there and My Bets section</li>
+  </ul>
 </details>
 
 <details>
   <summary>Analytics</summary>
-  <p>Everything</p>
+  <ul>
+    <li>Everything</li>
+  </ul>
 </details>
 
 <details>
   <summary>Navbar</summary>
-  <p>Dropdown for user</p>
-  <p>Bigger image & Font (rem / em / vh / dvh?)</p>
+  <ul>
+    <li>Dropdown for user</li>
+    <li>Bigger image & Font (rem / em / vh / dvh?)</li>
+  </ul>
 </details>
 
 <details>
   <summary>Footer</summary>
-  <p>Shitload of links</p>
+  <ul>
+    <li>Shitload of links</li>
+  </ul>
 </details>
 
 ## Backend
