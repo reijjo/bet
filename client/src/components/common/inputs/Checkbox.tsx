@@ -1,14 +1,15 @@
+import { ChangeEvent } from "react";
 import "./Checkbox.css";
 
 type CheckboxProps = {
   className?: string;
   label?: string;
-
   id: string;
   name: string;
   checked: boolean;
-  onChange: () => void;
-  value?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: boolean;
+  disabled?: boolean;
 };
 
 export const Checkbox = ({
@@ -19,6 +20,7 @@ export const Checkbox = ({
   checked,
   onChange,
   value,
+  disabled,
 }: CheckboxProps) => {
   return (
     <div className={className}>
@@ -29,7 +31,8 @@ export const Checkbox = ({
         name={name}
         checked={checked}
         onChange={onChange}
-        value={value}
+        value={value.toString()}
+        disabled={disabled}
       />
     </div>
   );

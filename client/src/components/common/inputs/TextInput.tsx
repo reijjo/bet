@@ -10,9 +10,10 @@ type TextInputProps = {
   size?: number;
   label?: string;
   optional?: string;
-  value?: string;
+  value?: string | number;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  defaultValue?: string;
+  defaultValue?: string | number;
+  disabled?: boolean;
 };
 
 export const TextInput = ({
@@ -26,6 +27,8 @@ export const TextInput = ({
   size,
   onChange,
   defaultValue,
+  disabled,
+  value,
 }: TextInputProps) => {
   return (
     <div className={className}>
@@ -43,6 +46,8 @@ export const TextInput = ({
         size={size}
         onChange={onChange}
         defaultValue={defaultValue}
+        disabled={disabled}
+        value={value}
       />
     </div>
   );

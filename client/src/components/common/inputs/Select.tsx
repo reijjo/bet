@@ -10,6 +10,9 @@ type SelectProps = {
   size?: number;
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
   defaultValue?: string;
+  options: string[];
+  value?: string;
+  disabled?: boolean;
 };
 
 export const Select = ({
@@ -21,9 +24,10 @@ export const Select = ({
   size,
   onChange,
   defaultValue,
+  options,
+  value,
+  disabled,
 }: SelectProps) => {
-  const bookmakers = ["EpicBet", "Bet365", "Unibet", "Veikkaus", "Other"];
-
   return (
     <div className={className}>
       {label && (
@@ -38,10 +42,12 @@ export const Select = ({
         size={size}
         onChange={onChange}
         defaultValue={defaultValue}
+        value={value}
+        disabled={disabled}
       >
-        {bookmakers.map((bookmaker, index) => (
-          <option key={index} value={bookmaker}>
-            {bookmaker}
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
           </option>
         ))}
       </select>

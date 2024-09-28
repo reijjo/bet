@@ -4,6 +4,7 @@ type ButtonProps = {
   className: string;
   onClick?: () => void;
   style?: React.CSSProperties;
+  disabled?: boolean;
 };
 
 export const Button = ({
@@ -12,9 +13,16 @@ export const Button = ({
   className,
   onClick,
   style,
+  disabled,
 }: ButtonProps) => {
   return (
-    <button type={type} className={className} onClick={onClick} style={style}>
+    <button
+      type={type}
+      className={className}
+      onClick={onClick}
+      style={style}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

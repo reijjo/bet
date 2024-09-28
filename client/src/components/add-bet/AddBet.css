@@ -1,6 +1,7 @@
 .addbet-container {
-  width: 80%;
-  width: max-content;
+  /* width: 80%;
+  width: max-content; */
+  width: min(800px, 90%);
   height: 100%;
   height: max-content;
 
@@ -19,8 +20,6 @@
 }
 
 .addbet-form {
-  border: 1px solid red;
-
   display: grid;
   gap: 24px;
   padding: 8px 0;
@@ -149,4 +148,112 @@
 
 .add-bet-buttons-extra-fields {
   grid-row: 6 / 7;
+}
+
+/* My Bet */
+#finish-my-bet {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.mybet-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mybets-close {
+  position: absolute;
+  right: 8px;
+
+  padding: 4px;
+  height: 32px;
+  width: 32px;
+
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.mybet-add-stake {
+  display: grid;
+  grid-template-rows: auto;
+  width: 100%;
+}
+
+.finish-mybet-slip-headers {
+  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+}
+
+.finish-mybet-slip-headers,
+.finish-mybet-slip {
+  text-transform: capitalize;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 0.75fr 0.25fr;
+  gap: 8px;
+
+  padding: 8px 0;
+  color: var(--secondary-xlight);
+  /* font-size: 0.925em; */
+  align-items: center;
+
+  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+}
+
+.finish-mybet-slip {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.mybet-match,
+.mybet-slip-match {
+  padding-left: 8px;
+}
+
+.mybet-more,
+.mybet-slip-more {
+  display: flex;
+  justify-content: center;
+}
+
+.mybet-edit:hover {
+  cursor: pointer;
+}
+
+.finish-the-bet {
+  display: inline-flex;
+  width: 100%;
+  gap: 36px;
+  justify-content: flex-end;
+}
+
+.add-stake-input {
+  align-items: center;
+}
+
+.mybet-slip-potential {
+  display: flex;
+  gap: 16px;
+
+  p:last-child {
+    color: var(--success-light);
+    width: 100px;
+  }
+}
+
+.finish-bet-buttons,
+.add-stake-input {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+
+  padding: 8px 0;
+  margin-top: 8px;
 }

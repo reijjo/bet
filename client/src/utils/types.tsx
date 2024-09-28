@@ -10,7 +10,7 @@ export type Bet = {
   sport: SportLeague;
   status: BetStatus;
   bookmaker?: Bookmaker;
-  odds: number;
+  odds: number | string;
   stake: number;
   tipper: string;
   bet_type: BetType;

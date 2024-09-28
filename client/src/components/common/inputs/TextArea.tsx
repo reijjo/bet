@@ -12,6 +12,8 @@ type TextAreaProps = {
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   defaultValue?: string;
   placeholder?: string;
+  value?: string;
+  disabled?: boolean;
 };
 
 export const TextArea = ({
@@ -25,6 +27,8 @@ export const TextArea = ({
   onChange,
   defaultValue,
   placeholder,
+  value,
+  disabled,
 }: TextAreaProps) => {
   return (
     <div className={className}>
@@ -42,6 +46,8 @@ export const TextArea = ({
         onChange={onChange}
         defaultValue={defaultValue}
         placeholder={placeholder}
+        value={value}
+        disabled={disabled}
       />
     </div>
   );

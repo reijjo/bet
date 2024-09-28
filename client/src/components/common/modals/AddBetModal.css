@@ -1,4 +1,4 @@
-.add-bet-modal {
+/* .add-bet-modal {
   position: relative;
 }
 
@@ -47,15 +47,12 @@
   grid-template-rows: auto;
   width: 100%;
 
-  /* & > * {
-    border: 1px solid green;
-  } */
+
 }
 
 .finish-mybet-slip-headers,
 .finish-mybet-slip {
   display: grid;
-  /* place-items: center; */
   grid-template-columns: 0.75fr 2fr 1fr 0.5fr 0.5fr 1fr max-content;
   gap: 8px;
 
@@ -70,4 +67,4 @@
 
 .finish-mybet-match {
   text-align: center;
-}
+} */

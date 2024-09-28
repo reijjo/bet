@@ -22,18 +22,18 @@ export const AddBetModal = () => {
         </div>
         <div className="finish-mybet">
           <div className="finish-mybet-slip-headers">
-            <div className="finish-mybet-date">date</div>
+            {/* <div className="finish-mybet-date">date</div> */}
             <div className="finish-mybet-match">match</div>
             <div className="finish-mybet-selection">selection</div>
             <div className="finish-mybet-stake">stake</div>
             <div className="finish-mybet-odds">odds</div>
-            <div className="finish-my-bet-potential">potential</div>
+            <div className="finish-my-bet-potential">potential win</div>
             <div className="finish-mybet-more" style={{ visibility: "hidden" }}>
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
           </div>
           <div className="finish-mybet-slip">
-            <div className="finish-mybet-slip-date">date</div>
+            {/* <div className="finish-mybet-slip-date">date</div> */}
             <div className="finish-mybet-slip-match">match</div>
             <div className="finish-mybet-slip-selection">selection</div>
             <div className="finish-mybet-slip-stake">stake</div>
@@ -49,12 +49,12 @@ export const AddBetModal = () => {
             type="button"
             onClick={() => console.log("jee")}
             className="btn"
-            children="Add"
+            children="Add Stake"
           />
           <Button
             type="button"
             onClick={() => console.log("jee")}
-            className="btn"
+            className="btn btn-outlined"
             children="Add to parley"
           />
         </div>

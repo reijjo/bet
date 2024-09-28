@@ -46,6 +46,17 @@
   &:hover {
     box-shadow: 2px 2px 4px hsla(47, 100%, 87%, 0.5);
   }
+
+  &:active {
+    transform: translate(1px, 1px);
+  }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
 }
 
 .big-btn-style {
@@ -66,7 +77,18 @@
       var(--secondary-light)
     );
 
+    &:active {
+      transform: translate(1px, 1px);
+    }
+
     border: 1px solid black;
+  }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
   }
 }
 
@@ -93,6 +115,10 @@
       var(--primary),
       var(--secondary-light)
     );
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
 
     border: 1px solid black;
   }
