@@ -1,3 +1,4 @@
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
 
 export type Bet = {
@@ -22,4 +23,15 @@ export type BetDetails = {
   freebet: boolean;
   livebet: boolean;
   notes?: string;
+};
+
+export type InputProps = {
+  handleTextInput?: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  newBet: Bet;
+  setNewBet?: Dispatch<SetStateAction<Bet>>;
+  myBet: Bet[];
+  modifyIndex: number | null;
+  addParlay: boolean;
 };

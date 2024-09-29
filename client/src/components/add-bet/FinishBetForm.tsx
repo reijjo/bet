@@ -44,7 +44,7 @@ export const FinishBetForm = ({
 
   const addBet = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log("newBet", newBet);
+    console.log("myBet", myBet);
   };
 
   return (

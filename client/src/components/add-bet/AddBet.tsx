@@ -1,6 +1,6 @@
 import "./AddBet.css";
 import { AddBetForm } from "../index";
-import { SyntheticEvent, useState } from "react";
+import { useState } from "react";
 import { Bet } from "../../utils/types";
 import { MyBetSlip } from "./MyBetSlip";
 import { initialBetDetailValues, initialBetValues } from "./betUtils";
@@ -10,23 +10,6 @@ export const AddBet = () => {
   const [newBet, setNewBet] = useState<Bet>(initialBetValues);
   const [modifyIndex, setModifyIndex] = useState<number | null>(null);
   const [addParlay, setAddParlay] = useState(false);
-
-  const handleNewBet = (e: SyntheticEvent) => {
-    e.preventDefault();
-    if (modifyIndex !== null) {
-      const updatedBets = [...myBet];
-      updatedBets[modifyIndex] = newBet;
-      setMyBet(updatedBets);
-      setModifyIndex(null);
-    } else {
-      setMyBet([...myBet, newBet]);
-    }
-    setNewBet(initialBetValues);
-    setAddParlay(false);
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }, 100);
-  };
 
   const handleModifyBet = (index: number) => {
     setNewBet(myBet[index]);
@@ -51,10 +34,10 @@ export const AddBet = () => {
   return (
     <div className="wrapper">
       <AddBetForm
-        handleNewBet={handleNewBet}
         newBet={newBet}
         setNewBet={setNewBet}
         myBet={myBet}
+        setMyBet={setMyBet}
         modifyIndex={modifyIndex}
         addParlay={addParlay}
         setAddParlay={setAddParlay}
