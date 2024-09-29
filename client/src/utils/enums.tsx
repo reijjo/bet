@@ -9,6 +9,7 @@ export enum SportLeague {
   Basketball = "Basketball",
   AmFootball = "American Football",
   None = "",
+  Mixed = "Mixed",
 }
 
 export enum BetStatus {
@@ -27,6 +28,7 @@ export enum Bookmaker {
   Unibet = "Unibet",
   Veikkaus = "Veikkaus",
   Other = "Other",
+  None = "-",
 }
 
 export enum BetType {
@@ -38,4 +40,5 @@ export enum BetType {
   Over = "Over",
   Under = "Under",
   BetBuilder = "Bet Builder",
+  Other = "Other",
 }

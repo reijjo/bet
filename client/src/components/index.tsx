@@ -23,3 +23,6 @@ export { BetStatus } from "./dashboard/dashboard-cards/latest-bets-card/BetStatu
 
 export { Bets } from "./bets/Bets";
 export { AddBet } from "./add-bet/AddBet";
+export { AddBetForm } from "./add-bet/AddBetForm";
+export { FinishBetForm } from "./add-bet/FinishBetForm";
+export { FinishBetButtons } from "./add-bet/FinishBetButtons";
