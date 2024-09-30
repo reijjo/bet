@@ -1,13 +1,12 @@
-import { InputProps } from "../../utils/types";
+import { BetInputProps } from "../../utils/types";
 import { TextInput } from "../index";
 
 export const SelectionInput = ({
-  handleTextInput,
-  newBet,
+  handleBetInput,
   myBet,
-  modifyIndex,
-  addParlay,
-}: InputProps) => (
+}: // modifyIndex,
+// addParlay,
+BetInputProps) => (
   <div className="selection-input">
     <TextInput
       className="text-input"
@@ -17,9 +16,9 @@ export const SelectionInput = ({
       id="selection"
       name="selection"
       size={15}
-      onChange={handleTextInput}
-      value={newBet.betDetails.selection}
-      disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
+      onChange={handleBetInput}
+      value={myBet.betDetails[0].selection}
+      // disabled={myBet && myBet.length > 0 && modifyIndex === null && !addParlay}
     />
   </div>
 );

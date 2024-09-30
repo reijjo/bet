@@ -10,7 +10,7 @@ export type Bet = {
   status: BetStatus;
   bet_type: BetType;
   sport: SportLeague;
-  betDetails: BetDetails;
+  betDetails: BetDetails[];
 };
 
 export type BetDetails = {
@@ -25,13 +25,12 @@ export type BetDetails = {
   notes?: string;
 };
 
-export type InputProps = {
-  handleTextInput?: (
+export type BetInputProps = {
+  handleBetInput: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  newBet: Bet;
-  setNewBet?: Dispatch<SetStateAction<Bet>>;
-  myBet: Bet[];
-  modifyIndex: number | null;
-  addParlay: boolean;
+  myBet: Bet;
+  setMyBet?: Dispatch<SetStateAction<Bet>>;
+  modifyIndex?: number | null;
+  addParlay?: boolean;
 };

@@ -1,13 +1,12 @@
-import { InputProps } from "../../utils/types";
+import { BetInputProps } from "../../utils/types";
 import { TextInput } from "../index";
 
 export const DateInput = ({
-  handleTextInput,
-  newBet,
+  handleBetInput,
   myBet,
-  modifyIndex,
-  addParlay,
-}: InputProps) => (
+}: // modifyIndex,
+// addParlay,
+BetInputProps) => (
   <div className="date-input">
     <TextInput
       className="text-input"
@@ -16,9 +15,9 @@ export const DateInput = ({
       id="date"
       name="date"
       size={20}
-      value={newBet.betDetails.date}
-      disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
-      onChange={handleTextInput}
+      onChange={handleBetInput}
+      value={myBet.betDetails[0].date}
+      // disabled={myBet && myBet.length > 0 && modifyIndex === null && !addParlay}
     />
   </div>
 );

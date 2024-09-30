@@ -2,40 +2,38 @@ import "./AddBet.css";
 import { AddBetForm } from "../index";
 import { useState } from "react";
 import { Bet } from "../../utils/types";
-import { MyBetSlip } from "./MyBetSlip";
-import { initialBetDetailValues, initialBetValues } from "./betUtils";
+// import { MyBetSlip } from "./MyBetSlip";
+import { initialBetValues } from "./betUtils";
 
 export const AddBet = () => {
-  const [myBet, setMyBet] = useState<Bet[]>([]);
-  const [newBet, setNewBet] = useState<Bet>(initialBetValues);
+  const [myBet, setMyBet] = useState<Bet>(initialBetValues);
+  // const [newBet, setNewBet] = useState<Bet>(initialBetValues[]);
   const [modifyIndex, setModifyIndex] = useState<number | null>(null);
   const [addParlay, setAddParlay] = useState(false);
 
-  const handleModifyBet = (index: number) => {
-    setNewBet(myBet[index]);
-    setModifyIndex(index);
-    setAddParlay(true);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
-  };
+  // const handleModifyBet = (index: number) => {
+  //   // setNewBet(myBet[index]);
+  //   setModifyIndex(index);
+  //   setAddParlay(true);
+  //   setTimeout(() => {
+  //     window.scrollTo({ top: 0, behavior: "smooth" });
+  //   }, 100);
+  // };
 
-  const handleAddToParley = () => {
-    setNewBet((prev) => ({
-      ...prev,
-      betDetails: initialBetDetailValues,
-    }));
-    setAddParlay(true);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
-  };
+  // const handleAddToParley = () => {
+  //   // setNewBet((prev) => ({
+  //   //   ...prev,
+  //   //   betDetails: initialBetDetailValues,
+  //   // }));
+  //   setAddParlay(true);
+  //   setTimeout(() => {
+  //     window.scrollTo({ top: 0, behavior: "smooth" });
+  //   }, 100);
+  // };
 
   return (
     <div className="wrapper">
       <AddBetForm
-        newBet={newBet}
-        setNewBet={setNewBet}
         myBet={myBet}
         setMyBet={setMyBet}
         modifyIndex={modifyIndex}
@@ -43,7 +41,7 @@ export const AddBet = () => {
         setAddParlay={setAddParlay}
         setModifyIndex={setModifyIndex}
       />
-      {myBet.length > 0 && (
+      {/* {myBet.length > 0 && (
         <MyBetSlip
           myBet={myBet}
           setMyBet={setMyBet}
@@ -51,10 +49,10 @@ export const AddBet = () => {
           handleAddToParley={handleAddToParley}
           modifyIndex={modifyIndex}
           addParlay={addParlay}
-          newBet={newBet}
-          setNewBet={setNewBet}
+          // newBet={newBet}
+          // setNewBet={setNewBet}
         />
-      )}
+      )} */}
     </div>
   );
 };

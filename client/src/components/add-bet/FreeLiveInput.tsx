@@ -1,33 +1,26 @@
-import { InputProps } from "../../utils/types";
+import { BetInputProps } from "../../utils/types";
 import { Checkbox } from "../index";
 
 export const FreeLiveInput = ({
-  newBet,
-  setNewBet,
+  handleBetInput,
   myBet,
-  modifyIndex,
-  addParlay,
-}: InputProps) => (
+}: // setMyBet,
+// modifyIndex,
+// addParlay,
+BetInputProps) => (
   <div className="add-bet-checks">
     <div className="freebet-check">
       <Checkbox
         className="my-checkbox"
         id="freebet"
         name="freebet"
-        checked={newBet.betDetails.freebet}
-        onChange={() =>
-          setNewBet &&
-          setNewBet((prev) => ({
-            ...prev,
-            betDetails: {
-              ...prev.betDetails,
-              freebet: !prev.betDetails.freebet,
-            },
-          }))
-        }
+        checked={myBet.betDetails[0].freebet}
+        onChange={handleBetInput}
         label="Freebet"
-        value={newBet.betDetails.freebet}
-        disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
+        value={myBet.betDetails[0].freebet}
+        // disabled={
+        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
+        // }
       />
     </div>
     <div className="livebet-check">
@@ -35,20 +28,13 @@ export const FreeLiveInput = ({
         className="my-checkbox"
         id="livebet"
         name="livebet"
-        checked={newBet.betDetails.livebet}
-        onChange={() =>
-          setNewBet &&
-          setNewBet((prev) => ({
-            ...prev,
-            betDetails: {
-              ...prev.betDetails,
-              livebet: !prev.betDetails.livebet,
-            },
-          }))
-        }
+        checked={myBet.betDetails[0].livebet}
+        onChange={handleBetInput}
         label="Livebet"
-        value={newBet.betDetails.livebet}
-        disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
+        value={myBet.betDetails[0].livebet}
+        // disabled={
+        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
+        // }
       />
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SyntheticEvent } from "react";
-import { TextInput, Select, FinishBetButtons } from "../index";
+import { TextInput, Select } from "../index";
 import { BetType, Bookmaker } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 
@@ -17,19 +17,16 @@ export const FinishBetForm = ({
   setNewBet,
   myBet,
   setMyBet,
-  handleAddToParlay,
-  addParlay,
-}: FinishBetFormProps) => {
+}: // handleAddToParlay,
+// addParlay,
+FinishBetFormProps) => {
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
     setNewBet((prev) => ({
       ...prev,
-      betDetails: {
-        ...prev.betDetails,
-        [name]: type === "number" ? parseFloat(value) : value,
-      },
+      [name]: type === "number" ? parseFloat(value) : value,
     }));
   };
 
@@ -44,7 +41,17 @@ export const FinishBetForm = ({
 
   const addBet = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    // setMyBet([...myBet, newBet]);
+    // setMyBet((details) => ({
+    //   ...details,
+    //   sport: newBet.sport,
+    // }));
+
+    setMyBet;
+
     console.log("myBet", myBet);
+    console.log("newBet", newBet);
   };
 
   return (
@@ -60,7 +67,6 @@ export const FinishBetForm = ({
           name="sport"
           size={20}
           onChange={handleTextInput}
-          // disabled={myBet.length > 0 && modifyIndex === null}
           value={newBet.sport}
         />
       </div>
@@ -72,7 +78,6 @@ export const FinishBetForm = ({
           className="text-input"
           options={Object.values(BetType)}
           onChange={handleSelectChange}
-          // disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
           value={newBet.bet_type}
         />
       </div>
@@ -86,7 +91,6 @@ export const FinishBetForm = ({
           size={1}
           options={Object.values(Bookmaker)}
           value={newBet.bookmaker}
-          // disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
           onChange={handleSelectChange}
         />
       </div>
@@ -100,16 +104,15 @@ export const FinishBetForm = ({
           name="tipper"
           size={15}
           value={newBet.tipper}
-          // disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
           onChange={handleTextInput}
         />
       </div>
-      <FinishBetButtons
+      {/* <FinishBetButtons
         myBet={myBet}
         setMyBet={setMyBet}
         handleAddToParley={handleAddToParlay}
         addParlay={addParlay}
-      />
+      /> */}
     </form>
   );
 };

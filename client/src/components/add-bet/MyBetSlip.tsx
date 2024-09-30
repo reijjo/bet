@@ -47,13 +47,13 @@ export const MyBetSlip = ({
         {myBet.map((bet, index) => (
           <div key={index} className="finish-mybet-slip">
             <div className="mybet-slip-match">
-              <p className="mybet-slip-hometeam">{bet.betDetails.home_team}</p>
-              <p className="mybet-slip-awayteam">{bet.betDetails.away_team}</p>
+              {/* <p className="mybet-slip-hometeam">{bet.betDetails.home_team}</p> */}
+              {/* <p className="mybet-slip-awayteam">{bet.betDetails.away_team}</p> */}
             </div>
             <div className="mybet-slip-selection">
-              <p className="bet-selection">{bet.betDetails.selection}</p>
+              {/* <p className="bet-selection">{bet.betDetails.selection}</p> */}
             </div>
-            <div className="mybet-slip-odds">{bet.betDetails.odds}</div>
+            {/* <div className="mybet-slip-odds">{bet.betDetails.odds}</div> */}
             <div className="mybet-slip-more">
               <a className="mybet-edit" onClick={() => handleModifyBet(index)}>
                 <FontAwesomeIcon icon={faPenToSquare} />
