@@ -19,7 +19,7 @@ export const initialBetValues = {
   tipper: "",
   bet_type: BetType.Single || "",
   sport: SportLeague.None,
-  betDetails: [initialBetDetailValues],
+  betDetails: [],
 };
 
 // Checks the type of the input

@@ -4,33 +4,31 @@ import { Bet } from "../../utils/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FinishBetForm } from "../index";
+import { initialBetValues } from "./betUtils";
 
 type MyBetsProps = {
-  myBet: Bet[];
-  setMyBet: Dispatch<React.SetStateAction<Bet[]>>;
+  myBet: Bet;
+  setMyBet: Dispatch<React.SetStateAction<Bet>>;
   handleModifyBet: (index: number) => void;
-  handleAddToParley: () => void;
-  modifyIndex: number | null;
+  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
   addParlay: boolean;
-  newBet: Bet;
-  setNewBet: Dispatch<React.SetStateAction<Bet>>;
 };
 
 export const MyBetSlip = ({
   myBet,
   setMyBet,
   handleModifyBet,
-  handleAddToParley,
-  addParlay,
-  newBet,
-  setNewBet,
 }: MyBetsProps) => {
+  const cancelBet = () => {
+    setMyBet(initialBetValues);
+  };
+
   return (
     <div className="addbet-container" id="finish-my-bet">
       <div className="mybet-header">
         <h3 className="container-header">Add Stake</h3>
         <div className="mybets-close">
-          <a onClick={() => setMyBet([])} title="Close">
+          <a onClick={cancelBet} title="Close">
             <FontAwesomeIcon icon={faXmark} />
           </a>
         </div>
@@ -44,16 +42,16 @@ export const MyBetSlip = ({
             <FontAwesomeIcon icon={faPenToSquare} />
           </div>
         </div>
-        {myBet.map((bet, index) => (
+        {myBet.betDetails.map((bet, index) => (
           <div key={index} className="finish-mybet-slip">
             <div className="mybet-slip-match">
-              {/* <p className="mybet-slip-hometeam">{bet.betDetails.home_team}</p> */}
-              {/* <p className="mybet-slip-awayteam">{bet.betDetails.away_team}</p> */}
+              <p className="mybet-slip-hometeam">{bet.home_team}</p>
+              <p className="mybet-slip-awayteam">{bet.away_team}</p>
             </div>
             <div className="mybet-slip-selection">
-              {/* <p className="bet-selection">{bet.betDetails.selection}</p> */}
+              <p className="bet-selection">{bet.selection}</p>
             </div>
-            {/* <div className="mybet-slip-odds">{bet.betDetails.odds}</div> */}
+            <div className="mybet-slip-odds">{bet.odds}</div>
             <div className="mybet-slip-more">
               <a className="mybet-edit" onClick={() => handleModifyBet(index)}>
                 <FontAwesomeIcon icon={faPenToSquare} />
@@ -61,14 +59,7 @@ export const MyBetSlip = ({
             </div>
           </div>
         ))}
-        <FinishBetForm
-          newBet={newBet}
-          setNewBet={setNewBet}
-          myBet={myBet}
-          setMyBet={setMyBet}
-          handleAddToParlay={handleAddToParley}
-          addParlay={addParlay}
-        />
+        <FinishBetForm myBet={myBet} setMyBet={setMyBet} />
       </div>
     </div>
   );

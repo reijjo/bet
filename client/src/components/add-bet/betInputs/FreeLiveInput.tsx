@@ -1,26 +1,22 @@
-import { BetInputProps } from "../../utils/types";
-import { Checkbox } from "../index";
+import { BetInputProps } from "../../../utils/types";
+import { Checkbox } from "../../index";
 
 export const FreeLiveInput = ({
   handleBetInput,
-  myBet,
-}: // setMyBet,
-// modifyIndex,
-// addParlay,
-BetInputProps) => (
+  details,
+  disabled,
+}: BetInputProps) => (
   <div className="add-bet-checks">
     <div className="freebet-check">
       <Checkbox
         className="my-checkbox"
         id="freebet"
         name="freebet"
-        checked={myBet.betDetails[0].freebet}
+        checked={details.freebet}
         onChange={handleBetInput}
         label="Freebet"
-        value={myBet.betDetails[0].freebet}
-        // disabled={
-        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
-        // }
+        value={details.freebet}
+        disabled={disabled}
       />
     </div>
     <div className="livebet-check">
@@ -28,10 +24,10 @@ BetInputProps) => (
         className="my-checkbox"
         id="livebet"
         name="livebet"
-        checked={myBet.betDetails[0].livebet}
+        checked={details.livebet}
         onChange={handleBetInput}
         label="Livebet"
-        value={myBet.betDetails[0].livebet}
+        value={details.livebet}
         // disabled={
         //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
         // }

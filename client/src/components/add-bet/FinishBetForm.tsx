@@ -1,42 +1,37 @@
-import { ChangeEvent, Dispatch, SyntheticEvent } from "react";
-import { TextInput, Select } from "../index";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useState,
+} from "react";
+import { TextInput, Select, FinishBetButtons } from "../index";
 import { BetType, Bookmaker } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 
 type FinishBetFormProps = {
-  newBet: Bet;
-  setNewBet: Dispatch<React.SetStateAction<Bet>>;
-  myBet: Bet[];
-  setMyBet: Dispatch<React.SetStateAction<Bet[]>>;
-  handleAddToParlay: () => void;
-  addParlay: boolean;
+  myBet: Bet;
+  setMyBet: Dispatch<SetStateAction<Bet>>;
 };
 
-export const FinishBetForm = ({
-  newBet,
-  setNewBet,
-  myBet,
-  setMyBet,
-}: // handleAddToParlay,
-// addParlay,
-FinishBetFormProps) => {
+export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
+  const [addStake, setAddStake] = useState(false);
+
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
-    setNewBet((prev) => ({
+    setMyBet((prev) => ({
       ...prev,
       [name]: type === "number" ? parseFloat(value) : value,
     }));
   };
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setNewBet((newBet) => {
-      return {
-        ...newBet,
-        [e.target.name]: e.target.value,
-      };
-    });
+    setMyBet((myBet) => ({
+      ...myBet,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const addBet = (e: SyntheticEvent) => {
@@ -48,10 +43,7 @@ FinishBetFormProps) => {
     //   sport: newBet.sport,
     // }));
 
-    setMyBet;
-
     console.log("myBet", myBet);
-    console.log("newBet", newBet);
   };
 
   return (
@@ -67,7 +59,8 @@ FinishBetFormProps) => {
           name="sport"
           size={20}
           onChange={handleTextInput}
-          value={newBet.sport}
+          value={myBet.sport}
+          disabled={addStake}
         />
       </div>
       <div className="bet-type-input">
@@ -78,7 +71,8 @@ FinishBetFormProps) => {
           className="text-input"
           options={Object.values(BetType)}
           onChange={handleSelectChange}
-          value={newBet.bet_type}
+          value={myBet.bet_type}
+          disabled={addStake}
         />
       </div>
       <div className="bookmaker-input">
@@ -90,8 +84,9 @@ FinishBetFormProps) => {
           name="bookmaker"
           size={1}
           options={Object.values(Bookmaker)}
-          value={newBet.bookmaker}
           onChange={handleSelectChange}
+          value={myBet.bookmaker}
+          disabled={addStake}
         />
       </div>
       <div className="tipper-input">
@@ -103,16 +98,17 @@ FinishBetFormProps) => {
           id="tipper"
           name="tipper"
           size={15}
-          value={newBet.tipper}
           onChange={handleTextInput}
+          value={myBet.tipper}
+          disabled={addStake}
         />
       </div>
-      {/* <FinishBetButtons
+      <FinishBetButtons
         myBet={myBet}
         setMyBet={setMyBet}
-        handleAddToParley={handleAddToParlay}
-        addParlay={addParlay}
-      /> */}
+        addStake={addStake}
+        setAddStake={setAddStake}
+      />
     </form>
   );
 };

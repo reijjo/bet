@@ -1,12 +1,11 @@
-import { BetInputProps } from "../../utils/types";
-import { TextArea } from "../index";
+import { BetInputProps } from "../../../utils/types";
+import { TextArea } from "../../index";
 
 export const NotesInput = ({
   handleBetInput,
-  myBet,
-}: // modifyIndex,
-// addParlay,
-BetInputProps) => (
+  details,
+  disabled,
+}: BetInputProps) => (
   <div className="notes-input">
     <TextArea
       className="text-input"
@@ -17,8 +16,8 @@ BetInputProps) => (
       rows={2}
       cols={1}
       placeholder="Your own notes about the bet..."
-      value={myBet.betDetails[0].notes}
-      // disabled={myBet && myBet.length > 0 && modifyIndex === null && !addParlay}
+      value={details.notes}
+      disabled={disabled}
       onChange={handleBetInput}
     />
   </div>

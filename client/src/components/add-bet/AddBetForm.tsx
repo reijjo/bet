@@ -1,64 +1,79 @@
-import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 import {
-  Button,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
+import { Button } from "../index";
+import {
   MatchInput,
   DateInput,
   FreeLiveInput,
   SelectionInput,
   OddsInput,
   NotesInput,
-} from "../index";
-import { Bet } from "../../utils/types";
-import { getInputValue } from "./betUtils";
-// import { initialBetValues } from "./betUtils";
+} from "./betInputs";
+import { Bet, BetDetails } from "../../utils/types";
+import { getInputValue, initialBetDetailValues } from "./betUtils";
 
 type AddBetFormProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
   modifyIndex: number | null;
-  addParlay: boolean;
-  setAddParlay: Dispatch<React.SetStateAction<boolean>>;
   setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
+  disabled: boolean;
 };
 
 export const AddBetForm = ({
   myBet,
   setMyBet,
   modifyIndex,
-  addParlay,
-  setAddParlay,
   setModifyIndex,
+  disabled,
 }: AddBetFormProps) => {
+  const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
+    initialBetDetailValues
+  );
+
+  useEffect(() => {
+    if (modifyIndex !== null) {
+      setAddBetDetails(myBet.betDetails[modifyIndex]);
+    }
+  }, [modifyIndex, myBet.betDetails]);
+
   // Handles all types of bet inputs
   const handleBetInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     const inputValue = getInputValue(type, checked, value);
-    setMyBet((prev) => ({
+    setAddBetDetails((prev) => ({
       ...prev,
-      betDetails: [
-        {
-          ...prev.betDetails[0],
-          [name]: inputValue,
-        },
-      ],
+      [name]: inputValue,
     }));
   };
 
   const handleMyBet = (e: SyntheticEvent) => {
     e.preventDefault();
-    // if (modifyIndex !== null) {
-    //   const updatedBets = [...myBet];
-    //   // updatedBets[modifyIndex] = newBet;
-    //   setMyBet(updatedBets);
-    //   setModifyIndex(null);
-    // } else {
-    //   // setMyBet([...myBet, newBet]);
-    // }
-    // // setNewBet(initialBetValues);
-    // setAddParlay(false);
-    console.log("myBet", myBet);
+
+    if (modifyIndex !== null) {
+      // Modify existing bet
+      setMyBet((prev) => {
+        const updatedBetDetails = [...prev.betDetails];
+        updatedBetDetails[modifyIndex] = addBetDetails;
+        return { ...prev, betDetails: updatedBetDetails };
+      });
+      setModifyIndex(null);
+    } else {
+      setMyBet((prev) => ({
+        ...prev,
+        betDetails: [...prev.betDetails, addBetDetails],
+      }));
+    }
+
+    setAddBetDetails(initialBetDetailValues);
 
     setTimeout(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
@@ -66,22 +81,21 @@ export const AddBetForm = ({
   };
 
   const handleCancel = () => {
-    console.log("clear form");
-    // setNewBet(initialBetValues);
-    setModifyIndex(null);
-    setAddParlay(false);
-
-    // Scrolls down if there is a bet in your slip
-    {
-      // addParlay && myBet.length > 0;
-      // setTimeout(() => {
-      //   window.scrollTo({
-      //     top: document.body.scrollHeight,
-      //     behavior: "smooth",
-      //   });
-      // }, 100);
+    if (myBet.betDetails.length > 1) {
+      myBet.betDetails.pop();
     }
+    setAddBetDetails(initialBetDetailValues);
+
+    setModifyIndex(null);
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100);
   };
+
+  console.log("MY BET", myBet);
 
   return (
     <div className="addbet-container">
@@ -89,47 +103,47 @@ export const AddBetForm = ({
       <form className="addbet-form" onSubmit={handleMyBet}>
         <MatchInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
         <DateInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
         <FreeLiveInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
         <SelectionInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
         <OddsInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
         <NotesInput
           handleBetInput={handleBetInput}
-          myBet={myBet}
+          details={addBetDetails}
           modifyIndex={modifyIndex}
-          addParlay={addParlay}
+          disabled={disabled}
         />
-        <div className={`add-bet-buttons`}>
+        <div className="add-bet-buttons">
           <Button
             children="Continue"
             type="submit"
             className="btn big-btn-style"
             style={{ fontSize: "1.25em" }}
-            // disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
+            disabled={disabled}
           />
           <Button
             children="Cancel"
@@ -137,7 +151,7 @@ export const AddBetForm = ({
             className="btn outline-btn"
             style={{ fontSize: "1.25em" }}
             onClick={handleCancel}
-            // disabled={myBet.length > 0 && modifyIndex === null && !addParlay}
+            disabled={disabled}
           />
         </div>
       </form>

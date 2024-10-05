@@ -1,11 +1,11 @@
-import { TextInput } from "../index";
-import { BetInputProps } from "../../utils/types";
+import { TextInput } from "../../index";
+import { BetInputProps } from "../../../utils/types";
 
 export const MatchInput = ({
   handleBetInput,
-  myBet,
+  details,
+  disabled,
 }: // modifyIndex,
-// addParlay,
 BetInputProps) => (
   <div className="match-input">
     <div
@@ -27,10 +27,8 @@ BetInputProps) => (
         name="home_team"
         size={15}
         onChange={handleBetInput}
-        value={myBet.betDetails[0].home_team}
-        // disabled={
-        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
-        // }
+        value={details.home_team}
+        disabled={disabled}
       />
       <p className="match-dash">-</p>
       <TextInput
@@ -40,10 +38,8 @@ BetInputProps) => (
         name="away_team"
         size={15}
         onChange={handleBetInput}
-        value={myBet.betDetails[0].away_team}
-        // disabled={
-        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
-        // }
+        value={details.away_team}
+        disabled={disabled}
       />
     </div>
   </div>
