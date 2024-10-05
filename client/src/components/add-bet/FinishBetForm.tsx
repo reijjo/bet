@@ -12,9 +12,16 @@ import { Bet } from "../../utils/types";
 type FinishBetFormProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
+  modifyIndex: number | null;
+  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
 };
 
-export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
+export const FinishBetForm = ({
+  myBet,
+  setMyBet,
+  modifyIndex,
+  setModifyIndex,
+}: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
 
   const handleTextInput = (
@@ -43,7 +50,7 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
     //   sport: newBet.sport,
     // }));
 
-    console.log("myBet", myBet);
+    console.log("BET READY!!", myBet);
   };
 
   return (
@@ -60,7 +67,7 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
           size={20}
           onChange={handleTextInput}
           value={myBet.sport}
-          disabled={addStake}
+          disabled={addStake || modifyIndex !== null}
         />
       </div>
       <div className="bet-type-input">
@@ -72,7 +79,7 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
           options={Object.values(BetType)}
           onChange={handleSelectChange}
           value={myBet.bet_type}
-          disabled={addStake}
+          disabled={addStake || modifyIndex !== null}
         />
       </div>
       <div className="bookmaker-input">
@@ -86,7 +93,7 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
           options={Object.values(Bookmaker)}
           onChange={handleSelectChange}
           value={myBet.bookmaker}
-          disabled={addStake}
+          disabled={addStake || modifyIndex !== null}
         />
       </div>
       <div className="tipper-input">
@@ -100,7 +107,7 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
           size={15}
           onChange={handleTextInput}
           value={myBet.tipper}
-          disabled={addStake}
+          disabled={addStake || modifyIndex !== null}
         />
       </div>
       <FinishBetButtons
@@ -108,6 +115,8 @@ export const FinishBetForm = ({ myBet, setMyBet }: FinishBetFormProps) => {
         setMyBet={setMyBet}
         addStake={addStake}
         setAddStake={setAddStake}
+        modifyIndex={modifyIndex}
+        setModifyIndex={setModifyIndex}
       />
     </form>
   );

@@ -85,7 +85,6 @@ export const AddBetForm = ({
       myBet.betDetails.pop();
     }
     setAddBetDetails(initialBetDetailValues);
-
     setModifyIndex(null);
     setTimeout(() => {
       window.scrollTo({

@@ -1,5 +1,5 @@
 import "./MyBetSlip.css";
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Bet } from "../../utils/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -8,16 +8,18 @@ import { initialBetValues } from "./betUtils";
 
 type MyBetsProps = {
   myBet: Bet;
-  setMyBet: Dispatch<React.SetStateAction<Bet>>;
+  setMyBet: Dispatch<SetStateAction<Bet>>;
   handleModifyBet: (index: number) => void;
-  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
-  addParlay: boolean;
+  modifyIndex: number | null;
+  setModifyIndex: Dispatch<SetStateAction<number | null>>;
 };
 
 export const MyBetSlip = ({
   myBet,
   setMyBet,
   handleModifyBet,
+  modifyIndex,
+  setModifyIndex,
 }: MyBetsProps) => {
   const cancelBet = () => {
     setMyBet(initialBetValues);
@@ -59,7 +61,12 @@ export const MyBetSlip = ({
             </div>
           </div>
         ))}
-        <FinishBetForm myBet={myBet} setMyBet={setMyBet} />
+        <FinishBetForm
+          myBet={myBet}
+          setMyBet={setMyBet}
+          modifyIndex={modifyIndex}
+          setModifyIndex={setModifyIndex}
+        />
       </div>
     </div>
   );

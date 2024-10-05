@@ -32,7 +32,6 @@ export type BetInputProps = {
   myBet?: Bet;
   setMyBet?: Dispatch<SetStateAction<Bet>>;
   modifyIndex?: number | null;
-  addParlay?: boolean;
   details: BetDetails;
   disabled?: boolean;
 };

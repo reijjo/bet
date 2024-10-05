@@ -8,11 +8,9 @@ import { initialBetValues } from "./betUtils";
 export const AddBet = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);
   const [modifyIndex, setModifyIndex] = useState<number | null>(null);
-  const [addParlay, setAddParlay] = useState(false);
 
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);
-    setAddParlay(true);
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 100);
@@ -32,9 +30,8 @@ export const AddBet = () => {
           myBet={myBet}
           setMyBet={setMyBet}
           handleModifyBet={handleModifyBet}
-          // modifyIndex={modifyIndex}
+          modifyIndex={modifyIndex}
           setModifyIndex={setModifyIndex}
-          addParlay={addParlay}
         />
       )}
     </div>

@@ -14,6 +14,8 @@ type FinishBetButtonsProps = {
   setMyBet: Dispatch<SetStateAction<Bet>>;
   addStake: boolean;
   setAddStake: Dispatch<SetStateAction<boolean>>;
+  modifyIndex: number | null;
+  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
 };
 
 export const FinishBetButtons = ({
@@ -21,6 +23,8 @@ export const FinishBetButtons = ({
   setMyBet,
   addStake,
   setAddStake,
+  modifyIndex,
+  setModifyIndex,
 }: FinishBetButtonsProps) => {
   const [potentialWin, setPotentialWin] = useState<string>("0.00");
 
@@ -44,10 +48,15 @@ export const FinishBetButtons = ({
   };
 
   const handleAddToParlay = () => {
-    setMyBet((bet) => ({
-      ...bet,
-      betDetails: [...bet.betDetails, initialBetDetailValues],
+    setMyBet((prev) => ({
+      ...prev,
+      betDetails: [...prev.betDetails, initialBetDetailValues],
     }));
+    setModifyIndex(myBet.betDetails.length);
+
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
   };
 
   return (
@@ -60,14 +69,14 @@ export const FinishBetButtons = ({
               onClick={() => setAddStake(true)}
               className="btn big-btn-style"
               children="Add Stake"
-              // disabled={addParlay}
+              disabled={modifyIndex !== null}
             />
             <Button
               type="button"
               onClick={handleAddToParlay}
               className="btn outline-btn"
               children="Add to parley"
-              // disabled={addParlay}
+              disabled={modifyIndex !== null}
             />
           </div>
         </div>

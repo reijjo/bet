@@ -28,9 +28,7 @@ export const FreeLiveInput = ({
         onChange={handleBetInput}
         label="Livebet"
         value={details.livebet}
-        // disabled={
-        //   myBet && myBet.length > 0 && modifyIndex === null && !addParlay
-        // }
+        disabled={disabled}
       />
     </div>
   </div>
