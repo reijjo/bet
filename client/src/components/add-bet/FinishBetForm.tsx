@@ -8,6 +8,8 @@ import {
 import { TextInput, Select, FinishBetButtons } from "../index";
 import { BetType, Bookmaker } from "../../utils/enums";
 import { Bet } from "../../utils/types";
+import { useAppDispatch } from "../../store/hooks";
+import { addNewBet } from "../../reducers/betReducer";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -23,6 +25,7 @@ export const FinishBetForm = ({
   setModifyIndex,
 }: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -44,12 +47,7 @@ export const FinishBetForm = ({
   const addBet = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    // setMyBet([...myBet, newBet]);
-    // setMyBet((details) => ({
-    //   ...details,
-    //   sport: newBet.sport,
-    // }));
-
+    dispatch(addNewBet(myBet));
     console.log("BET READY!!", myBet);
   };
 

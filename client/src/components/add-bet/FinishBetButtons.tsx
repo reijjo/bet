@@ -33,17 +33,15 @@ export const FinishBetButtons = ({
       const allOdds = myBet.betDetails
         .reduce((acc, bet) => acc * Number(bet.odds), 1)
         .toFixed(2);
-      setPotentialWin((Number(allOdds) * myBet.stake).toFixed(2));
+      setPotentialWin((Number(allOdds) * Number(myBet.stake)).toFixed(2));
     };
     potentialWin();
   }, [myBet]);
 
   const handleStakeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newStake = parseFloat(e.target.value) || 0;
-
     setMyBet((prev) => ({
       ...prev,
-      stake: newStake,
+      stake: e.target.value,
     }));
   };
 

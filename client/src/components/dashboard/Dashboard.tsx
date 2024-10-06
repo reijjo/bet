@@ -2,7 +2,7 @@ import "./Dashboard.css";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
-import { initAllBets, initMyBets } from "../../slices/betSlice";
+import { initAllBets } from "../../reducers/betReducer";
 import {
   MiniSummaryCards,
   MonthlyCard,
@@ -13,21 +13,17 @@ import {
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
-  const userId = 1;
+
+  const allbets = useAppSelector((state) => state.bets.allBets);
 
   useEffect(() => {
     console.log("in useeffect");
     dispatch(initAllBets());
-    dispatch(initMyBets(userId));
-  }, [dispatch, userId]);
-
-  const allbets = useAppSelector((state) => state.bets.allBets);
-  const mybets = useAppSelector((state) => state.bets.myBets);
+  }, [dispatch]);
 
   console.log("BETS", allbets);
-  console.log("MY BETS", mybets);
 
-  const latestBets = mybets.slice(0, 2);
+  const latestBets = allbets.slice(0, 2);
   console.log("LATEST BETS", latestBets);
 
   return (

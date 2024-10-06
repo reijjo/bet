@@ -14,7 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { closeSidebar } from "../../slices/sidebarSlice";
+import { closeSidebar } from "../../reducers/sidebarReducer";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);

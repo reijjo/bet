@@ -2,9 +2,9 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
 
 export type Bet = {
-  id?: number;
+  id?: number | string;
   user_id?: number;
-  stake: number;
+  stake: string | number;
   bookmaker?: Bookmaker;
   tipper: string;
   status: BetStatus;

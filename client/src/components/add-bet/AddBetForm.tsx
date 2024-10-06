@@ -94,8 +94,6 @@ export const AddBetForm = ({
     }, 100);
   };
 
-  console.log("MY BET", myBet);
-
   return (
     <div className="addbet-container">
       <h3 className="container-header">Add Bet</h3>

@@ -1,7 +1,7 @@
 import "./AddBetModal.css";
 
 import { useAppDispatch } from "../../../store/hooks";
-import { closeModal } from "../../../slices/modalSlice";
+import { closeModal } from "../../../reducers/modalReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../Button";

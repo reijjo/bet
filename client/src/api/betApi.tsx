@@ -13,7 +13,14 @@ const getMyBets = async (id: number): Promise<Bet[]> => {
   return res.data;
 };
 
+const addBet = async (newBet: Bet): Promise<Bet> => {
+  console.log("axios bet", newBet);
+  const res = await axios.post(baseUrl, newBet);
+  return res.data;
+};
+
 export const betApi = {
   getAllBets,
   getMyBets,
+  addBet,
 };

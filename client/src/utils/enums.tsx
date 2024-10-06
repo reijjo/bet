@@ -35,10 +35,12 @@ export enum BetType {
   Single = "Single",
   Double = "Double",
   Triple = "Triple",
-  Parlayx4 = "Parlay x4",
+  Parlayx4 = "Parlay x 4",
   BigParlay = "Big Parlay",
   Over = "Over",
   Under = "Under",
   BetBuilder = "Bet Builder",
   Other = "Other",
+  Btts = "Both Teams to Score",
+  Btts2 = "Both Teams to Score 2",
 }
