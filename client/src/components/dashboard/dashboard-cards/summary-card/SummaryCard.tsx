@@ -43,52 +43,47 @@ const SummarySection = ({
 
 export const SummaryCard = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
-  const {
-    todayBets,
-    yesterdayBets,
-    // last7DaysBets, thisMonthBets
-  } = periodParser(mybets);
-
-  // console.log("myBets[0]", mybets[0].status);
+  const { todayBets, yesterdayBets, last7DaysBets, thisMonthBets } =
+    periodParser(mybets);
 
   const todaySummary = betCalculations(todayBets);
   const yesterdaySummary = betCalculations(yesterdayBets);
-  // const last7DaysSummary = betCalculations(last7DaysBets);
-  // const thisMonthSummary = betCalculations(thisMonthBets);
+  const last7DaysSummary = betCalculations(last7DaysBets);
+  const thisMonthSummary = betCalculations(thisMonthBets);
 
   console.log("todaySummary", todaySummary);
 
   return (
     <div className="dash-summary">
       <SummaryHeaders />
-      {/* <SummarySection
+      <SummarySection
         period="Today"
-        // totalStake={todaySummary.totalStake.toFixed(2)}
+        totalStake={todaySummary.totalStake.toFixed(2)}
         payout={todaySummary.totalProfit.toFixed(2)}
         realProfit={todaySummary.realProfit.toFixed(2)}
         totalBets={todaySummary.totalBets}
-      /> */}
+      />
       <SummarySection
         period="Yesterday"
         totalStake={yesterdaySummary.totalProfit.toFixed(2)}
         payout={yesterdaySummary.totalProfit.toFixed(2)}
-        realProfit={yesterdaySummary.totalProfit.toFixed(2)}
+        realProfit={yesterdaySummary.realProfit.toFixed(2)}
         totalBets={yesterdaySummary.totalBets}
       />
-      {/* <SummarySection
+      <SummarySection
         period="Last 7 days"
         totalStake={last7DaysSummary.totalStake.toFixed(2)}
-        payout={last7DaysSummary.totalStake.toFixed(2)}
-        realProfit={last7DaysSummary.totalStake.toFixed(2)}
+        payout={last7DaysSummary.totalProfit.toFixed(2)}
+        realProfit={last7DaysSummary.realProfit.toFixed(2)}
         totalBets={last7DaysSummary.totalBets}
-      /> */}
-      {/* <SummarySection
+      />
+      <SummarySection
         period="This month"
         totalStake={thisMonthSummary.totalStake.toFixed(2)}
-        payout={thisMonthSummary.totalStake.toFixed(2)}
-        realProfit={thisMonthSummary.totalStake.toFixed(2)}
+        payout={thisMonthSummary.totalProfit.toFixed(2)}
+        realProfit={thisMonthSummary.realProfit.toFixed(2)}
         totalBets={thisMonthSummary.totalBets}
-      /> */}
+      />
     </div>
   );
 };

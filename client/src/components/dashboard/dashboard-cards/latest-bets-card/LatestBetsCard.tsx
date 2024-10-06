@@ -3,6 +3,7 @@ import "./LatestBetsCard.css";
 import dayjs from "dayjs";
 import { useAppSelector } from "../../../../store/hooks";
 import { BetStatus } from "./BetStatus";
+import { calculateCombinedOdds } from "../summaryUtils";
 
 const LatestHeaders = () => (
   <div className="latest-headers">
@@ -24,15 +25,39 @@ const LatestBets = () => {
       {latestBets.map((bet) => {
         return (
           <div className="latest-bets" key={bet.id}>
-            <p>{dayjs(bet.date).format("D MMM")}</p>
+            <p>{dayjs(bet.betDetails[0].date).format("D MMM")}</p>
             <div className="bets-match">
-              <p className="bet-home-team">{bet.home_team}</p>
-              <p>-</p>
-              <p className="bet-away-team">{bet.away_team}</p>
+              <div className="parlay-div">
+                {bet.betDetails.map((parlay, index) => (
+                  <p className="bet-home-team" key={index}>
+                    {parlay.home_team}
+                  </p>
+                ))}
+              </div>
+              <div className="parlay-div">
+                {bet.betDetails.map((_parlay, index) => (
+                  <p className="bet-vs" key={index}>
+                    -
+                  </p>
+                ))}
+              </div>
+              <div className="parlay-div">
+                {bet.betDetails.map((parlay, index) => (
+                  <p className="bet-home-team" key={index}>
+                    {parlay.away_team}
+                  </p>
+                ))}
+              </div>
             </div>
-            <p className="bet-selection">{bet.selection}</p>
-            <p className="bet-stake">{bet.stake}</p>
-            <p className="bet-odds">{bet.odds}</p>
+            <div className="parlay-div">
+              {bet.betDetails.map((parlay, index) => (
+                <p className="bet-selection" key={index}>
+                  {parlay.selection}
+                </p>
+              ))}
+            </div>
+            <p className="bet-stake">{Number(bet.stake).toFixed(2)} &euro;</p>
+            <p className="bet-odds">{calculateCombinedOdds(bet.betDetails)}</p>
             <BetStatus bet={bet} />
           </div>
         );

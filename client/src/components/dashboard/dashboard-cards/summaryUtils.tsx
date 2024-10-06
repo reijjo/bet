@@ -4,10 +4,21 @@ import { Bet } from "../../../utils/types";
 // Calculate total stake
 const calculateTotalStake = (bets: Bet[]): number => {
   return bets.reduce((acc, bet) => acc + Number(bet.stake), 0);
+  // return bets.reduce((acc, bet) => {
+  //   if (
+  //     bet.status === "Pending" ||
+  //     bet.status === "Void" ||
+  //     bet.status === "Push"
+  //   ) {
+  //     return acc;
+  //   }
+
+  //   return acc + Number(bet.stake);
+  // }, 0);
 };
 
 // Calculate combined odds for parlays
-const calculateCombinedOdds = (
+export const calculateCombinedOdds = (
   betDetails: { odds: string | number }[]
 ): number => {
   return parseFloat(
@@ -27,7 +38,7 @@ const calculateProfit = (bets: Bet[]): number => {
       const combinedOdds = calculateCombinedOdds(
         bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
       );
-      profit = combinedOdds * (Number(bet.stake) - Number(bet.stake));
+      profit = combinedOdds * Number(bet.stake) - Number(bet.stake);
     } else if (bet.status === "Half Won") {
       const combinedOdds = calculateCombinedOdds(bet.betDetails);
       profit = (combinedOdds / 2) * (Number(bet.stake) - Number(bet.stake));
@@ -72,10 +83,15 @@ const calculateTotalLosses = (bets: Bet[]): number => {
 };
 
 export const betCalculations = (bets: Bet[]) => {
+  const settledBets = bets.filter((bet) => bet.status !== "Pending");
+
   const totalStake = calculateTotalStake(bets);
-  const totalProfit = calculateProfit(bets);
   const totalLosses = calculateTotalLosses(bets);
-  const realProfit = totalProfit - totalLosses;
+  const totalProfit =
+    calculateProfit(settledBets) +
+    calculateTotalStake(settledBets) -
+    calculateTotalLosses(settledBets);
+  const realProfit = totalProfit - calculateTotalStake(settledBets);
 
   const returnPercentage = totalStake > 0 ? (realProfit / totalStake) * 100 : 0;
   const totalBets = bets.length;
