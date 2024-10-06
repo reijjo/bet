@@ -66,7 +66,7 @@ export const PieChartDashboard = ({
           ))}
 
           <Label
-            value={hoverText || 0} // Display hover text or default percent
+            value={hoverText || 0}
             position="center"
             fill="#000"
             style={{

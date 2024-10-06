@@ -8,12 +8,13 @@ export const WinPercentCard = () => {
   const [hoverData, setHoverData] = useState<string>("Loading...");
 
   const mybets = useAppSelector((state) => state.bets.allBets);
+  const settledBets = mybets.filter((b) => b.status !== "Pending");
 
   useEffect(() => {
     if (mybets.length > 0) {
       const wonBetsCount =
-        mybets.filter((b) => b.status === "Won").length +
-        mybets.filter((b) => b.status === "Half Won").length;
+        settledBets.filter((b) => b.status === "Won").length +
+        settledBets.filter((b) => b.status === "Half Won").length;
 
       const totalBetsCount = mybets.filter(
         (b) => b.status !== "Pending"
@@ -26,15 +27,15 @@ export const WinPercentCard = () => {
 
       setHoverData(defaultHoverText);
     }
-  }, [mybets]);
+  }, [settledBets, mybets]);
 
   const handleHover = (data: PieChartDashboardData | null) => {
     if (data) {
       setHoverData(`${data.name}: ${(data.percent! * 100).toFixed(0)}%`);
     } else {
       const wonBetsCount =
-        mybets.filter((b) => b.status === "Won").length +
-        mybets.filter((b) => b.status === "Half Won").length;
+        settledBets.filter((b) => b.status === "Won").length +
+        settledBets.filter((b) => b.status === "Half Won").length;
 
       const totalBetsCount = mybets.filter(
         (b) => b.status !== "Pending"
@@ -52,13 +53,19 @@ export const WinPercentCard = () => {
   return (
     <div className="dash-winpercent">
       <h5>Win %</h5>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PieChartDashboard
-          myBets={mybets}
-          hoverText={hoverData}
-          onHover={handleHover}
-        />
-      </Suspense>
+      {settledBets.length > 0 ? (
+        <Suspense fallback={<div>Loading...</div>}>
+          <PieChartDashboard
+            myBets={mybets}
+            hoverText={hoverData}
+            onHover={handleHover}
+          />
+        </Suspense>
+      ) : (
+        <p style={{ alignContent: "center", textAlign: "center" }}>
+          No settled bets yet.
+        </p>
+      )}
     </div>
   );
 };

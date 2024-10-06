@@ -46,6 +46,7 @@
 .latest-bets {
   align-items: center;
   gap: 8px;
+  padding: 8px;
 
   font-size: 0.825em;
 
