@@ -10,6 +10,8 @@ import { BetType, Bookmaker } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 import { useAppDispatch } from "../../store/hooks";
 import { addNewBet } from "../../reducers/betReducer";
+import { initialBetValues } from "./betUtils";
+import { useNavigate } from "react-router-dom";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -25,7 +27,9 @@ export const FinishBetForm = ({
   setModifyIndex,
 }: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,6 +52,8 @@ export const FinishBetForm = ({
     e.preventDefault();
 
     dispatch(addNewBet(myBet));
+    setMyBet(initialBetValues);
+    navigate("/dash");
     console.log("BET READY!!", myBet);
   };
 

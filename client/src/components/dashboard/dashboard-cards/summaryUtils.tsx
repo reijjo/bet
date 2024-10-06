@@ -4,17 +4,6 @@ import { Bet } from "../../../utils/types";
 // Calculate total stake
 const calculateTotalStake = (bets: Bet[]): number => {
   return bets.reduce((acc, bet) => acc + Number(bet.stake), 0);
-  // return bets.reduce((acc, bet) => {
-  //   if (
-  //     bet.status === "Pending" ||
-  //     bet.status === "Void" ||
-  //     bet.status === "Push"
-  //   ) {
-  //     return acc;
-  //   }
-
-  //   return acc + Number(bet.stake);
-  // }, 0);
 };
 
 // Calculate combined odds for parlays
@@ -45,11 +34,7 @@ const calculateProfit = (bets: Bet[]): number => {
     }
 
     // Treat "Pending", "Void", and other cases as 0 profit
-    if (
-      bet.status === "Pending" ||
-      bet.status === "Void" ||
-      bet.status === "Push"
-    ) {
+    if (bet.status === "Void" || bet.status === "Push") {
       profit = 0;
     }
 
@@ -70,11 +55,7 @@ const calculateTotalLosses = (bets: Bet[]): number => {
     }
 
     // Treat "Pending", "Void", and other non-loss cases as 0 loss
-    if (
-      bet.status === "Pending" ||
-      bet.status === "Void" ||
-      bet.status === "Push"
-    ) {
+    if (bet.status === "Void" || bet.status === "Push") {
       loss = 0;
     }
 
@@ -86,14 +67,13 @@ export const betCalculations = (bets: Bet[]) => {
   const settledBets = bets.filter((bet) => bet.status !== "Pending");
 
   const totalStake = calculateTotalStake(bets);
-  const totalLosses = calculateTotalLosses(bets);
-  const totalProfit =
-    calculateProfit(settledBets) +
-    calculateTotalStake(settledBets) -
-    calculateTotalLosses(settledBets);
-  const realProfit = totalProfit - calculateTotalStake(settledBets);
+  const totalLosses = calculateTotalLosses(settledBets);
+  const totalProfit = calculateProfit(settledBets);
+  const realProfit = totalProfit - totalLosses;
 
-  const returnPercentage = totalStake > 0 ? (realProfit / totalStake) * 100 : 0;
+  const settledTotalStake = calculateTotalStake(settledBets);
+  const returnPercentage =
+    settledTotalStake > 0 ? (realProfit / settledTotalStake) * 100 : 0;
   const totalBets = bets.length;
 
   return {

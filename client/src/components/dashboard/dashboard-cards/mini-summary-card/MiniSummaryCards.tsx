@@ -31,6 +31,8 @@ export const MiniSummaryCards = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
   const navigate = useNavigate();
 
+  const calculations = betCalculations(mybets);
+
   return (
     <>
       <MiniSummaryCard
@@ -40,12 +42,12 @@ export const MiniSummaryCards = () => {
       />
       <MiniSummaryCard
         icon={faPercent}
-        header={betCalculations(mybets).returnPercentage.toFixed(2)}
+        header={calculations.returnPercentage.toFixed(2)}
         info="Return %"
       />
       <MiniSummaryCard
         icon={faCoins}
-        header={`${betCalculations(mybets).realProfit.toFixed(2)} \u20AC`}
+        header={`${calculations.realProfit.toFixed(2)} \u20AC`}
         info="Total Profit"
       />
       <div className="dash-addbet">

@@ -11,14 +11,12 @@ export const WinPercentCard = () => {
   const settledBets = mybets.filter((b) => b.status !== "Pending");
 
   useEffect(() => {
-    if (mybets.length > 0) {
+    if (settledBets.length > 0) {
       const wonBetsCount =
         settledBets.filter((b) => b.status === "Won").length +
         settledBets.filter((b) => b.status === "Half Won").length;
 
-      const totalBetsCount = mybets.filter(
-        (b) => b.status !== "Pending"
-      ).length;
+      const totalBetsCount = settledBets.length;
 
       const wonPercentage =
         totalBetsCount > 0 ? wonBetsCount / totalBetsCount : 0;
@@ -27,7 +25,7 @@ export const WinPercentCard = () => {
 
       setHoverData(defaultHoverText);
     }
-  }, [settledBets, mybets]);
+  }, [settledBets]);
 
   const handleHover = (data: PieChartDashboardData | null) => {
     if (data) {
@@ -37,9 +35,7 @@ export const WinPercentCard = () => {
         settledBets.filter((b) => b.status === "Won").length +
         settledBets.filter((b) => b.status === "Half Won").length;
 
-      const totalBetsCount = mybets.filter(
-        (b) => b.status !== "Pending"
-      ).length;
+      const totalBetsCount = settledBets.length;
 
       const wonPercentage =
         totalBetsCount > 0 ? wonBetsCount / totalBetsCount : 0;
@@ -56,7 +52,7 @@ export const WinPercentCard = () => {
       {settledBets.length > 0 ? (
         <Suspense fallback={<div>Loading...</div>}>
           <PieChartDashboard
-            myBets={mybets}
+            myBets={settledBets}
             hoverText={hoverData}
             onHover={handleHover}
           />
