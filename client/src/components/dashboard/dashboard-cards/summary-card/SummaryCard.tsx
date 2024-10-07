@@ -59,28 +59,28 @@ export const SummaryCard = () => {
       <SummarySection
         period="Today"
         totalStake={todaySummary.totalStake.toFixed(2)}
-        payout={todaySummary.totalProfit.toFixed(2)}
+        payout={todaySummary.totalPayout.toFixed(2)}
         realProfit={todaySummary.realProfit.toFixed(2)}
         totalBets={todaySummary.totalBets}
       />
       <SummarySection
         period="Yesterday"
-        totalStake={yesterdaySummary.totalProfit.toFixed(2)}
-        payout={yesterdaySummary.totalProfit.toFixed(2)}
+        totalStake={yesterdaySummary.totalStake.toFixed(2)}
+        payout={yesterdaySummary.totalPayout.toFixed(2)}
         realProfit={yesterdaySummary.realProfit.toFixed(2)}
         totalBets={yesterdaySummary.totalBets}
       />
       <SummarySection
         period="Last 7 days"
         totalStake={last7DaysSummary.totalStake.toFixed(2)}
-        payout={last7DaysSummary.totalProfit.toFixed(2)}
+        payout={last7DaysSummary.totalPayout.toFixed(2)}
         realProfit={last7DaysSummary.realProfit.toFixed(2)}
         totalBets={last7DaysSummary.totalBets}
       />
       <SummarySection
         period="This month"
         totalStake={thisMonthSummary.totalStake.toFixed(2)}
-        payout={thisMonthSummary.totalProfit.toFixed(2)}
+        payout={thisMonthSummary.totalPayout.toFixed(2)}
         realProfit={thisMonthSummary.realProfit.toFixed(2)}
         totalBets={thisMonthSummary.totalBets}
       />

@@ -63,12 +63,40 @@ const calculateTotalLosses = (bets: Bet[]): number => {
   }, 0);
 };
 
+const calculateTotalPayout = (bets: Bet[]): number => {
+  return bets.reduce((acc, bet) => {
+    let payout = 0;
+
+    // Calculate payout based on the bet status
+    if (bet.status === "Won") {
+      const combinedOdds = calculateCombinedOdds(
+        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
+      );
+      payout =
+        Number(bet.stake) +
+        (combinedOdds * Number(bet.stake) - Number(bet.stake));
+    } else if (bet.status === "Half Won") {
+      const combinedOdds = calculateCombinedOdds(bet.betDetails);
+      payout =
+        Number(bet.stake) / 2 +
+        ((combinedOdds / 2) * Number(bet.stake) - Number(bet.stake) / 2);
+    } else if (bet.status === "Lost") {
+      payout = 0; // No payout for lost bets
+    } else if (bet.status === "Void" || bet.status === "Push") {
+      payout = Number(bet.stake); // Stake is returned
+    }
+
+    return acc + payout;
+  }, 0);
+};
+
 export const betCalculations = (bets: Bet[]) => {
   const settledBets = bets.filter((bet) => bet.status !== "Pending");
 
   const totalStake = calculateTotalStake(bets);
   const totalLosses = calculateTotalLosses(settledBets);
   const totalProfit = calculateProfit(settledBets);
+  const totalPayout = calculateTotalPayout(settledBets);
   const realProfit = totalProfit - totalLosses;
 
   const settledTotalStake = calculateTotalStake(settledBets);
@@ -79,6 +107,7 @@ export const betCalculations = (bets: Bet[]) => {
   return {
     totalStake,
     totalProfit,
+    totalPayout,
     totalLosses,
     realProfit,
     returnPercentage,
