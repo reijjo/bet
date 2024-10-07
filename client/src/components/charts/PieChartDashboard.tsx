@@ -52,10 +52,10 @@ export const PieChartDashboard = ({
           data={pieData}
           cx="50%"
           cy="50%"
-          innerRadius={60}
-          outerRadius={80}
+          innerRadius={65}
+          outerRadius={90}
           fill="#8884d8"
-          paddingAngle={5}
+          paddingAngle={1}
           dataKey="value"
           stroke="none"
           onMouseEnter={(entry) => onHover(entry)}
