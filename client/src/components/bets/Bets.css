@@ -1,3 +1,48 @@
-.bets-table {
-  border: 1px solid red;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 8px;
+  border-collapse: collapse;
+}
+
+td {
+  font-size: 0.925rem;
+  text-align: center;
+  align-content: center;
+}
+
+.bets-grid {
+  grid-template-rows: auto;
+}
+
+.bets-grid-headers,
+.bets-grid-betslips {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 2fr 1fr 1fr 0.5fr 0.5fr 1fr 0.5fr;
+  gap: 8px;
+
+  & > * {
+    border: 1px solid red;
+  }
+}
+
+.bets-grid-headers,
+.bets-grid-betslips {
+  padding: 6px 0;
+  color: rgba(255, 255, 255, 0.703);
+  color: var(--secondary-xlight);
+  font-size: 0.925em;
+
+  & > p {
+    text-align: center;
+  }
+}
+
+.bets-grid-match {
+  text-align: center;
 }

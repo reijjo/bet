@@ -13,7 +13,6 @@ import {
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
-
   const allbets = useAppSelector((state) => state.bets.allBets);
 
   useEffect(() => {
@@ -22,9 +21,6 @@ export const Dashboard = () => {
   }, [dispatch]);
 
   console.log("BETS", allbets);
-
-  const latestBets = allbets.slice(0, 2);
-  console.log("LATEST BETS", latestBets);
 
   return (
     <div className="wrapper dashboard-grid">

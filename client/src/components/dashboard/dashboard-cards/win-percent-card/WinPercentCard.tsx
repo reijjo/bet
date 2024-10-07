@@ -28,8 +28,6 @@ export const WinPercentCard = () => {
     }
   };
 
-  console.log("hoverData:", hoverData);
-
   return (
     <div className="dash-winpercent">
       <h5>Win %</h5>

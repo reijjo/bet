@@ -1,15 +1,14 @@
 import "./NavbarUser.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { openSidebar } from "../../reducers/sidebarReducer";
 import profilepic from "../../assets/images/stockprofilepic.jpg";
 
 export const NavbarUser = () => {
-  const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
+  // const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const dispatch = useAppDispatch();
 
-  console.log("side open", sideBarOpen);
   return (
     <nav>
       <div className="wrapper">

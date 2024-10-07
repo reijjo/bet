@@ -12,7 +12,6 @@ import { RootState } from "../../store/store";
 
 export const UserLayout = () => {
   const modalState = useSelector((state: RootState) => state.modal);
-  console.log("modalState", modalState);
 
   return (
     <main className="main-logged">

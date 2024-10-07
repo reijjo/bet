@@ -51,8 +51,6 @@ export const SummaryCard = () => {
   const last7DaysSummary = betCalculations(last7DaysBets);
   const thisMonthSummary = betCalculations(thisMonthBets);
 
-  console.log("todaySummary", todaySummary);
-
   return (
     <div className="dash-summary">
       <SummaryHeaders />
