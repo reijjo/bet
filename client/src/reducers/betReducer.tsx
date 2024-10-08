@@ -9,12 +9,14 @@ type BetState = {
   allBets: Bet[];
   myBets: Bet[];
   newBet: Bet;
+  betToModify: Bet | null;
 };
 
 const initialState: BetState = {
   allBets: [],
   myBets: [],
   newBet: initialBetValues,
+  betToModify: null,
 };
 
 export const betSlice = createSlice({
@@ -22,7 +24,7 @@ export const betSlice = createSlice({
   initialState,
   reducers: {
     setAllBets: (state, action: PayloadAction<Bet[]>) => {
-      state.allBets = action.payload;
+      state.allBets = action.payload.reverse();
     },
     myBets: (state, action: PayloadAction<number>) => {
       const userId = action.payload;
@@ -36,6 +38,16 @@ export const betSlice = createSlice({
         id: betId,
         user_id: userId,
       };
+    },
+    findBet: (state, action: PayloadAction<number | string>) => {
+      const betId = action.payload;
+      state.betToModify = state.allBets.find((bet) => bet.id === betId) || null;
+    },
+    modifiedBet: (state, action: PayloadAction<Bet>) => {
+      const modifiedBet = action.payload;
+      state.allBets = state.allBets.map((bet) =>
+        bet.id === modifiedBet.id ? modifiedBet : bet
+      );
     },
   },
 });
@@ -67,5 +79,17 @@ export const addNewBet = (bet: Bet) => {
   };
 };
 
-export const { setAllBets, myBets, newBet } = betSlice.actions;
+export const changeBetStatus = (bet: Bet) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const updatedbet = await betApi.modifyBet(bet);
+      dispatch(modifiedBet(updatedbet));
+    } catch (error: unknown) {
+      console.log("Error changing bet status", error);
+    }
+  };
+};
+
+export const { setAllBets, myBets, newBet, findBet, modifiedBet } =
+  betSlice.actions;
 export default betSlice.reducer;

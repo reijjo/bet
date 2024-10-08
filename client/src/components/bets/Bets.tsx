@@ -1,63 +1,63 @@
 import "./Bets.css";
-import { useAppSelector } from "../../store/hooks";
 import dayjs from "dayjs";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  calculateTotalPayout,
+  calculateTotalLosses,
+  calculateCombinedOdds,
+} from "../dashboard/dashboard-cards/summaryUtils";
+import { Bet } from "../../utils/types";
+import { BetStatusChange } from "./BetStatusChange";
+import { useEffect } from "react";
+import { initAllBets } from "../../reducers/betReducer";
+import { Button } from "../common/Button";
+import { useNavigate } from "react-router-dom";
+// import { BetStatus } from "../dashboard/dashboard-cards";
 
 export const Bets = () => {
   const allbets = useAppSelector((state) => state.bets.allBets);
-  const latestBets = allbets.slice(-2).reverse();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(initAllBets());
+  }, [dispatch]);
+
+  const payout = (bet: Bet) => {
+    const payout = calculateTotalPayout([bet]);
+    const losses = calculateTotalLosses([bet]);
+    return payout - losses;
+  };
+
+  const getRowColor = (status: string) => {
+    switch (status) {
+      case "Won":
+        return "bet-won";
+      case "Lost":
+        return "bet-lost";
+      case "Void":
+        return "bet-void";
+      default:
+        return "";
+    }
+  };
+
+  const modifybet = (id: number | string) => {
+    console.log("betId", id);
+  };
 
   console.log("allbets", allbets);
 
   return (
     <div className="wrapper">
-      <h1>Bets</h1>
-      <div className="bets-grid">
-        <div className="bets-grid-headers">
-          <p className="bets-grid-date">Date</p>
-          <p className="bets-grid-sport">Sport</p>
-          <p className="bets-grid-match">Match</p>
-          <p className="bets-grid-selection">Selection</p>
-          <p className="bets-grid-type">Type</p>
-          <p className="bets-grid-stake">Stake</p>
-          <p className="bets-grid-odds">Odds</p>
-          <p className="bets-grid-status">Status</p>
-          <p className="bets-grid-winloss">Win</p>
-        </div>
-        {latestBets.map((bet) => (
-          <div className="bets-grid-betslips">
-            <p className="bets-grid-date">
-              {dayjs(bet.betDetails[0].date).format("D MMM")}
-            </p>
-            <p className="bets-grid-sport">{bet.sport}</p>
-            <div className="bets-grid-match">
-              <p>Match</p>
-            </div>
-            <div className="bets-parlay-div">
-              {bet.betDetails.map((parlay, index) => (
-                <p key={index} className="bets-grid-selection">
-                  {parlay.selection}
-                </p>
-              ))}
-            </div>
-            <div className="bets-grid-type">
-              <p className="bets-grid-type">{bet.bet_type}</p>
-            </div>
-            <p className="bets-grid-stake">{Number(bet.stake).toFixed(2)}</p>
-            <div className="bets-parlay-div">
-              {bet.betDetails.map((parlay, index) => (
-                <p key={index} className="bets-grid-odds">
-                  {parlay.odds}
-                </p>
-              ))}
-            </div>
-            <div className="bets-grid-status">
-              <p>Status</p>
-            </div>
-            <div className="bets-grid-winloss">
-              <p>&euro;</p>
-            </div>
-          </div>
-        ))}
+      <div className="header-row">
+        <h1>Bets</h1>
+        <Button
+          className="btn big-btn-style"
+          type="button"
+          children="Add bet"
+          onClick={() => navigate("/add-bet")}
+        />
       </div>
       <div className="bets-table">
         <table>
@@ -71,26 +71,57 @@ export const Bets = () => {
               <th>Stake</th>
               <th>Odds</th>
               <th>Status</th>
-              <th>Win / Loss</th>
+              <th>Payout</th>
             </tr>
           </thead>
           <tbody>
             {allbets.map((bet) => (
-              <tr>
+              <tr
+                key={bet.id}
+                className={getRowColor(bet.status)}
+                onClick={() => modifybet(String(bet.id))}
+              >
                 <td className="table-date">
-                  {" "}
                   <p>{dayjs(bet.betDetails[0].date).format("D MMM")}</p>
                 </td>
-                <td className="table-sport">{bet.sport}</td>
-                <td className="table-match">{bet.betDetails[0].home_team}</td>
-                <td className="table-selection">
-                  {bet.betDetails[0].selection}
+                <td className="table-sport">
+                  <p>{bet.sport}</p>
                 </td>
-                <td className="table-type">{bet.bet_type}</td>
-                <td className="table-stake">{Number(bet.stake).toFixed(2)}</td>
-                <td className="table-odds">{bet.betDetails[0].odds}</td>
-                <td className="table-status">{bet.status}</td>
-                <td className="table-winloss">10 &euro;</td>
+                <td className="table-match">
+                  {bet.betDetails.map((parlay, index) => (
+                    <div
+                      className="bets-table-matchgrid"
+                      key={`${bet.id}-${index}`}
+                    >
+                      <p>{parlay.home_team}</p>
+                      <p>-</p>
+                      <p>{parlay.away_team}</p>
+                    </div>
+                  ))}
+                </td>
+                <td className="table-selection">
+                  {bet.betDetails.map((parlay, index) => (
+                    <p key={`${bet.id}-selection-${index}`}>
+                      {parlay.selection}
+                    </p>
+                  ))}
+                </td>
+                <td className="table-type">
+                  <p>{bet.bet_type}</p>
+                </td>
+                <td className="table-stake">
+                  {Number(bet.stake).toFixed(2)} &euro;
+                </td>
+                <td className="table-odds">
+                  {calculateCombinedOdds(bet.betDetails).toFixed(2)}
+                </td>
+                {/* <td className="table-status">{bet.status}</td> */}
+                <td className="table-status">
+                  <BetStatusChange bet={bet} />
+                </td>
+                <td className="table-winloss">
+                  {payout(bet).toFixed(2)} &euro;
+                </td>
               </tr>
             ))}
           </tbody>

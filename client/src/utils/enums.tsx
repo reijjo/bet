@@ -43,4 +43,5 @@ export enum BetType {
   Other = "Other",
   Btts = "Both Teams to Score",
   Btts2 = "Both Teams to Score 2",
+  Moniveto = "Moniveto",
 }

@@ -43,7 +43,7 @@ const calculateProfit = (bets: Bet[]): number => {
 };
 
 // Calculate total losses
-const calculateTotalLosses = (bets: Bet[]): number => {
+export const calculateTotalLosses = (bets: Bet[]): number => {
   return bets.reduce((acc, bet) => {
     let loss = 0;
 
@@ -63,7 +63,7 @@ const calculateTotalLosses = (bets: Bet[]): number => {
   }, 0);
 };
 
-const calculateTotalPayout = (bets: Bet[]): number => {
+export const calculateTotalPayout = (bets: Bet[]): number => {
   return bets.reduce((acc, bet) => {
     let payout = 0;
 

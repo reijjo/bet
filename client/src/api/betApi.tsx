@@ -19,8 +19,20 @@ const addBet = async (newBet: Bet): Promise<Bet> => {
   return res.data;
 };
 
+const findBetById = async (id: number | string): Promise<Bet> => {
+  const res = await axios.get(`${baseUrl}/${id}`);
+  return res.data;
+};
+
+const modifyBet = async (bet: Bet): Promise<Bet> => {
+  const res = await axios.put(`${baseUrl}/${bet.id}`, bet);
+  return res.data;
+};
+
 export const betApi = {
   getAllBets,
   getMyBets,
   addBet,
+  findBetById,
+  modifyBet,
 };

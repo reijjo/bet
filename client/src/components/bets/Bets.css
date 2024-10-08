@@ -1,6 +1,33 @@
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  /* margin-bottom: 16px; */
+
+  button {
+    margin-bottom: 20px;
+  }
+}
+
+.bets-table {
+  padding-bottom: 240px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
+}
+
+thead {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+tbody tr {
+  &:hover {
+    cursor: pointer;
+    border: 1px solid red;
+  }
 }
 
 th,
@@ -14,35 +41,75 @@ td {
   font-size: 0.925rem;
   text-align: center;
   align-content: center;
+  max-width: 100px;
 }
 
-.bets-grid {
-  grid-template-rows: auto;
+.table-date {
+  width: max-content;
 }
 
-.bets-grid-headers,
-.bets-grid-betslips {
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 2fr 1fr 1fr 0.5fr 0.5fr 1fr 0.5fr;
-  gap: 8px;
+.table-sport {
+  max-width: 60px;
 
-  & > * {
-    border: 1px solid red;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-.bets-grid-headers,
-.bets-grid-betslips {
-  padding: 6px 0;
-  color: rgba(255, 255, 255, 0.703);
-  color: var(--secondary-xlight);
-  font-size: 0.925em;
+.bets-table-matchgrid {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 8px;
+  place-items: center;
 
   & > p {
-    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
-.bets-grid-match {
-  text-align: center;
+.table-match {
+  max-width: 180px;
+
+  p {
+    max-width: 90px;
+  }
+}
+
+.table-selection {
+  max-width: 60px;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.table-type,
+.table-winloss {
+  max-width: 60px;
+}
+
+.table-type p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bet-won {
+  /* background-color: hsla(141, 45%, 88%, 1); */
+  color: hsla(141, 45%, 88%, 1);
+  /* color: var(--success); */
+}
+
+.bet-lost {
+  /* background-color: hsla(0, 73%, 90%, 0.1); */
+  color: #f8d3d3;
+}
+
+.bet-void {
+  background-color: hsla(37, 100%, 89%, 1);
 }

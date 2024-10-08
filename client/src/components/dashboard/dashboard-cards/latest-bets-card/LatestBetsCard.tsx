@@ -18,7 +18,7 @@ const LatestHeaders = () => (
 
 const LatestBets = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
-  const latestBets = mybets.slice(-2).reverse();
+  const latestBets = mybets.slice(0, 2);
 
   return (
     <>

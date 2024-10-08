@@ -53,7 +53,7 @@ export const MyBetSlip = ({
             <div className="mybet-slip-selection">
               <p className="bet-selection">{bet.selection}</p>
             </div>
-            <div className="mybet-slip-odds">{bet.odds}</div>
+            <div className="mybet-slip-odds">{Number(bet.odds).toFixed(2)}</div>
             <div className="mybet-slip-more">
               <a className="mybet-edit" onClick={() => handleModifyBet(index)}>
                 <FontAwesomeIcon icon={faPenToSquare} />
