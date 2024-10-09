@@ -121,7 +121,6 @@ export const Bets = () => {
                 <td className="table-odds">
                   {calculateCombinedOdds(bet.betDetails).toFixed(2)}
                 </td>
-                {/* <td className="table-status">{bet.status}</td> */}
                 <td className="table-status">
                   <BetStatusChange bet={bet} />
                 </td>
