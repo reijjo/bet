@@ -61,7 +61,7 @@
 
 .finishbet-form {
   display: grid;
-  grid-template-columns: 1.5 fr repeat(3, 1fr);
+  grid-template-columns: max-content (3, 1fr);
   gap: 24px;
   row-gap: 8px;
   padding: 8px;

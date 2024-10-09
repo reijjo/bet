@@ -68,6 +68,7 @@ export const Bets = () => {
               <th>Match</th>
               <th>Selection</th>
               <th>Type</th>
+              <th>Result</th>
               <th>Stake</th>
               <th>Odds</th>
               <th>Status</th>
@@ -108,6 +109,11 @@ export const Bets = () => {
                 </td>
                 <td className="table-type">
                   <p>{bet.bet_type}</p>
+                </td>
+                <td className="table-result">
+                  {bet.betDetails.map((parlay, index) => (
+                    <p key={`${bet.id}-result-${index}`}>{parlay.result}</p>
+                  ))}
                 </td>
                 <td className="table-stake">
                   {Number(bet.stake).toFixed(2)} &euro;
