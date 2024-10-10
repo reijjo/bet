@@ -6,6 +6,7 @@ import {
   Modal,
   AddBetModal,
   TestModal,
+  ModifyBetModal,
 } from "../index";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
@@ -19,6 +20,7 @@ export const UserLayout = () => {
         <Modal>
           {modalState.addBetModal && <AddBetModal />}
           {modalState.testModal && <TestModal />}
+          {modalState.modifyBetModal && <ModifyBetModal />}
         </Modal>
       )}
       <Sidebar />

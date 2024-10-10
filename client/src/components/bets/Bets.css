@@ -30,18 +30,18 @@ tbody tr {
   &:hover {
     cursor: pointer;
     border: 1px solid red;
-  }
-
-  &:nth-child(even) {
     background-color: rgba(0, 0, 0, 0.05);
   }
+
+  /* &:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+  } */
 }
 
 th,
 td {
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 8px 8px;
-  border-collapse: collapse;
 }
 
 td {

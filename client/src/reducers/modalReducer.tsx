@@ -5,12 +5,14 @@ type ModalState = {
   modalOpen: boolean;
   addBetModal: boolean;
   testModal: boolean;
+  modifyBetModal: boolean;
 };
 
 const initialState: ModalState = {
   modalOpen: false,
   addBetModal: false,
   testModal: false,
+  modifyBetModal: false,
 };
 
 export const modalSlice = createSlice({
@@ -25,6 +27,9 @@ export const modalSlice = createSlice({
     },
     addTestModal: (state, action: PayloadAction<boolean>) => {
       state.testModal = action.payload;
+    },
+    modifyBetModal: (state, action: PayloadAction<boolean>) => {
+      state.modifyBetModal = action.payload;
     },
     resetModal: () => initialState,
   },
@@ -48,6 +53,17 @@ export const openAddBet = () => {
   };
 };
 
-export const { toggleModal, addBetModal, addTestModal, resetModal } =
-  modalSlice.actions;
+export const openModifyBet = () => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(addBetModal(true));
+  };
+};
+
+export const {
+  toggleModal,
+  addBetModal,
+  addTestModal,
+  modifyBetModal,
+  resetModal,
+} = modalSlice.actions;
 export default modalSlice.reducer;
