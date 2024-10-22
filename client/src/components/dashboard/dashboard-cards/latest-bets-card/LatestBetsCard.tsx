@@ -57,7 +57,9 @@ const LatestBets = () => {
               ))}
             </div>
             <p className="bet-stake">{Number(bet.stake).toFixed(2)} &euro;</p>
-            <p className="bet-odds">{calculateCombinedOdds(bet.betDetails)}</p>
+            <p className="bet-odds">
+              {calculateCombinedOdds(bet.betDetails).toFixed(2)}
+            </p>
             <BetStatus bet={bet} />
           </div>
         );

@@ -76,7 +76,7 @@ export const SummaryCard = () => {
         totalBets={last7DaysSummary.totalBets}
       />
       <SummarySection
-        period="This month"
+        period="Last 30 days"
         totalStake={thisMonthSummary.totalStake.toFixed(2)}
         payout={thisMonthSummary.totalPayout.toFixed(2)}
         realProfit={thisMonthSummary.realProfit.toFixed(2)}

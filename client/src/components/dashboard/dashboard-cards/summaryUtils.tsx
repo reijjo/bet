@@ -121,7 +121,8 @@ const isYesterday = (date: string) =>
   dayjs(date).isSame(dayjs().subtract(1, "day"), "day");
 const isLast7Days = (date: string) =>
   dayjs(date).isAfter(dayjs().subtract(7, "day"));
-const isThisMonth = (date: string) => dayjs(date).isSame(dayjs(), "month");
+const isThisMonth = (date: string) =>
+  dayjs(date).isAfter(dayjs().subtract(30, "day"));
 
 export const periodParser = (myBets: Bet[]) => {
   const todayBets = myBets.filter((bet) =>
