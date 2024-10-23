@@ -20,7 +20,9 @@ const addBet = async (newBet: Bet): Promise<Bet> => {
 };
 
 const findBetById = async (id: number | string): Promise<Bet> => {
+  console.log("AXIOS ID", id);
   const res = await axios.get(`${baseUrl}/${id}`);
+  console.log("ACIOS BEBT", res.data);
   return res.data;
 };
 

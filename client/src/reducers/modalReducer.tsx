@@ -34,7 +34,7 @@ export const modalSlice = createSlice({
       state,
       action: PayloadAction<{ modalOpen: boolean; id: string | number }>
     ) => {
-      console.log("modifybetACTIONPAYLOAD", action.payload);
+      state.modalOpen = true;
       state.modifyBetModal = action.payload.modalOpen;
       state.betId = action.payload.id;
     },

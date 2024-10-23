@@ -54,7 +54,11 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const options = Object.values(BetStatus).filter((op) => op !== bet.status);
 
   return (
-    <div className="bet-status-change" ref={dropdownRef}>
+    <div
+      className="bet-status-change"
+      ref={dropdownRef}
+      onClick={(e) => e.stopPropagation()}
+    >
       <a className="status-with-ball" onClick={() => setIsOpen(!isOpen)}>
         <div
           className={`bet-status-ball ${endedBetBallColor(bet.status)}`}

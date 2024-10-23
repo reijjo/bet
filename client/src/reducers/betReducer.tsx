@@ -39,9 +39,10 @@ export const betSlice = createSlice({
         user_id: userId,
       };
     },
-    findBet: (state, action: PayloadAction<number | string>) => {
+    findBet: (state, action: PayloadAction<Bet>) => {
       const betId = action.payload;
-      state.betToModify = state.allBets.find((bet) => bet.id === betId) || null;
+      state.betToModify =
+        state.allBets.find((bet) => bet.id === betId.id) || null;
     },
     modifiedBet: (state, action: PayloadAction<Bet>) => {
       const modifiedBet = action.payload;
@@ -86,6 +87,17 @@ export const changeBetStatus = (bet: Bet) => {
       dispatch(modifiedBet(updatedbet));
     } catch (error: unknown) {
       console.log("Error changing bet status", error);
+    }
+  };
+};
+
+export const findBetId = (id: number | string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const foundBet = await betApi.findBetById(id);
+      dispatch(findBet(foundBet));
+    } catch (error: unknown) {
+      console.log("Error finding bet", error);
     }
   };
 };

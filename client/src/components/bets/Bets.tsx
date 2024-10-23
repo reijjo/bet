@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { initAllBets } from "../../reducers/betReducer";
 import { Button } from "../common/Button";
 import { useNavigate } from "react-router-dom";
-import { openModal, openModifyBet } from "../../reducers/modalReducer";
+import { openModifyBet } from "../../reducers/modalReducer";
 // import { BetStatus } from "../dashboard/dashboard-cards";
 
 export const Bets = () => {
@@ -44,8 +44,6 @@ export const Bets = () => {
   };
 
   const modifybet = (id: number | string) => {
-    console.log("betId", id);
-    dispatch(openModal());
     dispatch(openModifyBet(id));
   };
 
