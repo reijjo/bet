@@ -1,7 +1,7 @@
 .addbet-container {
-  width: min(850px, 90%);
-  /* width: min(90%, 850px); */
-  height: 100%;
+  /* width: max(80px, 90%); */
+  width: 90%;
+  max-width: 850px;
   height: max-content;
 
   margin: 24px auto 0;

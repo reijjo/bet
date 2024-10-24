@@ -30,9 +30,9 @@
 }
 
 .mybet-add-stake {
-  display: grid;
-  grid-template-rows: auto;
-  width: 100%;
+  /* display: grid; */
+  /* grid-template-rows: auto; */
+  /* width: 100%; */
 }
 
 .finish-mybet-slip-headers {
@@ -59,7 +59,8 @@
 
 .finishbet-form {
   display: grid;
-  grid-template-columns: max-content (3, 1fr);
+  grid-template-columns: max-content 1fr 1fr 1fr;
+  /* grid-auto-columns: max-content; */
   gap: 24px;
   row-gap: 8px;
   padding: 8px;

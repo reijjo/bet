@@ -68,7 +68,7 @@ export const FinishBetForm = ({
           placeholder="Sport / League"
           id="sport"
           name="sport"
-          size={20}
+          size={10}
           onChange={handleTextInput}
           value={myBet.sport}
           disabled={addStake || modifyIndex !== null}
@@ -108,7 +108,7 @@ export const FinishBetForm = ({
           type="text"
           id="tipper"
           name="tipper"
-          size={15}
+          size={10}
           onChange={handleTextInput}
           value={myBet.tipper}
           disabled={addStake || modifyIndex !== null}

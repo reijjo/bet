@@ -82,10 +82,12 @@ export const Bets = () => {
                 onClick={() => modifybet(String(bet.id))}
               >
                 <td className="table-date">
-                  <p>{dayjs(bet.betDetails[0].date).format("D MMM")}</p>
+                  <p title={dayjs(bet.betDetails[0].date).format("D MMM")}>
+                    {dayjs(bet.betDetails[0].date).format("D MMM")}
+                  </p>
                 </td>
                 <td className="table-sport">
-                  <p>{bet.sport}</p>
+                  <p title={bet.sport}>{bet.sport}</p>
                 </td>
                 <td className="table-match">
                   {bet.betDetails.map((parlay, index) => (
@@ -93,25 +95,30 @@ export const Bets = () => {
                       className="bets-table-matchgrid"
                       key={`${bet.id}-${index}`}
                     >
-                      <p>{parlay.home_team}</p>
+                      <p title={parlay.home_team}>{parlay.home_team}</p>
                       <p>-</p>
-                      <p>{parlay.away_team}</p>
+                      <p title={parlay.away_team}>{parlay.away_team}</p>
                     </div>
                   ))}
                 </td>
                 <td className="table-selection">
                   {bet.betDetails.map((parlay, index) => (
-                    <p key={`${bet.id}-selection-${index}`}>
+                    <p
+                      key={`${bet.id}-selection-${index}`}
+                      title={parlay.selection}
+                    >
                       {parlay.selection}
                     </p>
                   ))}
                 </td>
                 <td className="table-type">
-                  <p>{bet.bet_type}</p>
+                  <p title={bet.bet_type}>{bet.bet_type}</p>
                 </td>
                 <td className="table-result">
                   {bet.betDetails.map((parlay, index) => (
-                    <p key={`${bet.id}-result-${index}`}>{parlay.result}</p>
+                    <p key={`${bet.id}-result-${index}`} title={parlay.result}>
+                      {parlay.result}
+                    </p>
                   ))}
                 </td>
                 <td className="table-stake">
