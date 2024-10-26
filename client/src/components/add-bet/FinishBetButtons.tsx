@@ -73,7 +73,7 @@ export const FinishBetButtons = ({
               type="button"
               onClick={handleAddToParlay}
               className="btn outline-btn"
-              children="Add to parley"
+              children="Add bet to parley"
               disabled={modifyIndex !== null}
             />
           </div>

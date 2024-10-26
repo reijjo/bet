@@ -6,7 +6,10 @@ import { Bet } from "../../../../utils/types";
 import { initialBetValues } from "../../../add-bet/betUtils";
 import { Select } from "../../inputs/Select";
 import { TextInput } from "../../inputs/TextInput";
-import { changeBetStatus } from "../../../../reducers/betReducer";
+import {
+  changeBetStatus,
+  deleteBetbyId,
+} from "../../../../reducers/betReducer";
 import { Button } from "../../Button";
 import { Result } from "./ModifyBetSlip";
 import { resetModal } from "../../../../reducers/modalReducer";
@@ -60,6 +63,13 @@ export const FinishModify = ({
     setMyBet(initialBetValues);
     navigate("/dash");
     console.log("BET READY!!", myBet);
+  };
+
+  const deleteBet = (id: number | string) => {
+    if (id && id !== undefined) {
+      dispatch(deleteBetbyId(id));
+    }
+    return;
   };
 
   return (
@@ -126,6 +136,7 @@ export const FinishModify = ({
             type="button"
             className="btn outline-btn"
             children="Delete Bet"
+            onClick={() => deleteBet(myBet.id as number | string)}
           />
         </div>
       </div>

@@ -91,7 +91,7 @@ export const ModifyBetSlip = ({
                   <input
                     name="betbuilder-result"
                     id="betbuilder-result"
-                    // value={result[index]?.betbuilder_result}
+                    value={result[index]?.betbuilder_result || ""}
                     onChange={() => console.log("jee")}
                   />
                 </div>
@@ -100,13 +100,13 @@ export const ModifyBetSlip = ({
                   <input
                     name="home_result"
                     id="home_result"
-                    value={result[index]?.home_result}
+                    value={result[index]?.home_result || ""}
                     onChange={(e) => handleResultChange(e, index)}
                   />
                   <input
                     name="away_result"
                     id="away_result"
-                    value={result[index]?.away_result}
+                    value={result[index]?.away_result || ""}
                     onChange={(e) => handleResultChange(e, index)}
                   />
                 </div>

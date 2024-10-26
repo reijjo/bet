@@ -31,10 +31,16 @@ const modifyBet = async (bet: Bet): Promise<Bet> => {
   return res.data;
 };
 
+const deleteBet = async (id: number | string): Promise<void> => {
+  const res = await axios.delete(`${baseUrl}/${id}`);
+  return res.data;
+};
+
 export const betApi = {
   getAllBets,
   getMyBets,
   addBet,
   findBetById,
   modifyBet,
+  deleteBet,
 };

@@ -116,7 +116,7 @@ a {
   --info-light: hsl(223, 75%, 75%);
   --success: rgb(96, 182, 84);
   --warning: rgb(243, 176, 77);
-  --error: rgb(235, 78, 50);
+  --error: hsl(9, 82%, 56%);
 
   /* Primary */
   --primary: hsl(47, 100%, 67%);

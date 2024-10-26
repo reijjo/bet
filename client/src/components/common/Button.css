@@ -59,6 +59,21 @@
   }
 }
 
+.delete-btn {
+  color: black;
+  color: white;
+  border-color: #c62828;
+  background-color: #c62828;
+  box-shadow: 2px 2px 4px hsla(12, 73%, 57%, 0.2);
+
+  &:hover {
+    box-shadow: 4px 4px 8px hsl(12, 73%, 57%, 0.5);
+    /* box-shadow: none; */
+    background-color: #b71c1c;
+    border-color: black;
+  }
+}
+
 .big-btn-style {
   border: 1px solid var(--primary);
   border-radius: 8px;

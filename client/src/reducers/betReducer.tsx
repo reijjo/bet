@@ -4,6 +4,7 @@ import { AppDispatch } from "../store/store";
 import { betApi } from "../api/betApi";
 import { v4 as uuidv4 } from "uuid";
 import { initialBetValues } from "../components/add-bet/betUtils";
+import { resetModal } from "./modalReducer";
 
 type BetState = {
   allBets: Bet[];
@@ -49,6 +50,10 @@ export const betSlice = createSlice({
       state.allBets = state.allBets.map((bet) =>
         bet.id === modifiedBet.id ? modifiedBet : bet
       );
+    },
+    deleteBet: (state, action: PayloadAction<number | string>) => {
+      const betId = action.payload;
+      state.allBets = state.allBets.filter((bet) => bet.id !== betId);
     },
   },
 });
@@ -102,6 +107,18 @@ export const findBetId = (id: number | string) => {
   };
 };
 
-export const { setAllBets, myBets, newBet, findBet, modifiedBet } =
+export const deleteBetbyId = (id: number | string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      await betApi.deleteBet(id);
+      dispatch(deleteBet(id));
+      dispatch(resetModal());
+    } catch (error: unknown) {
+      console.log("Error deleting bet", error);
+    }
+  };
+};
+
+export const { setAllBets, myBets, newBet, findBet, modifiedBet, deleteBet } =
   betSlice.actions;
 export default betSlice.reducer;
