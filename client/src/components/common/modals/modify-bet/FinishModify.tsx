@@ -1,5 +1,4 @@
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../../store/hooks";
 import { BetType, Bookmaker } from "../../../../utils/enums";
 import { Bet } from "../../../../utils/types";
@@ -28,7 +27,6 @@ export const FinishModify = ({
   result,
 }: FinishModifyProps) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -61,7 +59,6 @@ export const FinishModify = ({
     dispatch(changeBetStatus(updatedBet));
     dispatch(resetModal());
     setMyBet(initialBetValues);
-    navigate("/dash");
     console.log("BET READY!!", myBet);
   };
 
