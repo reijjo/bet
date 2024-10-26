@@ -1,0 +1,6 @@
+/* Divider */
+
+.divider {
+  border-top: 1px solid var(--primary);
+  width: 100%;
+}

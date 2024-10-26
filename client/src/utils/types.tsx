@@ -19,7 +19,9 @@ export type BetDetails = {
   away_team: string;
   selection: string;
   odds: number | string;
-  result?: string;
+  home_result?: string;
+  away_result?: string;
+  betbuilder_result?: string;
   freebet: boolean;
   livebet: boolean;
   notes?: string;

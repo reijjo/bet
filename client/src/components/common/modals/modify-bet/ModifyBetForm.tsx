@@ -6,7 +6,7 @@ import {
   SyntheticEvent,
   useState,
 } from "react";
-import { Bet, BetDetails } from "../../../utils/types";
+import { Bet, BetDetails } from "../../../../utils/types";
 import {
   MatchInput,
   DateInput,
@@ -14,11 +14,14 @@ import {
   SelectionInput,
   OddsInput,
   NotesInput,
-} from "../../add-bet/betInputs";
-import { getInputValue, initialBetDetailValues } from "../../add-bet/betUtils";
-import { Button } from "../Button";
-import { useAppDispatch } from "../../../store/hooks";
-import { changeBetStatus } from "../../../reducers/betReducer";
+} from "../../../add-bet/betInputs";
+import {
+  getInputValue,
+  initialBetDetailValues,
+} from "../../../add-bet/betUtils";
+import { Button } from "../../Button";
+import { useAppDispatch } from "../../../../store/hooks";
+import { changeBetStatus } from "../../../../reducers/betReducer";
 
 type ModifyBetFormProps = {
   myBet: Bet;

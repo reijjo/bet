@@ -1,11 +1,13 @@
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { closeModal } from "../../../reducers/modalReducer";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { closeModal } from "../../../../reducers/modalReducer";
 import { useEffect, useState } from "react";
-import { Bet } from "../../../utils/types";
-import { MyBetSlip } from "../../add-bet/MyBetSlip";
-import { initialBetValues } from "../../add-bet/betUtils";
-import { betApi } from "../../../api/betApi";
+import { Bet } from "../../../../utils/types";
+import { initialBetValues } from "../../../add-bet/betUtils";
+import { betApi } from "../../../../api/betApi";
 import { ModifyBetForm } from "./ModifyBetForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { ModifyBetSlip } from "./ModifyBetSlip";
 
 export const ModifyBetModal = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);
@@ -38,8 +40,14 @@ export const ModifyBetModal = () => {
 
   return (
     <div className="modal-container">
-      Modify Bet Modal
-      <button onClick={() => dispatch(closeModal())}>Close</button>
+      <div className="mybet-header">
+        <h3 className="container-header">Modify Bet</h3>
+        <div className="mybets-close">
+          <a onClick={() => dispatch(closeModal())} title="Close">
+            <FontAwesomeIcon icon={faXmark} />
+          </a>
+        </div>
+      </div>
       {modifyIndex !== null && (
         <ModifyBetForm
           myBet={myBet}
@@ -50,7 +58,7 @@ export const ModifyBetModal = () => {
         />
       )}
       {myBet.betDetails.length > 0 && modifyIndex === null && (
-        <MyBetSlip
+        <ModifyBetSlip
           myBet={myBet}
           setMyBet={setMyBet}
           handleModifyBet={handleModifyBet}

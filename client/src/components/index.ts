@@ -16,7 +16,7 @@ export { TextArea } from "./common/inputs/TextArea";
 export { Checkbox } from "./common/inputs/Checkbox";
 export { Modal } from "./common/modals/Modal";
 export { AddBetModal } from "./common/modals/AddBetModal";
-export { ModifyBetModal } from "./common/modals/ModifyBetModal";
+export { ModifyBetModal } from "./common/modals/modify-bet/ModifyBetModal";
 export { TestModal } from "./common/modals/TestModal";
 
 export { Dashboard } from "./dashboard/Dashboard";

@@ -9,7 +9,9 @@ export const initialBetDetailValues = {
   notes: "",
   freebet: false,
   livebet: false,
-  result: "",
+  home_result: "",
+  away_result: "",
+  betbuilder_result: "",
 };
 
 export const initialBetValues = {

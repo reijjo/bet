@@ -6,13 +6,14 @@ import {
   calculateTotalLosses,
   calculateCombinedOdds,
 } from "../dashboard/dashboard-cards/summaryUtils";
-import { Bet } from "../../utils/types";
+import { Bet, BetDetails } from "../../utils/types";
 import { BetStatusChange } from "./BetStatusChange";
 import { useEffect } from "react";
 import { initAllBets } from "../../reducers/betReducer";
 import { Button } from "../common/Button";
 import { useNavigate } from "react-router-dom";
 import { openModifyBet } from "../../reducers/modalReducer";
+import { BetType } from "../../utils/enums";
 // import { BetStatus } from "../dashboard/dashboard-cards";
 
 export const Bets = () => {
@@ -41,6 +42,18 @@ export const Bets = () => {
       default:
         return "";
     }
+  };
+
+  const getBetResult = (bet: Bet, parlay: BetDetails): string => {
+    let result = "";
+
+    if (bet.bet_type === BetType.BetBuilder) {
+      result = parlay.betbuilder_result || "";
+    } else {
+      result = `${parlay.home_result || ""} - ${parlay.away_result || ""}`;
+    }
+
+    return result;
   };
 
   const modifybet = (id: number | string) => {
@@ -116,8 +129,11 @@ export const Bets = () => {
                 </td>
                 <td className="table-result">
                   {bet.betDetails.map((parlay, index) => (
-                    <p key={`${bet.id}-result-${index}`} title={parlay.result}>
-                      {parlay.result}
+                    <p
+                      key={`${bet.id}-result-${index}`}
+                      title={getBetResult(bet, parlay)}
+                    >
+                      {getBetResult(bet, parlay)}
                     </p>
                   ))}
                 </td>

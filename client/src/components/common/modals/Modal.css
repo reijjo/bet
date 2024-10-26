@@ -19,6 +19,7 @@
   height: max-content;
   height: auto;
   width: 90%;
+  max-width: 850px;
 
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
