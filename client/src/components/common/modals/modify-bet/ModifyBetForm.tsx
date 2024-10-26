@@ -1,3 +1,4 @@
+import "./ModifyBetForm.css";
 import {
   Dispatch,
   SetStateAction,
@@ -82,7 +83,7 @@ export const ModifyBetForm = ({
   console.log("BET", myBet);
 
   return (
-    <div className="addbet-container">
+    <div className="modifybetform-container">
       <form className="addbet-form" onSubmit={handleMyBet}>
         <MatchInput
           handleBetInput={handleBetInput}

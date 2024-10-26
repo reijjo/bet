@@ -53,7 +53,8 @@ export const FinishBetForm = ({
 
     dispatch(addNewBet(myBet));
     setMyBet(initialBetValues);
-    navigate("/dash");
+    window.scrollTo({ top: 0 });
+    navigate("/bets");
     console.log("BET READY!!", myBet);
   };
 

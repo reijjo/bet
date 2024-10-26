@@ -67,7 +67,11 @@ export const FinishModify = ({
 
   const deleteBet = (id: number | string) => {
     if (id && id !== undefined) {
-      dispatch(deleteBetbyId(id));
+      const youSure = confirm("Are you sure you want to delete this bet?");
+
+      if (youSure) {
+        dispatch(deleteBetbyId(id));
+      }
     }
     return;
   };
