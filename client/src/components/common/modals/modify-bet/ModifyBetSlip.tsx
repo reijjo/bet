@@ -64,7 +64,6 @@ export const ModifyBetSlip = ({
       },
     }));
   };
-
   console.log("TAMA NTTR", myBet);
 
   return (
@@ -86,13 +85,15 @@ export const ModifyBetSlip = ({
               <p className="modifybet-slip-awayteam">{bet.away_team}</p>
             </div>
             <div className="modifybet-result-inputs">
+              // TODO: As many input fields for the result than there is
+              selections
               {myBet.bet_type === BetType.BetBuilder ? (
                 <div className="modifybet-result-fields-betbuilder">
                   <input
-                    name="betbuilder-result"
-                    id="betbuilder-result"
+                    name="betbuilder_result"
+                    id="betbuilder_result"
                     value={result[index]?.betbuilder_result || ""}
-                    onChange={() => console.log("jee")}
+                    onChange={(e) => handleResultChange(e, index)}
                   />
                 </div>
               ) : (

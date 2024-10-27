@@ -26,6 +26,8 @@ type AddBetFormProps = {
   disabled: boolean;
 };
 
+// TODO: Move bet
+
 export const AddBetForm = ({
   myBet,
   setMyBet,

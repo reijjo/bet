@@ -81,7 +81,10 @@
   background-color: var(--info);
   width: max-content;
   min-width: 40px;
-  max-width: 100%;
+  max-width: 6rem;
 
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

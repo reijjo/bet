@@ -4,7 +4,7 @@ import {
   NavbarUser,
   Sidebar,
   Modal,
-  AddBetModal,
+  // AddBetModal,
   TestModal,
   ModifyBetModal,
 } from "../index";
@@ -20,7 +20,7 @@ export const UserLayout = () => {
     <main className="main-logged">
       {modalState.modalOpen && (
         <Modal>
-          {modalState.addBetModal && <AddBetModal />}
+          {/* {modalState.addBetModal && <AddBetModal />} */}
           {modalState.testModal && <TestModal />}
           {modalState.modifyBetModal && <ModifyBetModal />}
         </Modal>

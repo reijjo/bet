@@ -16,6 +16,8 @@ export const AddBet = () => {
     }, 100);
   };
 
+  // TODO: Something that the betbuilder can have multiple selection fields
+
   return (
     <div className="wrapper">
       <AddBetForm

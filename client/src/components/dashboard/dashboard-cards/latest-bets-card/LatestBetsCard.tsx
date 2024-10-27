@@ -51,7 +51,11 @@ const LatestBets = () => {
             </div>
             <div className="parlay-div">
               {bet.betDetails.map((parlay, index) => (
-                <p className="bet-selection" key={index}>
+                <p
+                  className="bet-selection"
+                  key={index}
+                  title={parlay.selection}
+                >
                   {parlay.selection}
                 </p>
               ))}
