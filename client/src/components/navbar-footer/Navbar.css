@@ -4,7 +4,7 @@ nav {
 
   backdrop-filter: blur(24px);
 
-  box-shadow: 0 2px 4px hsla(330, 100%, 87%, 0.1);
+  box-shadow: 0 4px 24px hsla(330, 100%, 87%, 0.1);
 
   position: sticky;
   top: 0;
@@ -15,15 +15,22 @@ nav {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   @media (width < 1150px) {
     justify-content: space-between;
   }
 }
 
+.nav-logo {
+  text-transform: capitalize;
+}
+
 .nav-login {
-  button:first-child {
+  /* button:first-child {
     margin-right: 1em;
-  }
+  } */
+  display: inline-flex;
+  place-items: center;
+  gap: 1em;
 }

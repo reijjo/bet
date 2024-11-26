@@ -85,8 +85,8 @@ export const ModifyBetSlip = ({
               <p className="modifybet-slip-awayteam">{bet.away_team}</p>
             </div>
             <div className="modifybet-result-inputs">
-              // TODO: As many input fields for the result than there is
-              selections
+              {/* TODO: As many input fields for the result than there is
+              selections */}
               {myBet.bet_type === BetType.BetBuilder ? (
                 <div className="modifybet-result-fields-betbuilder">
                   <input
@@ -114,7 +114,9 @@ export const ModifyBetSlip = ({
               )}
             </div>
             <div className="modifybet-slip-selection">
-              <p className="bet-selection">{bet.selection}</p>
+              <p className="bet-selection" title={bet.selection}>
+                {bet.selection}
+              </p>
             </div>
 
             <div className="modifybet-slip-odds">
