@@ -1,5 +1,6 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
+
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export type Bet = {
   id?: number | string;
@@ -29,7 +30,7 @@ export type BetDetails = {
 
 export type BetInputProps = {
   handleBetInput: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   myBet?: Bet;
   setMyBet?: Dispatch<SetStateAction<Bet>>;

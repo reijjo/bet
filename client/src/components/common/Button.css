@@ -5,12 +5,27 @@
   background-color: inherit;
   color: var(--text);
 
-  font-family: "Bebas Neue", sans-serif;
-  /* font-family: "Source Serif 4", serif; */
+  /* font-family: "Bebas Neue", sans-serif; */
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 1.125rem;
-  letter-spacing: 0.125em;
+  /* letter-spacing: 0.125em; */
+
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    font-size: 1rem;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
 
   &:hover {
     cursor: pointer;
@@ -18,12 +33,22 @@
 }
 
 .btn-font {
-  font-family: "Bebas Neue", sans-serif;
-  /* font-family: "Source Serif 4", serif; */
-  font-optical-sizing: auto;
-  font-style: normal;
   font-size: 1.125rem;
-  letter-spacing: 0.125em;
+  /* letter-spacing: 0.125rem; */
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    font-size: 1rem;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    font-size: 0.75rem;
+  }
 }
 
 .underline-hover {
@@ -37,7 +62,7 @@
   width: 100%; /* Full width */
   transform: scaleX(0); /* Initial scale of 0 for underline effect */
   height: 1px; /* Height of the underline */
-  bottom: -4px; /* Align to bottom */
+  bottom: -6px; /* Align to bottom */
   left: 0; /* Align to left */
   background-color: white; /* Background color of the underline */
   transform-origin: bottom right; /* Set transform origin */
@@ -50,15 +75,16 @@
 }
 
 .outline-btn {
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary-200);
   border-radius: 8px;
   box-shadow: 0 2px 4px hsla(47, 100%, 87%, 0.2);
   transition: box-shadow 0.1s ease-out;
 
   &:hover {
+    border: 1px solid var(--secondary);
     box-shadow:
-      0 2px 8px hsla(47, 100%, 87%, 0.5),
-      0 2px 16px hsla(47, 100%, 87%, 0.1);
+      0 2px 8px rgba(255, 219, 87, 0.4),
+      0 2px 16px rgba(255, 219, 87, 0.1);
   }
 
   &:active {
@@ -91,6 +117,7 @@
 .big-btn-style {
   border: 1px solid var(--primary);
   border-radius: 8px;
+  font-family: "Bebas Neue", sans-serif;
 
   padding: 8px 32px;
 
@@ -122,33 +149,36 @@
 }
 
 .big-btn {
-  border: 1px solid var(--primary);
+  font-family: "Bebas Neue", sans-serif;
   border-radius: 8px;
+  box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
-  background: var(--primary);
-  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  background-image: linear-gradient(
+    var(--secondary-100) 0%,
+    var(--secondary-200) 100%
+  );
+
   color: var(--text-dark);
   font-size: 1.5em;
   font-weight: 800;
 
-  width: max(200px, 50%);
+  width: min(500px, 100%);
   padding: 16px 32px;
   margin: 16px 0;
 
-  transition: background-color 0.3s ease-out;
-
   &:hover {
-    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-    background: linear-gradient(
-      to right,
-      var(--primary),
-      var(--secondary-light)
+    background-image: linear-gradient(
+      var(--secondary-200) 0%,
+      var(--secondary-300) 100%
     );
+    box-shadow: 0 2px 16px hsla(47, 100%, 87%, 0.2);
+  }
 
-    &:active {
-      transform: translate(1px, 1px);
-    }
-
-    border: 1px solid black;
+  &:active {
+    transform: translate(1px, 1px);
+    background-image: linear-gradient(
+      var(--secondary-300) 0%,
+      var(--secondary-400) 100%
+    );
   }
 }

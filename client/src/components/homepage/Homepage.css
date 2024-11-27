@@ -11,10 +11,20 @@
 
   text-align: center;
 
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    width: 90%;
+  }
+
   & h1 {
     background: linear-gradient(
       to right,
-      var(--primary),
+      var(--accent),
       var(--text),
       var(--secondary)
     );
@@ -25,5 +35,13 @@
 
   & p {
     width: 50%;
+
+    @media only screen and (max-width: 800px) {
+      width: 80%;
+    }
+
+    @media only screen and (max-width: 461px) {
+      width: 100%;
+    }
   }
 }

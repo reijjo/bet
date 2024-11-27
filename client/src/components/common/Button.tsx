@@ -9,7 +9,7 @@ type ButtonProps = {
 
 export const Button = ({
   children,
-  type,
+  type = "button",
   className,
   onClick,
   style,

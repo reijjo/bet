@@ -8,12 +8,24 @@ body {
   font-family: "Source Serif 4", serif;
   font-weight: normal;
   font-style: normal;
-
+  font-size: 1rem;
   color: var(--text);
   background: url("./assets/images/circle-bg.svg") no-repeat center / cover;
   /* background: linear-gradient(to bottom, var(--background), var(--background2)); */
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 
   width: 100%;
+}
+
+/* Fonts */
+.montserrat-font > {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Use this everywhere */
@@ -32,6 +44,7 @@ body {
   @media only screen and (max-width: 461px) {
     /* 4 grids */
     padding: 4px 8px;
+    font-size: 0.925rem;
   }
 }
 
@@ -48,12 +61,20 @@ body {
 
 h1 {
   /* font-size: clamp(32px, 5vw, 48px); */
-  font-size: 80px;
+  font-size: 5rem;
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    font-size: 4rem;
+  }
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    font-size: 2.5rem;
+  }
 }
 
 h2 {
   /* font-size: clamp(24px, 4vw, 40px); */
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 h3 {
@@ -96,27 +117,49 @@ a {
 
 :root {
   /* Colors */
-  --info: hsl(223, 85%, 55%);
-  --info-light: hsl(223, 75%, 75%);
-  --success: rgb(96, 182, 84);
-  --warning: rgb(243, 176, 77);
-  --error: hsl(9, 82%, 56%);
 
   /* Primary */
-  --primary: hsl(47, 100%, 67%);
-  --primary-dark: hsl(47, 100%, 47%);
-  --primary-light: hsl(47, 100%, 87%);
-  /* xdard dark base medium light xlight xxlight xxxlight */
+  --primary: #2b2b91;
+  --primary-50: #edf2ff;
+  --primary-100: #dee7ff;
+  --primary-200: #c3d2ff;
+  --primary-300: #9fb3ff;
+  --primary-400: #788aff;
+  --primary-500: #5962fb;
+  --primary-600: #3e3bf0;
+  --primary-700: #342dd5;
+  --primary-800: #2b28ab;
+  --primary-900: #2b2b91;
+  --primary-950: #19184e;
 
   /* Secondary */
-  --secondary: #ff6bb5;
-  --secondary-dark: hsl(330, 90%, 47%);
-  --secondary-light: hsl(330, 100%, 87%);
-  --secondary-xlight: hsl(330, 100%, 97%);
+  --secondary: rgb(255, 219, 87);
+  --secondary-50: #fffbeb;
+  --secondary-100: #fff5c6;
+  --secondary-200: #ffe988;
+  --secondary-300: #ffdb57;
+  --secondary-400: #ffc520;
+  --secondary-500: #f9a407;
+  --secondary-600: #dd7b02;
+  --secondary-700: #b75706;
+  --secondary-800: #94420c;
+  --secondary-900: #7a370d;
+  --secondary-950: #461b02;
 
-  /* Background */
-  --background: #191971;
-  --background2: rgb(43, 43, 145);
+  /* Accent */
+  --accent: #ff6bb5;
+  --accent-50: #fef1f8;
+  --accent-100: #fee5f2;
+  --accent-200: #ffcbe8;
+  --accent-300: #ffa1d3;
+  --accent-400: #ff6bb5;
+  --accent-500: #fa3a95;
+  --accent-600: #ea1870;
+  --accent-700: #cc0a57;
+  --accent-800: #a80c47;
+  --accent-900: #8c0f3e;
+  --accent-950: #560121;
+
   /* surface(white), base, medium, light, xlight, xxlight */
 
   /* Text */
@@ -132,26 +175,44 @@ a {
   /* Border */
   /* light, base, medium, dark, extraDark */
 
+  /* Neutral */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+
   /* Success */
-  --success-dark: hsla(139, 54%, 29%, 1);
-  --success: #01a73e;
-  --success-light: #d2eedc;
-  --success-xlight: #e9f6ee;
+  --ok-dark: hsla(139, 54%, 29%, 1);
+  --ok-base: hsla(142, 99%, 33%, 1);
+  --ok-light: hsla(141, 46%, 88%, 1);
+  --ok-xlight: hsla(141, 44%, 94%, 1);
+
+  /* Info */
+  --info-dark: hsla(238, 69%, 44%, 1);
+  --info-base: hsla(248, 82%, 55%, 1);
+  --info-medium: hsla(229, 96%, 67%, 1);
+  --info-light: hsla(221, 84%, 66%, 1);
+  --info-xlight: hsla(216, 85%, 84%, 1);
+  --info-xxlight: hsla(214, 84%, 90%, 1);
+  --info-xxxlight: hsla(220, 82%, 96%, 1);
 
   /* Error */
   --error-dark: hsla(0, 83%, 31%, 1);
-  --error: hsla(12, 73%, 47%, 1);
-  --error-light: #e16141;
-  --error-xlight: #f8d3d3;
-  --error-xxlight: #fce9e9;
+  --error-base: hsla(12, 73%, 47%, 1);
+  --error-light: hsla(0, 71%, 90%, 1);
+  --error-xlight: hsla(0, 75%, 95%, 1);
 
   /* Warning */
   --warning-dark: hsla(37, 86%, 38%, 1);
-  --warning: hsla(44, 82%, 52%, 1);
+  --warning-base: hsla(44, 82%, 52%, 1);
   --warning-medium: hsla(46, 87%, 76%, 1);
   --warning-light: hsla(37, 100%, 89%, 1);
   --warning-xlight: hsla(37, 100%, 92%, 1);
-
-  /* Accent */
-  /* surface, dark, hover, base, medium, light, xlight, xxlight */
 }
