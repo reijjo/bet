@@ -1,20 +1,20 @@
 import "./Sidebar.css";
 
-import { Link } from "react-router-dom";
-import { Divider, LinkWithIcon } from "../index";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
-  faGear,
   faArrowRightFromBracket,
   faChartLine,
-  faTableColumns,
+  faGear,
   faPenToSquare,
+  faTableColumns,
+  faUser,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { closeSidebar } from "../../reducers/sidebarReducer";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { Divider, LinkWithIcon } from "../index";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
@@ -53,7 +53,7 @@ export const Sidebar = () => {
       </div>
 
       <div className="sidebar-links bottom-links">
-        <Divider />
+        <Divider color="var(--primary-800)" />
         <LinkWithIcon
           link="/profile"
           icon={faUser}
@@ -66,7 +66,7 @@ export const Sidebar = () => {
           iconSize="xs"
           linkText="Settings"
         />
-        <Divider />
+        <Divider color="var(--primary-800)" />
         <LinkWithIcon
           link="/logout"
           className="logout-button"

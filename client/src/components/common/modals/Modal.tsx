@@ -1,8 +1,9 @@
 import "./Modal.css";
+
 import { ReactNode } from "react";
 
 type ModalProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export const Modal = ({ children }: ModalProps) => (

@@ -32,6 +32,7 @@
   place-items: center;
 
   background-color: transparent;
+  cursor: pointer;
 }
 
 .nav-logo {
