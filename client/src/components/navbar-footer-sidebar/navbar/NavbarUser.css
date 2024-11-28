@@ -1,7 +1,7 @@
 .nav-menu {
   display: none;
 
-  @media (width < 1150px) {
+  @media (max-width: 1150px) {
     display: block;
     border: 1px solid hsla(228, 100%, 81%, 0.5);
     border-radius: 4px;
@@ -20,7 +20,7 @@
 }
 
 .nav-links {
-  @media (width >= 1150px) {
+  @media (min-width: 1150px) {
     justify-content: flex-end;
   }
 }
@@ -38,7 +38,7 @@
 .nav-logo {
   display: none;
 
-  @media (width < 1150px) {
+  @media (max-width: 1150px) {
     display: block;
   }
 }

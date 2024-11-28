@@ -10,10 +10,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-import profilepic from "../../assets/images/stockprofilepic.jpg";
-import { openSidebar } from "../../reducers/sidebarReducer";
-import { useAppDispatch } from "../../store/hooks";
-import { Divider } from "../common/Divider";
+import { Divider } from "../../";
+import profilepic from "../../../assets/images/stockprofilepic.jpg";
+import { openSidebar } from "../../../reducers/sidebarReducer";
+import { useAppDispatch } from "../../../store/hooks";
+
+const USER = "TestUser";
 
 export const NavbarUser = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -49,7 +51,7 @@ export const NavbarUser = () => {
     <nav>
       <div className="wrapper">
         <div className="nav-links">
-          <div className="nav-menu">
+          <div className="nav-menu" data-testid="nav-menu">
             <a className="hamburger" onClick={() => dispatch(openSidebar())}>
               <FontAwesomeIcon icon={faBars} />
             </a>
@@ -67,7 +69,7 @@ export const NavbarUser = () => {
                 />
               </div>
               <a className="nav-profile" onClick={toggleUserMenu}>
-                <p>TestUser</p>
+                <p>{USER}</p>
                 {!isUserMenuOpen ? (
                   <FontAwesomeIcon icon={faCaretDown} />
                 ) : (
@@ -76,7 +78,11 @@ export const NavbarUser = () => {
               </a>
             </div>
             {isUserMenuOpen && (
-              <div className="user-menu" ref={dropdownRef}>
+              <div
+                className="user-menu"
+                data-testid="user-menu"
+                ref={dropdownRef}
+              >
                 <ul>
                   <li className="user-menu-item">
                     <Link to="/dash">Dashboard</Link>

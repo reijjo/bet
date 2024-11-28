@@ -1,9 +1,9 @@
 export { Homepage } from "./homepage/Homepage";
 
-export { Navbar } from "./navbar-footer/Navbar";
-export { NavbarUser } from "./navbar-footer/NavbarUser";
-export { Sidebar } from "./navbar-footer/Sidebar";
-export { Footer } from "./navbar-footer/Footer";
+export { Navbar } from "./navbar-footer-sidebar/navbar/Navbar";
+export { NavbarUser } from "./navbar-footer-sidebar/navbar/NavbarUser";
+export { Sidebar } from "./navbar-footer-sidebar/sidebar/Sidebar";
+export { Footer } from "./navbar-footer-sidebar/footer/Footer";
 
 export { Layout } from "./layout/Layout";
 export { UserLayout } from "./layout/UserLayout";
@@ -27,3 +27,5 @@ export { AddBet } from "./add-bet/AddBet";
 export { AddBetForm } from "./add-bet/AddBetForm";
 export { FinishBetForm } from "./add-bet/FinishBetForm";
 export { FinishBetButtons } from "./add-bet/FinishBetButtons";
+
+export * from "../assets/images/";

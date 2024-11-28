@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "bun-build": "bunx --bun vite build",
+    "clean": "rm -rf node_modules .bun bun.lockb dist out && bun install",
     "test": "NODE_ENV=test vitest"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/axios": "^0.14.0",
     "@types/node": "^22.10.0",

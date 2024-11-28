@@ -4,6 +4,7 @@ import {
   faArrowRightFromBracket,
   faChartLine,
   faGear,
+  faList,
   faPenToSquare,
   faTableColumns,
   faUser,
@@ -12,9 +13,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-import { closeSidebar } from "../../reducers/sidebarReducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { Divider, LinkWithIcon } from "../index";
+import { closeSidebar } from "../../../reducers/sidebarReducer";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
@@ -39,8 +40,14 @@ export const Sidebar = () => {
           linkText="Dashboard"
         />
         <LinkWithIcon
-          link="/bets"
+          link="/add-bet"
           icon={faPenToSquare}
+          iconSize="xs"
+          linkText="Add Bet"
+        />
+        <LinkWithIcon
+          link="/bets"
+          icon={faList}
           iconSize="xs"
           linkText="Bets"
         />
