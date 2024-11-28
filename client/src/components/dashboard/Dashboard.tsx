@@ -1,14 +1,14 @@
 import "./Dashboard.css";
 
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
+
 import { initAllBets } from "../../reducers/betReducer";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  MiniSummaryCards,
-  MonthlyCard,
-  WinPercentCard,
-  SummaryCard,
-  LatestBetsCard,
+  // LatestBetsCard,
+  MiniSummaryCards, // MonthlyCard,
+  // SummaryCard,
+  // WinPercentCard,
 } from "./dashboard-cards";
 
 export const Dashboard = () => {
@@ -24,11 +24,9 @@ export const Dashboard = () => {
 
   return (
     <div className="wrapper dashboard-grid">
-      <div className="dash-first">
-        <MiniSummaryCards />
-      </div>
+      <MiniSummaryCards />
 
-      <div className="dash-second">
+      {/* <div className="dash-second">
         <SummaryCard />
         <WinPercentCard />
       </div>
@@ -36,7 +34,7 @@ export const Dashboard = () => {
       <div className="dash-third">
         <MonthlyCard />
         <LatestBetsCard />
-      </div>
+      </div> */}
     </div>
   );
 };

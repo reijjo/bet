@@ -43,7 +43,7 @@ body {
 
   @media only screen and (max-width: 461px) {
     /* 4 grids */
-    padding: 4px 8px;
+    padding: 8px 8px;
     font-size: 0.925rem;
   }
 }
@@ -75,6 +75,14 @@ h1 {
 h2 {
   /* font-size: clamp(24px, 4vw, 40px); */
   font-size: 2.5rem;
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    font-size: 1.75rem;
+  }
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    font-size: 2.5rem;
+  }
 }
 
 h3 {
@@ -123,7 +131,7 @@ a {
   --primary-50: #edf2ff;
   --primary-100: #dee7ff;
   --primary-200: #c3d2ff;
-  --primary-300: #9fb3ff;
+  --primary-300: hsl(228, 100%, 81%);
   --primary-400: #788aff;
   --primary-500: #5962fb;
   --primary-600: #3e3bf0;
@@ -170,6 +178,11 @@ a {
   --text-primary: hsl(47, 100%, 95%);
   --text-secondary: hsl(330, 100%, 95%);
 
+  --font-small: 0.925rem;
+  --font-smaller: 0.875rem;
+  --font-large: 1.125rem;
+  --font-larger: 1.25rem;
+
   /* base, secondary, muted, inactive, disabled(gray), inverted(white) */
 
   /* Border */
@@ -215,4 +228,8 @@ a {
   --warning-medium: hsla(46, 87%, 76%, 1);
   --warning-light: hsla(37, 100%, 89%, 1);
   --warning-xlight: hsla(37, 100%, 92%, 1);
+
+  /* Box Shadow */
+  --shadow-s: 0px 2px 8px hsla(228, 100%, 81%, 0.2);
+  --shadow-l: 0px 4px 16px hsla(228, 100%, 81%, 0.4);
 }

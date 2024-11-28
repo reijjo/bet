@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import { Divider } from "../../";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
+import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import { openSidebar } from "../../../reducers/sidebarReducer";
 import { useAppDispatch } from "../../../store/hooks";
 
@@ -21,6 +22,8 @@ export const NavbarUser = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   // const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
+  const { isMobile } = useScreenWidth();
+
   const dispatch = useAppDispatch();
 
   // Closes dropdown when clicking outside
@@ -56,7 +59,7 @@ export const NavbarUser = () => {
               <FontAwesomeIcon icon={faBars} />
             </a>
           </div>
-          <div className="nav-logo">
+          <div className={`nav-logo ${isMobile ? "none" : ""}`}>
             <h3>Tärpit</h3>
           </div>
           <div className="nav-profile">
@@ -96,6 +99,13 @@ export const NavbarUser = () => {
                   </li>
                   <li className="user-menu-item">
                     <Link to="/bets">Bets</Link>
+                  </li>
+                  <Divider />
+                  <li className="user-menu-item">
+                    <Link to="/">Profile</Link>
+                  </li>
+                  <li className="user-menu-item">
+                    <Link to="/">Settings</Link>
                   </li>
                   <Divider />
                   <li className="user-menu-logout">

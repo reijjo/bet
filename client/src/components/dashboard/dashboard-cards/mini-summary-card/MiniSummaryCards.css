@@ -1,20 +1,100 @@
+.mini-summary-wrapper {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(12, 1fr);
+  grid-row: 1 / 2;
+
+  gap: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    /* padding: 4px 8px; */
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 0.925rem;
+  }
+}
+
 .mini-summary-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   gap: 4px;
-  padding: 4px 16px;
+  padding: 12px 24px;
 
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
 
   backdrop-filter: blur(4px);
 
-  box-shadow: 2px 2px 4px hsla(0, 0%, 100%, 0.2);
+  box-shadow: var(--shadow-s);
 
   &:hover {
-    box-shadow: 2px 2px 4px hsla(0, 0%, 97%, 0.5);
+    box-shadow: var(--shadow-l);
+  }
+}
+
+.mini-summary-header {
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+  }
+}
+
+.mini-summary-totalbets {
+  grid-row: 1 / 2;
+  grid-column: 1 / 5;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    grid-column: 1 / 5;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
+}
+
+.mini-summary-return {
+  grid-row: 1 / 2;
+  grid-column: 5 / 9;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    grid-column: 5 / 9;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+  }
+}
+
+.mini-summary-profit {
+  grid-row: 1 / 2;
+  grid-column: 9 / 13;
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    grid-row: 2 / 3;
+    grid-column: 1 / 9;
+  }
+
+  @media only screen and (max-width: 461px) {
+    /* 4 grids */
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
   }
 }
 
@@ -22,21 +102,20 @@
   text-transform: capitalize;
   text-align: end;
 
-  h2 {
-    font-size: clamp(24px, 3.5vw, 36px);
-    font-size: 40px;
-  }
-
   p {
     color: var(--secondary-light);
     text-align: end;
-  }
-}
+    font-size: 1rem;
 
-.dash-addbet {
-  /* grid-area: 1 / 5 / 2 / 6; */
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  margin-left: 16px;
+    @media only screen and (max-width: 800px) {
+      /* 8 grids */
+      font-size: var(--font-smaller);
+    }
+
+    @media only screen and (max-width: 461px) {
+      /* 4 grids */
+      /* padding: 4px 8px; */
+      font-size: 0.925rem;
+    }
+  }
 }

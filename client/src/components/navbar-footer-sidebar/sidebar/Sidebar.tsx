@@ -40,6 +40,13 @@ export const Sidebar = () => {
           linkText="Dashboard"
         />
         <LinkWithIcon
+          link="/analytics"
+          icon={faChartLine}
+          iconSize="xs"
+          linkText="Analytics"
+        />
+        <Divider />
+        <LinkWithIcon
           link="/add-bet"
           icon={faPenToSquare}
           iconSize="xs"
@@ -50,12 +57,6 @@ export const Sidebar = () => {
           icon={faList}
           iconSize="xs"
           linkText="Bets"
-        />
-        <LinkWithIcon
-          link="/analytics"
-          icon={faChartLine}
-          iconSize="xs"
-          linkText="Analytics"
         />
       </div>
 

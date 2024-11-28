@@ -1,63 +1,77 @@
 import "./MiniSummaryCards.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
+  IconDefinition,
   faCoins,
   faPenToSquare,
   faPercent,
-  IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../../../index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
+// import { Button } from "../../../index";
 import { useAppSelector } from "../../../../store/hooks";
 import { betCalculations } from "../summaryUtils";
-import { useNavigate } from "react-router-dom";
+
+// import { useNavigate } from "react-router-dom";
 
 type MiniSummaryCardProps = {
   icon: IconDefinition;
   header: string;
   info: string;
+  className?: string;
 };
 
-const MiniSummaryCard = ({ icon, header, info }: MiniSummaryCardProps) => (
-  <div className="mini-summary-card">
-    <FontAwesomeIcon icon={icon} size="4x" />
-    <div className="dash-helper">
-      <h2>{header}</h2>
-      <p>{info}</p>
+const MiniSummaryCard = ({
+  icon,
+  header,
+  info,
+  className,
+}: MiniSummaryCardProps) => {
+  const { isMobile, isTablet } = useScreenWidth();
+  const iconSize = () => {
+    if (isMobile) return "2x";
+    if (isTablet) return "2x";
+    return "3x";
+  };
+
+  return (
+    <div className={`mini-summary-card ${className}`}>
+      <FontAwesomeIcon icon={icon} size={`${iconSize()}`} />
+      <div className={`dash-helper ${className}`}>
+        <h3 className="mini-summary-header">{header}</h3>
+        <p>{info}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const MiniSummaryCards = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const calculations = betCalculations(mybets);
 
   return (
-    <>
+    <div className="mini-summary-wrapper">
       <MiniSummaryCard
         icon={faPenToSquare}
         header={mybets.length.toString()}
         info="Total bets"
+        className="mini-summary-totalbets"
       />
       <MiniSummaryCard
         icon={faPercent}
         header={calculations.returnPercentage.toFixed(2)}
         info="Return %"
+        className="mini-summary-return"
       />
       <MiniSummaryCard
         icon={faCoins}
         header={`${calculations.realProfit.toFixed(2)} \u20AC`}
         info="Total Profit"
+        className="mini-summary-profit"
       />
-      <div className="dash-addbet">
-        <Button
-          className="btn big-btn-style"
-          type="button"
-          children="Add bet"
-          onClick={() => navigate("/add-bet")}
-        />
-      </div>
-    </>
+    </div>
   );
 };
