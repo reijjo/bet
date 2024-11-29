@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+
 import { Bet } from "../../../utils/types";
 
 // Calculate total stake
@@ -8,12 +9,12 @@ const calculateTotalStake = (bets: Bet[]): number => {
 
 // Calculate combined odds for parlays
 export const calculateCombinedOdds = (
-  betDetails: { odds: string | number }[]
+  betDetails: { odds: string | number }[],
 ): number => {
   return parseFloat(
     betDetails
       .reduce((acc, detail) => acc * parseFloat(detail.odds.toString()), 1)
-      .toFixed(2)
+      .toFixed(2),
   );
 };
 
@@ -25,7 +26,7 @@ const calculateProfit = (bets: Bet[]): number => {
     // If the bet is "Won" or "Half Won", calculate profit
     if (bet.status === "Won") {
       const combinedOdds = calculateCombinedOdds(
-        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
+        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
       );
       profit = combinedOdds * Number(bet.stake) - Number(bet.stake);
     } else if (bet.status === "Half Won") {
@@ -70,7 +71,7 @@ export const calculateTotalPayout = (bets: Bet[]): number => {
     // Calculate payout based on the bet status
     if (bet.status === "Won") {
       const combinedOdds = calculateCombinedOdds(
-        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
+        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
       );
       payout =
         Number(bet.stake) +
@@ -88,6 +89,64 @@ export const calculateTotalPayout = (bets: Bet[]): number => {
 
     return acc + payout;
   }, 0);
+};
+
+// Calculate for Bar Chart
+export const last4months = (bets: Bet[]) => {
+  // const getMonthName = (date: string) => dayjs(date).format("MMM");
+
+  // Filter bets for current month
+  const currentMonthBets = bets.filter((bet) =>
+    bet.betDetails.some((detail) =>
+      dayjs(detail.date).isSame(dayjs(), "month"),
+    ),
+  );
+
+  // Filter bets for previous month
+  const previousMonthBets = bets.filter((bet) =>
+    bet.betDetails.some((detail) =>
+      dayjs(detail.date).isSame(dayjs().subtract(1, "month"), "month"),
+    ),
+  );
+
+  // Filter bets for previous month
+  const previous2MonthBets = bets.filter((bet) =>
+    bet.betDetails.some((detail) =>
+      dayjs(detail.date).isSame(dayjs().subtract(2, "month"), "month"),
+    ),
+  );
+
+  // Filter bets for previous month
+  const previous3MonthBets = bets.filter((bet) =>
+    bet.betDetails.some((detail) =>
+      dayjs(detail.date).isSame(dayjs().subtract(3, "month"), "month"),
+    ),
+  );
+
+  // Calculate summaries
+  const currentMonthSummary = betCalculations(currentMonthBets);
+  const previousMonthSummary = betCalculations(previousMonthBets);
+  const previous2MonthSummary = betCalculations(previous2MonthBets);
+  const previous3MonthSummary = betCalculations(previous3MonthBets);
+
+  return [
+    {
+      name: dayjs().format("MMM"),
+      profit: Number(currentMonthSummary.realProfit.toFixed(2)),
+    },
+    {
+      name: dayjs().subtract(1, "month").format("MMM"),
+      profit: Number(previousMonthSummary.realProfit.toFixed(2)),
+    },
+    {
+      name: dayjs().subtract(2, "month").format("MMM"),
+      profit: Number(previous2MonthSummary.realProfit.toFixed(2)),
+    },
+    {
+      name: dayjs().subtract(3, "month").format("MMM"),
+      profit: Number(previous3MonthSummary.realProfit.toFixed(2)),
+    },
+  ];
 };
 
 export const betCalculations = (bets: Bet[]) => {
@@ -121,27 +180,27 @@ const isYesterday = (date: string) =>
   dayjs(date).isSame(dayjs().subtract(1, "day"), "day");
 const isLast7Days = (date: string) =>
   dayjs(date).isAfter(dayjs().subtract(7, "day"));
-const isThisMonth = (date: string) =>
+const isLast30days = (date: string) =>
   dayjs(date).isAfter(dayjs().subtract(30, "day"));
 
 export const periodParser = (myBets: Bet[]) => {
   const todayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isToday(detail.date))
+    bet.betDetails.some((detail) => isToday(detail.date)),
   );
   const yesterdayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isYesterday(detail.date))
+    bet.betDetails.some((detail) => isYesterday(detail.date)),
   );
   const last7DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast7Days(detail.date))
+    bet.betDetails.some((detail) => isLast7Days(detail.date)),
   );
-  const thisMonthBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isThisMonth(detail.date))
+  const last30DaysBets = myBets.filter((bet) =>
+    bet.betDetails.some((detail) => isLast30days(detail.date)),
   );
 
   return {
     todayBets,
     yesterdayBets,
     last7DaysBets,
-    thisMonthBets,
+    last30DaysBets,
   };
 };

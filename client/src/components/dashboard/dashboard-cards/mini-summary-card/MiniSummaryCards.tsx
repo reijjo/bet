@@ -9,11 +9,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-// import { Button } from "../../../index";
 import { useAppSelector } from "../../../../store/hooks";
 import { betCalculations } from "../summaryUtils";
-
-// import { useNavigate } from "react-router-dom";
 
 type MiniSummaryCardProps = {
   icon: IconDefinition;

@@ -95,7 +95,7 @@ export const NavbarUser = () => {
                   </li>
                   <Divider />
                   <li className="user-menu-item">
-                    <Link to="/addbet">Add bet</Link>
+                    <Link to="/add-bet">Add bet</Link>
                   </li>
                   <li className="user-menu-item">
                     <Link to="/bets">Bets</Link>

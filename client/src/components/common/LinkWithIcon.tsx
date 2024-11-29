@@ -8,6 +8,7 @@ type LinkWithIconProps = {
   icon: IconDefinition;
   iconSize?: SizeProp;
   linkText: string;
+  onClick?: () => void;
 };
 
 export const LinkWithIcon = ({
@@ -16,13 +17,14 @@ export const LinkWithIcon = ({
   icon,
   iconSize,
   linkText,
+  onClick,
 }: LinkWithIconProps) => {
   const location = useLocation();
   const isActive = location.pathname === link;
   const combinedClassName = `${className} ${isActive ? "active-link" : ""}`;
 
   return (
-    <Link to={link} className={combinedClassName}>
+    <Link to={link} className={combinedClassName} onClick={onClick}>
       <FontAwesomeIcon icon={icon} size={iconSize} />
       <p>{linkText}</p>
     </Link>

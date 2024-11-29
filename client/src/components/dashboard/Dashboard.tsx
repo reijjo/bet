@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { initAllBets } from "../../reducers/betReducer";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  // LatestBetsCard,
-  MiniSummaryCards, // MonthlyCard,
+  LatestBetsCard,
+  MiniSummaryCards,
+  MonthlyCard,
   SummaryCard,
   WinPercentCard,
 } from "./dashboard-cards";
@@ -28,9 +29,8 @@ export const Dashboard = () => {
       <SummaryCard />
       <WinPercentCard />
 
-      {/* <MonthlyCard /> */}
-      {/* <LatestBetsCard /> */}
-      {/* </div> */}
+      <MonthlyCard />
+      <LatestBetsCard />
     </div>
   );
 };

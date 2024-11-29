@@ -67,13 +67,13 @@ const SummarySection = ({
 
 export const SummaryCard = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
-  const { todayBets, yesterdayBets, last7DaysBets, thisMonthBets } =
+  const { todayBets, yesterdayBets, last7DaysBets, last30DaysBets } =
     periodParser(mybets);
 
   const todaySummary = betCalculations(todayBets);
   const yesterdaySummary = betCalculations(yesterdayBets);
   const last7DaysSummary = betCalculations(last7DaysBets);
-  const thisMonthSummary = betCalculations(thisMonthBets);
+  const last30DaysSummary = betCalculations(last30DaysBets);
 
   return (
     <div className="dash-summary">
@@ -101,10 +101,10 @@ export const SummaryCard = () => {
       />
       <SummarySection
         period="Last 30 days"
-        totalStake={thisMonthSummary.totalStake.toFixed(2)}
-        payout={thisMonthSummary.totalPayout.toFixed(2)}
-        realProfit={thisMonthSummary.realProfit.toFixed(2)}
-        totalBets={thisMonthSummary.totalBets}
+        totalStake={last30DaysSummary.totalStake.toFixed(2)}
+        payout={last30DaysSummary.totalPayout.toFixed(2)}
+        realProfit={last30DaysSummary.realProfit.toFixed(2)}
+        totalBets={last30DaysSummary.totalBets}
       />
     </div>
   );

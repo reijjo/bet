@@ -1,32 +1,37 @@
+import "./PosNegBarChartDashboard.css";
+
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
+  BarChart,
   Cell,
   ReferenceLine,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
-const posNegBarData = [
-  {
-    name: "Jan",
-    profit: 200,
-  },
-  {
-    name: "Feb",
-    profit: 300,
-  },
-  {
-    name: "Mar",
-    profit: -50,
-  },
-  {
-    name: "Apr",
-    profit: -150,
-  },
-];
+import { useAppSelector } from "../../store/hooks";
+import { last4months } from "../dashboard/dashboard-cards/summaryUtils";
+
+// const posNegBarData = [
+//   {
+//     name: "Jan",
+//     profit: 200,
+//   },
+//   {
+//     name: "Feb",
+//     profit: 300,
+//   },
+//   {
+//     name: "Mar",
+//     profit: -50,
+//   },
+//   {
+//     name: "Apr",
+//     profit: -150,
+//   },
+// ];
 
 type CustomTooltipProps = {
   active: boolean;
@@ -65,23 +70,29 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 };
 
 export const PosNegBarChartDashboard = () => {
+  const bets = useAppSelector((state) => state.bets.allBets);
+
+  const posNegBarData = last4months(bets);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        width={600}
-        height={600}
+        // width={600}
+        // height={600}
         data={posNegBarData}
         margin={{
           top: 16,
-          right: 24,
-          left: 0,
-          bottom: 8,
+          left: -16,
         }}
       >
-        <XAxis dataKey="name" stroke="#ccc" />
-        <YAxis stroke="#ccc" />
+        <XAxis
+          dataKey="name"
+          stroke="#ccc"
+          style={{ fontSize: "var(--font-smaller" }}
+        />
+        <YAxis stroke="#ccc" style={{ fontSize: "var(--font-smaller" }} />
         <Tooltip
           content={<CustomTooltip active={false} payload={[]} label={""} />}
+          cursor={{ fill: "#9eb1ff20" }}
         />
         {/* <Legend /> */}
         <ReferenceLine y={0} stroke="#808080" />
@@ -89,7 +100,7 @@ export const PosNegBarChartDashboard = () => {
           {posNegBarData.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={entry.profit >= 0 ? "#d2eedc" : "#f8d3d3"}
+              fill={entry.profit >= 0 ? "#b3e6c5" : "#f1b6a7"}
             />
           ))}
         </Bar>

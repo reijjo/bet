@@ -131,7 +131,7 @@ a {
   --primary-50: #edf2ff;
   --primary-100: #dee7ff;
   --primary-200: #c3d2ff;
-  --primary-300: hsl(228, 100%, 81%);
+  --primary-300: #9eb1ff;
   --primary-400: #788aff;
   --primary-500: #5962fb;
   --primary-600: #3e3bf0;
@@ -204,7 +204,7 @@ a {
   /* Success */
   --ok-dark: hsla(139, 54%, 29%, 1);
   --ok-base: hsla(142, 99%, 33%, 1);
-  --ok-light: hsla(142, 50%, 80%, 1);
+  --ok-light: #b3e6c5;
   --ok-xlight: hsla(141, 46%, 88%, 1);
   --ok-xxlight: hsla(141, 44%, 94%, 1);
 
@@ -220,7 +220,7 @@ a {
   /* Error */
   --error-dark: hsla(0, 83%, 31%, 1);
   --error-base: hsla(12, 73%, 47%, 1);
-  --error-light: hsla(12, 73%, 80%, 1);
+  --error-light: #f1b6a7;
   --error-xlight: hsla(0, 71%, 90%, 1);
   --error-xxlight: hsla(0, 75%, 95%, 1);
 
