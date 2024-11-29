@@ -1,28 +1,19 @@
 .dashboard-grid {
   display: grid;
   grid-template-rows: 0.5fr 1fr 1fr;
-  /* grid-auto-rows: auto; */
-  gap: 24px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: auto;
+  gap: 1rem;
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */
-    /* grid-column: 1 / 5; */
+    grid-template-columns: repeat(8, 1fr);
   }
 
   @media only screen and (max-width: 461px) {
     /* 4 grids */
+    grid-template-columns: repeat(4, 1fr);
+
     font-size: 0.925rem;
   }
-}
-
-.dash-second {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 24px;
-}
-
-.dash-third {
-  display: grid;
-  grid-template-columns: 3fr 7fr;
-  gap: 24px;
 }

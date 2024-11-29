@@ -1,20 +1,22 @@
 .mini-summary-wrapper {
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: repeat(12, 1fr);
+  grid-column: 1 / 13;
   grid-row: 1 / 2;
 
   gap: 1rem;
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */
-    grid-template-columns: repeat(8, 1fr);
+    /* grid-template-columns: repeat(8, 1fr); */
+    grid-column: 1 / -1;
   }
 
   @media only screen and (max-width: 461px) {
     /* 4 grids */
     /* padding: 4px 8px; */
-    grid-template-columns: repeat(4, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-column: 1 / -1;
     font-size: 0.925rem;
   }
 }

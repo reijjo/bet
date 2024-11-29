@@ -7,8 +7,6 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { store } from "../../../store/store";
 import { NavbarUser } from "./NavbarUser";
 
-// For resizing the screen
-
 beforeEach(() => {
   render(
     <Provider store={store}>

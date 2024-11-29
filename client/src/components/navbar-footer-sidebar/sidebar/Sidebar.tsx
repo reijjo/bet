@@ -22,7 +22,10 @@ export const Sidebar = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={`sidebar ${sideBarOpen ? "active" : ""}`}>
+    <div
+      className={`sidebar ${sideBarOpen ? "active" : ""}`}
+      data-testid="sidebar"
+    >
       <div className="sidebar-close">
         <a className="hamburger" onClick={() => dispatch(closeSidebar())}>
           <FontAwesomeIcon icon={faXmark} />
@@ -45,7 +48,6 @@ export const Sidebar = () => {
           iconSize="xs"
           linkText="Analytics"
         />
-        <Divider />
         <LinkWithIcon
           link="/add-bet"
           icon={faPenToSquare}

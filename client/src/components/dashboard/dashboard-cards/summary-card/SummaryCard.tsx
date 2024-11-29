@@ -1,21 +1,35 @@
 import "./SummaryCard.css";
+
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 import { useAppSelector } from "../../../../store/hooks";
 import { betCalculations, periodParser } from "../summaryUtils";
 
-export const SummaryHeaders = () => (
-  <>
-    <div className="summary-main-header">
-      <h5>Summary</h5>
-    </div>
-    <div className="summary-headers">
-      <div></div>
-      <p>At Risk</p>
-      <p>Payout</p>
-      <p>Profit / Loss</p>
-      <p>Total Bets</p>
-    </div>
-  </>
-);
+export const SummaryHeaders = () => {
+  const { isTablet, isMobile } = useScreenWidth();
+
+  const profitText = isMobile ? "Profit" : "Profit / Loss";
+
+  return (
+    <>
+      <div className="summary-main-header">
+        <h5>Summary</h5>
+      </div>
+      <div className="summary-headers">
+        <div></div>
+        <p>At Risk</p>
+        <p
+          style={
+            isTablet || isMobile ? { display: "none" } : { display: "block" }
+          }
+        >
+          Payout
+        </p>
+        <p>{profitText}</p>
+        <p>Total Bets</p>
+      </div>
+    </>
+  );
+};
 
 type SummarySectionProps = {
   period: string;
@@ -31,15 +45,25 @@ const SummarySection = ({
   payout,
   realProfit,
   totalBets,
-}: SummarySectionProps) => (
-  <div className="summary-section">
-    <p>{period}</p>
-    <p>{totalStake} &euro;</p>
-    <p>{payout} &euro;</p>
-    <p>{realProfit} &euro;</p>
-    <p>{totalBets}</p>
-  </div>
-);
+}: SummarySectionProps) => {
+  const { isTablet, isMobile } = useScreenWidth();
+
+  return (
+    <div className="summary-section">
+      <p>{period}</p>
+      <p>{totalStake} &euro;</p>
+      <p
+        style={
+          isTablet || isMobile ? { display: "none" } : { display: "block" }
+        }
+      >
+        {payout} &euro;
+      </p>
+      <p>{realProfit} &euro;</p>
+      <p>{totalBets}</p>
+    </div>
+  );
+};
 
 export const SummaryCard = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);

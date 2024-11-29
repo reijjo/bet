@@ -1,4 +1,5 @@
-import { PieChart, Pie, ResponsiveContainer, Label, Cell } from "recharts";
+import { Cell, Label, Pie, PieChart, ResponsiveContainer } from "recharts";
+
 import { Bet } from "../../utils/types";
 
 export type PieChartDashboardData = {
@@ -40,8 +41,8 @@ export const PieChartDashboard = ({
   ];
 
   const colors = [
-    "var(--success-light)",
-    "var(--secondary-light)",
+    "var(--ok-light)",
+    "var(--error-light)",
     "var(--warning-medium)",
   ];
 
@@ -70,7 +71,7 @@ export const PieChartDashboard = ({
             position="center"
             fill="#000"
             style={{
-              fontSize: "1em",
+              fontSize: "1rem",
               fontWeight: "bold",
               fill: "var(--text)",
             }}

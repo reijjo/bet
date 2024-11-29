@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   // LatestBetsCard,
   MiniSummaryCards, // MonthlyCard,
-  // SummaryCard,
-  // WinPercentCard,
+  SummaryCard,
+  WinPercentCard,
 } from "./dashboard-cards";
 
 export const Dashboard = () => {
@@ -25,16 +25,12 @@ export const Dashboard = () => {
   return (
     <div className="wrapper dashboard-grid">
       <MiniSummaryCards />
+      <SummaryCard />
+      <WinPercentCard />
 
-      {/* <div className="dash-second">
-        <SummaryCard />
-        <WinPercentCard />
-      </div>
-
-      <div className="dash-third">
-        <MonthlyCard />
-        <LatestBetsCard />
-      </div> */}
+      {/* <MonthlyCard /> */}
+      {/* <LatestBetsCard /> */}
+      {/* </div> */}
     </div>
   );
 };
