@@ -1,12 +1,14 @@
 import "./BetStatusChange.css";
 
 import { useEffect, useRef, useState } from "react";
-import { BetStatus } from "../../utils/enums";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { useAppDispatch } from "../../store/hooks";
-import { Bet } from "../../utils/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { changeBetStatus } from "../../reducers/betReducer";
+import { useAppDispatch } from "../../store/hooks";
+import { BetStatus } from "../../utils/enums";
+import { Bet } from "../../utils/types";
 
 type BetStatusChangeProps = {
   bet: Bet;
@@ -63,19 +65,18 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
         <div
           className={`bet-status-ball ${endedBetBallColor(bet.status)}`}
         ></div>
-        <p>
-          {bet.status}
+        <div className="bet-status-change-value">
+          <p>{bet.status === "Pending" ? "Pen..." : bet.status}</p>
           {isOpen ? (
             <FontAwesomeIcon icon={faCaretUp} />
           ) : (
             <FontAwesomeIcon icon={faCaretDown} />
           )}
-        </p>
+        </div>
       </a>
       {isOpen && (
         <div className="bet-status-change-options">
           {options.map((op) => (
-            // <>
             <a
               key={op}
               className="bet-status-options-list status-with-ball"
@@ -84,7 +85,6 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
               <div className={`bet-status-ball ${endedBetBallColor(op)}`}></div>
               <p>{op}</p>
             </a>
-            // </>
           ))}
         </div>
       )}

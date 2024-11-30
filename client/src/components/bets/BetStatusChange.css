@@ -3,6 +3,8 @@
   background-color: rgba(0, 0, 0, 0.2);
   padding: 8px 0;
   border-radius: 4px;
+  width: 100%;
+  display: flex;
 }
 
 .status-with-ball {
@@ -10,12 +12,23 @@
   align-items: center;
   width: 100%;
   padding: 0 8px;
+}
 
-  p {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+.bet-status-change-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  & p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    max-width: 5ch;
+
+    @media only screen and (max-width: 1000px) {
+      display: none;
+    }
   }
 }
 
@@ -30,6 +43,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 
   width: 100%;
+  min-width: max-content;
   z-index: 1;
 }
 
@@ -69,6 +83,6 @@
 
 .bet-status-pending {
   box-shadow: 0px 0px 8px var(--info-light);
-  background-color: var(--info);
+  background-color: var(--info-base);
   border: 2px solid var(--info-light);
 }

@@ -69,7 +69,7 @@ export const calculateTotalPayout = (bets: Bet[]): number => {
     let payout = 0;
 
     // Calculate payout based on the bet status
-    if (bet.status === "Won") {
+    if (bet.status === "Won" || bet.status === "Pending") {
       const combinedOdds = calculateCombinedOdds(
         bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
       );

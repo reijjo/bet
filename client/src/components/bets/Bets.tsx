@@ -1,19 +1,23 @@
 import "./Bets.css";
-import dayjs from "dayjs";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  calculateTotalPayout,
-  calculateTotalLosses,
-  calculateCombinedOdds,
-} from "../dashboard/dashboard-cards/summaryUtils";
-import { Bet, BetDetails } from "../../utils/types";
-import { BetStatusChange } from "./BetStatusChange";
+
 import { useEffect } from "react";
-import { initAllBets } from "../../reducers/betReducer";
-import { Button } from "../common/Button";
+
+import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+
+import { initAllBets } from "../../reducers/betReducer";
 import { openModifyBet } from "../../reducers/modalReducer";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { BetType } from "../../utils/enums";
+import { Bet, BetDetails } from "../../utils/types";
+import { Button } from "../common/Button";
+import {
+  calculateCombinedOdds,
+  calculateTotalLosses,
+  calculateTotalPayout,
+} from "../dashboard/dashboard-cards/summaryUtils";
+import { BetStatusChange } from "./BetStatusChange";
+
 // import { BetStatus } from "../dashboard/dashboard-cards";
 
 export const Bets = () => {
@@ -39,6 +43,8 @@ export const Bets = () => {
         return "bet-lost";
       case "Void":
         return "bet-void";
+      case "Pending":
+        return "bet-pending";
       default:
         return "";
     }
@@ -54,6 +60,12 @@ export const Bets = () => {
     }
 
     return result;
+  };
+
+  const parseBetBuilderSelection = (selection: string) => {
+    return selection
+      .split(",")
+      .map((item, index) => <span key={index}>{item.trim()}</span>);
   };
 
   const modifybet = (id: number | string) => {
@@ -75,14 +87,14 @@ export const Bets = () => {
         <table>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Sport</th>
-              <th>Match</th>
+              <th className="table-header-date">Date</th>
+              <th className="table-header-sport">Sport</th>
+              <th className="table-header-match">Match</th>
               <th>Selection</th>
-              <th>Type</th>
-              <th>Result</th>
-              <th>Stake</th>
-              <th>Odds</th>
+              <th className="table-header-type">Type</th>
+              <th className="table-header-result">Result</th>
+              <th className="table-header-stake">Stake</th>
+              <th className="table-header-odds">Odds</th>
               <th>Status</th>
               <th>Payout</th>
             </tr>
@@ -103,25 +115,45 @@ export const Bets = () => {
                   <p title={bet.sport}>{bet.sport}</p>
                 </td>
                 <td className="table-match">
-                  {bet.betDetails.map((parlay, index) => (
-                    <div
-                      className="bets-table-matchgrid"
-                      key={`${bet.id}-${index}`}
-                    >
-                      <p title={parlay.home_team}>{parlay.home_team}</p>
-                      <p>-</p>
-                      <p title={parlay.away_team}>{parlay.away_team}</p>
-                    </div>
-                  ))}
+                  {bet.betDetails.map((parlay, index) => {
+                    const isBetBuilder = bet.bet_type === BetType.BetBuilder;
+                    const numberOfLines = parlay.selection.split(",").length;
+
+                    return (
+                      <div
+                        className="bets-table-matchgrid"
+                        key={`${bet.id}-${index}`}
+                        style={
+                          isBetBuilder
+                            ? {
+                                height: `${numberOfLines * 1.2}rem`,
+                                marginTop: "0.25rem",
+                              }
+                            : {}
+                        }
+                      >
+                        <p title={parlay.home_team}>{parlay.home_team}</p>
+                        <p>-</p>
+                        <p title={parlay.away_team}>{parlay.away_team}</p>
+                      </div>
+                    );
+                  })}
                 </td>
                 <td className="table-selection">
                   {bet.betDetails.map((parlay, index) => (
-                    <p
+                    <div
                       key={`${bet.id}-selection-${index}`}
+                      className="selection-cell"
                       title={parlay.selection}
                     >
-                      {parlay.selection}
-                    </p>
+                      {bet.bet_type === BetType.BetBuilder ? (
+                        <div className="betbuilder-selections">
+                          {parseBetBuilderSelection(parlay.selection)}
+                        </div>
+                      ) : (
+                        <p title={parlay.selection}>{parlay.selection}</p>
+                      )}
+                    </div>
                   ))}
                 </td>
                 <td className="table-type">

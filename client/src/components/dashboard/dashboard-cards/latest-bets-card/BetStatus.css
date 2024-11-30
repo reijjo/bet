@@ -33,7 +33,7 @@
 
 .bet-status-pending {
   box-shadow: 0px 0px 8px var(--info-light);
-  background-color: var(--info);
+  background-color: var(--info-base);
   border: 2px solid var(--info-light);
 }
 
