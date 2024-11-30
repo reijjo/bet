@@ -50,7 +50,7 @@ const SummarySection = ({
 
   return (
     <div className="summary-section">
-      <p>{period}</p>
+      <p className="summary-section-period">{period}</p>
       <p>{totalStake} &euro;</p>
       <p
         style={

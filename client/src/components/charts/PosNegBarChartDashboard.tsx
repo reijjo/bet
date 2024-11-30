@@ -14,25 +14,6 @@ import {
 import { useAppSelector } from "../../store/hooks";
 import { last4months } from "../dashboard/dashboard-cards/summaryUtils";
 
-// const posNegBarData = [
-//   {
-//     name: "Jan",
-//     profit: 200,
-//   },
-//   {
-//     name: "Feb",
-//     profit: 300,
-//   },
-//   {
-//     name: "Mar",
-//     profit: -50,
-//   },
-//   {
-//     name: "Apr",
-//     profit: -150,
-//   },
-// ];
-
 type CustomTooltipProps = {
   active: boolean;
   payload: { value: number }[];
@@ -71,13 +52,11 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 
 export const PosNegBarChartDashboard = () => {
   const bets = useAppSelector((state) => state.bets.allBets);
-
   const posNegBarData = last4months(bets);
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        // width={600}
-        // height={600}
         data={posNegBarData}
         margin={{
           top: 16,

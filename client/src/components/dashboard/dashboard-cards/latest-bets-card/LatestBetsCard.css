@@ -1,8 +1,10 @@
 .dash-latestbets {
   display: grid;
-  grid-template-rows: max-content max-content repeat(2, 1fr);
+  grid-template-rows: repeat(4, max-content);
   grid-row: 3 / 4;
   grid-column: 5 / 13;
+  /* height: max-content;
+  min-height: 10rem; */
 
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
@@ -14,12 +16,26 @@
   &:hover {
     box-shadow: var(--shadow-l);
   }
+
+  @media only screen and (max-width: 800px) {
+    /* 8 grids */
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 481px) {
+    /* 4 grids */
+    padding: 4px 8px;
+    grid-row: 5 / 6;
+    font-size: 0.925rem;
+  }
 }
 
 .latest-headers,
 .latest-bets {
   display: grid;
-  grid-template-columns: 0.75fr 2fr 1fr 0.5fr 0.5fr 1fr;
+  grid-template-columns: 0.5fr 1.5fr 1.25fr 0.5fr 0.5fr 0.75fr;
   gap: 8px;
 
   border-bottom: 1px solid rgba(43, 43, 145, 0.8);
@@ -48,9 +64,10 @@
 .latest-bets {
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 8px 0;
 
-  font-size: 0.825em;
+  font-size: 0.825rem;
+  font-size: var(--font-xxsmall);
 
   p {
     white-space: nowrap;
@@ -63,30 +80,73 @@
   }
 }
 
-.parlay-div > p {
-  padding: 4px;
-  margin: 2px;
-}
-
 .bets-match {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-column: 2 / 3;
   grid-template-columns: 1fr max-content 1fr;
-  gap: 4px;
+  gap: 8px;
   text-align: center;
+
+  @media only screen and (max-width: 990px) {
+    grid-column: 1 / 2;
+  }
+}
+
+.parlay-div > p:is(:not(.bet-selection)) {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10ch;
 }
 
 .bet-selection {
   border-radius: 4px;
-  padding: 4px 6px;
 
   background-color: var(--info);
-  width: max-content;
-  min-width: 40px;
-  max-width: 6rem;
-
-  text-align: center;
+  padding: 4px;
+  width: 15ch;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 990px) {
+  .latest-headers,
+  .latest-bets {
+    grid-template-columns: 1.5fr 1.25fr 0.5fr 0.5fr 0.75fr;
+  }
+
+  .latest-bet-header-date,
+  .latest-bet-data-date {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .latest-headers,
+  .latest-bets {
+    grid-template-columns: 1.25fr 0.5fr 0.5fr 0.75fr;
+  }
+
+  .latest-bet-header-match,
+  .bets-match {
+    display: none;
+  }
+
+  .latest-bet-header-selection {
+    text-align: center;
+  }
+
+  .bet-selection {
+    width: 20ch;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 481px) {
+  .bet-selection {
+    width: 15ch;
+  }
 }

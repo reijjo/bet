@@ -41,7 +41,7 @@ body {
     padding: 8px 16px;
   }
 
-  @media only screen and (max-width: 461px) {
+  @media only screen and (max-width: 481px) {
     /* 4 grids */
     padding: 8px 8px;
     font-size: 0.925rem;
@@ -66,7 +66,7 @@ h1 {
     /* 8 grids */
     font-size: 4rem;
   }
-  @media only screen and (max-width: 461px) {
+  @media only screen and (max-width: 481px) {
     /* 4 grids */
     font-size: 2.5rem;
   }
@@ -79,7 +79,7 @@ h2 {
     /* 8 grids */
     font-size: 1.75rem;
   }
-  @media only screen and (max-width: 461px) {
+  @media only screen and (max-width: 481px) {
     /* 4 grids */
     font-size: 2.5rem;
   }
@@ -180,6 +180,8 @@ a {
 
   --font-small: 0.925rem;
   --font-smaller: 0.875rem;
+  --font-xsmall: 0.825rem;
+  --font-xxsmall: 0.775rem;
   --font-large: 1.125rem;
   --font-larger: 1.25rem;
 

@@ -1,9 +1,10 @@
 import "./LatestBetsCard.css";
 
 import dayjs from "dayjs";
+
 import { useAppSelector } from "../../../../store/hooks";
-import { BetStatus } from "./BetStatus";
 import { calculateCombinedOdds } from "../summaryUtils";
+import { BetStatus } from "./BetStatus";
 
 const LatestHeaders = () => (
   <div className="latest-headers">
@@ -18,18 +19,24 @@ const LatestHeaders = () => (
 
 const LatestBets = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
-  const latestBets = mybets.slice(0, 2);
+  const latestBets = mybets.slice(0, 3);
 
   return (
     <>
       {latestBets.map((bet) => {
         return (
           <div className="latest-bets" key={bet.id}>
-            <p>{dayjs(bet.betDetails[0].date).format("D MMM")}</p>
+            <p className="latest-bet-data-date">
+              {dayjs(bet.betDetails[0].date).format("D MMM")}
+            </p>
             <div className="bets-match">
               <div className="parlay-div">
                 {bet.betDetails.map((parlay, index) => (
-                  <p className="bet-home-team" key={index}>
+                  <p
+                    className="bet-home-team"
+                    key={index}
+                    title={parlay.home_team}
+                  >
                     {parlay.home_team}
                   </p>
                 ))}
@@ -43,7 +50,11 @@ const LatestBets = () => {
               </div>
               <div className="parlay-div">
                 {bet.betDetails.map((parlay, index) => (
-                  <p className="bet-home-team" key={index}>
+                  <p
+                    className="bet-home-team"
+                    key={index}
+                    title={parlay.away_team}
+                  >
                     {parlay.away_team}
                   </p>
                 ))}

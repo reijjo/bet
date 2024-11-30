@@ -3,58 +3,74 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
+  gap: 4px;
 }
 
-.bet-status-ball {
+.bet-status-ball-latest {
   height: 1.5cap;
   aspect-ratio: 1/1;
-
   border-radius: 50%;
-
-  margin-right: 4px;
 }
 
 .bet-status-lost {
-  background-color: var(--secondary);
-  border: 2px solid var(--secondary-light);
+  box-shadow: 0px 0px 8px var(--error-light);
+  background-color: var(--error-base);
+  border: 2px solid var(--error-light);
 }
 
 .bet-status-won {
-  background-color: var(--success);
-  border: 2px solid var(--success-light);
+  box-shadow: 0px 0px 8px var(--ok-light);
+  background-color: var(--ok-base);
+  border: 2px solid var(--ok-light);
 }
 
 .bet-status-void {
-  background-color: var(--warning);
+  box-shadow: 0px 0px 8px var(--warning-light);
+  background-color: var(--warning-base);
   border: 2px solid var(--warning-light);
 }
 
 .bet-status-pending {
+  box-shadow: 0px 0px 8px var(--info-light);
   background-color: var(--info);
   border: 2px solid var(--info-light);
 }
 
-.bet-status,
+.bet-status-latest,
 .bet-profit {
   display: inline-flex;
   align-items: center;
   justify-content: flex-end;
   width: 100%;
+  gap: 8px;
 }
 
 .bet-profit {
-  font-size: 1.125em;
+  font-size: var(--font-xxsmall);
   font-variant-numeric: tabular-nums;
+  display: flex;
+  width: 100%;
 }
 
 .bet-profit-lost {
-  color: var(--secondary-light);
+  color: var(--error-light);
 }
 
 .bet-profit-won {
-  color: var(--success-light);
+  color: var(--ok-light);
 }
 
 .bet-profit-void {
   color: var(--warning-light);
+}
+
+.bet-profit-pending {
+  color: var(--info-xxlight);
+}
+
+@media only screen and (max-width: 481px) {
+  .bet-status-latest-text {
+    display: none;
+  }
 }

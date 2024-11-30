@@ -1,17 +1,18 @@
-import { Bet } from "../../../../utils/types";
 import "./BetStatus.css";
+
+import { Bet } from "../../../../utils/types";
 
 type BetStatusProps = {
   bet: Bet;
 };
 
 const calculateCombinedOdds = (
-  betDetails: { odds: string | number }[]
+  betDetails: { odds: string | number }[],
 ): number => {
   return parseFloat(
     betDetails
       .reduce((acc, detail) => acc * parseFloat(detail.odds.toString()), 1)
-      .toFixed(2)
+      .toFixed(2),
   );
 };
 
@@ -50,7 +51,7 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
 
   const endedBetProfit = (bet: Bet) => {
     const combinedOdds = calculateCombinedOdds(
-      bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
+      bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
     );
 
     if (bet.status === "Won" || bet.status === "Half Won") {
@@ -66,11 +67,16 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
 
   return (
     <div className="bet-status-container">
-      <div className="bet-status">
-        <div className={`bet-status-ball ${endedBetBallColor(bet)}`}></div>
-        <p>{bet.status}</p>
+      <div className={`bet-status-latest ${endedBetColorcode(bet)}`}>
+        <p className="bet-status-latest-text">{bet.status}</p>
+        <div
+          className={`bet-status-ball-latest ${endedBetBallColor(bet)}`}
+        ></div>
       </div>
-      <p className={`bet-profit ${endedBetColorcode(bet)} `}>
+      <p
+        className={`bet-profit ${endedBetColorcode(bet)} `}
+        title={`${endedBetProfit(bet)} &euro;`}
+      >
         {endedBetSign(bet)}
         {endedBetProfit(bet)} &euro;
       </p>

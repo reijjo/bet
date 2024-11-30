@@ -27,9 +27,8 @@ export const Dashboard = () => {
     <div className="wrapper dashboard-grid">
       <MiniSummaryCards />
       <SummaryCard />
-      <WinPercentCard />
-
       <MonthlyCard />
+      <WinPercentCard />
       <LatestBetsCard />
     </div>
   );

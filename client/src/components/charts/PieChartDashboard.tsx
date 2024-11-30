@@ -53,8 +53,8 @@ export const PieChartDashboard = ({
           data={pieData}
           cx="50%"
           cy="50%"
-          innerRadius={65}
-          outerRadius={90}
+          innerRadius={"80%"}
+          outerRadius={"100%"}
           fill="#8884d8"
           paddingAngle={1}
           dataKey="value"
@@ -71,7 +71,7 @@ export const PieChartDashboard = ({
             position="center"
             fill="#000"
             style={{
-              fontSize: "1rem",
+              fontSize: "var(--font-small)",
               fontWeight: "bold",
               fill: "var(--text)",
             }}

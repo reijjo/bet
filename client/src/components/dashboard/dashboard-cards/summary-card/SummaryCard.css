@@ -4,9 +4,11 @@
   grid-row: 2 / 3;
   grid-column: 1 / 9;
 
+  gap: 8px;
+
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 8px 12px;
 
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-s);
@@ -21,10 +23,11 @@
     grid-row: 2 / 3;
   }
 
-  @media only screen and (max-width: 461px) {
+  @media only screen and (max-width: 481px) {
     /* 4 grids */
-    padding: 4px 8px;
+    padding: 4px 8px 8px;
     font-size: 0.925rem;
+    grid-row: auto;
   }
 }
 
@@ -69,5 +72,9 @@
   @media only screen and (max-width: 800px) {
     /* 8 grids */
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media only screen and (max-width: 481px) {
+    font-size: var(--font-xsmall);
   }
 }
