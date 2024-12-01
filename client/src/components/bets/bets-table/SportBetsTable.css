@@ -1,0 +1,14 @@
+.table-sport {
+  @media only screen and (max-width: 1000px) {
+    max-width: 8ch;
+  }
+
+  @media only screen and (max-width: 481px) {
+    display: none;
+  }
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

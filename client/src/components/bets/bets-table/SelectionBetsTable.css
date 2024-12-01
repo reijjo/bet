@@ -1,0 +1,50 @@
+.table-selection {
+  vertical-align: top;
+  max-width: 24ch;
+  width: auto;
+}
+
+.table-selection-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.table-selection-teams {
+  display: flex;
+  gap: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  & p {
+    max-width: 10ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.table-selection-selection {
+  display: flex;
+  /* justify-content: flex-start; */
+  padding: 0.25rem 0 0.5rem 0.5rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.betbuilder-selections {
+  text-align: left;
+}
+
+@media only screen and (max-width: 800px) {
+  .table-selection {
+    max-width: 20ch;
+  }
+
+  .table-selection-teams p {
+    max-width: 8ch;
+  }
+}

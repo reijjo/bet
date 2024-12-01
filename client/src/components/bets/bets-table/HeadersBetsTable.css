@@ -1,0 +1,18 @@
+thead {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.table-header-type,
+.table-header-stake,
+.table-header-date,
+.table-header-result {
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.table-header-sport {
+  @media only screen and (max-width: 481px) {
+    display: none;
+  }
+}

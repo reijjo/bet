@@ -24,7 +24,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-wrap: nowrap;
-    max-width: 5ch;
+    /* max-width: 5ch; */
 
     @media only screen and (max-width: 1000px) {
       display: none;

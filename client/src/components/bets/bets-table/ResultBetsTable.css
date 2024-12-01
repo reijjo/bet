@@ -1,0 +1,56 @@
+.table-result {
+  vertical-align: top;
+  max-width: 10ch;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.table-result-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  align-content: flex-start;
+  justify-content: flex-start;
+}
+
+.table-result-teams {
+  display: flex;
+  width: max-content;
+  gap: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.table-result-selection {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.25rem 0 0.5rem;
+  width: max-content;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.table-result-results {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  width: max-content;
+}
+
+.betbuilder-selections {
+  text-align: left;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+.no-gap {
+  gap: 0;
+}
