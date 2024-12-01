@@ -1,0 +1,4 @@
+.container-base-styles {
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
