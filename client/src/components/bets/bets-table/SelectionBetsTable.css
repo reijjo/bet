@@ -1,7 +1,7 @@
 .table-selection {
   vertical-align: top;
   max-width: 24ch;
-  width: auto;
+  /* width: auto; */
 }
 
 .table-selection-wrapper {
@@ -39,7 +39,7 @@
   text-align: left;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   .table-selection {
     max-width: 20ch;
   }

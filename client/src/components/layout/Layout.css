@@ -18,7 +18,7 @@
 
   position: relative;
 
-  @media (width < 1150px) {
+  @media (width < 1180px) {
     grid-template-columns: 1fr;
   }
 }
