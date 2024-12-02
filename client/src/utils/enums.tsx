@@ -34,7 +34,7 @@ export enum Bookmaker {
 export enum BetType {
   Single = "Single",
   Double = "Double",
-  Triple = "Triple",
+  Treble = "Treble",
   Parlayx4 = "Parlay x 4",
   BigParlay = "Big Parlay",
   Over = "Over",
@@ -45,4 +45,5 @@ export enum BetType {
   Btts2 = "Both Teams to Score 2",
   Moniveto = "Moniveto",
   Tulosveto = "Tulosveto",
+  Tuplaus = "Ladder Challenge",
 }

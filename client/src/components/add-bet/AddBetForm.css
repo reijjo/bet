@@ -1,0 +1,21 @@
+.addbet-container {
+  width: min(100%, 850px);
+  height: max-content;
+
+  margin: 24px auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 8px;
+}
+
+.addbet-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}

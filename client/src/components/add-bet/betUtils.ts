@@ -12,6 +12,7 @@ export const initialBetDetailValues = {
   home_result: "",
   away_result: "",
   betbuilder_result: "",
+  bet_type: BetType.Single || "",
 };
 
 export const initialBetValues = {
@@ -19,7 +20,7 @@ export const initialBetValues = {
   bookmaker: Bookmaker.None,
   status: BetStatus.Pending,
   tipper: "",
-  bet_type: BetType.Single || "",
+  bet_final_type: BetType.Single || "",
   sport: SportLeague.None,
   betDetails: [],
 };
@@ -28,7 +29,7 @@ export const initialBetValues = {
 export const getInputValue = (
   type: string,
   checked: boolean,
-  value: string
+  value: string,
 ) => {
   if (type === "checkbox") {
     return checked;

@@ -3,14 +3,22 @@ input[type="date"] {
   padding: 8px 6px;
   margin-top: 4px;
 
-  border-radius: 4px;
+  border-radius: 8px;
+  /* outline: 2px solid var(--primary-900); */
+
+  /* border: 2px solid var(--primary-200); */
+
+  /* &:focus { */
+  /* outline: 1px solid var(--primary-800); */
+  /* border: transparent; */
+  /* } */
 }
 
 .text-input {
   display: flex;
   flex-direction: column;
 
-  padding: 8px 4px;
+  padding: 4px 0;
 
   label {
     font-size: 0.925em;
@@ -23,7 +31,7 @@ input[type="date"] {
 
 .text-input-paragraph {
   margin-left: 8px;
-  font-size: 0.8em;
+  font-size: var(--font-xxsmall);
   letter-spacing: 0.5px;
   color: var(--text-light);
 }

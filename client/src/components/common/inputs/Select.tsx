@@ -1,19 +1,18 @@
-import { ChangeEvent } from "react";
 import "./Select.css";
 
-type SelectProps = {
+import { InputHTMLAttributes } from "react";
+
+interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   className?: string;
   label?: string;
   optional?: string;
   id: string;
   name: string;
-  size?: number;
-  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
-  defaultValue?: string;
   options: string[];
-  value?: string;
-  disabled?: boolean;
-};
+  height?: string;
+  width?: string;
+  backgroundColor?: string;
+}
 
 export const Select = ({
   className,
@@ -21,12 +20,11 @@ export const Select = ({
   optional,
   id,
   name,
-  size,
-  onChange,
-  defaultValue,
   options,
-  value,
-  disabled,
+  width = "100%",
+  height = "2.5rem",
+  backgroundColor = "white",
+  ...props
 }: SelectProps) => {
   return (
     <div className={className}>
@@ -39,11 +37,12 @@ export const Select = ({
       <select
         id={id}
         name={name}
-        size={size}
-        onChange={onChange}
-        defaultValue={defaultValue}
-        value={value}
-        disabled={disabled}
+        {...props}
+        style={{
+          height: height,
+          width: width,
+          backgroundColor: backgroundColor,
+        }}
       >
         {options.map((option, index) => (
           <option key={index} value={option}>

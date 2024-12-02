@@ -236,4 +236,5 @@ a {
   /* Box Shadow */
   --shadow-s: 0px 2px 8px hsla(228, 100%, 81%, 0.2);
   --shadow-l: 0px 4px 16px hsla(228, 100%, 81%, 0.4);
+  --shadow-xl: 0px 8px 64px hsla(228, 100%, 81%, 0.2);
 }

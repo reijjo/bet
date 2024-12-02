@@ -1,24 +1,4 @@
-.addbet-container {
-  /* width: max(80px, 90%); */
-  width: 90%;
-  max-width: 850px;
-  height: max-content;
-
-  margin: 24px auto 0;
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  backdrop-filter: blur(4px);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-
-  padding: 8px 16px;
-}
-
-.container-header {
-  text-align: center;
-}
-
-.addbet-form {
+/* .addbet-form {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
@@ -53,9 +33,6 @@
 }
 
 .match-input {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
   display: grid;
   align-content: center;
 
@@ -67,7 +44,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 100%; */
 }
 
 .match-dash {
@@ -135,4 +111,4 @@
 
 .add-bet-buttons-extra-fields {
   grid-row: 6 / 7;
-}
+} */

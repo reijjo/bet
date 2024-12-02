@@ -1,3 +1,5 @@
+import "./FreeLiveInput.css";
+
 import { BetInputProps } from "../../../utils/types";
 import { Checkbox } from "../../index";
 

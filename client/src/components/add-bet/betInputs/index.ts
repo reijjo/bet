@@ -4,3 +4,4 @@ export { MatchInput } from "./MatchInput";
 export { NotesInput } from "./NotesInput";
 export { OddsInput } from "./OddsInput";
 export { SelectionInput } from "./SelectionInput";
+export { TypeInput } from "./TypeInput";

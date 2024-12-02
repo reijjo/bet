@@ -5,13 +5,15 @@ import {
   SyntheticEvent,
   useState,
 } from "react";
-import { TextInput, Select, FinishBetButtons } from "../index";
+
+import { useNavigate } from "react-router-dom";
+
+import { addNewBet } from "../../reducers/betReducer";
+import { useAppDispatch } from "../../store/hooks";
 import { BetType, Bookmaker } from "../../utils/enums";
 import { Bet } from "../../utils/types";
-import { useAppDispatch } from "../../store/hooks";
-import { addNewBet } from "../../reducers/betReducer";
+import { FinishBetButtons, Select, TextInput } from "../index";
 import { initialBetValues } from "./betUtils";
-import { useNavigate } from "react-router-dom";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -32,7 +34,7 @@ export const FinishBetForm = ({
   const navigate = useNavigate();
 
   const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target;
     setMyBet((prev) => ({
@@ -62,6 +64,7 @@ export const FinishBetForm = ({
     <form className="finishbet-form" onSubmit={addBet}>
       <div className="sport-input">
         <TextInput
+          showLabel
           className="text-input"
           label="Sport / League"
           optional="optional"
@@ -83,7 +86,7 @@ export const FinishBetForm = ({
           className="text-input"
           options={Object.values(BetType)}
           onChange={handleSelectChange}
-          value={myBet.bet_type}
+          value={myBet.betDetails.bet_type}
           disabled={addStake || modifyIndex !== null}
         />
       </div>

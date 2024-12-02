@@ -1,53 +1,48 @@
-import { ChangeEvent } from "react";
 import "./TextInput.css";
 
-type TextInputProps = {
-  className?: string;
-  type: string;
-  placeholder?: string;
-  id: string;
-  name: string;
-  size?: number;
-  label?: string;
+import { InputHTMLAttributes } from "react";
+
+interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  showLabel?: boolean;
   optional?: string;
-  value?: string | number;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  defaultValue?: string | number;
-  disabled?: boolean;
-};
+  className?: string;
+  name: string;
+  id: string;
+  height?: string;
+  width?: string;
+  backgroundColor?: string;
+}
 
 export const TextInput = ({
-  className,
   label,
+  showLabel = true,
   optional,
-  type,
-  placeholder,
-  id,
+  className,
   name,
-  size,
-  onChange,
-  defaultValue,
-  disabled,
-  value,
+  id,
+  width = "100%",
+  height = "2.5rem",
+  backgroundColor = "white",
+  ...props
 }: TextInputProps) => {
   return (
     <div className={className}>
-      {label && (
-        <label htmlFor={name}>
+      {showLabel && (
+        <label htmlFor={id}>
           {label}{" "}
           {optional && <p className="text-input-paragraph">({optional})</p>}
         </label>
       )}
       <input
-        type={type}
-        placeholder={placeholder}
-        id={id}
         name={name}
-        size={size}
-        onChange={onChange}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        value={value}
+        id={id}
+        {...props}
+        style={{
+          height: height,
+          width: width,
+          backgroundColor: backgroundColor,
+        }}
       />
     </div>
   );
