@@ -1,3 +1,5 @@
+import "./SelectionInput.css";
+
 import { BetInputProps } from "../../../utils/types";
 import { TextInput } from "../../index";
 
@@ -14,7 +16,6 @@ export const SelectionInput = ({
       placeholder="Selection"
       id="selection"
       name="selection"
-      size={15}
       onChange={handleBetInput}
       value={details.selection}
       disabled={disabled}

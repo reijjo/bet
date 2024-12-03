@@ -18,10 +18,11 @@ export const TypeInput = ({ handleSelectChange, details }: TypeInputProps) => {
         id="bet_type"
         name="bet_type"
         label="Bet Type"
-        className="text-input"
+        // className="text-input"
         options={Object.values(BetType)}
         onChange={handleSelectChange}
         value={details.bet_type}
+        height="2.4rem"
         // disabled={addStake || modifyIndex !== null}
       />
     </div>

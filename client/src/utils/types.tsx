@@ -11,6 +11,7 @@ export type Bet = {
   status: BetStatus;
   bet_final_type: BetType;
   sport: SportLeague;
+  notes?: string;
   betDetails: BetDetails[];
 };
 
@@ -25,7 +26,6 @@ export type BetDetails = {
   betbuilder_result?: string;
   freebet: boolean;
   livebet: boolean;
-  notes?: string;
   bet_type: BetType;
 };
 

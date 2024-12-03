@@ -16,9 +16,9 @@ BetInputProps) => (
     </div>
     <div className="match-input-fields">
       <TextInput
-        className="text-input"
-        label="Home Team"
+        label="Match"
         showLabel={false}
+        optional="optional"
         type="text"
         placeholder="Home Team"
         id="home_team"
@@ -31,7 +31,6 @@ BetInputProps) => (
       />
       <p className="match-dash">-</p>
       <TextInput
-        className="text-input"
         label="Away Team"
         showLabel={false}
         type="text"

@@ -18,7 +18,7 @@
   display: inline-flex;
   align-items: center;
   width: 100%;
-  padding-left: 4px;
+  padding: 0 0 0 4px;
   font-size: var(--font-small);
 }
 
@@ -30,4 +30,9 @@
   align-items: center;
   gap: 8px;
   width: 100%;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+  pointer-events: none;
 }

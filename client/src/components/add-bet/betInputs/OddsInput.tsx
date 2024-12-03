@@ -1,3 +1,5 @@
+import "./OddsInput.css";
+
 import { BetInputProps } from "../../../utils/types";
 import { TextInput } from "../../index";
 
@@ -15,7 +17,6 @@ export const OddsInput = ({
       placeholder="Odds"
       id="odds"
       name="odds"
-      size={15}
       onChange={handleBetInput}
       value={details.odds}
       disabled={disabled}

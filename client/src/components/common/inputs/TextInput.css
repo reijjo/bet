@@ -1,9 +1,11 @@
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+select {
   padding: 8px 6px;
   margin-top: 4px;
 
   border-radius: 8px;
+  /* appearance: none; */
   /* outline: 2px solid var(--primary-900); */
 
   /* border: 2px solid var(--primary-200); */
@@ -19,14 +21,6 @@ input[type="date"] {
   flex-direction: column;
 
   padding: 4px 0;
-
-  label {
-    font-size: 0.925em;
-    padding-left: 4px;
-
-    display: inline-flex;
-    align-items: center;
-  }
 }
 
 .text-input-paragraph {
@@ -34,4 +28,12 @@ input[type="date"] {
   font-size: var(--font-xxsmall);
   letter-spacing: 0.5px;
   color: var(--text-light);
+}
+
+label {
+  font-size: var(--font-small);
+  padding-left: 4px;
+
+  display: inline-flex;
+  align-items: center;
 }

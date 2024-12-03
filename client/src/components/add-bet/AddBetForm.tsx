@@ -14,9 +14,9 @@ import { Bet, BetDetails } from "../../utils/types";
 import {
   DateInput,
   FreeLiveInput,
-  MatchInput, // NotesInput,
-  // OddsInput,
-  // SelectionInput,
+  MatchInput,
+  OddsInput,
+  SelectionInput,
 } from "./betInputs";
 import { TypeInput } from "./betInputs/TypeInput";
 import { getInputValue, initialBetDetailValues } from "./betUtils";
@@ -122,6 +122,18 @@ export const AddBetForm = ({
           details={addBetDetails}
         />
         <FreeLiveInput
+          handleBetInput={handleBetInput}
+          details={addBetDetails}
+          modifyIndex={modifyIndex}
+          disabled={disabled}
+        />
+        <SelectionInput
+          handleBetInput={handleBetInput}
+          details={addBetDetails}
+          modifyIndex={modifyIndex}
+          disabled={disabled}
+        />
+        <OddsInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
           modifyIndex={modifyIndex}
