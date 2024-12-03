@@ -99,6 +99,37 @@
   }
 }
 
+.btn-filled {
+  font-family: "Bebas Neue", sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
+
+  background-image: linear-gradient(
+    var(--secondary-100) 0%,
+    var(--secondary-200) 100%
+  );
+
+  color: var(--text-dark);
+  /* font-size: 1em; */
+  font-weight: 600;
+
+  &:hover {
+    background-image: linear-gradient(
+      var(--secondary-200) 0%,
+      var(--secondary-300) 100%
+    );
+    box-shadow: 0 2px 16px hsla(47, 100%, 87%, 0.2);
+  }
+
+  &:active {
+    transform: translate(1px, 1px);
+    background-image: linear-gradient(
+      var(--secondary-300) 0%,
+      var(--secondary-400) 100%
+    );
+  }
+}
+
 .delete-btn {
   color: black;
   color: white;
@@ -115,36 +146,37 @@
 }
 
 .big-btn-style {
-  border: 1px solid var(--primary);
-  border-radius: 8px;
   font-family: "Bebas Neue", sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
-  padding: 8px 32px;
+  background-image: linear-gradient(
+    var(--secondary-100) 0%,
+    var(--secondary-200) 100%
+  );
 
-  background: var(--primary);
-  background: linear-gradient(to right, var(--primary), var(--primary-light));
   color: var(--text-dark);
+  font-size: 1.5em;
+  font-weight: 800;
+
+  width: min(500px, 100%);
+  padding: 16px 32px;
+  margin: 16px 0;
 
   &:hover {
-    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-    background: linear-gradient(
-      to right,
-      var(--primary),
-      var(--secondary-light)
+    background-image: linear-gradient(
+      var(--secondary-200) 0%,
+      var(--secondary-300) 100%
     );
-
-    &:active {
-      transform: translate(1px, 1px);
-    }
-
-    border: 1px solid black;
+    box-shadow: 0 2px 16px hsla(47, 100%, 87%, 0.2);
   }
 
-  &:disabled {
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
-    box-shadow: none;
-    cursor: not-allowed;
+  &:active {
+    transform: translate(1px, 1px);
+    background-image: linear-gradient(
+      var(--secondary-300) 0%,
+      var(--secondary-400) 100%
+    );
   }
 }
 

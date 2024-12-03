@@ -11,7 +11,7 @@ export const initialBetDetailValues = {
   livebet: false,
   home_result: "",
   away_result: "",
-  betbuilder_result: "",
+  betbuilder_result: [],
   bet_type: BetType.Single || "",
 };
 

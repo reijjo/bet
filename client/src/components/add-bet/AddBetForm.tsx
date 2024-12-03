@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 
+import { BetType } from "../../utils/enums";
 import { Bet, BetDetails } from "../../utils/types";
 // import { Button } from "../index";
 import {
@@ -18,6 +19,7 @@ import {
   OddsInput,
   SelectionInput,
 } from "./betInputs";
+import { BetbuilderInput } from "./betInputs/BetbuilderInput";
 import { TypeInput } from "./betInputs/TypeInput";
 import { getInputValue, initialBetDetailValues } from "./betUtils";
 
@@ -112,7 +114,7 @@ export const AddBetForm = ({
       <h3 className="container-header">Add Bet</h3>
       <form className="addbet-form" onSubmit={handleMyBet}>
         <MatchInput
-          handleBetInput={handleBetInput}
+          // handleBetInput={handleBetInput}
           details={addBetDetails}
           modifyIndex={modifyIndex}
           disabled={disabled}
@@ -127,12 +129,22 @@ export const AddBetForm = ({
           modifyIndex={modifyIndex}
           disabled={disabled}
         />
-        <SelectionInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
+        {addBetDetails.bet_type === BetType.BetBuilder ? (
+          <BetbuilderInput
+            handleBetInput={handleBetInput}
+            details={addBetDetails}
+            setDetails={setAddBetDetails}
+            modifyIndex={modifyIndex}
+            disabled={disabled}
+          />
+        ) : (
+          <SelectionInput
+            handleBetInput={handleBetInput}
+            details={addBetDetails}
+            modifyIndex={modifyIndex}
+            disabled={disabled}
+          />
+        )}
         <OddsInput
           handleBetInput={handleBetInput}
           details={addBetDetails}

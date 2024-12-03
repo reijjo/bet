@@ -16,6 +16,10 @@ select {
   /* } */
 }
 
+input[type="date"] {
+  font-size: var(--font-xxsmall);
+}
+
 .text-input {
   display: flex;
   flex-direction: column;
