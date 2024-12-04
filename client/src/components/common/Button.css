@@ -75,6 +75,8 @@
 }
 
 .outline-btn {
+  font-family: "Bebas Neue", sans-serif;
+
   border: 1px solid var(--secondary-200);
   border-radius: 8px;
   box-shadow: 0 2px 4px hsla(47, 100%, 87%, 0.2);

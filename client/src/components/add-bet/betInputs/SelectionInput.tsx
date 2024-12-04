@@ -1,24 +1,35 @@
 import "./SelectionInput.css";
 
-import { BetInputProps } from "../../../utils/types";
+import { Dispatch, SetStateAction } from "react";
+
+import { BetDetails, BetInputProps } from "../../../utils/types";
 import { TextInput } from "../../index";
+import { BetSelection } from "../BetSelection";
+
+interface SelectionInputProps extends BetInputProps {
+  setDetails: Dispatch<SetStateAction<BetDetails>>;
+}
 
 export const SelectionInput = ({
   handleBetInput,
   details,
+  setDetails,
   disabled,
-}: BetInputProps) => (
+}: SelectionInputProps) => (
   <div className="selection-input">
     <TextInput
       className="text-input"
       label="Selection"
       type="text"
-      placeholder="Selection"
+      placeholder="e.g. TImberwolves -4.5"
       id="selection"
       name="selection"
       onChange={handleBetInput}
       value={details.selection}
       disabled={disabled}
     />
+    {details?.selection && (
+      <BetSelection details={details} setDetails={setDetails} />
+    )}
   </div>
 );

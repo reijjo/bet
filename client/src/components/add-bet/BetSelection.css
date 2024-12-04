@@ -1,0 +1,28 @@
+.bet-selection-component {
+  height: 100%;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background-color: var(--primary-100);
+
+  font-size: var(--font-xsmall);
+  font-weight: 600;
+  padding: 8px 16px;
+  margin: 0 0 8px;
+  border: 2px solid var(--primary-800);
+  border-radius: 2rem;
+  color: var(--primary-800);
+
+  & button {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    place-items: center;
+  }
+}

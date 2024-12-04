@@ -11,6 +11,7 @@ import {
 // import { useState } from "react";
 import { BetDetails, BetInputProps } from "../../../utils/types";
 import { TextInputWithButton } from "../../common/inputs/TextInputWithButton";
+import { BetSelection } from "../BetSelection";
 
 interface BetbuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
@@ -40,11 +41,10 @@ export const BetbuilderInput = ({
       betbuilder_selection: [...selections, newSelection],
     });
 
-    console.log("details", details);
     setNewSelection("");
   };
 
-  console.log("selections", selections);
+  console.log("builder selections", selections);
 
   return (
     <div className="betbuilder-input">
@@ -61,6 +61,9 @@ export const BetbuilderInput = ({
         value={newSelection}
         disabled={disabled}
       />
+      {details?.betbuilder_selection && (
+        <BetSelection details={details} setDetails={setDetails} />
+      )}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import {
 
 import { BetType } from "../../utils/enums";
 import { Bet, BetDetails } from "../../utils/types";
+import { Button } from "../common/Button";
 // import { Button } from "../index";
 import {
   DateInput,
@@ -93,19 +94,19 @@ export const AddBetForm = ({
     }, 100);
   };
 
-  // const handleCancel = () => {
-  //   if (myBet.betDetails.length > 1) {
-  //     myBet.betDetails.pop();
-  //   }
-  //   setAddBetDetails(initialBetDetailValues);
-  //   setModifyIndex(null);
-  //   setTimeout(() => {
-  //     window.scrollTo({
-  //       top: document.body.scrollHeight,
-  //       behavior: "smooth",
-  //     });
-  //   }, 100);
-  // };
+  const handleCancel = () => {
+    if (myBet.betDetails.length > 1) {
+      myBet.betDetails.pop();
+    }
+    setAddBetDetails(initialBetDetailValues);
+    setModifyIndex(null);
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
 
   console.log("addbetdetails", addBetDetails);
 
@@ -114,7 +115,7 @@ export const AddBetForm = ({
       <h3 className="container-header">Add Bet</h3>
       <form className="addbet-form" onSubmit={handleMyBet}>
         <MatchInput
-          // handleBetInput={handleBetInput}
+          handleBetInput={handleBetInput}
           details={addBetDetails}
           modifyIndex={modifyIndex}
           disabled={disabled}
@@ -141,6 +142,7 @@ export const AddBetForm = ({
           <SelectionInput
             handleBetInput={handleBetInput}
             details={addBetDetails}
+            setDetails={setAddBetDetails}
             modifyIndex={modifyIndex}
             disabled={disabled}
           />
@@ -157,55 +159,23 @@ export const AddBetForm = ({
           modifyIndex={modifyIndex}
           disabled={disabled}
         />
-
-        {/* <TipperInput handleBetInput={handleBetInput} /> */}
-        {/* <DateInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
-        <FreeLiveInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
-        <SelectionInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
-        <OddsInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
-        <NotesInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          modifyIndex={modifyIndex}
-          disabled={disabled}
-        />
         <div className="add-bet-buttons">
           <Button
             children="Continue"
             type="submit"
-            className="btn big-btn-style"
-            style={{ fontSize: "1.25em" }}
+            className="btn btn-filled"
+            // style={{ fontSize: "1.25em" }}
             disabled={disabled}
           />
           <Button
             children="Cancel"
             type="button"
             className="btn outline-btn"
-            style={{ fontSize: "1.25em" }}
+            // style={{ fontSize: "1.25em" }}
             onClick={handleCancel}
             disabled={disabled}
           />
-        </div> */}
+        </div>
       </form>
     </div>
   );
