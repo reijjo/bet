@@ -164,14 +164,12 @@ export const AddBetForm = ({
             children="Continue"
             type="submit"
             className="btn btn-filled"
-            // style={{ fontSize: "1.25em" }}
             disabled={disabled}
           />
           <Button
             children="Cancel"
             type="button"
             className="btn outline-btn"
-            // style={{ fontSize: "1.25em" }}
             onClick={handleCancel}
             disabled={disabled}
           />

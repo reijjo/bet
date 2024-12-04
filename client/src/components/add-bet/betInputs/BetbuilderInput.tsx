@@ -33,7 +33,9 @@ export const BetbuilderInput = ({
   const addSelection = (e: SyntheticEvent) => {
     e.preventDefault();
 
+    // Simple error handling
     if (!newSelection.trim()) return;
+    if (selections.includes(newSelection)) return;
 
     setSelections([...selections, newSelection]);
     setDetails({

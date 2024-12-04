@@ -1,3 +1,17 @@
+.betbuilder-selections-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 4px;
+
+  & p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+    white-space: nowrap;
+  }
+}
+
 .bet-selection-component {
   height: 100%;
   width: max-content;
