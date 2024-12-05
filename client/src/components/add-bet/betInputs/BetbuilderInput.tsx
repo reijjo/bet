@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import { useScreenWidth } from "../../../hooks/useScreenWidth";
 // import { useState } from "react";
 import { BetDetails, BetInputProps } from "../../../utils/types";
 import { TextInputWithButton } from "../../common/inputs/TextInputWithButton";
@@ -24,6 +25,8 @@ export const BetbuilderInput = ({
 }: BetbuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
   const [selections, setSelections] = useState<string[]>([]);
+
+  const { isTablet } = useScreenWidth();
 
   const handleSelectionInput = (e: ChangeEvent<HTMLInputElement>) => {
     setNewSelection(e.target.value);
@@ -73,6 +76,7 @@ export const BetbuilderInput = ({
         id="betbuilder_selection"
         name="betbuilder_selection"
         buttonText="Add"
+        width={isTablet ? "60%" : "100%"}
         onClick={addSelection}
         onChange={handleSelectionInput}
         value={newSelection}

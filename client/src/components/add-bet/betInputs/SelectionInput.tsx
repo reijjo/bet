@@ -15,21 +15,24 @@ export const SelectionInput = ({
   details,
   setDetails,
   disabled,
-}: SelectionInputProps) => (
-  <div className="selection-input">
-    <TextInput
-      className="text-input"
-      label="Selection"
-      type="text"
-      placeholder="e.g. TImberwolves -4.5"
-      id="selection"
-      name="selection"
-      onChange={handleBetInput}
-      value={details.selection}
-      disabled={disabled}
-    />
-    {details?.selection && (
-      <BetSelection details={details} setDetails={setDetails} />
-    )}
-  </div>
-);
+}: SelectionInputProps) => {
+  return (
+    <div className="selection-input">
+      <TextInput
+        className="text-input"
+        label="Selection"
+        type="text"
+        placeholder="e.g. TImberwolves -4.5"
+        id="selection"
+        name="selection"
+        onChange={handleBetInput}
+        value={details.selection}
+        disabled={disabled}
+      />
+      {details?.selection && (
+        <BetSelection details={details} setDetails={setDetails} />
+      )}
+    </div>
+  );
+};
+//

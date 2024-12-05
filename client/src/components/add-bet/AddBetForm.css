@@ -19,9 +19,9 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 
-  /* @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
-  } */
+  }
 }
 
 .add-bet-buttons {
@@ -34,5 +34,9 @@
 
   & button {
     width: 100%;
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-column: 2 / 4;
   }
 }

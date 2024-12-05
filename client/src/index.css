@@ -21,7 +21,7 @@ body {
 }
 
 /* Fonts */
-.montserrat-font > {
+.montserrat-font {
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;

@@ -104,6 +104,7 @@
 .btn-filled,
 .btn-primary-color {
   font-family: "Bebas Neue", sans-serif;
+
   border-radius: 8px;
   box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
@@ -136,6 +137,11 @@
 }
 
 .btn-primary-color {
+  font-family: "Montserrat", serif;
+  font-weight: 400;
+  font-size: var(--font-xsmall);
+  letter-spacing: normal;
+
   background-image: linear-gradient(
     to bottom right,
     var(--primary-900) 0%,
