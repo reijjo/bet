@@ -255,3 +255,7 @@
     );
   }
 }
+
+.button-font-1rem {
+  font-size: 1rem;
+}

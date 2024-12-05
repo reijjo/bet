@@ -15,10 +15,15 @@
     box-shadow: var(--shadow-s);
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 800px) and (min-width: 581px) {
     grid-row: 3 / 4;
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: min(25ch, 50%) max-content;
+  }
+
+  @media only screen and (max-width: 581px) {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
   }
 }

@@ -19,6 +19,11 @@
     grid-row: 3 / 4;
     grid-column: 1 / -1;
   }
+
+  @media only screen and (max-width: 581px) {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+  }
 }
 
 .input-button-wrapper {

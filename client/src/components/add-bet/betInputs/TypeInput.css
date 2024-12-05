@@ -16,4 +16,9 @@
   @media only screen and (max-width: 800px) {
     grid-column: 3 / 4;
   }
+
+  @media only screen and (max-width: 581px) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
 }
