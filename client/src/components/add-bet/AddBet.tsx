@@ -20,6 +20,12 @@ export const AddBet = () => {
 
   // TODO: Something that the betbuilder can have multiple selection fields
 
+  console.log("myBet", myBet);
+  console.log(
+    "mybet builder",
+    myBet.betDetails.map((detail) => detail.betbuilder_selection),
+  );
+
   return (
     <div className="wrapper">
       <AddBetForm

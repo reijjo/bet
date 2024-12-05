@@ -20,10 +20,10 @@ export type BetDetails = {
   home_team: string;
   away_team: string;
   selection: string;
-  betbuilder_selection?: string[];
   odds: number | string;
   home_result?: string;
   away_result?: string;
+  betbuilder_selection?: string[];
   betbuilder_result?: string[];
   freebet: boolean;
   livebet: boolean;

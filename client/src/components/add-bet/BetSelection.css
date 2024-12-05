@@ -20,7 +20,7 @@
   justify-content: center;
   gap: 8px;
 
-  background-color: var(--primary-100);
+  background-color: var(--primary-50);
 
   font-size: var(--font-xsmall);
   font-weight: 600;
@@ -29,6 +29,10 @@
   border: 2px solid var(--primary-800);
   border-radius: 2rem;
   color: var(--primary-800);
+
+  &:hover {
+    background-color: var(--primary-100);
+  }
 
   & button {
     border: none;

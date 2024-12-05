@@ -36,7 +36,7 @@ export enum BetType {
   Double = "Double",
   Treble = "Treble",
   Parlayx4 = "Parlay x 4",
-  BigParlay = "Big Parlay",
+  BigParlay = "Parlay x 5+",
   Over = "Over",
   Under = "Under",
   BetBuilder = "Bet Builder",
@@ -46,4 +46,17 @@ export enum BetType {
   Moniveto = "Moniveto",
   Tulosveto = "Tulosveto",
   Tuplaus = "Ladder Challenge",
+}
+
+export enum LimitedBetType {
+  Single = "Single",
+  Over = "Over",
+  Under = "Under",
+  BetBuilder = "Bet Builder",
+  Btts = "Both Teams to Score",
+  Btts2 = "Both Teams to Score 2",
+  Moniveto = "Moniveto",
+  Tulosveto = "Tulosveto",
+  Tuplaus = "Ladder Challenge",
+  Other = "Other",
 }

@@ -46,7 +46,22 @@ export const BetbuilderInput = ({
     setNewSelection("");
   };
 
+  const removeSelection = (index: number) => {
+    if (!details.betbuilder_selection) return;
+
+    const updatedSelections = details.betbuilder_selection.filter(
+      (_, i) => i !== index,
+    );
+
+    setSelections(updatedSelections);
+    setDetails({
+      ...details,
+      betbuilder_selection: updatedSelections,
+    });
+  };
+
   console.log("builder selections", selections);
+  console.log("builder selections length", selections.length);
 
   return (
     <div className="betbuilder-input">
@@ -63,9 +78,14 @@ export const BetbuilderInput = ({
         value={newSelection}
         disabled={disabled}
       />
-      {details?.betbuilder_selection && (
-        <BetSelection details={details} setDetails={setDetails} />
-      )}
+      {details?.betbuilder_selection &&
+        details.betbuilder_selection.length > 0 && (
+          <BetSelection
+            details={details}
+            setDetails={setDetails}
+            removeSelection={removeSelection}
+          />
+        )}
     </div>
   );
 };

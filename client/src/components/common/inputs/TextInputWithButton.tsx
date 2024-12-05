@@ -48,7 +48,7 @@ export const TextInputWithButton = ({
             backgroundColor: backgroundColor,
           }}
         />
-        <button className="btn btn-filled" onClick={onClick}>
+        <button className="btn btn-primary-color" onClick={onClick}>
           {buttonText}
         </button>
       </div>

@@ -12,6 +12,10 @@
   &:hover {
     box-shadow: var(--shadow-s);
   }
+
+  @media only screen and (max-width: 800px) {
+    /* grid-column: 1 / 2; */
+  }
 }
 
 .match-input-label {
