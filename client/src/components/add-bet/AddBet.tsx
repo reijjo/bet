@@ -33,15 +33,15 @@ export const AddBet = () => {
         setModifyIndex={setModifyIndex}
         disabled={myBet.betDetails.length > 0 && modifyIndex === null}
       />
-      {myBet.betDetails.length > 0 && (
-        <MyBetSlip
-          myBet={myBet}
-          setMyBet={setMyBet}
-          handleModifyBet={handleModifyBet}
-          modifyIndex={modifyIndex}
-          setModifyIndex={setModifyIndex}
-        />
-      )}
+      {/* {myBet.betDetails.length > 0 && ( */}
+      <MyBetSlip
+        myBet={myBet}
+        setMyBet={setMyBet}
+        handleModifyBet={handleModifyBet}
+        modifyIndex={modifyIndex}
+        setModifyIndex={setModifyIndex}
+      />
+      {/* )} */}
     </div>
   );
 };
