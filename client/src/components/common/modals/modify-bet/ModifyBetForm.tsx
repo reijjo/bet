@@ -1,28 +1,30 @@
 import "./ModifyBetForm.css";
+
 import {
+  ChangeEvent,
   Dispatch,
   SetStateAction,
-  useEffect,
-  ChangeEvent,
   SyntheticEvent,
+  useEffect,
   useState,
 } from "react";
+
+import { changeBetStatus } from "../../../../reducers/betReducer";
+import { useAppDispatch } from "../../../../store/hooks";
 import { Bet, BetDetails } from "../../../../utils/types";
 import {
-  MatchInput,
   DateInput,
   FreeLiveInput,
-  SelectionInput,
+  MatchInput,
   OddsInput,
-  NotesInput,
+  SelectionInput,
 } from "../../../add-bet/betInputs";
+import { NotesInput } from "../../../add-bet/betInputs/NotesInput";
 import {
   getInputValue,
   initialBetDetailValues,
 } from "../../../add-bet/betUtils";
 import { Button } from "../../Button";
-import { useAppDispatch } from "../../../../store/hooks";
-import { changeBetStatus } from "../../../../reducers/betReducer";
 
 type ModifyBetFormProps = {
   myBet: Bet;
@@ -40,7 +42,7 @@ export const ModifyBetForm = ({
   disabled,
 }: ModifyBetFormProps) => {
   const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
-    initialBetDetailValues
+    initialBetDetailValues,
   );
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export const ModifyBetForm = ({
 
   // Handles all types of bet inputs
   const handleBetInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     const inputValue = getInputValue(type, checked, value);

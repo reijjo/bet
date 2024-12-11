@@ -1,7 +1,7 @@
 import "./DateInput.css";
 
-import { BetInputProps } from "../../../utils/types";
-import { TextInput } from "../../index";
+import { BetInputProps } from "../../../../utils/types";
+import { TextInput } from "../../../index";
 
 export const DateInput = ({
   handleBetInput,

@@ -9,20 +9,19 @@ import {
   useState,
 } from "react";
 
-import { BetType } from "../../utils/enums";
-import { Bet, BetDetails } from "../../utils/types";
-import { Button } from "../common/Button";
-// import { Button } from "../index";
+import { BetType } from "../../../utils/enums";
+import { Bet, BetDetails } from "../../../utils/types";
+import { Button } from "../../common/Button";
 import {
+  BetbuilderInput,
   DateInput,
   FreeLiveInput,
   MatchInput,
   OddsInput,
   SelectionInput,
-} from "./betInputs";
-import { BetbuilderInput } from "./betInputs/BetbuilderInput";
-import { TypeInput } from "./betInputs/TypeInput";
-import { getInputValue, initialBetDetailValues } from "./betUtils";
+  TypeInput,
+} from "../betInputs";
+import { getInputValue, initialBetDetailValues } from "../betUtils";
 
 type AddBetFormProps = {
   myBet: Bet;

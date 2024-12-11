@@ -1,7 +1,7 @@
 import "./MatchInput.css";
 
-import { BetInputProps } from "../../../utils/types";
-import { TextInput } from "../../index";
+import { BetInputProps } from "../../../../utils/types";
+import { TextInput } from "../../../common/inputs/TextInput";
 
 export const MatchInput = ({
   handleBetInput,

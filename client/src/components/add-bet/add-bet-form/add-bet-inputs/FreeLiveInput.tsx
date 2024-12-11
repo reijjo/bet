@@ -1,7 +1,7 @@
 import "./FreeLiveInput.css";
 
-import { BetInputProps } from "../../../utils/types";
-import { Checkbox } from "../../index";
+import { BetInputProps } from "../../../../utils/types";
+import { Checkbox } from "../../../index";
 
 export const FreeLiveInput = ({
   handleBetInput,

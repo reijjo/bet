@@ -8,11 +8,11 @@ import {
   useState,
 } from "react";
 
-import { useScreenWidth } from "../../../hooks/useScreenWidth";
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 // import { useState } from "react";
-import { BetDetails, BetInputProps } from "../../../utils/types";
-import { TextInputWithButton } from "../../common/inputs/TextInputWithButton";
-import { BetSelection } from "../BetSelection";
+import { BetDetails, BetInputProps } from "../../../../utils/types";
+import { TextInputWithButton } from "../../../common/inputs/TextInputWithButton";
+import { BetSelection } from "../../BetSelection";
 
 interface BetbuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;

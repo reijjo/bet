@@ -1,7 +1,7 @@
 import "./OddsInput.css";
 
-import { BetInputProps } from "../../../utils/types";
-import { TextInput } from "../../index";
+import { BetInputProps } from "../../../../utils/types";
+import { TextInput } from "../../../index";
 
 export const OddsInput = ({
   handleBetInput,

@@ -2,9 +2,9 @@ import "./SelectionInput.css";
 
 import { Dispatch, SetStateAction } from "react";
 
-import { BetDetails, BetInputProps } from "../../../utils/types";
-import { TextInput } from "../../index";
-import { BetSelection } from "../BetSelection";
+import { BetDetails, BetInputProps } from "../../../../utils/types";
+import { TextInput } from "../../../index";
+import { BetSelection } from "../../BetSelection";
 
 interface SelectionInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;

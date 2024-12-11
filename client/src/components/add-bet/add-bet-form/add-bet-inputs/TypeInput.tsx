@@ -2,9 +2,9 @@ import "./TypeInput.css";
 
 import { ChangeEvent } from "react";
 
-import { LimitedBetType } from "../../../utils/enums";
-import { BetDetails } from "../../../utils/types";
-import { Select } from "../../common/inputs/Select";
+import { LimitedBetType } from "../../../../utils/enums";
+import { BetDetails } from "../../../../utils/types";
+import { Select } from "../../../common/inputs/Select";
 
 type TypeInputProps = {
   handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void;

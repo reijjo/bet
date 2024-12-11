@@ -31,8 +31,8 @@ export type BetDetails = {
 };
 
 export type BetInputProps = {
-  handleBetInput?: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  handleBetInput: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => void;
   myBet?: Bet;
   setMyBet?: Dispatch<SetStateAction<Bet>>;
