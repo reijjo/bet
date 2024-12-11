@@ -1,3 +1,5 @@
+import "./FinishBetButtons.css";
+
 import {
   ChangeEvent,
   Dispatch,
@@ -5,8 +7,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Button } from "../common/Button";
+
 import { Bet } from "../../utils/types";
+import { Button } from "../common/Button";
+import { TextInput } from "../common/inputs/TextInput";
 import { initialBetDetailValues } from "./betUtils";
 
 type FinishBetButtonsProps = {
@@ -21,22 +25,22 @@ type FinishBetButtonsProps = {
 export const FinishBetButtons = ({
   myBet,
   setMyBet,
-  addStake,
+  addStake = true,
   setAddStake,
   modifyIndex,
   setModifyIndex,
 }: FinishBetButtonsProps) => {
   const [potentialWin, setPotentialWin] = useState<string>("0.00");
+  const allOdds = myBet.betDetails
+    .reduce((acc, bet) => acc * Number(bet.odds), 1)
+    .toFixed(2);
 
   useEffect(() => {
     const potentialWin = () => {
-      const allOdds = myBet.betDetails
-        .reduce((acc, bet) => acc * Number(bet.odds), 1)
-        .toFixed(2);
       setPotentialWin((Number(allOdds) * Number(myBet.stake)).toFixed(2));
     };
     potentialWin();
-  }, [myBet]);
+  }, [myBet, allOdds]);
 
   const handleStakeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMyBet((prev) => ({
@@ -61,62 +65,61 @@ export const FinishBetButtons = ({
     <>
       {!addStake ? (
         <div className="finish-bet-buttons">
-          <div className="flex-container">
-            <Button
-              type="button"
-              onClick={() => setAddStake(true)}
-              className="btn big-btn-style"
-              children="Add Stake"
-              disabled={modifyIndex !== null}
-            />
-            <Button
-              type="button"
-              onClick={handleAddToParlay}
-              className="btn outline-btn"
-              children="Add bet to parley"
-              disabled={modifyIndex !== null}
-            />
-          </div>
+          <Button
+            type="button"
+            onClick={() => setAddStake(true)}
+            className="btn btn-filled"
+            children="Add Stake"
+            disabled={modifyIndex !== null}
+          />
+          <Button
+            type="button"
+            onClick={handleAddToParlay}
+            className="btn outline-btn"
+            children="Add bet to parley"
+            disabled={modifyIndex !== null}
+          />
         </div>
       ) : (
-        <div className="finish-the-bet">
+        <>
           <div className="add-stake-input">
-            <div className="flex-container">
-              <input
-                type="text"
-                size={10}
-                placeholder="Stake"
-                value={myBet.stake || ""}
-                onChange={handleStakeChange}
-              />
-              <div className="mybet-slip-potential">
-                <p>Potential Win:</p>
-                <p>
-                  {potentialWin}
-                  &euro;
-                </p>
-              </div>
+            <TextInput
+              className="text-input"
+              label="Stake"
+              // showLabel={false}
+              type="text"
+              placeholder="10"
+              name="stake"
+              id="stake"
+              size={6}
+              value={myBet.stake || ""}
+              onChange={handleStakeChange}
+            />
+            <div className="mybet-slip-potential">
+              <p>x {allOdds}</p>
+              <p>Potential Win:</p>
+              <p>
+                <b>{potentialWin} &euro;</b>
+              </p>
             </div>
           </div>
-          <div className="finish-bet-buttons">
-            <div className="flex-container">
-              <Button
-                type="submit"
-                className="btn big-btn-style"
-                children="Add Bet"
-              />
-              <Button
-                type="button"
-                onClick={() => {
-                  setAddStake(false);
-                  setMyBet((bet) => ({ ...bet, stake: 0 }));
-                }}
-                className="btn outline-btn"
-                children="Cancel"
-              />
-            </div>
+          <div className="submit-bet-buttons">
+            <Button
+              type="submit"
+              className="btn btn-filled"
+              children="Add Bet"
+            />
+            <Button
+              type="button"
+              onClick={() => {
+                setAddStake(false);
+                setMyBet((bet) => ({ ...bet, stake: 0 }));
+              }}
+              className="btn outline-btn"
+              children="Cancel"
+            />
           </div>
-        </div>
+        </>
       )}
     </>
   );

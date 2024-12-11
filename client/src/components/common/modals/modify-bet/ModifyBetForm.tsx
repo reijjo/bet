@@ -18,8 +18,7 @@ import {
   MatchInput,
   OddsInput,
   SelectionInput,
-} from "../../../add-bet/betInputs";
-import { NotesInput } from "../../../add-bet/betInputs/NotesInput";
+} from "../../../add-bet";
 import {
   getInputValue,
   initialBetDetailValues,

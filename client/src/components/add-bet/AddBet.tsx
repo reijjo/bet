@@ -1,5 +1,3 @@
-import "./AddBet.css";
-
 import { useState } from "react";
 
 import { Bet } from "../../utils/types";

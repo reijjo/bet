@@ -1,0 +1,6 @@
+.finishbet-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row: 1 / 2;
+  gap: 16px;
+}

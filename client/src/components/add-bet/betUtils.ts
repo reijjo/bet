@@ -18,11 +18,11 @@ export const initialBetDetailValues = {
 
 export const initialBetValues = {
   stake: 0,
-  bookmaker: Bookmaker.None,
+  bookmaker: Bookmaker.Unibet,
   status: BetStatus.Pending,
   tipper: "",
   bet_final_type: BetType.Single || "",
-  sport: SportLeague.None,
+  sport: SportLeague.Other || "",
   betDetails: [],
 };
 
