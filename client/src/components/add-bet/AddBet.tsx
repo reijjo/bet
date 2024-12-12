@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { scrollDown } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
 import { AddBetForm } from "../index";
 import { MyBetSlip } from "./MyBetSlip";
@@ -11,9 +12,7 @@ export const AddBet = () => {
 
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
+    scrollDown();
   };
 
   console.log("myBet", myBet);
@@ -31,15 +30,15 @@ export const AddBet = () => {
         setModifyIndex={setModifyIndex}
         disabled={myBet.betDetails.length > 0 && modifyIndex === null}
       />
-      {/* {myBet.betDetails.length > 0 && ( */}
-      <MyBetSlip
-        myBet={myBet}
-        setMyBet={setMyBet}
-        handleModifyBet={handleModifyBet}
-        modifyIndex={modifyIndex}
-        setModifyIndex={setModifyIndex}
-      />
-      {/* )} */}
+      {myBet.betDetails.length > 0 && (
+        <MyBetSlip
+          myBet={myBet}
+          setMyBet={setMyBet}
+          handleModifyBet={handleModifyBet}
+          modifyIndex={modifyIndex}
+          setModifyIndex={setModifyIndex}
+        />
+      )}
     </div>
   );
 };

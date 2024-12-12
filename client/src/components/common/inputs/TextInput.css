@@ -41,3 +41,8 @@ label {
   display: inline-flex;
   align-items: center;
 }
+
+.input-error {
+  border: 2px solid var(--error-base);
+  outline: 1px solid white;
+}

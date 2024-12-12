@@ -12,6 +12,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   height?: string;
   width?: string;
   backgroundColor?: string;
+  errorStyle?: boolean;
 }
 
 export const TextInput = ({
@@ -21,11 +22,13 @@ export const TextInput = ({
   className,
   name,
   id,
+  errorStyle,
   width = "100%",
   height = "2.5rem",
   backgroundColor = "white",
   ...props
 }: TextInputProps) => {
+  console.log("errorstyle", errorStyle);
   return (
     <div className={className}>
       {showLabel && (
@@ -38,6 +41,7 @@ export const TextInput = ({
         name={name}
         id={id}
         {...props}
+        className={`${errorStyle && "input-error"}`}
         style={{
           height: height,
           width: width,

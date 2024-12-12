@@ -19,6 +19,8 @@ import {
   TypeInput,
 } from "..";
 import { BetType } from "../../../utils/enums";
+import { scrollToTop } from "../../../utils/helperFunctions";
+import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet, BetDetails } from "../../../utils/types";
 import { Button } from "../../common/Button";
 import { getInputValue, initialBetDetailValues } from "../betUtils";
@@ -41,6 +43,7 @@ export const AddBetForm = ({
   const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
     initialBetDetailValues,
   );
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   // Checks what bet to modify
   useEffect(() => {
@@ -71,6 +74,14 @@ export const AddBetForm = ({
   const handleMyBet = (e: SyntheticEvent) => {
     e.preventDefault();
 
+    // Validate fields before submitting
+    const validation = validateBetDetailsInputs(addBetDetails);
+
+    if (!validation.isValid) {
+      setErrors(validation.errors);
+      return;
+    }
+
     if (modifyIndex !== null) {
       // Modify existing bet
       setMyBet((prev) => {
@@ -86,11 +97,9 @@ export const AddBetForm = ({
       }));
     }
 
+    setErrors({});
     setAddBetDetails(initialBetDetailValues);
-
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }, 100);
+    scrollToTop();
   };
 
   const handleCancel = () => {
@@ -99,15 +108,12 @@ export const AddBetForm = ({
     }
     setAddBetDetails(initialBetDetailValues);
     setModifyIndex(null);
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth",
-      });
-    }, 100);
+
+    scrollToTop();
   };
 
   console.log("addbetdetails", addBetDetails);
+  console.log("errors", errors);
 
   return (
     <div className="addbet-container">
@@ -144,6 +150,8 @@ export const AddBetForm = ({
             setDetails={setAddBetDetails}
             modifyIndex={modifyIndex}
             disabled={disabled}
+            error={errors}
+            setError={setErrors}
           />
         )}
         <OddsInput
@@ -151,6 +159,8 @@ export const AddBetForm = ({
           details={addBetDetails}
           modifyIndex={modifyIndex}
           disabled={disabled}
+          error={errors}
+          setError={setErrors}
         />
         <DateInput
           handleBetInput={handleBetInput}
