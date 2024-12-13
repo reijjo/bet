@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import { scrollToTop } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
 import { Button } from "../common/Button";
 import { TextInput } from "../common/inputs/TextInput";
@@ -55,10 +56,7 @@ export const FinishBetButtons = ({
       betDetails: [...prev.betDetails, initialBetDetailValues],
     }));
     setModifyIndex(myBet.betDetails.length);
-
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
+    scrollToTop();
   };
 
   return (

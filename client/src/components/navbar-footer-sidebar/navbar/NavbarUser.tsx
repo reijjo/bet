@@ -49,7 +49,6 @@ export const NavbarUser = () => {
     setIsUserMenuOpen((prevState) => !prevState);
   };
 
-  console.log("isUserMenuOpen", isUserMenuOpen);
   return (
     <nav>
       <div className="wrapper">

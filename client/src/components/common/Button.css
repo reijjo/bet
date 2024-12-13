@@ -134,6 +134,13 @@
       var(--secondary-400) 100%
     );
   }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
 }
 
 .btn-primary-color {

@@ -1,8 +1,11 @@
 import "./MyBetSlip.css";
+
 import { Dispatch, SetStateAction } from "react";
-import { Bet } from "../../utils/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { Bet } from "../../utils/types";
 import { FinishBetForm } from "../index";
 import { initialBetValues } from "./betUtils";
 
@@ -22,6 +25,7 @@ export const MyBetSlip = ({
   setModifyIndex,
 }: MyBetsProps) => {
   const cancelBet = () => {
+    setModifyIndex(null);
     setMyBet(initialBetValues);
   };
 
@@ -29,11 +33,11 @@ export const MyBetSlip = ({
     <div className="addbet-container" id="finish-my-bet">
       <div className="mybet-header">
         <h3 className="container-header">Add Stake</h3>
-        <div className="mybets-close">
+        <button className="mybets-close" disabled={modifyIndex !== null}>
           <a onClick={cancelBet} title="Close">
             <FontAwesomeIcon icon={faXmark} />
           </a>
-        </div>
+        </button>
       </div>
       <div className="mybet-add-stake">
         <div className="finish-mybet-slip-headers">
@@ -44,23 +48,30 @@ export const MyBetSlip = ({
             <FontAwesomeIcon icon={faPenToSquare} />
           </div>
         </div>
-        {myBet.betDetails.map((bet, index) => (
-          <div key={index} className="finish-mybet-slip">
-            <div className="mybet-slip-match">
-              <p className="mybet-slip-hometeam">{bet.home_team}</p>
-              <p className="mybet-slip-awayteam">{bet.away_team}</p>
+        {myBet.betDetails
+          .filter((bet) => bet.odds !== "")
+          .map((bet, index) => (
+            <div key={index} className="finish-mybet-slip">
+              <div className="mybet-slip-match">
+                <p className="mybet-slip-hometeam">{bet.home_team}</p>
+                <p className="mybet-slip-awayteam">{bet.away_team}</p>
+              </div>
+              <div className="mybet-slip-selection">
+                <p>{bet.selection}</p>
+              </div>
+              <div className="mybet-slip-odds">
+                {Number(bet.odds).toFixed(2)}
+              </div>
+              <div className="mybet-slip-more">
+                <a
+                  className="mybet-edit"
+                  onClick={() => handleModifyBet(index)}
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </a>
+              </div>
             </div>
-            <div className="mybet-slip-selection">
-              <p className="bet-selection">{bet.selection}</p>
-            </div>
-            <div className="mybet-slip-odds">{Number(bet.odds).toFixed(2)}</div>
-            <div className="mybet-slip-more">
-              <a className="mybet-edit" onClick={() => handleModifyBet(index)}>
-                <FontAwesomeIcon icon={faPenToSquare} />
-              </a>
-            </div>
-          </div>
-        ))}
+          ))}
         <FinishBetForm
           myBet={myBet}
           setMyBet={setMyBet}

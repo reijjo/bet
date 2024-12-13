@@ -17,7 +17,6 @@ export const Dashboard = () => {
   const allbets = useAppSelector((state) => state.bets.allBets);
 
   useEffect(() => {
-    console.log("in useeffect");
     dispatch(initAllBets());
   }, [dispatch]);
 

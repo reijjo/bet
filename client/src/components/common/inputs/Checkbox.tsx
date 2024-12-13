@@ -1,5 +1,6 @@
-import { ChangeEvent } from "react";
 import "./Checkbox.css";
+
+import { ChangeEvent } from "react";
 
 type CheckboxProps = {
   className?: string;
@@ -31,7 +32,7 @@ export const Checkbox = ({
         name={name}
         checked={checked}
         onChange={onChange}
-        value={value.toString()}
+        value={value?.toString()}
         disabled={disabled}
       />
     </div>

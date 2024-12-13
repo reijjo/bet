@@ -1,9 +1,14 @@
+#finish-my-bet {
+  margin-bottom: 2rem;
+}
+
 .mybet-header {
   display: flex;
   justify-content: space-between;
 }
 
 .mybets-close {
+  all: unset;
   position: absolute;
   right: 8px;
 
@@ -17,6 +22,12 @@
 
   transition: all 0.3s ease-out;
 
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   &:hover {
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -26,35 +37,34 @@
 
 .finish-mybet-slip-headers {
   border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+  text-transform: uppercase;
+  font-size: var(--font-smaller);
+  font-weight: 500;
 }
 
 .finish-mybet-slip-headers,
 .finish-mybet-slip {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 0.75fr 0.25fr;
+  grid-template-columns: 1.5fr 1fr 0.5fr 0.25fr;
   gap: 8px;
 
   padding: 8px 0;
   color: var(--secondary-xlight);
-  /* font-size: 0.925em; */
   align-items: center;
 
   border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns:
+      minmax(150px, 1.5fr) minmax(80px, 1fr) minmax(40px, 0.5fr)
+      minmax(24px, 0.25fr);
+  }
 }
 
 .finish-mybet-slip {
   background-color: rgba(0, 0, 0, 0.1);
+  font-size: var(--font-small);
 }
-
-/* .mybet-slip-potential {
-  display: flex;
-  gap: 16px;
-
-  p:last-child {
-    color: var(--success-light);
-    width: 100px;
-  }
-} */
 
 .mybet-match,
 .mybet-slip-match {
@@ -69,4 +79,15 @@
 
 .mybet-edit:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .mybet-slip-selection {
+    & p {
+      max-width: 15ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }

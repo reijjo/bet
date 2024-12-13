@@ -5,8 +5,8 @@ import { Dispatch } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { BetType } from "../../utils/enums";
-import { BetDetails } from "../../utils/types";
+import { BetType } from "../../../utils/enums";
+import { BetDetails } from "../../../utils/types";
 
 interface BetSelectionProps {
   details: BetDetails;

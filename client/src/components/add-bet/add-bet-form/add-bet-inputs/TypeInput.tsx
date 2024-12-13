@@ -9,9 +9,14 @@ import { Select } from "../../../common/inputs/Select";
 type TypeInputProps = {
   handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   details: BetDetails;
+  disabled?: boolean;
 };
 
-export const TypeInput = ({ handleSelectChange, details }: TypeInputProps) => {
+export const TypeInput = ({
+  handleSelectChange,
+  details,
+  disabled,
+}: TypeInputProps) => {
   return (
     <div className="bet-type-input">
       <Select
@@ -23,7 +28,7 @@ export const TypeInput = ({ handleSelectChange, details }: TypeInputProps) => {
         onChange={handleSelectChange}
         value={details.bet_type}
         height="2.4rem"
-        // disabled={addStake || modifyIndex !== null}
+        disabled={disabled}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { scrollDown } from "../../utils/helperFunctions";
+import { scrollToTop } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
 import { AddBetForm } from "../index";
 import { MyBetSlip } from "./MyBetSlip";
@@ -12,7 +12,7 @@ export const AddBet = () => {
 
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);
-    scrollDown();
+    scrollToTop();
   };
 
   console.log("myBet", myBet);

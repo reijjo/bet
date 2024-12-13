@@ -17,8 +17,8 @@ export const UserLayout = () => {
   const modalState = useSelector((state: RootState) => state.modal);
   const sidebarState = useSelector((state: RootState) => state.sidebar);
 
-  console.log("modalState", modalState);
-  console.log("sidebarstate", sidebarState);
+  // console.log("modalState", modalState);
+  // console.log("sidebarstate", sidebarState);
 
   return (
     <main className="main-logged">

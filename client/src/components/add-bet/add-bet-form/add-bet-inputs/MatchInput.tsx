@@ -6,7 +6,7 @@ import { TextInput } from "../../../common/inputs/TextInput";
 export const MatchInput = ({
   handleBetInput,
   details,
-  // disabled,
+  disabled,
 }: // modifyIndex,
 BetInputProps) => (
   <div className="match-input">
@@ -25,9 +25,8 @@ BetInputProps) => (
         name="home_team"
         onChange={handleBetInput}
         value={details.home_team}
-        // disabled={disabled}
+        disabled={disabled}
         width="100%"
-        disabled={false}
       />
       <p className="match-dash">-</p>
       <TextInput
@@ -39,8 +38,7 @@ BetInputProps) => (
         name="away_team"
         onChange={handleBetInput}
         value={details.away_team}
-        // disabled={disabled}
-        disabled={false}
+        disabled={disabled}
       />
     </div>
   </div>

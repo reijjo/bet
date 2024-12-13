@@ -1,10 +1,10 @@
-export const scrollDown = () => {
+export const scrollToTop = () => {
   setTimeout(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, 100);
 };
 
-export const scrollToTop = () => {
+export const scrollDown = () => {
   setTimeout(() => {
     window.scrollTo({
       top: document.body.scrollHeight,

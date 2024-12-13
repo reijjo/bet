@@ -9,19 +9,28 @@ import {
 } from "react";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
+import { hasInputError } from "../../../../utils/inputValidators";
 // import { useState } from "react";
 import { BetDetails, BetInputProps } from "../../../../utils/types";
 import { TextInputWithButton } from "../../../common/inputs/TextInputWithButton";
-import { BetSelection } from "../../BetSelection";
+import { BetSelection } from "../BetSelection";
 
 interface BetbuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
+  error?: { [key: string]: string };
+  setError: Dispatch<
+    SetStateAction<{
+      [key: string]: string;
+    }>
+  >;
 }
 
 export const BetbuilderInput = ({
   details,
   disabled,
   setDetails,
+  error,
+  setError,
 }: BetbuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
   const [selections, setSelections] = useState<string[]>([]);
@@ -63,6 +72,13 @@ export const BetbuilderInput = ({
     });
   };
 
+  const clearError = () => {
+    setError({
+      ...error,
+      selection: "",
+    });
+  };
+
   console.log("builder selections", selections);
   console.log("builder selections length", selections.length);
 
@@ -81,7 +97,10 @@ export const BetbuilderInput = ({
         onChange={handleSelectionInput}
         value={newSelection}
         disabled={disabled}
+        onFocus={clearError}
+        errorStyle={!!error?.selection}
       />
+      {error?.selection && hasInputError(error.selection)}
       {details?.betbuilder_selection &&
         details.betbuilder_selection.length > 0 && (
           <BetSelection

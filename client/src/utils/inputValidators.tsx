@@ -1,3 +1,4 @@
+import { BetType } from "./enums";
 import { BetDetails } from "./types";
 
 export const hasLength = (value: string) => {
@@ -8,12 +9,16 @@ export const isNumber = (value: string) => {
   return !isNaN(Number(value));
 };
 
+export const hasBuilderSelections = (selections: string[]) => {
+  return Array.isArray(selections) && selections.length > 0;
+};
+
 export const hasInputError = (errorText: string) => {
   const ulStyle = {
     padding: "0.5rem 0.75rem",
     listStylePosition: "inside" as const,
     color: "var(--error-dark)",
-    backgroundColor: "var(--error-xlight)",
+    backgroundColor: "var(--error-xxlight)",
     border: "1px solid var(--error-dark)",
     borderRadius: "8px",
     fontSize: "var(--font-smaller)",
@@ -38,7 +43,10 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   const errors: { [key: string]: string } = {};
 
   // Check selection
-  if (!hasLength(details.selection)) {
+  if (
+    details.bet_type !== BetType.BetBuilder &&
+    !hasLength(details.selection)
+  ) {
     errors.selection = "Selection is required";
   }
 
@@ -49,6 +57,15 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
 
   if (!isNumber(String(details.odds))) {
     errors.odds = "Odds must be a number";
+  }
+
+  // Check betbuilder selections
+  if (
+    details.betbuilder_selection &&
+    details.bet_type === BetType.BetBuilder &&
+    !hasBuilderSelections(details.betbuilder_selection)
+  ) {
+    errors.betbuilder_selection = "One or more selections are required";
   }
 
   return {

@@ -19,7 +19,7 @@ import {
   TypeInput,
 } from "..";
 import { BetType } from "../../../utils/enums";
-import { scrollToTop } from "../../../utils/helperFunctions";
+import { scrollDown } from "../../../utils/helperFunctions";
 import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet, BetDetails } from "../../../utils/types";
 import { Button } from "../../common/Button";
@@ -99,7 +99,7 @@ export const AddBetForm = ({
 
     setErrors({});
     setAddBetDetails(initialBetDetailValues);
-    scrollToTop();
+    scrollDown();
   };
 
   const handleCancel = () => {
@@ -109,7 +109,7 @@ export const AddBetForm = ({
     setAddBetDetails(initialBetDetailValues);
     setModifyIndex(null);
 
-    scrollToTop();
+    scrollDown();
   };
 
   console.log("addbetdetails", addBetDetails);
@@ -128,6 +128,8 @@ export const AddBetForm = ({
         <TypeInput
           handleSelectChange={handleSelectChange}
           details={addBetDetails}
+          disabled={disabled}
+          // modifyIndex={modifyIndex}
         />
         <FreeLiveInput
           handleBetInput={handleBetInput}
@@ -135,13 +137,15 @@ export const AddBetForm = ({
           modifyIndex={modifyIndex}
           disabled={disabled}
         />
-        {addBetDetails.bet_type === BetType.BetBuilder ? (
+        {addBetDetails?.bet_type === BetType.BetBuilder ? (
           <BetbuilderInput
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
             modifyIndex={modifyIndex}
             disabled={disabled}
+            error={errors}
+            setError={setErrors}
           />
         ) : (
           <SelectionInput
@@ -176,7 +180,7 @@ export const AddBetForm = ({
             disabled={disabled}
           />
           <Button
-            children="Cancel"
+            children="Clear fields"
             type="button"
             className="btn outline-btn button-font-1rem"
             onClick={handleCancel}

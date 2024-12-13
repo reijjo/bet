@@ -28,7 +28,6 @@ export const TextInput = ({
   backgroundColor = "white",
   ...props
 }: TextInputProps) => {
-  console.log("errorstyle", errorStyle);
   return (
     <div className={className}>
       {showLabel && (

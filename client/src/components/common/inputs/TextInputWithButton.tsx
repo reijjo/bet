@@ -13,6 +13,7 @@ interface TextInputWithButtonProps
   height?: string;
   width?: string;
   backgroundColor?: string;
+  errorStyle?: boolean;
 }
 
 export const TextInputWithButton = ({
@@ -27,6 +28,7 @@ export const TextInputWithButton = ({
   width = "100%",
   height = "2.5rem",
   backgroundColor = "white",
+  errorStyle,
   ...props
 }: TextInputWithButtonProps) => {
   return (
@@ -41,6 +43,7 @@ export const TextInputWithButton = ({
         <input
           name={name}
           id={id}
+          className={`${errorStyle && "input-error"}`}
           {...props}
           style={{
             height: height,
