@@ -84,7 +84,6 @@ export const FinishBetButtons = ({
             <TextInput
               className="text-input"
               label="Stake"
-              // showLabel={false}
               type="text"
               placeholder="10"
               name="stake"

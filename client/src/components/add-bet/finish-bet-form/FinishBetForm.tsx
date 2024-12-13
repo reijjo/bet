@@ -16,7 +16,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import { Bookmaker } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
 import { FinishBetButtons } from "../../index";
-import { initialBetValues } from "../betUtils";
+import { getFinalBetType, initialBetValues } from "../betUtils";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -55,6 +55,11 @@ export const FinishBetForm = ({
 
   const addBet = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    setMyBet((prev) => ({
+      ...prev,
+      bet_final_type: getFinalBetType(prev.betDetails),
+    }));
 
     dispatch(addNewBet(myBet));
     setMyBet(initialBetValues);

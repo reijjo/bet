@@ -8,6 +8,6 @@ interface TypeBetsTableProps {
 
 export const TypeBetsTable = ({ bet }: TypeBetsTableProps) => (
   <td className="table-type">
-    <p title={bet.bet_type}>{bet.bet_type}</p>
+    <p title={bet.bet_final_type}>{bet.bet_final_type}</p>
   </td>
 );
