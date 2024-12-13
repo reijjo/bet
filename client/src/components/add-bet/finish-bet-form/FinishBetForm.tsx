@@ -56,21 +56,22 @@ export const FinishBetForm = ({
   const addBet = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    setMyBet((prev) => ({
-      ...prev,
-      bet_final_type: getFinalBetType(prev.betDetails),
-    }));
+    const finalType = getFinalBetType(myBet.betDetails);
+    const updatedType = {
+      ...myBet,
+      bet_final_type: finalType,
+    };
 
-    dispatch(addNewBet(myBet));
+    dispatch(addNewBet(updatedType));
     setMyBet(initialBetValues);
     window.scrollTo({ top: 0 });
     navigate("/bets");
-    console.log("BET READY!!", myBet);
   };
 
   // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend
 
   console.log("myBet", myBet);
+  console.log("typeee", getFinalBetType(myBet.betDetails));
 
   return (
     <form className="finishbet-form" onSubmit={addBet}>

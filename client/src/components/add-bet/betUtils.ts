@@ -42,6 +42,8 @@ export const getInputValue = (
 export const getFinalBetType = (details: BetDetails[]): BetType => {
   if (!details.length) return BetType.Single;
 
+  console.log("details", details.length);
+
   if (
     details[0].bet_type === BetType.Moniveto ||
     details[0].bet_type === BetType.Tuplaus

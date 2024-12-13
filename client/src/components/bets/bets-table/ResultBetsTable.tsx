@@ -28,8 +28,9 @@ export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
       .map((item, index) => <p key={index}>{item.trim()}</p>);
   };
 
-  console.log("bet", bet);
-  console.log("result", getBetResult(bet, bet.betDetails[0]));
+  // console.log("bet", bet);
+  // console.log("result", getBetResult(bet, bet.betDetails[0]));
+
   return (
     <td className="table-result">
       <div className="table-result-wrapper">
