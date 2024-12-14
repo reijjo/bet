@@ -3,8 +3,8 @@
   grid-template-rows: repeat(4, max-content);
   grid-row: 3 / 4;
   grid-column: 5 / 13;
-  /* height: max-content;
-  min-height: 10rem; */
+
+  min-height: 12rem;
 
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;

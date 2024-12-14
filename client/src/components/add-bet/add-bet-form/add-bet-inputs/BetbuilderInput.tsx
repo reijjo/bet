@@ -10,7 +10,6 @@ import {
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 import { hasInputError } from "../../../../utils/inputValidators";
-// import { useState } from "react";
 import { BetDetails, BetInputProps } from "../../../../utils/types";
 import { TextInputWithButton } from "../../../common/inputs/TextInputWithButton";
 import { BetSelection } from "../BetSelection";
@@ -33,8 +32,6 @@ export const BetbuilderInput = ({
   setError,
 }: BetbuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
-  const [selections, setSelections] = useState<string[]>([]);
-
   const { isTablet } = useScreenWidth();
 
   const handleSelectionInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,12 +44,16 @@ export const BetbuilderInput = ({
 
     // Simple error handling
     if (!newSelection.trim()) return;
-    if (selections.includes(newSelection)) return;
+    if (details.betbuilder_selection?.includes(newSelection)) return;
 
-    setSelections([...selections, newSelection]);
+    const updatedDetails = [
+      ...(details.betbuilder_selection || []),
+      newSelection,
+    ];
+
     setDetails({
       ...details,
-      betbuilder_selection: [...selections, newSelection],
+      betbuilder_selection: updatedDetails,
     });
 
     setNewSelection("");
@@ -65,7 +66,6 @@ export const BetbuilderInput = ({
       (_, i) => i !== index,
     );
 
-    setSelections(updatedSelections);
     setDetails({
       ...details,
       betbuilder_selection: updatedSelections,
@@ -78,9 +78,6 @@ export const BetbuilderInput = ({
       selection: "",
     });
   };
-
-  console.log("builder selections", selections);
-  console.log("builder selections length", selections.length);
 
   return (
     <div className="betbuilder-input">

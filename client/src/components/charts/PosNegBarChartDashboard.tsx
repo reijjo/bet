@@ -54,6 +54,21 @@ export const PosNegBarChartDashboard = () => {
   const bets = useAppSelector((state) => state.bets.allBets);
   const posNegBarData = last4months(bets);
 
+  console.log("posNegBarData", posNegBarData);
+
+  console.log(
+    "mapped",
+    posNegBarData.every((bet) => bet.profit === 0),
+  );
+
+  if (posNegBarData.every((bet) => bet.profit === 0)) {
+    return (
+      <p style={{ display: "grid", placeContent: "center" }}>
+        No settled bets yet.
+      </p>
+    );
+  }
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart

@@ -21,6 +21,20 @@ const LatestBets = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
   const latestBets = mybets.slice(0, 3);
 
+  if (mybets.length === 0) {
+    return (
+      <p
+        style={{
+          display: "grid",
+          placeContent: "center",
+          gridRow: "3 / span 4",
+        }}
+      >
+        No settled bets yet.
+      </p>
+    );
+  }
+
   return (
     <>
       {latestBets.map((bet) => {

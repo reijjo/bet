@@ -70,6 +70,8 @@ export const FinishBetForm = ({
 
   // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend
 
+  // TODO2: Tipper default value username
+
   console.log("myBet", myBet);
   console.log("typeee", getFinalBetType(myBet.betDetails));
 
