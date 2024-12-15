@@ -12,6 +12,10 @@ type ContainerProps = {
   boxShadow?: string;
   display?: string;
   justifyContent?: string;
+  alignItems?: string;
+  alignSelf?: string;
+  padding?: string;
+  margin?: string;
 };
 
 export const Container = ({
@@ -22,8 +26,12 @@ export const Container = ({
   borderRadius = "8px",
   backgroundColor = "transparent",
   boxShadow = "var(--shadow-m)",
-  display,
-  justifyContent,
+  display = "flex",
+  justifyContent = "space-between",
+  alignItems = "center",
+  alignSelf,
+  padding,
+  margin,
 }: ContainerProps) => (
   <div
     className="container-base-styles"
@@ -36,6 +44,10 @@ export const Container = ({
       boxShadow,
       display,
       justifyContent,
+      alignItems,
+      alignSelf,
+      padding,
+      margin,
     }}
   >
     {children}

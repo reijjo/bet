@@ -17,7 +17,6 @@ export enum BetStatus {
   Pending = "Pending",
   Won = "Won",
   Lost = "Lost",
-  Push = "Push",
   Void = "Void",
   HalfWon = "Half Won",
   HalfLost = "Half Lost",
