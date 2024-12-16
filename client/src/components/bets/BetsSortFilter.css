@@ -1,0 +1,114 @@
+.filters-list {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  position: relative;
+  display: inline-block;
+
+  box-shadow: 0 12px 48px rgba(255, 255, 255, 0.2);
+
+  & div {
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      border-radius: 8px 8px 0px 0px;
+    }
+  }
+
+  &:has(ul:hover) {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px 8px 0px 0px;
+  }
+}
+
+.filters-list-sort {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  width: max-content;
+}
+
+.filters-list-filter {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  width: max-content;
+}
+
+/* Blur doesnt work on Chrome on .multi-level-dropdown without this */
+.first-level-dropdown::before,
+.multi-level-dropdown::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(48px);
+  z-index: -1;
+}
+
+.first-level-dropdown,
+.multi-level-dropdown {
+  font-size: var(--font-small);
+  z-index: 1;
+  list-style: none;
+  position: absolute;
+  width: max-content;
+  min-width: 8rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 48px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 24px 48px var(--primary-800);
+
+  & li {
+    padding: 8px 16px;
+
+    & button {
+      all: unset;
+      display: inline-flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      gap: 16px;
+    }
+
+    & p {
+      padding: 0;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      /* cursor: default; */
+    }
+  }
+}
+
+.first-level-dropdown {
+  top: 100%;
+  left: 0;
+
+  & > li {
+    position: relative;
+  }
+}
+
+.multi-level-dropdown {
+  display: none;
+  top: 0;
+  left: 100%;
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+  box-shadow: 0 24px 48px var(--primary-800);
+
+  & li {
+    display: flex;
+    align-content: space-between;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.first-level-dropdown > li:hover > .multi-level-dropdown {
+  display: block;
+}

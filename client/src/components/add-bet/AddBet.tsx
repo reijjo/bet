@@ -21,6 +21,8 @@ export const AddBet = () => {
     myBet.betDetails.map((detail) => detail.betbuilder_selection),
   );
 
+  // TODO: Add player props to bet type
+
   return (
     <div className="wrapper">
       <AddBetForm

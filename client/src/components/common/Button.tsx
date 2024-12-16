@@ -3,8 +3,10 @@ type ButtonProps = {
   type: "button" | "submit" | "reset";
   className: string;
   onClick?: () => void;
-  style?: React.CSSProperties;
+  // style?: React.CSSProperties;
   disabled?: boolean;
+  width?: string;
+  margin?: string;
 };
 
 export const Button = ({
@@ -12,16 +14,17 @@ export const Button = ({
   type = "button",
   className,
   onClick,
-  style,
   disabled,
+  width = "100%",
+  margin = "0",
 }: ButtonProps) => {
   return (
     <button
       type={type}
       className={className}
       onClick={onClick}
-      style={style}
       disabled={disabled}
+      style={{ width, margin }}
     >
       {children}
     </button>
