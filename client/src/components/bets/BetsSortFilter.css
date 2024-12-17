@@ -67,7 +67,7 @@
     & button {
       all: unset;
       display: inline-flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       width: 100%;
       gap: 16px;

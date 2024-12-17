@@ -7,54 +7,6 @@
   width: 100%;
 }
 
-.bets-filters-selected-sort,
-.bets-filters-selected-filter {
-  grid-row: 2 / 3;
-  width: max-content;
-  gap: 16px;
-
-  height: 100%;
-  max-height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: var(--primary-50);
-
-  font-size: var(--font-xsmall);
-  font-weight: 600;
-  padding: 8px 16px;
-  margin: 8px 0;
-  border: 2px solid var(--primary-800);
-  border-radius: 2rem;
-  color: var(--primary-800);
-
-  &:hover {
-    background-color: var(--primary-100);
-  }
-
-  & button {
-    all: unset;
-    cursor: pointer;
-
-    &:hover {
-      scale: 1.2;
-    }
-  }
-
-  & p {
-    font-style: bold;
-  }
-}
-
-.bets-filters-selected-sort {
-  grid-column: 1 / 2;
-}
-
-.bets-filters-selected-filters {
-  grid-column: 2 / 4;
-}
-
 /* Bets table */
 
 .bets-table {

@@ -2,8 +2,6 @@ import "./Bets.css";
 
 import { useEffect, useState } from "react";
 
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 import { initAllBets } from "../../reducers/betReducer";
@@ -12,10 +10,10 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
 import { Button } from "../common/Button";
 import { BetsFilter, BetsSort } from "./BetsSortFilter";
+import { SelectedFilters, SelectedSort } from "./SelectedSortFilter";
 import {
   FilterOption,
   SortOption,
-  getSortDisplayText,
   sortFilteredBets,
 } from "./betSortFilterUtils";
 import {
@@ -50,15 +48,10 @@ export const Bets = () => {
 
   useEffect(() => {
     dispatch(initAllBets());
-    setActiveFilters([]); //REMOVE THIS
   }, [dispatch]);
 
   const modifybet = (id: number | string) => {
     dispatch(openModifyBet(id));
-  };
-
-  const clearSort = () => {
-    setCurrentSort({ field: "date", direction: "desc" });
   };
 
   return (
@@ -66,7 +59,10 @@ export const Bets = () => {
       <h1>Bets</h1>
       <div className="bets-filters">
         <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />
-        <BetsFilter />
+        <BetsFilter
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+        />
         <Button
           children="add bet"
           type="button"
@@ -75,17 +71,14 @@ export const Bets = () => {
           width="max-content"
           margin="0 0 0 auto"
         />
-        <div className="bets-filters-selected-sort">
-          <p>
-            <b>Sort:</b> {getSortDisplayText(currentSort)}
-          </p>
-          <button onClick={clearSort}>
-            {!(
-              currentSort.field === "date" && currentSort.direction === "desc"
-            ) && <FontAwesomeIcon icon={faXmark} />}
-          </button>
-        </div>
-        {/* )} */}
+        <SelectedSort
+          currentSort={currentSort}
+          setCurrentSort={setCurrentSort}
+        />
+        <SelectedFilters
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+        />
       </div>
       <div className="bets-table">
         <table>

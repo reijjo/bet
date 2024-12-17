@@ -1,6 +1,6 @@
 import "./BetsSortFilter.css";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 
 import {
   faCaretDown,
@@ -10,6 +10,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
+  FilterOption,
+  MINI_FILTER_OPTIONS,
   SORT_DIRECTION_MAP,
   SORT_OPTIONS,
   SortField,
@@ -17,13 +19,14 @@ import {
   converSortOptions,
 } from "./betSortFilterUtils";
 
+// SORT
 type BetsSortProps = {
   currentSort: SortOption;
   onSortChange: (newSort: SortOption) => void;
 };
 
 export const BetsSort = ({ currentSort, onSortChange }: BetsSortProps) => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSortOpen, setIsSortOpen] = useState(false);
 
   const handleSortSelection = (field: SortField, option: string) => {
     const newSort = converSortOptions(field, option);
@@ -33,20 +36,19 @@ export const BetsSort = ({ currentSort, onSortChange }: BetsSortProps) => {
   return (
     <div
       className="filters-list filters-list-sort"
-      onMouseEnter={() => setIsFilterOpen(true)}
-      onMouseLeave={() => setIsFilterOpen(false)}
+      onMouseEnter={() => setIsSortOpen(true)}
+      onMouseLeave={() => setIsSortOpen(false)}
     >
       <div>
         <p>Sort by</p>
-        {isFilterOpen ? (
+        {isSortOpen ? (
           <FontAwesomeIcon icon={faCaretUp} />
         ) : (
           <FontAwesomeIcon icon={faCaretDown} />
         )}
       </div>
-      {isFilterOpen && (
+      {isSortOpen && (
         <ul className="first-level-dropdown">
-          {/* {sortOptions.map((opt) => ( */}
           {Object.values(SORT_OPTIONS).map((opt) => (
             <li key={opt.field}>
               <span>{opt.label}</span>
@@ -78,13 +80,87 @@ export const BetsSort = ({ currentSort, onSortChange }: BetsSortProps) => {
   );
 };
 
-export const BetsFilter = () => {
+// FILTER
+type BetsFilterProps = {
+  activeFilters: FilterOption[];
+  setActiveFilters: Dispatch<SetStateAction<FilterOption[]>>;
+};
+export const BetsFilter = ({
+  activeFilters,
+  setActiveFilters,
+}: BetsFilterProps) => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const isFilterActive = useCallback(
+    (field: string, value: string) => {
+      return activeFilters.some(
+        (filter) => filter.field === field && filter.value === value,
+      );
+    },
+    [activeFilters],
+  );
+
+  const handleFilterSelection = (field: string, value: string) => {
+    setActiveFilters((prevFilters) => {
+      const existingFilterIndex = prevFilters.findIndex(
+        (filter) => filter.field === field && filter.value === value,
+      );
+
+      if (existingFilterIndex >= 0) {
+        return prevFilters.filter((_, index) => index !== existingFilterIndex);
+      } else {
+        return [
+          ...prevFilters,
+          { field: field as FilterOption["field"], value },
+        ];
+      }
+    });
+  };
+
+  console.log("activeFilters", activeFilters);
+
   return (
-    <div className="filters-list filters-list-filter">
+    <div
+      className="filters-list filters-list-filter"
+      onMouseEnter={() => setIsFilterOpen(true)}
+      onMouseLeave={() => setIsFilterOpen(false)}
+    >
       <div>
         <p>Filter by</p>
-        <FontAwesomeIcon icon={faCaretDown} />
+        {isFilterOpen ? (
+          <FontAwesomeIcon icon={faCaretUp} />
+        ) : (
+          <FontAwesomeIcon icon={faCaretDown} />
+        )}
       </div>
+      {isFilterOpen && (
+        <ul className="first-level-dropdown">
+          {Object.values(MINI_FILTER_OPTIONS).map((fil) => (
+            <li key={fil.field}>
+              <span>{fil.label}</span>
+              <ul className="multi-level-dropdown">
+                {fil.options.map((option, index) => (
+                  <li key={index}>
+                    <button
+                      onClick={() => handleFilterSelection(fil.field, option)}
+                    >
+                      <p>{option}</p>
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        color={
+                          isFilterActive(fil.field, option)
+                            ? "white"
+                            : "transparent"
+                        }
+                      />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

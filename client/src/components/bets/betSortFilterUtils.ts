@@ -1,3 +1,4 @@
+import { BetStatus, BetType, SportLeague } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 import {
   calculateTotalLosses,
@@ -13,7 +14,19 @@ export type SortOption = {
   direction: SortDirection;
 };
 
-export type FilterField = "sport" | "bettype" | "status";
+export type FilterField =
+  | "stake"
+  | "bookmaker"
+  | "tipper"
+  | "status"
+  | "type"
+  | "sport"
+  | "date"
+  | "team"
+  | "odds"
+  | "freebet"
+  | "livebet"
+  | "status";
 export type FilterValue = string | number | boolean;
 
 export type FilterOption = {
@@ -52,6 +65,24 @@ export const SORT_DIRECTION_MAP: Record<string, SortDirection> = {
   "High to Low": "desc",
 };
 
+export const MINI_FILTER_OPTIONS = {
+  SPORT: {
+    field: "sport" as FilterField,
+    label: "Sport",
+    options: Object.values(SportLeague),
+  },
+  TYPE: {
+    field: "type" as FilterField,
+    label: "Type",
+    options: Object.values(BetType),
+  },
+  STATUS: {
+    field: "status" as FilterField,
+    label: "Bet Status",
+    options: Object.values(BetStatus),
+  },
+} as const;
+
 // Helper functions
 const getOdds = (bet: Bet): number => {
   return parseFloat(
@@ -79,10 +110,27 @@ const getSortValue = (bet: Bet, field: SortField): number => {
 };
 
 const applyFilters = (bet: Bet, filters: FilterOption[]): boolean => {
-  return filters.every((filter) => {
-    switch (filter.field) {
+  // Group filters by field
+  const filtersByField = filters.reduce(
+    (acc, filter) => {
+      if (!acc[filter.field]) {
+        acc[filter.field] = [];
+      }
+      acc[filter.field].push(filter.value);
+      return acc;
+    },
+    {} as Record<string, FilterValue[]>,
+  );
+
+  // Check each field's filters
+  return Object.entries(filtersByField).every(([field, values]) => {
+    switch (field) {
+      case "sport":
+        return values.includes(bet.sport);
+      case "type":
+        return values.includes(bet.bet_final_type);
       case "status":
-        return bet.status === filter.value;
+        return values.includes(bet.status);
       default:
         return true;
     }

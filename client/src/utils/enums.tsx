@@ -8,9 +8,9 @@ export enum SportLeague {
   IceHockey = "Ice Hockey",
   Basketball = "Basketball",
   AmFootball = "American Football",
-  None = "-",
   Mixed = "Mixed",
   Other = "Other",
+  None = "-",
 }
 
 export enum BetStatus {
