@@ -59,29 +59,4 @@ export const getFinalBetType = (details: BetDetails[]): BetType => {
   }
 
   return finalType;
-  // if (!details.length) return BetType.Single;
-
-  // console.log("details", details.length);
-
-  // if (
-  //   details[0].bet_type === BetType.Moniveto ||
-  //   details[0].bet_type === BetType.Tuplaus
-  // ) {
-  //   return details[0].bet_type;
-  // }
-
-  // // WROOONG TYPE ON SINGES
-
-  // switch (details.length) {
-  //   case 1:
-  //     return BetType.Single;
-  //   case 2:
-  //     return BetType.Double;
-  //   case 3:
-  //     return BetType.Treble;
-  //   case 4:
-  //     return BetType.Parlayx4;
-  //   default:
-  //     return details.length > 4 ? BetType.BigParlay : BetType.Single;
-  // }
 };

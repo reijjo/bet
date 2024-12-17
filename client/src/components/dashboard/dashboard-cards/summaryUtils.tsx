@@ -35,7 +35,7 @@ const calculateProfit = (bets: Bet[]): number => {
     }
 
     // Treat "Pending", "Void", and other cases as 0 profit
-    if (bet.status === "Void" || bet.status === "Push") {
+    if (bet.status === "Void") {
       profit = 0;
     }
 
@@ -56,7 +56,7 @@ export const calculateTotalLosses = (bets: Bet[]): number => {
     }
 
     // Treat "Pending", "Void", and other non-loss cases as 0 loss
-    if (bet.status === "Void" || bet.status === "Push") {
+    if (bet.status === "Void") {
       loss = 0;
     }
 
@@ -83,7 +83,7 @@ export const calculateTotalPayout = (bets: Bet[]): number => {
         ((combinedOdds / 2) * Number(bet.stake) - Number(bet.stake) / 2);
     } else if (bet.status === "Lost") {
       payout = 0; // No payout for lost bets
-    } else if (bet.status === "Void" || bet.status === "Push") {
+    } else if (bet.status === "Void") {
       payout = Number(bet.stake); // Stake is returned
     }
 

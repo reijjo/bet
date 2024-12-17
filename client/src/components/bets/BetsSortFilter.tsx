@@ -9,27 +9,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Bet } from "../../utils/types";
+import {
+  SORT_DIRECTION_MAP,
+  SORT_OPTIONS,
+  SortField,
+  SortOption,
+  converSortOptions,
+} from "./betSortFilterUtils";
 
 type BetsSortProps = {
-  bets: Bet[];
+  currentSort: SortOption;
+  onSortChange: (newSort: SortOption) => void;
 };
 
-export const BetsSort = ({ bets }: BetsSortProps) => {
+export const BetsSort = ({ currentSort, onSortChange }: BetsSortProps) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const sortOptions = [
-    { field: "date", label: "Date", options: ["Latest", "Oldest"] },
-    { field: "stake", label: "Stake", options: ["Low to High", "High to Low"] },
-    { field: "odds", label: "Odds", options: ["Low to High", "High to Low"] },
-    {
-      field: "payout",
-      label: "Payout",
-      options: ["Low to High", "High to Low"],
-    },
-  ];
-
-  console.log("bents", bets);
+  const handleSortSelection = (field: SortField, option: string) => {
+    const newSort = converSortOptions(field, option);
+    onSortChange(newSort);
+  };
 
   return (
     <div
@@ -47,15 +46,26 @@ export const BetsSort = ({ bets }: BetsSortProps) => {
       </div>
       {isFilterOpen && (
         <ul className="first-level-dropdown">
-          {sortOptions.map((opt) => (
+          {/* {sortOptions.map((opt) => ( */}
+          {Object.values(SORT_OPTIONS).map((opt) => (
             <li key={opt.field}>
               <span>{opt.label}</span>
               <ul className="multi-level-dropdown">
                 {opt.options.map((option, index) => (
                   <li key={index}>
-                    <button>
+                    <button
+                      onClick={() => handleSortSelection(opt.field, option)}
+                    >
                       <p>{option}</p>
-                      <FontAwesomeIcon icon={faCheck} color="transparent" />
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        color={
+                          currentSort.field === opt.field &&
+                          currentSort.direction === SORT_DIRECTION_MAP[option]
+                            ? "white"
+                            : "transparent"
+                        }
+                      />
                     </button>
                   </li>
                 ))}

@@ -1,6 +1,6 @@
 import "./Bets.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,12 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
 import { Button } from "../common/Button";
 import { BetsFilter, BetsSort } from "./BetsSortFilter";
+import {
+  FilterOption,
+  SortOption,
+  getSortDisplayText,
+  sortFilteredBets,
+} from "./betSortFilterUtils";
 import {
   BetStatusChange,
   DateBetsTable,
@@ -27,22 +33,39 @@ import {
 
 export const Bets = () => {
   const allbets = useAppSelector((state) => state.bets.allBets);
+  const [currentSort, setCurrentSort] = useState<SortOption>({
+    field: "date",
+    direction: "desc",
+  });
+  const [activeFilters, setActiveFilters] = useState<FilterOption[]>([]);
+
+  const sortedAndFiltered = sortFilteredBets(
+    allbets,
+    currentSort,
+    activeFilters,
+  );
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(initAllBets());
+    setActiveFilters([]); //REMOVE THIS
   }, [dispatch]);
 
   const modifybet = (id: number | string) => {
     dispatch(openModifyBet(id));
   };
 
+  const clearSort = () => {
+    setCurrentSort({ field: "date", direction: "desc" });
+  };
+
   return (
     <div className="wrapper">
       <h1>Bets</h1>
       <div className="bets-filters">
-        <BetsSort bets={allbets} />
+        <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />
         <BetsFilter />
         <Button
           children="add bet"
@@ -54,19 +77,21 @@ export const Bets = () => {
         />
         <div className="bets-filters-selected-sort">
           <p>
-            <b>Sort:</b> Payout -High to Low
+            <b>Sort:</b> {getSortDisplayText(currentSort)}
           </p>
-          <button>
-            <FontAwesomeIcon icon={faXmark} />
+          <button onClick={clearSort}>
+            {!(
+              currentSort.field === "date" && currentSort.direction === "desc"
+            ) && <FontAwesomeIcon icon={faXmark} />}
           </button>
         </div>
-        <div className="bets-filters-selected-filters">jee</div>
+        {/* )} */}
       </div>
       <div className="bets-table">
         <table>
           <HeadersBetsTable />
           <tbody>
-            {allbets.map((bet) => (
+            {sortedAndFiltered.map((bet) => (
               <tr
                 key={bet.id}
                 className={getRowColor(bet.status)}
