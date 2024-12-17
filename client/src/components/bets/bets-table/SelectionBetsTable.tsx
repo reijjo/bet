@@ -10,10 +10,16 @@ interface SelectionBetsTableProps {
 }
 
 export const SelectionBetsTable = ({ bet }: SelectionBetsTableProps) => {
-  const parseBetBuilderSelection = (selection: string) => {
-    return selection
-      .split(",")
-      .map((item, index) => <p key={index}>{item.trim()}</p>);
+  const renderBetBuildSelection = (result?: string[]) => {
+    if (!Array.isArray(result) || result.length === 0) {
+      return <p>-</p>;
+    }
+
+    return result.map((item, index) => (
+      <p key={index} title={item}>
+        {item.trim()}
+      </p>
+    ));
   };
 
   return (
@@ -29,7 +35,7 @@ export const SelectionBetsTable = ({ bet }: SelectionBetsTableProps) => {
             <div className="table-selection-selection">
               {bet.bet_final_type === BetType.BetBuilder ? (
                 <div className="betbuilder-selections">
-                  {parseBetBuilderSelection(parlay.selection)}
+                  {renderBetBuildSelection(parlay.betbuilder_selection)}
                 </div>
               ) : (
                 <p title={parlay.selection}>{parlay.selection}</p>

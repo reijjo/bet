@@ -3,33 +3,20 @@ import "./ResultBetsTable.css";
 import { Fragment } from "react/jsx-runtime";
 
 import { BetType } from "../../../utils/enums";
-import { Bet, BetDetails } from "../../../utils/types";
+import { Bet } from "../../../utils/types";
 
 interface ResultBetsTableProps {
   bet: Bet;
 }
 
 export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
-  const getBetResult = (bet: Bet, parlay: BetDetails): string => {
-    let result = "";
-
-    if (bet.bet_final_type === BetType.BetBuilder) {
-      result = parlay.betbuilder_result || "";
-    } else {
-      result = `${parlay.home_result || ""} - ${parlay.away_result || ""}`;
+  const renderBetBuildSelection = (result?: string[]) => {
+    if (!Array.isArray(result) || result.length === 0) {
+      return <p>-</p>;
     }
 
-    return result;
+    return result.map((item, index) => <p key={index}>{item.trim()}</p>);
   };
-
-  const parseBetBuilderSelection = (result: string) => {
-    return result
-      .split(",")
-      .map((item, index) => <p key={index}>{item.trim()}</p>);
-  };
-
-  // console.log("bet", bet);
-  // console.log("result", getBetResult(bet, bet.betDetails[0]));
 
   return (
     <td className="table-result">
@@ -44,7 +31,7 @@ export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
             <div className="table-result-selection">
               {bet.bet_final_type === BetType.BetBuilder ? (
                 <div className="betbuilder-selections">
-                  {parseBetBuilderSelection(parlay.betbuilder_result || "-")}
+                  {renderBetBuildSelection(parlay.betbuilder_result)}
                 </div>
               ) : (
                 <div
