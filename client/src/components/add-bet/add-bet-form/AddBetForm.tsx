@@ -115,6 +115,9 @@ export const AddBetForm = ({
   console.log("addbetdetails", addBetDetails);
   console.log("errors", errors);
 
+  // TODO: Add different input field for tulosveto and moniveto
+  // TODO2: Add moneyline bettype
+
   return (
     <div className="addbet-container">
       <h3 className="container-header">Add Bet</h3>
