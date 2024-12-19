@@ -5,11 +5,8 @@ import { Dispatch, SetStateAction } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  FilterOption,
-  SortOption,
-  getSortDisplayText,
-} from "./betSortFilterUtils";
+import { FilterOption, SortOption } from "./betSortFilterUtils";
+import { getSortDisplayText } from "./betSortFilterUtils";
 
 // SORT
 type SelectedSortProps = {
@@ -21,15 +18,27 @@ export const SelectedSort = ({
   currentSort,
   setCurrentSort,
 }: SelectedSortProps) => {
+  const { fieldLabel, directionLabel } = getSortDisplayText(currentSort);
   const clearSort = () => {
     setCurrentSort({ field: "date", direction: "desc" });
   };
 
   return (
     <div className="bets-filters-selected-sort">
-      <p>
+      {/* <div>
         <b>Sort:</b> {getSortDisplayText(currentSort)}
-      </p>
+      </div>
+      <button onClick={clearSort}>
+        {!(
+          currentSort.field === "date" && currentSort.direction === "desc"
+        ) && <FontAwesomeIcon icon={faXmark} />}
+      </button> */}
+      <div className="filter-info">
+        <div className="filter-field">
+          <b>Sort:</b> <p>{fieldLabel} </p>
+        </div>
+        <p className="filter-value"> - {directionLabel}</p>
+      </div>
       <button onClick={clearSort}>
         {!(
           currentSort.field === "date" && currentSort.direction === "desc"
@@ -65,9 +74,12 @@ export const SelectedFilters = ({
     <div className="active-filters">
       {activeFilters.map((filter, index) => (
         <div className="bets-filters-selected-filter" key={index}>
-          <p>
-            <b>Filter:</b> <span>{filter.field}</span> - {filter.value}
-          </p>
+          <div className="filter-info">
+            <div className="filter-field">
+              <b>Filter:</b> <p>{filter.field} </p>
+            </div>
+            <p className="filter-value"> - {filter.value}</p>
+          </div>
           <button onClick={() => removeFilter(filter)}>
             <FontAwesomeIcon icon={faXmark} />
           </button>

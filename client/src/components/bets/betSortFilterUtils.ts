@@ -144,17 +144,20 @@ export const SORT_DISPLAY_LABELS: Record<SortField, string> = {
   payout: "Payout",
 };
 
-export const getSortDisplayText = (sortOption: SortOption): string => {
+export const getSortDisplayText = (
+  sortOption: SortOption,
+): { fieldLabel: string; directionLabel: string } => {
   const fieldLabel = SORT_DISPLAY_LABELS[sortOption.field];
-  const directionLabel =
+  let directionLabel =
     sortOption.direction === "desc" ? "High to Low" : "Low to High";
-
+  const dateLabel = sortOption.direction === "desc" ? "Latest" : "Oldest";
   // Special case for date
   if (sortOption.field === "date") {
-    return `${fieldLabel} - ${sortOption.direction === "desc" ? "Latest" : "Oldest"}`;
+    directionLabel = dateLabel;
   }
 
-  return `${fieldLabel} - ${directionLabel}`;
+  // return `${fieldLabel} - ${directionLabel}`;
+  return { fieldLabel, directionLabel };
 };
 
 // Main functions

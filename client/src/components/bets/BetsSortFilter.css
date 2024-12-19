@@ -30,12 +30,21 @@
   grid-row: 1 / 2;
   grid-column: 1 / 2;
   width: max-content;
+
+  @media only screen and (max-width: 800px) {
+    /* grid-column: 1 / -1; */
+  }
 }
 
 .filters-list-filter {
   grid-row: 1 / 2;
   grid-column: 2 / 3;
   width: max-content;
+
+  @media only screen and (max-width: 800px) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
 }
 
 /* Blur doesnt work on Chrome on .multi-level-dropdown without this */
