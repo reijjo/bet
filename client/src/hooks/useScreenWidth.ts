@@ -10,8 +10,8 @@ export const useScreenWidth = () => {
     const checkScreenWidth = () => {
       const width = window.innerWidth;
       setScreenWidth({
-        isMobile: width <= 481,
-        isTablet: width > 481 && width <= 800,
+        isMobile: width <= 581,
+        isTablet: width > 581 && width <= 800,
       });
     };
 

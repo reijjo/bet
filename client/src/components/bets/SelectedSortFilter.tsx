@@ -2,11 +2,19 @@ import "./SelectedSortFilter.css";
 
 import { Dispatch, SetStateAction } from "react";
 
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowUp,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { FilterOption, SortOption } from "./betSortFilterUtils";
-import { getSortDisplayText } from "./betSortFilterUtils";
+import { useScreenWidth } from "../../hooks/useScreenWidth";
+import {
+  FilterOption,
+  SortOption,
+  getSortDisplayText,
+} from "./betSortFilterUtils";
 
 // SORT
 type SelectedSortProps = {
@@ -19,25 +27,33 @@ export const SelectedSort = ({
   setCurrentSort,
 }: SelectedSortProps) => {
   const { fieldLabel, directionLabel } = getSortDisplayText(currentSort);
+  const { isMobile } = useScreenWidth();
+
+  // Gets correct sort icon
+  const getSortIcon = (directionLabel: string) => {
+    return directionLabel === "High to Low" || directionLabel === "Latest"
+      ? faArrowUp
+      : faArrowDown;
+  };
+
+  // Clear the sort to default
   const clearSort = () => {
     setCurrentSort({ field: "date", direction: "desc" });
   };
 
   return (
     <div className="bets-filters-selected-sort">
-      {/* <div>
-        <b>Sort:</b> {getSortDisplayText(currentSort)}
-      </div>
-      <button onClick={clearSort}>
-        {!(
-          currentSort.field === "date" && currentSort.direction === "desc"
-        ) && <FontAwesomeIcon icon={faXmark} />}
-      </button> */}
       <div className="filter-info">
         <div className="filter-field">
           <b>Sort:</b> <p>{fieldLabel} </p>
         </div>
-        <p className="filter-value"> - {directionLabel}</p>
+        <p className="filter-value">
+          {isMobile ? (
+            <FontAwesomeIcon icon={getSortIcon(directionLabel)} />
+          ) : (
+            <>- {directionLabel}</>
+          )}
+        </p>
       </div>
       <button onClick={clearSort}>
         {!(
@@ -58,6 +74,7 @@ export const SelectedFilters = ({
   activeFilters,
   setActiveFilters,
 }: SelectedFiltersProps) => {
+  const { isMobile } = useScreenWidth();
   const removeFilter = (filterToRemove: FilterOption) => {
     setActiveFilters((prevFilters) =>
       prevFilters.filter(
@@ -76,9 +93,12 @@ export const SelectedFilters = ({
         <div className="bets-filters-selected-filter" key={index}>
           <div className="filter-info">
             <div className="filter-field">
-              <b>Filter:</b> <p>{filter.field} </p>
+              <b>Filter:</b>{" "}
+              <p style={isMobile ? { display: "none" } : {}}>
+                {filter.field} -
+              </p>
             </div>
-            <p className="filter-value"> - {filter.value}</p>
+            <p className="filter-value">{filter.value}</p>
           </div>
           <button onClick={() => removeFilter(filter)}>
             <FontAwesomeIcon icon={faXmark} />

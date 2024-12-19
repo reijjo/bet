@@ -156,7 +156,6 @@ export const getSortDisplayText = (
     directionLabel = dateLabel;
   }
 
-  // return `${fieldLabel} - ${directionLabel}`;
   return { fieldLabel, directionLabel };
 };
 

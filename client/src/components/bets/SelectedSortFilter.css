@@ -31,15 +31,6 @@
   }
 
   @media screen and (max-width: 581px) {
-    height: auto;
-
-    & .filter-field {
-      align-self: flex-start;
-    }
-
-    & button {
-      align-self: flex-start;
-    }
   }
 }
 
@@ -57,23 +48,15 @@
 .filter-info {
   font-style: bold;
   height: 2rem;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-
-  @media screen and (max-width: 581px) {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .filter-field {
   text-transform: capitalize;
   display: flex;
   gap: 8px;
-}
-
-.filter-value {
-  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .active-filters {
