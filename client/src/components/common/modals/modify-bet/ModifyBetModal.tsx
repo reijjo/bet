@@ -1,12 +1,14 @@
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { closeModal } from "../../../../reducers/modalReducer";
 import { useEffect, useState } from "react";
+
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { betApi } from "../../../../api/betApi";
+import { closeModal } from "../../../../reducers/modalReducer";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { Bet } from "../../../../utils/types";
 import { initialBetValues } from "../../../add-bet/betUtils";
-import { betApi } from "../../../../api/betApi";
 import { ModifyBetForm } from "./ModifyBetForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ModifyBetSlip } from "./ModifyBetSlip";
 
 export const ModifyBetModal = () => {

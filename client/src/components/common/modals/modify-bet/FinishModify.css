@@ -1,0 +1,16 @@
+.finish-modifybet-form {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  grid-auto-rows: auto;
+}
+
+.finish-modifybet-buttons {
+  display: flex;
+  height: 2.5rem;
+  gap: 16px;
+  grid-row: 2 / 3;
+  grid-column: 3 / 5;
+  margin-bottom: 8px;
+}

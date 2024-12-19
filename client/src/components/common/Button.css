@@ -178,18 +178,26 @@
   }
 }
 
-.delete-btn {
-  color: black;
+.btn-delete {
   color: white;
-  border-color: #c62828;
-  background-color: #c62828;
-  box-shadow: 2px 2px 4px hsla(12, 73%, 57%, 0.2);
+  font-family: "Bebas Neue", sans-serif;
+  border-radius: 8px;
+  background-color: var(--error-base);
+  /* background-image: linear-gradient(
+    to bottom,
+    var(--error-base) 0%,
+    var(--error-base) 100%
+  ); */
+
+  transition: all 0.2s ease;
 
   &:hover {
-    box-shadow: 4px 4px 8px hsl(12, 73%, 57%, 0.5);
-    /* box-shadow: none; */
-    background-color: #b71c1c;
-    border-color: black;
+    background-color: var(--error-dark);
+    /* background-image: linear-gradient(
+      var(--error-base) 0%,
+      var(--error-dark) 100%
+    ); */
+    box-shadow: 0 2px 16px hsla(0, 75%, 65%, 0.4);
   }
 }
 

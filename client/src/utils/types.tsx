@@ -6,7 +6,7 @@ export type Bet = {
   id?: number | string;
   user_id?: number;
   stake: string | number;
-  bookmaker?: Bookmaker;
+  bookmaker: Bookmaker;
   tipper: string;
   status: BetStatus;
   bet_final_type: BetType;

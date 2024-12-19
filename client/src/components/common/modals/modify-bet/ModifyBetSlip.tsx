@@ -1,4 +1,5 @@
 import "./ModifyBetSlip.css";
+
 import {
   ChangeEvent,
   Dispatch,
@@ -6,10 +7,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { Bet } from "../../../../utils/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { BetType } from "../../../../utils/enums";
+import { Bet } from "../../../../utils/types";
 import { FinishModify } from "./FinishModify";
 
 type MyBetsProps = {
@@ -53,7 +56,7 @@ export const ModifyBetSlip = ({
 
   const handleResultChange = (
     event: ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     const { name, value } = event.target;
     setResult((prev) => ({
@@ -87,7 +90,7 @@ export const ModifyBetSlip = ({
             <div className="modifybet-result-inputs">
               {/* TODO: As many input fields for the result than there is
               selections */}
-              {myBet.bet_type === BetType.BetBuilder ? (
+              {bet.bet_type === BetType.BetBuilder ? (
                 <div className="modifybet-result-fields-betbuilder">
                   <input
                     name="betbuilder_result"

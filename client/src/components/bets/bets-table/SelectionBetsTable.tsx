@@ -33,7 +33,7 @@ export const SelectionBetsTable = ({ bet }: SelectionBetsTableProps) => {
               <p title={parlay.away_team}>{parlay.away_team}</p>
             </div>
             <div className="table-selection-selection">
-              {bet.bet_final_type === BetType.BetBuilder ? (
+              {parlay.bet_type === BetType.BetBuilder ? (
                 <div className="betbuilder-selections">
                   {renderBetBuildSelection(parlay.betbuilder_selection)}
                 </div>

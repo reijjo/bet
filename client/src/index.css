@@ -223,6 +223,12 @@ a {
   --error-xlight: hsla(0, 71%, 90%, 1);
   --error-xxlight: hsla(0, 75%, 95%, 1);
 
+  --error-dark: hsla(0, 85%, 25%, 1);
+  --error-base: hsla(0, 75%, 45%, 1);
+  --error-light: hsla(0, 75%, 65%, 1);
+  --error-xlight: hsla(0, 85%, 93%, 1);
+  --error-xxlight: hsla(0, 85%, 97%, 1);
+
   /* Warning */
   --warning-dark: hsla(37, 86%, 38%, 1);
   --warning-base: hsla(44, 82%, 52%, 1);

@@ -1,6 +1,6 @@
 import "./SelectedSortFilter.css";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 
 import {
   faArrowDown,
@@ -75,17 +75,20 @@ export const SelectedFilters = ({
   setActiveFilters,
 }: SelectedFiltersProps) => {
   const { isMobile } = useScreenWidth();
-  const removeFilter = (filterToRemove: FilterOption) => {
-    setActiveFilters((prevFilters) =>
-      prevFilters.filter(
-        (filter) =>
-          !(
-            filter.field === filterToRemove.field &&
-            filter.value === filterToRemove.value
-          ),
-      ),
-    );
-  };
+  const removeFilter = useCallback(
+    (filterToRemove: FilterOption) => {
+      setActiveFilters((prevFilters) =>
+        prevFilters.filter(
+          (filter) =>
+            !(
+              filter.field === filterToRemove.field &&
+              filter.value === filterToRemove.value
+            ),
+        ),
+      );
+    },
+    [setActiveFilters],
+  );
 
   return (
     <div className="active-filters">

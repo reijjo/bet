@@ -1,17 +1,23 @@
+import "./FinishModify.css";
+
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
-import { useAppDispatch } from "../../../../store/hooks";
-import { BetType, Bookmaker } from "../../../../utils/enums";
-import { Bet } from "../../../../utils/types";
-import { initialBetValues } from "../../../add-bet/betUtils";
-import { Select } from "../../inputs/Select";
-import { TextInput } from "../../inputs/TextInput";
+
 import {
   changeBetStatus,
   deleteBetbyId,
 } from "../../../../reducers/betReducer";
+import { resetModal } from "../../../../reducers/modalReducer";
+import { useAppDispatch } from "../../../../store/hooks";
+import { Bet } from "../../../../utils/types";
+import {
+  BookmakerInput,
+  NotesInput,
+  SportInput,
+  TipperInput,
+} from "../../../add-bet";
+import { initialBetValues } from "../../../add-bet/betUtils";
 import { Button } from "../../Button";
 import { Result } from "./ModifyBetSlip";
-import { resetModal } from "../../../../reducers/modalReducer";
 
 type FinishModifyProps = {
   myBet: Bet;
@@ -29,7 +35,7 @@ export const FinishModify = ({
   const dispatch = useAppDispatch();
 
   const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target;
     setMyBet((prev) => ({
@@ -74,72 +80,24 @@ export const FinishModify = ({
   };
 
   return (
-    <form className="finishbet-form" onSubmit={finishBet}>
-      <div className="sport-input">
-        <TextInput
-          className="text-input"
-          label="Sport / League"
-          optional="optional"
-          type="text"
-          placeholder="Sport / League"
-          id="sport"
-          name="sport"
-          size={10}
-          onChange={handleTextInput}
-          value={myBet.sport}
+    <form className="finish-modifybet-form" onSubmit={finishBet}>
+      <SportInput onChange={handleSelectChange} value={myBet.sport} />
+      <BookmakerInput onChange={handleSelectChange} value={myBet.bookmaker} />
+      <TipperInput onChange={handleTextInput} value={myBet.tipper} />
+      <NotesInput onChange={handleTextInput} value={myBet.notes ?? ""} />
+
+      <div className="finish-modifybet-buttons">
+        <Button
+          type="submit"
+          className="btn btn-filled"
+          children="Save Changes"
         />
-      </div>
-      <div className="bet-type-input">
-        <Select
-          id="bet_type"
-          name="bet_type"
-          label="Bet Type"
-          className="text-input"
-          options={Object.values(BetType)}
-          onChange={handleSelectChange}
-          value={myBet.bet_type}
+        <Button
+          type="button"
+          className="btn btn-delete"
+          children="Delete Bet"
+          onClick={() => deleteBet(myBet.id as number | string)}
         />
-      </div>
-      <div className="bookmaker-input">
-        <Select
-          className="text-input"
-          label="Bookmaker"
-          // optional="optional"
-          id="bookmaker"
-          name="bookmaker"
-          size={1}
-          options={Object.values(Bookmaker)}
-          onChange={handleSelectChange}
-          value={myBet.bookmaker}
-        />
-      </div>
-      <div className="tipper-input">
-        <TextInput
-          className="text-input"
-          label="Tipper"
-          optional="optional"
-          type="text"
-          id="tipper"
-          name="tipper"
-          size={10}
-          onChange={handleTextInput}
-          value={myBet.tipper}
-        />
-      </div>
-      <div className="finish-bet-buttons">
-        <div className="flex-container">
-          <Button
-            type="submit"
-            className="btn big-btn-style"
-            children="Save Changes"
-          />
-          <Button
-            type="button"
-            className="btn outline-btn"
-            children="Delete Bet"
-            onClick={() => deleteBet(myBet.id as number | string)}
-          />
-        </div>
       </div>
     </form>
   );
