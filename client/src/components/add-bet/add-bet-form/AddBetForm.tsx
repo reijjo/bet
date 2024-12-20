@@ -116,7 +116,8 @@ export const AddBetForm = ({
   console.log("errors", errors);
 
   // TODO: Add different input field for tulosveto and moniveto
-  // TODO2: Add moneyline bettype
+  // TODO2: Add moneyline bettype?
+  // TODO3: Add betbuilder input in ladderchallenge
 
   return (
     <div className="addbet-container">
