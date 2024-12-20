@@ -37,8 +37,8 @@ export const ModifyBetModal = () => {
     }, 100);
   };
 
-  console.log("BETID", betId);
-  console.log("BETTT", myBet);
+  // console.log("BETID", betId);
+  // console.log("BETTT", myBet);
 
   return (
     <div className="modal-container">

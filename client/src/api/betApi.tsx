@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { Bet } from "../utils/types";
 
 const baseUrl = "http://localhost:3001/bets";
@@ -14,15 +15,15 @@ const getMyBets = async (id: number): Promise<Bet[]> => {
 };
 
 const addBet = async (newBet: Bet): Promise<Bet> => {
-  console.log("axios bet", newBet);
+  // console.log("axios bet", newBet);
   const res = await axios.post(baseUrl, newBet);
   return res.data;
 };
 
 const findBetById = async (id: number | string): Promise<Bet> => {
-  console.log("AXIOS ID", id);
+  // console.log("AXIOS ID", id);
   const res = await axios.get(`${baseUrl}/${id}`);
-  console.log("ACIOS BEBT", res.data);
+  // console.log("ACIOS BEBT", res.data);
   return res.data;
 };
 

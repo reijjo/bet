@@ -27,7 +27,7 @@ export type Result = {
   [key: number]: {
     home_result: string;
     away_result: string;
-    betbuilder_result: string;
+    betbuilder_result: string[];
   };
 };
 
@@ -40,13 +40,14 @@ export const ModifyBetSlip = ({
 }: MyBetsProps) => {
   const [result, setResult] = useState<Result>({});
 
+  // Sets the result of the bet to the initial result
   useEffect(() => {
     const initialResult: Result = {};
     myBet.betDetails.forEach((bet, index) => {
       initialResult[index] = {
         home_result: bet.home_result || "",
         away_result: bet.away_result || "",
-        betbuilder_result: bet.betbuilder_result || "",
+        betbuilder_result: bet.betbuilder_result || [],
       };
     });
     setResult(initialResult);
@@ -54,6 +55,7 @@ export const ModifyBetSlip = ({
 
   console.log("result", result);
 
+  // Sets the result
   const handleResultChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number,
@@ -69,6 +71,7 @@ export const ModifyBetSlip = ({
   };
   console.log("TAMA NTTR", myBet);
 
+  // Return
   return (
     <div className="modifybet-container" id="">
       <div className="modifybet-add-stake">
@@ -94,22 +97,22 @@ export const ModifyBetSlip = ({
                 <div className="modifybet-result-fields-betbuilder">
                   <input
                     name="betbuilder_result"
-                    id="betbuilder_result"
-                    value={result[index]?.betbuilder_result || ""}
+                    id={`betbuilder_result-${index}`}
+                    value={result[index]?.betbuilder_result || "-"}
                     onChange={(e) => handleResultChange(e, index)}
                   />
                 </div>
               ) : (
-                <div className="modifybet-result-fields">
+                <div className="modifybet-result-fields" key={index}>
                   <input
                     name="home_result"
-                    id="home_result"
+                    id={`home_result-${index}`}
                     value={result[index]?.home_result || ""}
                     onChange={(e) => handleResultChange(e, index)}
                   />
                   <input
                     name="away_result"
-                    id="away_result"
+                    id={`away-result-${index}`}
                     value={result[index]?.away_result || ""}
                     onChange={(e) => handleResultChange(e, index)}
                   />
@@ -117,9 +120,13 @@ export const ModifyBetSlip = ({
               )}
             </div>
             <div className="modifybet-slip-selection">
-              <p className="bet-selection" title={bet.selection}>
-                {bet.selection}
-              </p>
+              {bet.bet_type === BetType.BetBuilder ? (
+                <p className="bet-selection">{bet.betbuilder_selection}</p>
+              ) : (
+                <p className="bet-selection" title={bet.selection}>
+                  {bet.selection}
+                </p>
+              )}
             </div>
 
             <div className="modifybet-slip-odds">

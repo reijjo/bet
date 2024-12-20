@@ -10,12 +10,17 @@ interface ResultBetsTableProps {
 }
 
 export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
+  console.log("bet", bet);
   const renderBetBuildSelection = (result?: string[]) => {
     if (!Array.isArray(result) || result.length === 0) {
       return <p>-</p>;
     }
 
-    return result.map((item, index) => <p key={index}>{item.trim()}</p>);
+    return result.map((item, index) => (
+      <p key={index} title={item}>
+        {item.trim()}
+      </p>
+    ));
   };
 
   return (
@@ -29,7 +34,7 @@ export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
               <p title={parlay.away_team}>{parlay.away_team}</p>
             </div>
             <div className="table-result-selection">
-              {bet.bet_final_type === BetType.BetBuilder ? (
+              {parlay.bet_type === BetType.BetBuilder ? (
                 <div className="betbuilder-selections">
                   {renderBetBuildSelection(parlay.betbuilder_result)}
                 </div>
