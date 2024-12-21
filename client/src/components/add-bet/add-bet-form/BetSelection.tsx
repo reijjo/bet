@@ -31,7 +31,8 @@ export const BetSelection = ({
   return (
     <>
       {details?.betbuilder_selection &&
-      details.bet_type === BetType.BetBuilder ? (
+      (details.bet_type === BetType.BetBuilder ||
+        details.bet_type === BetType.Tuplaus) ? (
         <div className="betbuilder-selections-container">
           {details.betbuilder_selection.map((selection, index) => (
             <div key={index} className="bet-selection-component">

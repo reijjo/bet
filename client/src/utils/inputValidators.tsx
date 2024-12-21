@@ -45,6 +45,7 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   // Check selection
   if (
     details.bet_type !== BetType.BetBuilder &&
+    details.bet_type !== BetType.Tuplaus &&
     !hasLength(details.selection)
   ) {
     errors.selection = "Selection is required";
@@ -62,7 +63,8 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   // Check betbuilder selections
   if (
     details.betbuilder_selection &&
-    details.bet_type === BetType.BetBuilder &&
+    (details.bet_type === BetType.BetBuilder ||
+      details.bet_type === BetType.Tuplaus) &&
     !hasBuilderSelections(details.betbuilder_selection)
   ) {
     errors.betbuilder_selection = "One or more selections are required";

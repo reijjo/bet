@@ -58,7 +58,8 @@ export const MyBetSlip = ({
                 <p className="mybet-slip-awayteam">{bet.away_team}</p>
               </div>
               <div className="mybet-slip-selection">
-                {bet.bet_type !== BetType.BetBuilder ? (
+                {bet.bet_type !== BetType.BetBuilder &&
+                bet.bet_type !== BetType.Tuplaus ? (
                   <p>{bet.selection}</p>
                 ) : (
                   <>

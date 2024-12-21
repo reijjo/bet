@@ -1,5 +1,5 @@
 footer {
-  z-index: 5;
+  /* z-index: 5; */
   width: 100%;
 
   backdrop-filter: blur(8px);

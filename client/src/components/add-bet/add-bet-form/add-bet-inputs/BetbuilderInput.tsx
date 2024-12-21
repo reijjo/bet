@@ -83,7 +83,7 @@ export const BetbuilderInput = ({
     <div className="betbuilder-input">
       <TextInputWithButton
         className="text-input"
-        label="Bet Builder Selections"
+        label="Your Selection"
         type="text"
         placeholder="e.g. Lebron o15.5 points"
         id="betbuilder_selection"

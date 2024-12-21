@@ -28,6 +28,10 @@
   padding-left: 8px;
 }
 
+.modifybet-slip-selection .bet-selection {
+  text-transform: none;
+}
+
 .modifybet-more,
 .modifybet-slip-more {
   display: flex;

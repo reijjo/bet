@@ -34,7 +34,8 @@ export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
               <p title={parlay.away_team}>{parlay.away_team}</p>
             </div>
             <div className="table-result-selection">
-              {parlay.bet_type === BetType.BetBuilder ? (
+              {parlay.bet_type === BetType.BetBuilder ||
+              parlay.bet_type === BetType.Tuplaus ? (
                 <div className="betbuilder-selections">
                   {renderBetBuildSelection(parlay.betbuilder_result)}
                 </div>
