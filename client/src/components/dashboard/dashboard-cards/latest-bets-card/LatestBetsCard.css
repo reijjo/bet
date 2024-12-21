@@ -4,7 +4,8 @@
   grid-row: 3 / 4;
   grid-column: 5 / 13;
 
-  min-height: 12rem;
+  min-height: 10rem;
+  /* height: max-content; */
 
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
@@ -65,6 +66,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 0;
+  height: fit-content;
 
   font-size: 0.825rem;
   font-size: var(--font-xxsmall);

@@ -1,8 +1,10 @@
 import "./LatestBetsCard.css";
 
 import dayjs from "dayjs";
+import { Fragment } from "react/jsx-runtime";
 
 import { useAppSelector } from "../../../../store/hooks";
+import { BetType } from "../../../../utils/enums";
 import { calculateCombinedOdds } from "../summaryUtils";
 import { BetStatus } from "./BetStatus";
 
@@ -76,13 +78,22 @@ const LatestBets = () => {
             </div>
             <div className="parlay-div">
               {bet.betDetails.map((parlay, index) => (
-                <p
-                  className="bet-selection"
-                  key={index}
-                  title={parlay.selection}
-                >
-                  {parlay.selection}
-                </p>
+                <Fragment key={index}>
+                  {parlay.bet_type === BetType.BetBuilder ||
+                  parlay.bet_type === BetType.Tuplaus ? (
+                    <div className="parlay-div">
+                      {parlay.betbuilder_selection?.map((s, index) => (
+                        <p key={index} title={s}>
+                          {s}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="bet-selection" title={parlay.selection}>
+                      {parlay.selection}
+                    </p>
+                  )}
+                </Fragment>
               ))}
             </div>
             <p className="bet-stake">{Number(bet.stake).toFixed(2)} &euro;</p>
