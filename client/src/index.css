@@ -101,18 +101,6 @@ h6 {
 }
 /* END Headers */
 
-/* Button */
-button {
-  font-family: "Bebas Neue", sans-serif;
-  /* font-family: "Source Serif 4", serif; */
-
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 1.125rem;
-  letter-spacing: 0.125em;
-}
-/* END Button */
-
 /* Link */
 a {
   text-decoration: none;
@@ -228,6 +216,13 @@ a {
   --error-light: hsla(0, 75%, 65%, 1);
   --error-xlight: hsla(0, 85%, 93%, 1);
   --error-xxlight: hsla(0, 85%, 97%, 1);
+
+  --button-danger-normal: hsl(4, 78%, 62%);
+  --button-danger-bgColor-hover: hsl(1, 59%, 43%);
+  --button-danger-bgColor-rest: #2a313c;
+  --button-danger-borderColor-rest: #3d444d;
+
+  --button-danger-bgColor-active: hsl(2, 55%, 49%);
 
   /* Warning */
   --warning-dark: hsla(37, 86%, 38%, 1);

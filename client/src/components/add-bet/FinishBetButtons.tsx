@@ -73,7 +73,7 @@ export const FinishBetButtons = ({
           <Button
             type="button"
             onClick={handleAddToParlay}
-            className="btn outline-btn"
+            className="btn btn-outline"
             children="Add bet to parley"
             disabled={modifyIndex !== null}
           />
@@ -112,7 +112,7 @@ export const FinishBetButtons = ({
                 setAddStake(false);
                 setMyBet((bet) => ({ ...bet, stake: 0 }));
               }}
-              className="btn outline-btn"
+              className="btn btn-outline"
               children="Cancel"
             />
           </div>

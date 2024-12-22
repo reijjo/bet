@@ -181,13 +181,13 @@ export const AddBetForm = ({
           <Button
             children="Continue"
             type="submit"
-            className="btn btn-filled button-font-1rem"
+            className="btn btn-filled"
             disabled={disabled}
           />
           <Button
             children="Clear fields"
             type="button"
-            className="btn outline-btn button-font-1rem"
+            className="btn btn-outline"
             onClick={handleCancel}
             disabled={disabled}
           />

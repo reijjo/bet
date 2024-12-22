@@ -66,7 +66,7 @@ export const Bets = () => {
         <Button
           children="add bet"
           type="button"
-          className="btn btn-filled button-font-1rem"
+          className="btn btn-filled"
           onClick={() => navigate("/add-bet")}
           width="max-content"
           margin="0 0 0 auto"

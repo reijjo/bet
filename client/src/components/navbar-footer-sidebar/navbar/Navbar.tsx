@@ -9,15 +9,15 @@ export const Navbar = () => {
       <div className="wrapper">
         <div className="nav-links">
           <div className="nav-logo">
-            <NavLink to="/" className="btn-font text-btn underline-hover">
+            <NavLink to="/" className="btn-font underline-hover">
               tärpit
             </NavLink>
           </div>
           <div className="nav-login">
-            <NavLink to="/" className="btn-font text-btn underline-hover">
+            <NavLink to="/" className="btn-font underline-hover">
               Login
             </NavLink>
-            <NavLink to="/" className="btn outline-btn">
+            <NavLink to="/" className="btn btn-outline">
               Sign up
             </NavLink>
           </div>

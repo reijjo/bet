@@ -6,20 +6,15 @@
   color: var(--text);
 
   /* font-family: "Bebas Neue", sans-serif; */
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-size: 1.125rem;
+  /* font-optical-sizing: auto; */
+  /* font-style: normal; */
+  /* font-size: 1.125rem; */
   /* letter-spacing: 0.125em; */
 
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-
-  @media only screen and (max-width: 800px) {
-    /* 8 grids */
-    font-size: 1rem;
-  }
 
   @media only screen and (max-width: 481px) {
     /* 4 grids */
@@ -33,17 +28,12 @@
 }
 
 .btn-font {
-  font-size: 1.125rem;
+  /* font-size: 1.125rem; */
   /* letter-spacing: 0.125rem; */
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-
-  @media only screen and (max-width: 800px) {
-    /* 8 grids */
-    font-size: 1rem;
-  }
 
   @media only screen and (max-width: 481px) {
     /* 4 grids */
@@ -74,19 +64,17 @@
   transform-origin: bottom left; /* Set transform origin */
 }
 
-.outline-btn {
-  font-family: "Bebas Neue", sans-serif;
-
+.btn-outline {
   border: 1px solid var(--secondary-200);
   border-radius: 8px;
   box-shadow: 0 2px 4px hsla(47, 100%, 87%, 0.2);
-  transition: box-shadow 0.1s ease-out;
+  transition: box-shadow 0.2s ease-out;
+  text-transform: capitalize;
 
   &:hover {
     border: 1px solid var(--secondary);
-    box-shadow:
-      0 2px 8px rgba(255, 219, 87, 0.4),
-      0 2px 16px rgba(255, 219, 87, 0.1);
+    box-shadow: 0 2px 16px rgba(255, 219, 87, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 
   &:active {
@@ -103,13 +91,13 @@
 
 .btn-filled,
 .btn-primary-color {
-  font-family: "Bebas Neue", sans-serif;
+  /* font-family: "Bebas Neue", sans-serif; */
 
   border-radius: 8px;
   box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
   color: var(--text-dark);
-  /* font-size: 1em; */
+  text-transform: uppercase;
   font-weight: 600;
 }
 
@@ -149,11 +137,11 @@
   font-size: var(--font-xsmall);
   letter-spacing: normal;
 
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom right,
     var(--primary-900) 0%,
     var(--primary-800) 100%
-  );
+  ); */
 
   border: 1px solid hsla(224, 100%, 94%, 0.7);
   box-shadow: none;
@@ -179,20 +167,15 @@
 }
 
 .btn-delete {
-  color: white;
-  font-family: "Bebas Neue", sans-serif;
+  color: var(--button-danger-normal);
   border-radius: 8px;
-  background-color: var(--error-base);
-  /* background-image: linear-gradient(
-    to bottom,
-    var(--error-base) 0%,
-    var(--error-base) 100%
-  ); */
-
-  transition: all 0.2s ease;
+  /* border: 1px solid var(--button-danger-borderColor-rest); */
+  background-color: var(--button-danger-bgColor-rest);
+  background-color: rgba(0, 0, 0, 0.5);
 
   &:hover {
-    background-color: var(--error-dark);
+    background-color: var(--button-danger-bgColor-hover);
+    color: white;
     /* background-image: linear-gradient(
       var(--error-base) 0%,
       var(--error-dark) 100%

@@ -6,7 +6,6 @@
   gap: 16px;
 
   & button {
-    font-size: 1rem;
     width: 100%;
     gap: 16px;
   }
@@ -52,14 +51,8 @@
   display: flex;
   margin-top: auto;
 
-  height: 2.5rem;
+  /* height: 2.5rem; */
   gap: 16px;
-
-  & button {
-    font-size: 1rem;
-    width: 100%;
-    gap: 16px;
-  }
 
   @media only screen and (max-width: 800px) {
     grid-row: 4 / 5;

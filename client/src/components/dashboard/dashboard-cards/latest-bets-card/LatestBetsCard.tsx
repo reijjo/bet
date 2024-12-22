@@ -3,7 +3,8 @@ import "./LatestBetsCard.css";
 import dayjs from "dayjs";
 import { Fragment } from "react/jsx-runtime";
 
-import { useAppSelector } from "../../../../store/hooks";
+import { openModifyBet } from "../../../../reducers/modalReducer";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { BetType } from "../../../../utils/enums";
 import { calculateCombinedOdds } from "../summaryUtils";
 import { BetStatus } from "./BetStatus";
@@ -22,6 +23,11 @@ const LatestHeaders = () => (
 const LatestBets = () => {
   const mybets = useAppSelector((state) => state.bets.allBets);
   const latestBets = mybets.slice(0, 3);
+  const dispatch = useAppDispatch();
+
+  const modifybet = (id: number | string) => {
+    dispatch(openModifyBet(id));
+  };
 
   if (mybets.length === 0) {
     return (
@@ -41,7 +47,11 @@ const LatestBets = () => {
     <>
       {latestBets.map((bet) => {
         return (
-          <div className="latest-bets" key={bet.id}>
+          <a
+            className="latest-bets"
+            key={bet.id}
+            onClick={() => modifybet(String(bet.id))}
+          >
             <p className="latest-bet-data-date">
               {dayjs(bet.betDetails[0].date).format("D MMM")}
             </p>
@@ -101,7 +111,7 @@ const LatestBets = () => {
               {calculateCombinedOdds(bet.betDetails).toFixed(2)}
             </p>
             <BetStatus bet={bet} />
-          </div>
+          </a>
         );
       })}
     </>

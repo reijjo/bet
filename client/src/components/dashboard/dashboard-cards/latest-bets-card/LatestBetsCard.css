@@ -71,6 +71,11 @@
   font-size: 0.825rem;
   font-size: var(--font-xxsmall);
 
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
   p {
     white-space: nowrap;
     overflow: hidden;

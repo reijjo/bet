@@ -8,9 +8,10 @@ import {
   useState,
 } from "react";
 
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 import { BetType } from "../../../../utils/enums";
 import { Bet } from "../../../../utils/types";
 import { FinishModify } from "./FinishModify";
@@ -39,6 +40,11 @@ export const ModifyBetSlip = ({
   setModifyIndex,
 }: MyBetsProps) => {
   const [result, setResult] = useState<Result>({});
+  const [hoveredSelection, setHoveredSelection] = useState<{
+    betIndex: number;
+    selectionIndex: number;
+  } | null>(null);
+  const { isMobile } = useScreenWidth();
 
   useEffect(() => {
     const initialResult: Result = {};
@@ -77,15 +83,10 @@ export const ModifyBetSlip = ({
   ) => {
     const { value } = event.target;
     setResult((prev) => {
-      // Get the total number of selections needed
       const totalSelections =
         myBet.betDetails[betIndex].betbuilder_selection?.length || 0;
-
-      // Get current results or create new array with correct length
       const currentResults =
         prev[betIndex]?.betbuilder_result || Array(totalSelections).fill("");
-
-      // Create new array with updated value
       const newResults = [...currentResults];
       newResults[selectionIndex] = value;
 
@@ -99,6 +100,8 @@ export const ModifyBetSlip = ({
     });
   };
 
+  console.log("hoveredSelection", hoveredSelection);
+  // Return
   return (
     <div className="modifybet-container">
       <div className="modifybet-add-stake">
@@ -156,13 +159,54 @@ export const ModifyBetSlip = ({
                 </div>
               )}
             </div>
-            <div className="modifybet-slip-selection">
+            <div
+              className="modifybet-slip-selection"
+              style={{ position: "static" }}
+            >
               {bet.bet_type === BetType.BetBuilder ||
               bet.bet_type === BetType.Tuplaus ? (
-                bet.betbuilder_selection?.map((s, index) => (
-                  <p key={index} className="bet-selection">
-                    {s}
-                  </p>
+                bet.betbuilder_selection?.map((s, selectionIndex) => (
+                  <div
+                    key={selectionIndex}
+                    className="bet-selection"
+                    style={
+                      isMobile
+                        ? {
+                            width: "100%",
+                            textAlign: "center",
+                            position: "static",
+                          }
+                        : {}
+                    }
+                  >
+                    {isMobile ? (
+                      <div
+                        className="tooltip-container"
+                        style={{ position: "static" }}
+                      >
+                        <button
+                          className="tooltip-trigger"
+                          onMouseEnter={() =>
+                            setHoveredSelection({ betIndex, selectionIndex })
+                          }
+                          onMouseLeave={() => setHoveredSelection(null)}
+                          title={s}
+                        >
+                          <FontAwesomeIcon icon={faCircleInfo} />
+                        </button>
+                        {hoveredSelection?.betIndex === betIndex &&
+                          hoveredSelection?.selectionIndex ===
+                            selectionIndex && (
+                            <div className="tooltip-content">
+                              <span className="tooltip-text">{s}</span>
+                              <div className="tooltip-arrow"></div>
+                            </div>
+                          )}
+                      </div>
+                    ) : (
+                      s
+                    )}
+                  </div>
                 ))
               ) : (
                 <p className="bet-selection" title={bet.selection}>

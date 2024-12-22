@@ -4,6 +4,10 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   grid-auto-rows: auto;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .finish-modifybet-buttons {
@@ -13,4 +17,9 @@
   grid-row: 2 / 3;
   grid-column: 3 / 5;
   margin-bottom: 8px;
+
+  @media screen and (max-width: 800px) {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+  }
 }
