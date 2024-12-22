@@ -40,22 +40,22 @@ export const ModifyBetSlip = ({
 }: MyBetsProps) => {
   const [result, setResult] = useState<Result>({});
 
-  // Sets the result of the bet to the initial result
   useEffect(() => {
     const initialResult: Result = {};
     myBet.betDetails.forEach((bet, index) => {
       initialResult[index] = {
         home_result: bet.home_result || "",
         away_result: bet.away_result || "",
-        betbuilder_result: bet.betbuilder_result || [],
+        betbuilder_result:
+          bet.betbuilder_result ||
+          (bet.betbuilder_selection && bet.betbuilder_selection.length > 0
+            ? Array(bet.betbuilder_selection.length).fill("")
+            : []),
       };
     });
     setResult(initialResult);
   }, [myBet]);
 
-  console.log("result", result);
-
-  // Sets the result
   const handleResultChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number,
@@ -69,11 +69,38 @@ export const ModifyBetSlip = ({
       },
     }));
   };
-  console.log("TAMA NTTR", myBet);
 
-  // Return
+  const handleBetbuilderResultChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    betIndex: number,
+    selectionIndex: number,
+  ) => {
+    const { value } = event.target;
+    setResult((prev) => {
+      // Get the total number of selections needed
+      const totalSelections =
+        myBet.betDetails[betIndex].betbuilder_selection?.length || 0;
+
+      // Get current results or create new array with correct length
+      const currentResults =
+        prev[betIndex]?.betbuilder_result || Array(totalSelections).fill("");
+
+      // Create new array with updated value
+      const newResults = [...currentResults];
+      newResults[selectionIndex] = value;
+
+      return {
+        ...prev,
+        [betIndex]: {
+          ...prev[betIndex],
+          betbuilder_result: newResults,
+        },
+      };
+    });
+  };
+
   return (
-    <div className="modifybet-container" id="">
+    <div className="modifybet-container">
       <div className="modifybet-add-stake">
         <div className="finish-modifybet-slip-headers">
           <div className="modifybet-match">match</div>
@@ -84,58 +111,72 @@ export const ModifyBetSlip = ({
             <FontAwesomeIcon icon={faPenToSquare} />
           </div>
         </div>
-        {myBet.betDetails.map((bet, index) => (
-          <div key={index} className="finish-modifybet-slip">
+        {myBet.betDetails.map((bet, betIndex) => (
+          <div key={betIndex} className="finish-modifybet-slip">
             <div className="modifybet-slip-match">
               <p className="modifybet-slip-hometeam">{bet.home_team}</p>
               <p className="modifybet-slip-awayteam">{bet.away_team}</p>
             </div>
             <div className="modifybet-result-inputs">
-              {/* TODO: As many input fields for the result than there is
-              selections */}
-              {bet.bet_type === BetType.BetBuilder ? (
+              {bet.bet_type === BetType.BetBuilder ||
+              bet.bet_type === BetType.Tuplaus ? (
                 <div className="modifybet-result-fields-betbuilder">
-                  <input
-                    name="betbuilder_result"
-                    id={`betbuilder_result-${index}`}
-                    value={result[index]?.betbuilder_result || "-"}
-                    onChange={(e) => handleResultChange(e, index)}
-                  />
+                  {bet.betbuilder_selection?.map(
+                    (_selection, selectionIndex) => (
+                      <input
+                        key={selectionIndex}
+                        name={`betbuilder_result_${selectionIndex}`}
+                        value={
+                          result[betIndex]?.betbuilder_result[selectionIndex] ??
+                          ""
+                        }
+                        onChange={(e) =>
+                          handleBetbuilderResultChange(
+                            e,
+                            betIndex,
+                            selectionIndex,
+                          )
+                        }
+                      />
+                    ),
+                  )}
                 </div>
               ) : (
-                <div className="modifybet-result-fields" key={index}>
+                <div className="modifybet-result-fields">
                   <input
                     name="home_result"
-                    id={`home_result-${index}`}
-                    value={result[index]?.home_result || ""}
-                    onChange={(e) => handleResultChange(e, index)}
+                    value={result[betIndex]?.home_result || ""}
+                    onChange={(e) => handleResultChange(e, betIndex)}
                   />
                   <input
                     name="away_result"
-                    id={`away-result-${index}`}
-                    value={result[index]?.away_result || ""}
-                    onChange={(e) => handleResultChange(e, index)}
+                    value={result[betIndex]?.away_result || ""}
+                    onChange={(e) => handleResultChange(e, betIndex)}
                   />
                 </div>
               )}
             </div>
             <div className="modifybet-slip-selection">
-              {bet.bet_type === BetType.BetBuilder ? (
-                <p className="bet-selection">{bet.betbuilder_selection}</p>
+              {bet.bet_type === BetType.BetBuilder ||
+              bet.bet_type === BetType.Tuplaus ? (
+                bet.betbuilder_selection?.map((s, index) => (
+                  <p key={index} className="bet-selection">
+                    {s}
+                  </p>
+                ))
               ) : (
                 <p className="bet-selection" title={bet.selection}>
                   {bet.selection}
                 </p>
               )}
             </div>
-
             <div className="modifybet-slip-odds">
               {Number(bet.odds).toFixed(2)}
             </div>
             <div className="modifybet-slip-more">
               <a
                 className="modifybet-edit"
-                onClick={() => handleModifyBet(index)}
+                onClick={() => handleModifyBet(betIndex)}
               >
                 <FontAwesomeIcon icon={faPenToSquare} />
               </a>

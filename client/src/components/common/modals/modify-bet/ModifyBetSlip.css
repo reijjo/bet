@@ -49,6 +49,9 @@
 
 .modifybet-result-fields-betbuilder {
   align-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .modifybet-result-fields {
