@@ -119,11 +119,17 @@
   font-size: var(--font-smaller);
 }
 
+.modifybet-result-inputs {
+  height: 100%;
+  display: flex;
+}
+
 .modifybet-result-fields-betbuilder {
   align-content: center;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  justify-content: space-around;
 }
 
 .modifybet-result-fields {

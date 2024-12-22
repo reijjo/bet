@@ -126,21 +126,24 @@ export const ModifyBetSlip = ({
                 <div className="modifybet-result-fields-betbuilder">
                   {bet.betbuilder_selection?.map(
                     (_selection, selectionIndex) => (
-                      <input
-                        key={selectionIndex}
-                        name={`betbuilder_result_${selectionIndex}`}
-                        value={
-                          result[betIndex]?.betbuilder_result[selectionIndex] ??
-                          ""
-                        }
-                        onChange={(e) =>
-                          handleBetbuilderResultChange(
-                            e,
-                            betIndex,
-                            selectionIndex,
-                          )
-                        }
-                      />
+                      <div>
+                        <input
+                          key={selectionIndex}
+                          name={`betbuilder_result_${selectionIndex}`}
+                          value={
+                            result[betIndex]?.betbuilder_result[
+                              selectionIndex
+                            ] ?? ""
+                          }
+                          onChange={(e) =>
+                            handleBetbuilderResultChange(
+                              e,
+                              betIndex,
+                              selectionIndex,
+                            )
+                          }
+                        />
+                      </div>
                     ),
                   )}
                 </div>
