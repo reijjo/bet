@@ -46,6 +46,8 @@ export const ModifyBetSlip = ({
   } | null>(null);
   const { isMobile } = useScreenWidth();
 
+  // TODO: ON MOBILE show selection and make a result to open on click
+
   useEffect(() => {
     const initialResult: Result = {};
     myBet.betDetails.forEach((bet, index) => {
