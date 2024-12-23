@@ -8,12 +8,13 @@ import { TextInput } from "../../../index";
 
 interface OddsInputProps extends BetInputProps {
   error?: { [key: string]: string };
-
   setError: Dispatch<
     SetStateAction<{
       [key: string]: string;
     }>
   >;
+  gridRow?: string;
+  gridColumn?: string;
 }
 
 export const OddsInput = ({
@@ -22,6 +23,8 @@ export const OddsInput = ({
   disabled,
   error,
   setError,
+  gridColumn,
+  gridRow,
 }: OddsInputProps) => {
   const clearError = () => {
     setError({
@@ -31,7 +34,10 @@ export const OddsInput = ({
   };
 
   return (
-    <div className="odds-input">
+    <div
+      className="odds-input"
+      style={{ gridColumn: gridColumn, gridRow: gridRow }}
+    >
       <TextInput
         className="text-input"
         label="Odds"

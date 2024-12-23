@@ -3,12 +3,22 @@ import "./DateInput.css";
 import { BetInputProps } from "../../../../utils/types";
 import { TextInput } from "../../../index";
 
+interface DateInputProps extends BetInputProps {
+  gridRow?: string;
+  gridColumn?: string;
+}
+
 export const DateInput = ({
   handleBetInput,
   details,
   disabled,
-}: BetInputProps) => (
-  <div className="date-input">
+  gridRow,
+  gridColumn,
+}: DateInputProps) => (
+  <div
+    className="date-input"
+    style={{ gridRow: gridRow, gridColumn: gridColumn }}
+  >
     <TextInput
       className="text-input"
       label="Date"

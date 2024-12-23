@@ -22,6 +22,8 @@ interface BetbuilderInputProps extends BetInputProps {
       [key: string]: string;
     }>
   >;
+  gridRow?: string;
+  gridColumn?: string;
 }
 
 export const BetbuilderInput = ({
@@ -30,6 +32,8 @@ export const BetbuilderInput = ({
   setDetails,
   error,
   setError,
+  gridColumn,
+  gridRow,
 }: BetbuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
   const { isTablet } = useScreenWidth();
@@ -80,7 +84,10 @@ export const BetbuilderInput = ({
   };
 
   return (
-    <div className="betbuilder-input">
+    <div
+      className="betbuilder-input"
+      style={{ gridColumn: gridColumn, gridRow: gridRow }}
+    >
       <TextInputWithButton
         className="text-input"
         label="Your Selection"

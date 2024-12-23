@@ -3,13 +3,23 @@ import "./MatchInput.css";
 import { BetInputProps } from "../../../../utils/types";
 import { TextInput } from "../../../common/inputs/TextInput";
 
+interface MatchInputProps extends BetInputProps {
+  gridRow?: string;
+  gridColumn?: string;
+}
+
 export const MatchInput = ({
   handleBetInput,
   details,
   disabled,
+  gridColumn,
+  gridRow,
 }: // modifyIndex,
-BetInputProps) => (
-  <div className="match-input">
+MatchInputProps) => (
+  <div
+    className="match-input"
+    style={{ gridColumn: gridColumn, gridRow: gridRow }}
+  >
     <div className="match-input-label">
       <p>Match</p>
       <p className="text-input-paragraph">(optional)</p>

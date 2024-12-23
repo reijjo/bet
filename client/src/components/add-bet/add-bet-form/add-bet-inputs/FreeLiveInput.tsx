@@ -3,12 +3,22 @@ import "./FreeLiveInput.css";
 import { BetInputProps } from "../../../../utils/types";
 import { Checkbox } from "../../../index";
 
+interface FreeLiveInputProps extends BetInputProps {
+  gridRow?: string;
+  gridColumn?: string;
+}
+
 export const FreeLiveInput = ({
   handleBetInput,
   details,
   disabled,
-}: BetInputProps) => (
-  <div className="add-bet-checks">
+  gridRow,
+  gridColumn,
+}: FreeLiveInputProps) => (
+  <div
+    className="add-bet-checks"
+    style={{ gridRow: gridRow, gridColumn: gridColumn }}
+  >
     <div className="freebet-check">
       <Checkbox
         className="my-checkbox"

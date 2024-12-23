@@ -15,6 +15,8 @@ interface SelectionInputProps extends BetInputProps {
       [key: string]: string;
     }>
   >;
+  gridRow?: string;
+  gridColumn?: string;
 }
 
 export const SelectionInput = ({
@@ -24,6 +26,8 @@ export const SelectionInput = ({
   disabled,
   error,
   setError,
+  gridColumn,
+  gridRow,
 }: SelectionInputProps) => {
   const clearError = () => {
     setError({
@@ -33,7 +37,10 @@ export const SelectionInput = ({
   };
 
   return (
-    <div className="selection-input">
+    <div
+      className="selection-input"
+      style={{ gridColumn: gridColumn, gridRow: gridRow }}
+    >
       <TextInput
         className="text-input"
         label="Selection"
