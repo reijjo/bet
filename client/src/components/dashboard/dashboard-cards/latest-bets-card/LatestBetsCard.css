@@ -10,12 +10,17 @@
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
   padding: 6px 12px;
+  padding: 6px 0;
 
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-s);
 
   &:hover {
     box-shadow: var(--shadow-l);
+  }
+
+  & h5 {
+    padding-left: 12px;
   }
 
   @media only screen and (max-width: 800px) {
@@ -44,6 +49,7 @@
 
 .latest-headers {
   padding: 6px 0;
+  padding: 6px 12px;
   color: rgba(255, 255, 255, 0.703);
   color: var(--secondary-xlight);
   font-size: 0.925em;
@@ -66,6 +72,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 0;
+  padding: 8px 12px;
   height: fit-content;
 
   font-size: 0.825rem;
