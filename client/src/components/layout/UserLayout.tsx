@@ -24,7 +24,6 @@ export const UserLayout = () => {
     <main className="main-logged">
       {modalState.modalOpen && (
         <Modal>
-          {/* {modalState.addBetModal && <AddBetModal />} */}
           {modalState.testModal && <TestModal />}
           {modalState.modifyBetModal && <ModifyBetModal />}
         </Modal>

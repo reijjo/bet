@@ -19,6 +19,7 @@ import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
+  const modalOpen = useAppSelector((state) => state.modal.modalOpen);
   const dispatch = useAppDispatch();
 
   const handleCloseSidebar = () => {
@@ -29,6 +30,7 @@ export const Sidebar = () => {
     <div
       className={`sidebar ${sideBarOpen ? "active" : ""}`}
       data-testid="sidebar"
+      style={{ zIndex: modalOpen ? 9 : 15 }}
     >
       <div className="sidebar-close">
         <a className="hamburger" onClick={handleCloseSidebar}>
