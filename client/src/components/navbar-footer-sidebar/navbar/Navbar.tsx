@@ -14,10 +14,10 @@ export const Navbar = () => {
             </NavLink>
           </div>
           <div className="nav-login">
-            <NavLink to="/" className="btn-font underline-hover">
+            <NavLink to="/login" className="btn-font underline-hover">
               Login
             </NavLink>
-            <NavLink to="/" className="btn btn-outline">
+            <NavLink to="/register" className="btn btn-outline">
               Sign up
             </NavLink>
           </div>

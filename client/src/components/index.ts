@@ -28,4 +28,7 @@ export { AddBetForm } from "./add-bet/add-bet-form/AddBetForm";
 export { FinishBetForm } from "./add-bet/finish-bet-form/FinishBetForm";
 export { FinishBetButtons } from "./add-bet/FinishBetButtons";
 
+export { Register } from "./login-register/Register";
+export { Login } from "./login-register/Login";
+
 export * from "../assets/images/";

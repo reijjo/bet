@@ -6,6 +6,8 @@ import {
   Dashboard,
   Homepage,
   Layout,
+  Login,
+  Register,
   UserLayout,
 } from "./components";
 import { useAppSelector } from "./store/hooks";
@@ -23,6 +25,8 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Homepage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="*" element={<h1>404</h1>} />
         </Route>

@@ -1,0 +1,27 @@
+.form-register {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  text-align: center;
+}
+
+.form-header {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  width: 75%;
+}
+
+.form-input-text {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+
+  & input {
+    border: 0.5px solid var(--primary-50);
+  }
+}

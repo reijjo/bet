@@ -6,7 +6,10 @@ type ButtonProps = {
   // style?: React.CSSProperties;
   disabled?: boolean;
   width?: string;
+  height?: string;
   margin?: string;
+  border?: string;
+  borderColor?: string;
 };
 
 export const Button = ({
@@ -16,7 +19,10 @@ export const Button = ({
   onClick,
   disabled,
   width = "100%",
+  height = "2.5rem",
   margin = "0",
+  border = "1px solid",
+  borderColor = "transparent",
 }: ButtonProps) => {
   return (
     <button
@@ -24,7 +30,7 @@ export const Button = ({
       className={className}
       onClick={onClick}
       disabled={disabled}
-      style={{ width, margin }}
+      style={{ width, height, margin, border, borderColor }}
     >
       {children}
     </button>
