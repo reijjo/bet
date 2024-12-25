@@ -7,8 +7,8 @@ export const Navbar = () => {
   return (
     <nav>
       <div className="wrapper">
-        <div className="nav-links">
-          <div className="nav-logo">
+        <div className="nav-links-common">
+          <div className="nav-logo-visible">
             <NavLink to="/" className="btn-font underline-hover">
               tärpit
             </NavLink>

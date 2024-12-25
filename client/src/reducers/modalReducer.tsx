@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { AppDispatch } from "../store/store";
 
 type ModalState = {
@@ -6,6 +7,7 @@ type ModalState = {
   addBetModal: boolean;
   testModal: boolean;
   modifyBetModal: boolean;
+  confirmModal: boolean;
   betId: string | number;
 };
 
@@ -14,6 +16,7 @@ const initialState: ModalState = {
   addBetModal: false,
   testModal: false,
   modifyBetModal: false,
+  confirmModal: false,
   betId: "",
 };
 
@@ -32,11 +35,20 @@ export const modalSlice = createSlice({
     },
     modifyBetModal: (
       state,
-      action: PayloadAction<{ modalOpen: boolean; id: string | number }>
+      action: PayloadAction<{ modalOpen: boolean; id: string | number }>,
     ) => {
       state.modalOpen = true;
       state.modifyBetModal = action.payload.modalOpen;
       state.betId = action.payload.id;
+    },
+    confirmModal: (
+      state,
+      action: PayloadAction<{ confirmOpen: boolean; id?: string | number }>,
+    ) => {
+      state.confirmModal = action.payload.confirmOpen;
+      if (action.payload.id) {
+        state.betId = action.payload.id;
+      }
     },
     resetModal: () => initialState,
   },
@@ -66,11 +78,18 @@ export const openModifyBet = (id: number | string) => {
   };
 };
 
+export const openConfirmModal = (id: number | string) => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(confirmModal({ confirmOpen: true, id }));
+  };
+};
+
 export const {
   toggleModal,
   addBetModal,
   addTestModal,
   modifyBetModal,
+  confirmModal,
   resetModal,
 } = modalSlice.actions;
 export default modalSlice.reducer;

@@ -12,7 +12,7 @@ nav {
   left: 0;
 }
 
-.nav-links {
+.nav-links-common {
   height: 100%;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ nav {
   }
 }
 
-.nav-logo {
+.nav-logo-visible {
   text-transform: capitalize;
 }
 

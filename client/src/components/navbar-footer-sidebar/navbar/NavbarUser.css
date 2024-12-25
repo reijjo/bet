@@ -20,6 +20,11 @@
 }
 
 .nav-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   @media (width >= 1180px) {
     justify-content: flex-end;
   }
