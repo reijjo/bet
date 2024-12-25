@@ -1,4 +1,4 @@
-import "../../common/Button.css";
+import "../../common/button/Button.css";
 import "./Navbar.css";
 
 import { NavLink } from "react-router-dom";

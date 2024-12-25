@@ -18,6 +18,7 @@ type ContainerProps = {
   alignSelf?: string;
   padding?: string;
   margin?: string;
+  gap?: string;
 };
 
 export const Container = ({
@@ -28,7 +29,7 @@ export const Container = ({
   borderColor = "var(--primary)",
   borderRadius = "8px",
   backgroundColor = "transparent",
-  boxShadow = "var(--shadow-m)",
+  boxShadow = "var(--shadow-s)",
   display = "flex",
   flexDirection = "column",
   justifyContent = "space-between",
@@ -36,6 +37,7 @@ export const Container = ({
   alignSelf,
   padding,
   margin,
+  gap = "8px",
 }: ContainerProps) => (
   <div
     className="container-base-styles"
@@ -54,6 +56,7 @@ export const Container = ({
       alignSelf,
       padding,
       margin,
+      gap,
     }}
   >
     {children}

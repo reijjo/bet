@@ -28,7 +28,7 @@ import {
   getInputValue,
   initialBetDetailValues,
 } from "../../../add-bet/betUtils";
-import { Button } from "../../Button";
+import { Button } from "../../button/Button";
 
 type ModifyBetFormProps = {
   myBet: Bet;

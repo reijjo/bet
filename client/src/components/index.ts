@@ -7,8 +7,9 @@ export { Footer } from "./navbar-footer-sidebar/footer/Footer";
 
 export { Layout } from "./layout/Layout";
 export { UserLayout } from "./layout/UserLayout";
-export { Button } from "./common/Button";
-export { Divider } from "./common/Divider";
+export { Button } from "./common/button/Button";
+export { Divider } from "./common/divider/Divider";
+export { DividerWithText } from "./common/divider/DividerWithText";
 export { LinkWithIcon } from "./common/LinkWithIcon";
 export { TextInput } from "./common/inputs/TextInput";
 export { Select } from "./common/inputs/Select";

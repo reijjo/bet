@@ -8,7 +8,7 @@ import { initAllBets } from "../../reducers/betReducer";
 import { openModifyBet } from "../../reducers/modalReducer";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
-import { Button } from "../common/Button";
+import { Button } from "../common/button/Button";
 import { BetsFilter, BetsSort } from "./BetsSortFilter";
 import { SelectedFilters, SelectedSort } from "./SelectedSortFilter";
 import {

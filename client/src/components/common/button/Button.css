@@ -257,3 +257,40 @@
 .button-font-1rem {
   font-size: 1rem;
 }
+
+.btn-text {
+  border-bottom: thin solid var(--secondary-100);
+  margin: 0 0.25rem;
+  color: var(--secondary-100);
+
+  &:hover {
+    color: var(--secondary-200);
+    border-color: var(--secondary-200);
+  }
+}
+
+.btn-oauth {
+  border: thin solid var(--primary-500);
+  border-radius: 8px;
+  box-shadow: var(--shadow-s);
+  width: 75%;
+  height: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &:hover {
+    background-color: var(--primary-900);
+  }
+}
+
+.oauth-logo-absolute {
+  position: absolute;
+  left: 16px;
+}
+
+.login-p {
+  font-size: var(--font-smaller);
+}

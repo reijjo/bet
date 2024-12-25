@@ -22,7 +22,7 @@ import { BetType } from "../../../utils/enums";
 import { scrollDown } from "../../../utils/helperFunctions";
 import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet, BetDetails } from "../../../utils/types";
-import { Button } from "../../common/Button";
+import { Button } from "../../common/button/Button";
 import { getInputValue, initialBetDetailValues } from "../betUtils";
 
 type AddBetFormProps = {

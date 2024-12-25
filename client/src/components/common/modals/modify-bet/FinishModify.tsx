@@ -16,7 +16,7 @@ import {
   TipperInput,
 } from "../../../add-bet";
 import { initialBetValues } from "../../../add-bet/betUtils";
-import { Button } from "../../Button";
+import { Button } from "../../button/Button";
 import { Result } from "./ModifyBetSlip";
 
 type FinishModifyProps = {

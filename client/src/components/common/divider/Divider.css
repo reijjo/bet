@@ -1,0 +1,24 @@
+.divider {
+  border-top: 1px solid var(--primary);
+  width: 100%;
+}
+
+.divider-with-text {
+  display: flex;
+  align-items: center;
+  width: 75%;
+  color: var(--text-light); /* Adjust text color */
+}
+
+.divider-with-text::before,
+.divider-with-text::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--text-light); /* Adjust line color */
+}
+
+.divider-with-text span {
+  white-space: nowrap;
+  padding: 0 1rem; /* Space around text */
+}

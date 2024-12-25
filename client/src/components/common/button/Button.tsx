@@ -22,7 +22,7 @@ export const Button = ({
   height = "2.5rem",
   margin = "0",
   border = "1px solid",
-  borderColor = "transparent",
+  borderColor = "",
 }: ButtonProps) => {
   return (
     <button

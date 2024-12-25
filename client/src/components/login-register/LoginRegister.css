@@ -12,7 +12,7 @@
 .form-header {
   font-size: 1.75rem;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   width: 75%;
 }
 
@@ -22,6 +22,32 @@
   width: 75%;
 
   & input {
-    border: 0.5px solid var(--primary-50);
+    border: 0.5px solid var(--primary-500);
   }
+}
+
+.btn-oauth {
+  border: thin solid var(--primary-500);
+  border-radius: 8px;
+  box-shadow: var(--shadow-s);
+  width: 75%;
+  height: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &:hover {
+    background-color: var(--primary-900);
+  }
+}
+
+.oauth-logo-absolute {
+  position: absolute;
+  left: 16px;
+}
+
+.login-p {
+  font-size: var(--font-smaller);
 }

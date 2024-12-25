@@ -1,3 +1,5 @@
+import "./Divider.css";
+
 interface DividerProps {
   color?: string;
   thickness?: number;

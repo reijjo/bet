@@ -2,8 +2,17 @@ import "./LoginRegister.css";
 
 import { ChangeEvent, useState } from "react";
 
-import { Button } from "../common/Button";
+import {
+  faFacebook,
+  faGoogle,
+  faMicrosoft,
+} from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
+
+import { Button } from "../common/button/Button";
+import { OauthButton } from "../common/button/OauthButton";
 import { Container } from "../common/container/Container";
+import { DividerWithText } from "../common/divider/DividerWithText";
 import { TextInput } from "../common/inputs/TextInput";
 
 export const Register = () => {
@@ -16,11 +25,13 @@ export const Register = () => {
   return (
     <Container
       width="min(400px, 95%)"
-      borderColor="var(--border-50)"
+      border="0.5px solid"
+      borderColor="var(--primary-700)"
       padding="24px 16px"
       margin="0 auto"
       alignSelf="center"
-      boxShadow="var(--shadow-white)"
+      boxShadow="var(--shadow-l)"
+      gap="16px"
     >
       <form className="form-register">
         <p className="form-header">Start tracking your bets at Tärpit</p>
@@ -32,16 +43,26 @@ export const Register = () => {
           id="regEmail"
           value={regEmail}
           onChange={handleEmail}
-          placeholder="user@tarpit.com"
-          backgroundColor="var(--primary-800)"
+          placeholder="e.g. user@tarpit.com"
         />
         <Button
           type="submit"
           className="btn btn-filled"
-          children="Register"
+          children="sign up"
           width="75%"
         />
       </form>
+      <DividerWithText text="or" />
+      <OauthButton provider="Google" icon={faGoogle} action="register" />
+      <OauthButton provider="Facebook" icon={faFacebook} action="register" />
+      <OauthButton provider="Microsoft" icon={faMicrosoft} action="register" />
+
+      <p className="login-p">
+        Already have an account?{" "}
+        <Link to="/login" className="btn-text">
+          Log in!
+        </Link>
+      </p>
     </Container>
   );
 };
