@@ -36,12 +36,20 @@ export const Login = () => {
         <TextInput
           className="form-input-text"
           type="text"
-          label="User"
+          label="Username / Email"
           name="loginName"
           id="loginName"
           value={loginName}
           onChange={handleLogin}
           placeholder="Username or Email..."
+        />
+        <TextInput
+          className="form-input-text"
+          type="password"
+          label="Password"
+          name="looginPasswd"
+          id="loginPasswd"
+          placeholder="Password..."
         />
         <Button
           type="submit"
