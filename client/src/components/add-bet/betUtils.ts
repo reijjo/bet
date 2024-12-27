@@ -1,4 +1,10 @@
-import { BetStatus, BetType, Bookmaker, SportLeague } from "../../utils/enums";
+import {
+  BetBuilderInputTypes,
+  BetStatus,
+  BetType,
+  Bookmaker,
+  SportLeague,
+} from "../../utils/enums";
 import { BetDetails } from "../../utils/types";
 
 export const initialBetDetailValues = {
@@ -60,3 +66,8 @@ export const getFinalBetType = (details: BetDetails[]): BetType => {
 
   return finalType;
 };
+
+// Checks if should use betbuilder input field
+export const isBetBuilderType = (
+  betType: (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes],
+) => Object.values(BetBuilderInputTypes).includes(betType);

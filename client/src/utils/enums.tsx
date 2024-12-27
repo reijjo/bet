@@ -40,10 +40,10 @@ export enum BetType {
   BetBuilder = "Bet Builder",
   Other = "Other",
   Btts = "Both Teams to Score",
-  Btts2 = "Both Teams to Score 2",
   Moniveto = "Moniveto",
   Tulosveto = "Tulosveto",
   Tuplaus = "Ladder Challenge",
+  Props = "Player Props",
 }
 
 export enum LimitedBetType {
@@ -52,9 +52,16 @@ export enum LimitedBetType {
   Under = "Under",
   BetBuilder = "Bet Builder",
   Btts = "Both Teams to Score",
-  Btts2 = "Both Teams to Score 2",
   Moniveto = "Moniveto",
   Tulosveto = "Tulosveto",
   Tuplaus = "Ladder Challenge",
+  Props = "Player Props",
   Other = "Other",
 }
+
+export const BetBuilderInputTypes = {
+  BetBuilder: "Bet Builder" as const,
+  Tuplaus: "Ladder Challenge" as const,
+  Props: "Player Props" as const,
+  Other: "Other" as const,
+};
