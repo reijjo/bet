@@ -1,3 +1,4 @@
+import { isBetBuilderType } from "../components/add-bet/betUtils";
 import { BetType } from "./enums";
 import { BetDetails } from "./types";
 
@@ -43,11 +44,7 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   const errors: { [key: string]: string } = {};
 
   // Check selection
-  if (
-    details.bet_type !== BetType.BetBuilder &&
-    details.bet_type !== BetType.Tuplaus &&
-    !hasLength(details.selection)
-  ) {
+  if (!isBetBuilderType(details.bet_type) && !hasLength(details.selection)) {
     errors.selection = "Selection is required";
   }
 

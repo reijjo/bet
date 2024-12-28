@@ -68,6 +68,8 @@ export const getFinalBetType = (details: BetDetails[]): BetType => {
 };
 
 // Checks if should use betbuilder input field
-export const isBetBuilderType = (
-  betType: (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes],
-) => Object.values(BetBuilderInputTypes).includes(betType);
+export const isBetBuilderType = (betType: BetType) => {
+  return Object.values(BetBuilderInputTypes).includes(
+    betType as (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes],
+  );
+};

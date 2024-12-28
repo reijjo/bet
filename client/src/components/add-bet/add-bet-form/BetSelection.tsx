@@ -5,8 +5,8 @@ import { Dispatch } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { BetType } from "../../../utils/enums";
 import { BetDetails } from "../../../utils/types";
+import { isBetBuilderType } from "../betUtils";
 
 interface BetSelectionProps {
   details: BetDetails;
@@ -30,9 +30,7 @@ export const BetSelection = ({
 
   return (
     <>
-      {details?.betbuilder_selection &&
-      (details.bet_type === BetType.BetBuilder ||
-        details.bet_type === BetType.Tuplaus) ? (
+      {details?.betbuilder_selection && isBetBuilderType(details.bet_type) ? (
         <div className="betbuilder-selections-container">
           {details.betbuilder_selection.map((selection, index) => (
             <div key={index} className="bet-selection-component">

@@ -2,8 +2,8 @@ import "./SelectionBetsTable.css";
 
 import { Fragment } from "react/jsx-runtime";
 
-import { BetType } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
+import { isBetBuilderType } from "../../add-bet/betUtils";
 
 interface SelectionBetsTableProps {
   bet: Bet;
@@ -33,8 +33,7 @@ export const SelectionBetsTable = ({ bet }: SelectionBetsTableProps) => {
               <p title={parlay.away_team}>{parlay.away_team}</p>
             </div>
             <div className="table-selection-selection">
-              {parlay.bet_type === BetType.BetBuilder ||
-              parlay.bet_type === BetType.Tuplaus ? (
+              {isBetBuilderType(parlay.bet_type) ? (
                 <div className="betbuilder-selections">
                   {renderBetBuildSelection(parlay.betbuilder_selection)}
                 </div>

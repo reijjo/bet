@@ -5,10 +5,9 @@ import { Dispatch, SetStateAction } from "react";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { BetType } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 import { FinishBetForm } from "../index";
-import { initialBetValues } from "./betUtils";
+import { initialBetValues, isBetBuilderType } from "./betUtils";
 
 type MyBetsProps = {
   myBet: Bet;
@@ -58,8 +57,7 @@ export const MyBetSlip = ({
                 <p className="mybet-slip-awayteam">{bet.away_team}</p>
               </div>
               <div className="mybet-slip-selection">
-                {bet.bet_type !== BetType.BetBuilder &&
-                bet.bet_type !== BetType.Tuplaus ? (
+                {!isBetBuilderType(bet.bet_type) ? (
                   <p>{bet.selection}</p>
                 ) : (
                   <>

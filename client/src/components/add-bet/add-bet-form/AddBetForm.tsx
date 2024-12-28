@@ -18,12 +18,15 @@ import {
   SelectionInput,
   TypeInput,
 } from "..";
-import { BetType } from "../../../utils/enums";
 import { scrollDown } from "../../../utils/helperFunctions";
 import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet, BetDetails } from "../../../utils/types";
 import { Button } from "../../common/button/Button";
-import { getInputValue, initialBetDetailValues } from "../betUtils";
+import {
+  getInputValue,
+  initialBetDetailValues,
+  isBetBuilderType,
+} from "../betUtils";
 
 type AddBetFormProps = {
   myBet: Bet;
@@ -141,13 +144,11 @@ export const AddBetForm = ({
           modifyIndex={modifyIndex}
           disabled={disabled}
         />
-        {addBetDetails?.bet_type === BetType.BetBuilder ||
-        addBetDetails?.bet_type === BetType.Tuplaus ? (
+        {isBetBuilderType(addBetDetails.bet_type) ? (
           <BetbuilderInput
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
-            modifyIndex={modifyIndex}
             disabled={disabled}
             error={errors}
             setError={setErrors}
