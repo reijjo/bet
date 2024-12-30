@@ -12,7 +12,6 @@ import {
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 import { changeBetStatus } from "../../../../reducers/betReducer";
 import { useAppDispatch } from "../../../../store/hooks";
-import { BetType } from "../../../../utils/enums";
 import { validateBetDetailsInputs } from "../../../../utils/inputValidators";
 import { Bet, BetDetails } from "../../../../utils/types";
 import {
@@ -27,6 +26,7 @@ import {
 import {
   getInputValue,
   initialBetDetailValues,
+  isBetBuilderType,
 } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
 
@@ -40,7 +40,7 @@ type ModifyBetFormProps = {
 
 export const ModifyBetForm = ({
   myBet,
-  setMyBet,
+  // setMyBet,
   modifyIndex,
   setModifyIndex,
   disabled,
@@ -97,7 +97,7 @@ export const ModifyBetForm = ({
       const updatedBetDetails = [...myBet.betDetails];
       updatedBetDetails[modifyIndex] = addBetDetails;
       const updatedBet = { ...myBet, betDetails: updatedBetDetails };
-      setMyBet(updatedBet);
+      // setMyBet(updatedBet);
       dispatch(changeBetStatus(updatedBet));
       setErrors({});
     }
@@ -137,8 +137,7 @@ export const ModifyBetForm = ({
           gridColumn={isTablet || isMobile ? "2 / 3" : "4 / 5"}
           gridRow={isTablet || isMobile ? "2 / 3" : "1 / 2"}
         />
-        {addBetDetails?.bet_type === BetType.BetBuilder ||
-        addBetDetails?.bet_type === BetType.Tuplaus ? (
+        {isBetBuilderType(addBetDetails?.bet_type) ? (
           <BetbuilderInput
             handleBetInput={handleBetInput}
             details={addBetDetails}

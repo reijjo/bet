@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Bet } from "../utils/types";
-import { AppDispatch } from "../store/store";
-import { betApi } from "../api/betApi";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+
+import { betApi } from "../api/betApi";
 import { initialBetValues } from "../components/add-bet/betUtils";
-import { resetModal } from "./modalReducer";
+import { resetModal } from "../features/modalSlice";
+import { AppDispatch } from "../store/store";
+import { Bet } from "../utils/types";
 
 type BetState = {
   allBets: Bet[];
@@ -48,7 +49,7 @@ export const betSlice = createSlice({
     modifiedBet: (state, action: PayloadAction<Bet>) => {
       const modifiedBet = action.payload;
       state.allBets = state.allBets.map((bet) =>
-        bet.id === modifiedBet.id ? modifiedBet : bet
+        bet.id === modifiedBet.id ? modifiedBet : bet,
       );
     },
     deleteBet: (state, action: PayloadAction<number | string>) => {

@@ -3,9 +3,10 @@ import "./LatestBetsCard.css";
 import dayjs from "dayjs";
 import { Fragment } from "react/jsx-runtime";
 
-import { openModifyBet } from "../../../../reducers/modalReducer";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { BetType } from "../../../../utils/enums";
+import { isModifyBetModalOpen } from "../../../../features/modalSlice";
+import { useAppDispatch } from "../../../../store/hooks";
+import { allBetsProp } from "../../../../utils/types";
+import { isBetBuilderType } from "../../../add-bet/betUtils";
 import { calculateCombinedOdds } from "../summaryUtils";
 import { BetStatus } from "./BetStatus";
 
@@ -20,16 +21,18 @@ const LatestHeaders = () => (
   </div>
 );
 
-const LatestBets = () => {
-  const mybets = useAppSelector((state) => state.bets.allBets);
-  const latestBets = mybets.slice(0, 3);
+const LatestBets = ({ allBets }: allBetsProp) => {
+  const latestBets = allBets.slice(0, 3);
   const dispatch = useAppDispatch();
 
+  console.log("allBets", allBets);
+  console.log("latgestBets", latestBets);
+
   const modifybet = (id: number | string) => {
-    dispatch(openModifyBet(id));
+    dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
-  if (mybets.length === 0) {
+  if (allBets.length === 0) {
     return (
       <p
         style={{
@@ -89,8 +92,7 @@ const LatestBets = () => {
             <div className="parlay-div">
               {bet.betDetails.map((parlay, index) => (
                 <Fragment key={index}>
-                  {parlay.bet_type === BetType.BetBuilder ||
-                  parlay.bet_type === BetType.Tuplaus ? (
+                  {isBetBuilderType(parlay.bet_type) ? (
                     <div className="parlay-div">
                       {parlay.betbuilder_selection?.map((s, index) => (
                         <p key={index} title={s}>
@@ -118,12 +120,12 @@ const LatestBets = () => {
   );
 };
 
-export const LatestBetsCard = () => {
+export const LatestBetsCard = ({ allBets }: allBetsProp) => {
   return (
     <div className="dash-latestbets">
       <h5>Latest bets</h5>
       <LatestHeaders />
-      <LatestBets />
+      <LatestBets allBets={allBets} />
     </div>
   );
 };

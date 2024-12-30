@@ -11,7 +11,7 @@ import {
   YAxis,
 } from "recharts";
 
-import { useAppSelector } from "../../store/hooks";
+import { allBetsProp } from "../../utils/types";
 import { last4months } from "../dashboard/dashboard-cards/summaryUtils";
 
 type CustomTooltipProps = {
@@ -50,9 +50,10 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   return null;
 };
 
-export const PosNegBarChartDashboard = () => {
-  const bets = useAppSelector((state) => state.bets.allBets);
-  const posNegBarData = last4months(bets);
+// Chart Dashboard
+
+export const PosNegBarChartDashboard = ({ allBets }: allBetsProp) => {
+  const posNegBarData = last4months(allBets);
 
   console.log("posNegBarData", posNegBarData);
 

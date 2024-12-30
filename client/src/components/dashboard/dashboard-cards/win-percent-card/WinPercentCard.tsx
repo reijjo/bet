@@ -1,14 +1,15 @@
 import "./WinPercentCard.css";
+
 import { Suspense, useEffect, useState } from "react";
-import { useAppSelector } from "../../../../store/hooks";
+
+import { allBetsProp } from "../../../../utils/types";
 import { PieChartDashboard } from "../../../charts";
 import { PieChartDashboardData } from "../../../charts/PieChartDashboard";
 
-export const WinPercentCard = () => {
+export const WinPercentCard = ({ allBets }: allBetsProp) => {
   const [hoverData, setHoverData] = useState("");
 
-  const mybets = useAppSelector((state) => state.bets.allBets);
-  const settledBets = mybets.filter((b) => b.status !== "Pending");
+  const settledBets = allBets.filter((b) => b.status !== "Pending");
   const wonBetsCount =
     settledBets.filter((b) => b.status === "Won").length +
     settledBets.filter((b) => b.status === "Half Won").length;

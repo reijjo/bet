@@ -2,16 +2,11 @@ import "./FinishModify.css";
 
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 
+import { resetModal } from "../../../../features/modalSlice";
 import {
-  changeBetStatus,
-  deleteBetbyId,
+  changeBetStatus, // deleteBetbyId,
 } from "../../../../reducers/betReducer";
-import {
-  openConfirmModal,
-  resetModal,
-} from "../../../../reducers/modalReducer";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { RootState } from "../../../../store/store";
+import { useAppDispatch } from "../../../../store/hooks";
 import { Bet } from "../../../../utils/types";
 import {
   BookmakerInput,
@@ -21,7 +16,7 @@ import {
 } from "../../../add-bet";
 import { initialBetValues } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
-import { ModalConfirm } from "../confirm/ModalConfirm";
+// import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";
 
 type FinishModifyProps = {
@@ -38,9 +33,6 @@ export const FinishModify = ({
   result,
 }: FinishModifyProps) => {
   const dispatch = useAppDispatch();
-  const { confirmModal } = useAppSelector((state: RootState) => state.modal);
-
-  console.log("confirmmoä", confirmModal);
 
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -75,22 +67,22 @@ export const FinishModify = ({
     setMyBet(initialBetValues);
   };
 
-  const handleCancel = () => {
-    dispatch(resetModal());
-  };
+  // const handleCancel = () => {
+  //   dispatch(resetModal());
+  // };
 
   const deleteBet = (id: number | string) => {
     console.log("delete bet id", id);
-    dispatch(openConfirmModal(id));
+    // dispatch(openConfirmModal(id));
   };
 
-  const confirmDelete = () => {
-    if (myBet.id) {
-      dispatch(deleteBetbyId(myBet.id));
-      dispatch(resetModal());
-      setMyBet(initialBetValues);
-    }
-  };
+  // const confirmDelete = () => {
+  //   if (myBet.id) {
+  //     dispatch(deleteBetbyId(myBet.id));
+  //     dispatch(resetModal());
+  //     setMyBet(initialBetValues);
+  //   }
+  // };
 
   return (
     <>
@@ -114,12 +106,12 @@ export const FinishModify = ({
           />
         </div>
       </form>
-      {confirmModal && (
+      {/* {confirmModal && (
         <ModalConfirm
           handleCancel={handleCancel}
           handleConfirm={confirmDelete}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -4,7 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { betApi } from "../../../../api/betApi";
-import { closeModal } from "../../../../reducers/modalReducer";
+import { resetModal } from "../../../../features/modalSlice";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { Bet } from "../../../../utils/types";
 import { initialBetValues } from "../../../add-bet/betUtils";
@@ -16,19 +16,19 @@ export const ModifyBetModal = () => {
   const [modifyIndex, setModifyIndex] = useState<number | null>(null);
 
   const dispatch = useAppDispatch();
-  const { betId } = useAppSelector((state) => state.modal);
+  const { id } = useAppSelector((state) => state.modal.isModifyBetModalOpen);
 
   useEffect(() => {
     const fetchBet = async () => {
       try {
-        const bet = await betApi.findBetById(betId);
+        const bet = await betApi.findBetById(String(id));
         setMyBet(bet);
       } catch (error) {
         console.log("Error finding a bet", error);
       }
     };
     fetchBet();
-  }, [betId]);
+  }, [id]);
 
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);
@@ -45,7 +45,7 @@ export const ModifyBetModal = () => {
       <div className="mybet-header">
         <h3 className="container-header">Modify Bet</h3>
         <div className="mybets-close">
-          <a onClick={() => dispatch(closeModal())} title="Close">
+          <a onClick={() => dispatch(resetModal())} title="Close">
             <FontAwesomeIcon icon={faXmark} />
           </a>
         </div>

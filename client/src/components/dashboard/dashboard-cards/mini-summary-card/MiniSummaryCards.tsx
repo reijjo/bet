@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { useAppSelector } from "../../../../store/hooks";
+import { Bet } from "../../../../utils/types";
 import { betCalculations } from "../summaryUtils";
 
 type MiniSummaryCardProps = {
@@ -43,17 +43,20 @@ const MiniSummaryCard = ({
   );
 };
 
-export const MiniSummaryCards = () => {
-  const mybets = useAppSelector((state) => state.bets.allBets);
+type AllBetsProp = {
+  allBets: Bet[];
+};
+
+export const MiniSummaryCards = ({ allBets }: AllBetsProp) => {
   // const navigate = useNavigate();
 
-  const calculations = betCalculations(mybets);
+  const calculations = betCalculations(allBets);
 
   return (
     <div className="mini-summary-wrapper">
       <MiniSummaryCard
         icon={faPenToSquare}
-        header={mybets.length.toString()}
+        header={allBets.length.toString()}
         info="Total bets"
         className="mini-summary-totalbets"
       />

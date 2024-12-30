@@ -1,7 +1,7 @@
 import "./SummaryCard.css";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { useAppSelector } from "../../../../store/hooks";
+import { Bet } from "../../../../utils/types";
 import { betCalculations, periodParser } from "../summaryUtils";
 
 export const SummaryHeaders = () => {
@@ -65,10 +65,14 @@ const SummarySection = ({
   );
 };
 
-export const SummaryCard = () => {
-  const mybets = useAppSelector((state) => state.bets.allBets);
+type SummaryCardProps = {
+  allBets: Bet[];
+};
+
+export const SummaryCard = ({ allBets }: SummaryCardProps) => {
+  // const mybets = useAppSelector((state) => state.bets.allBets);
   const { todayBets, yesterdayBets, last7DaysBets, last30DaysBets } =
-    periodParser(mybets);
+    periodParser(allBets);
 
   const todaySummary = betCalculations(todayBets);
   const yesterdaySummary = betCalculations(yesterdayBets);

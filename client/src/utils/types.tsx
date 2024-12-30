@@ -40,3 +40,7 @@ export type BetInputProps = {
   details: BetDetails;
   disabled?: boolean;
 };
+
+export type allBetsProp = {
+  allBets: Bet[];
+};

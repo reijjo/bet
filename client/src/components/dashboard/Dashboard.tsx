@@ -1,9 +1,6 @@
 import "./Dashboard.css";
 
-import { useEffect } from "react";
-
-import { initAllBets } from "../../reducers/betReducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useGetBetsQuery } from "../../features/api/betsApiSlice";
 import {
   LatestBetsCard,
   MiniSummaryCards,
@@ -13,22 +10,18 @@ import {
 } from "./dashboard-cards";
 
 export const Dashboard = () => {
-  const dispatch = useAppDispatch();
-  const allbets = useAppSelector((state) => state.bets.allBets);
+  // const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
+  const { data: allBets = [] } = useGetBetsQuery();
 
-  useEffect(() => {
-    dispatch(initAllBets());
-  }, [dispatch]);
-
-  console.log("BETS", allbets);
+  console.log("BETS", allBets);
 
   return (
     <div className="wrapper dashboard-grid">
-      <MiniSummaryCards />
-      <SummaryCard />
-      <MonthlyCard />
-      <WinPercentCard />
-      <LatestBetsCard />
+      <MiniSummaryCards allBets={allBets} />
+      <SummaryCard allBets={allBets} />
+      <MonthlyCard allBets={allBets} />
+      <WinPercentCard allBets={allBets} />
+      <LatestBetsCard allBets={allBets} />
     </div>
   );
 };

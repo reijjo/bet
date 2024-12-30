@@ -77,7 +77,7 @@ td {
 }
 
 .bet-void {
-  background-color: hsla(37, 100%, 89%, 1);
+  color: hsla(37, 100%, 89%, 1);
 }
 
 .bet-pending {

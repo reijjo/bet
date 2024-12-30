@@ -12,8 +12,8 @@ import { faCircleInfo, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { BetType } from "../../../../utils/enums";
 import { Bet } from "../../../../utils/types";
+import { isBetBuilderType } from "../../../add-bet/betUtils";
 import { FinishModify } from "./FinishModify";
 
 type MyBetsProps = {
@@ -123,8 +123,7 @@ export const ModifyBetSlip = ({
               <p className="modifybet-slip-awayteam">{bet.away_team}</p>
             </div>
             <div className="modifybet-result-inputs">
-              {bet.bet_type === BetType.BetBuilder ||
-              bet.bet_type === BetType.Tuplaus ? (
+              {isBetBuilderType(bet.bet_type) ? (
                 <div className="modifybet-result-fields-betbuilder">
                   {bet.betbuilder_selection?.map(
                     (_selection, selectionIndex) => (
@@ -168,8 +167,7 @@ export const ModifyBetSlip = ({
               className="modifybet-slip-selection"
               style={{ position: "static" }}
             >
-              {bet.bet_type === BetType.BetBuilder ||
-              bet.bet_type === BetType.Tuplaus ? (
+              {isBetBuilderType(bet.bet_type) ? (
                 bet.betbuilder_selection?.map((s, selectionIndex) => (
                   <div
                     key={selectionIndex}

@@ -18,7 +18,7 @@ export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
 
     return result.map((item, index) => (
       <p key={index} title={item}>
-        {item.trim()}
+        {item?.trim()}
       </p>
     ));
   };

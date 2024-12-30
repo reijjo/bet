@@ -1,4 +1,4 @@
-import { BetStatus, BetType, SportLeague } from "../../utils/enums";
+import { BetStatus, BetType, Bookmaker, SportLeague } from "../../utils/enums";
 import { Bet } from "../../utils/types";
 import {
   calculateTotalLosses,
@@ -81,6 +81,11 @@ export const MINI_FILTER_OPTIONS = {
     label: "Bet Status",
     options: Object.values(BetStatus),
   },
+  BOOKMAKER: {
+    field: "bookmaker" as FilterField,
+    label: "Bookmaker",
+    options: Object.values(Bookmaker),
+  },
 } as const;
 
 // Helper functions
@@ -131,6 +136,8 @@ const applyFilters = (bet: Bet, filters: FilterOption[]): boolean => {
         return values.includes(bet.bet_final_type);
       case "status":
         return values.includes(bet.status);
+      case "bookmaker":
+        return values.includes(bet.bookmaker);
       default:
         return true;
     }

@@ -4,28 +4,23 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 import { RootState } from "../../store/store";
-import {
-  Footer,
-  Modal,
-  ModifyBetModal,
-  NavbarUser,
-  Sidebar, // AddBetModal,
-  TestModal,
-} from "../index";
+import { Footer, Modal, ModifyBetModal, NavbarUser, Sidebar } from "../index";
 
 export const UserLayout = () => {
-  const modalState = useSelector((state: RootState) => state.modal);
+  // const modalState = useSelector((state: RootState) => state.modal);
+  const { isModifyBetModalOpen } = useSelector(
+    (state: RootState) => state.modal,
+  );
   const sidebarState = useSelector((state: RootState) => state.sidebar);
-
-  // console.log("modalState", modalState);
-  // console.log("sidebarstate", sidebarState);
 
   return (
     <main className="main-logged">
-      {modalState.modalOpen && (
+      {/* {modalState.isModalOpen && (
+        <Modal>{modalState.modifyBetModal && <ModifyBetModal />}</Modal>
+      )} */}
+      {isModifyBetModalOpen.isOpen && (
         <Modal>
-          {modalState.testModal && <TestModal />}
-          {modalState.modifyBetModal && <ModifyBetModal />}
+          <ModifyBetModal />
         </Modal>
       )}
       <Sidebar />
@@ -33,8 +28,8 @@ export const UserLayout = () => {
         {sidebarState.sidebar && <Modal />}
         <NavbarUser />
         <Outlet />
-        <Footer />
       </div>
+      <Footer />
     </main>
   );
 };

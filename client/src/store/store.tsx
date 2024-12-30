@@ -1,12 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { modalReducer, sidebarReducer, betReducer } from "../reducers";
+
+import { betReducer, modalReducer } from "../features";
+import { betApiSlice } from "../features/api/betsApiSlice";
+import { sidebarReducer } from "../reducers";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
     sidebar: sidebarReducer,
     bets: betReducer,
+    // bets: betReducer,
+    [betApiSlice.reducerPath]: betApiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(betApiSlice.middleware),
+  devTools: import.meta.env.NODE_ENV !== "production",
 });
 
 export type AppStore = typeof store;

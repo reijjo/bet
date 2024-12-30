@@ -1,12 +1,13 @@
 import "./Bets.css";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { useGetBetsQuery } from "../../features/api/betsApiSlice";
+import { isModifyBetModalOpen } from "../../features/modalSlice";
 import { initAllBets } from "../../reducers/betReducer";
-import { openModifyBet } from "../../reducers/modalReducer";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
 import { Button } from "../common/button/Button";
 import { BetsFilter, BetsSort } from "./BetsSortFilter";
@@ -30,18 +31,25 @@ import {
 } from "./bets-table";
 
 export const Bets = () => {
-  const allbets = useAppSelector((state) => state.bets.allBets);
+  // const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
+  const { data: allBets = [] } = useGetBetsQuery();
+
+  // TODO: useMemo for sort and filter
   const [currentSort, setCurrentSort] = useState<SortOption>({
     field: "date",
     direction: "desc",
   });
   const [activeFilters, setActiveFilters] = useState<FilterOption[]>([]);
 
-  const sortedAndFiltered = sortFilteredBets(
-    allbets,
-    currentSort,
-    activeFilters,
-  );
+  // const sortedAndFiltered = sortFilteredBets(
+  //   allBets,
+  //   currentSort,
+  //   activeFilters,
+  // );
+
+  const sortedAndFiltered = useMemo(() => {
+    return sortFilteredBets(allBets, currentSort, activeFilters);
+  }, [allBets, currentSort, activeFilters]);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -51,7 +59,7 @@ export const Bets = () => {
   }, [dispatch]);
 
   const modifybet = (id: number | string) => {
-    dispatch(openModifyBet(id));
+    dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
   return (

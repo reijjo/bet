@@ -1,6 +1,6 @@
 .main-normal {
   display: grid;
-  grid-template-rows: 10vh 1fr 8vh;
+  grid-template-rows: 10vh 1fr;
   min-height: 100vh;
   height: 100%;
 
