@@ -3,7 +3,7 @@ import { useState } from "react";
 import { scrollToTop } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
 import { AddBetForm } from "../index";
-import { MyBetSlip } from "./MyBetSlip";
+import { AddStakeForm } from "./AddStakeForm";
 import { initialBetValues } from "./betUtils";
 
 export const AddBet = () => {
@@ -16,12 +16,6 @@ export const AddBet = () => {
   };
 
   console.log("myBet", myBet);
-  console.log(
-    "mybet builder",
-    myBet.betDetails.map((detail) => detail.betbuilder_selection),
-  );
-
-  // TODO: Add player props to bet type
 
   return (
     <div className="wrapper">
@@ -33,7 +27,7 @@ export const AddBet = () => {
         disabled={myBet.betDetails.length > 0 && modifyIndex === null}
       />
       {myBet.betDetails.length > 0 && (
-        <MyBetSlip
+        <AddStakeForm
           myBet={myBet}
           setMyBet={setMyBet}
           handleModifyBet={handleModifyBet}

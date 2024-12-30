@@ -1,13 +1,6 @@
 import "./AddBetForm.css";
 
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
 import {
   BetbuilderInput,
@@ -18,15 +11,12 @@ import {
   SelectionInput,
   TypeInput,
 } from "..";
+import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { scrollDown } from "../../../utils/helperFunctions";
 import { validateBetDetailsInputs } from "../../../utils/inputValidators";
-import { Bet, BetDetails } from "../../../utils/types";
+import { Bet } from "../../../utils/types";
 import { Button } from "../../common/button/Button";
-import {
-  getInputValue,
-  initialBetDetailValues,
-  isBetBuilderType,
-} from "../betUtils";
+import { initialBetDetailValues, isBetBuilderType } from "../betUtils";
 
 type AddBetFormProps = {
   myBet: Bet;
@@ -43,38 +33,23 @@ export const AddBetForm = ({
   setModifyIndex,
   disabled,
 }: AddBetFormProps) => {
-  const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
-    initialBetDetailValues,
-  );
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const {
+    addBetDetails,
+    setAddBetDetails,
+    errors,
+    setErrors,
+    handleBetInput,
+    handleSelectChange,
+  } = useAddBetForm();
 
   // Checks what bet to modify
   useEffect(() => {
     if (modifyIndex !== null) {
       setAddBetDetails(myBet.betDetails[modifyIndex]);
     }
-  }, [modifyIndex, myBet.betDetails]);
+  }, [setAddBetDetails, modifyIndex, myBet.betDetails]);
 
-  // Handles all types of bet inputs
-  const handleBetInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
-    const inputValue = getInputValue(type, checked, value);
-    setAddBetDetails((prev) => ({
-      ...prev,
-      [name]: inputValue,
-    }));
-  };
-
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setAddBetDetails((bet) => ({
-      ...bet,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleMyBet = (e: SyntheticEvent) => {
+  const handleBetSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
     // Validate fields before submitting
@@ -125,7 +100,7 @@ export const AddBetForm = ({
   return (
     <div className="addbet-container">
       <h3 className="container-header">Add Bet</h3>
-      <form className="addbet-form" onSubmit={handleMyBet}>
+      <form className="addbet-form" onSubmit={handleBetSubmit}>
         <MatchInput
           handleBetInput={handleBetInput}
           details={addBetDetails}

@@ -1,4 +1,4 @@
-import "./MyBetSlip.css";
+import "./AddStakeForm.css";
 
 import { Dispatch, SetStateAction } from "react";
 
@@ -17,7 +17,7 @@ type MyBetsProps = {
   setModifyIndex: Dispatch<SetStateAction<number | null>>;
 };
 
-export const MyBetSlip = ({
+export const AddStakeForm = ({
   myBet,
   setMyBet,
   handleModifyBet,
