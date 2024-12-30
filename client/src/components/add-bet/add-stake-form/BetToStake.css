@@ -1,0 +1,25 @@
+.finish-mybet-slip-headers {
+  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+  text-transform: uppercase;
+  font-size: var(--font-smaller);
+  font-weight: 500;
+}
+
+.finish-mybet-slip-headers,
+.finish-mybet-slip {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.5fr 0.25fr;
+  gap: 8px;
+
+  padding: 8px 0;
+  color: var(--secondary-xlight);
+  align-items: center;
+
+  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns:
+      minmax(150px, 1.5fr) minmax(80px, 1fr) minmax(40px, 0.5fr)
+      minmax(24px, 0.25fr);
+  }
+}

@@ -40,16 +40,19 @@ export const AddBetForm = ({
     setErrors,
     handleBetInput,
     handleSelectChange,
+    // modifyIndex,
+    // setModifyIndex,
   } = useAddBetForm();
 
   // Checks what bet to modify
   useEffect(() => {
     if (modifyIndex !== null) {
+      console.log("MODIFTYYYY INDEEX", modifyIndex);
       setAddBetDetails(myBet.betDetails[modifyIndex]);
     }
   }, [setAddBetDetails, modifyIndex, myBet.betDetails]);
 
-  const handleBetSubmit = (e: SyntheticEvent) => {
+  const handleMyBet = (e: SyntheticEvent) => {
     e.preventDefault();
 
     // Validate fields before submitting
@@ -100,7 +103,7 @@ export const AddBetForm = ({
   return (
     <div className="addbet-container">
       <h3 className="container-header">Add Bet</h3>
-      <form className="addbet-form" onSubmit={handleBetSubmit}>
+      <form className="addbet-form" onSubmit={handleMyBet}>
         <MatchInput
           handleBetInput={handleBetInput}
           details={addBetDetails}

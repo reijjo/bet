@@ -4,6 +4,7 @@ import {
   getInputValue,
   initialBetDetailValues,
 } from "../components/add-bet/betUtils";
+import { scrollToTop } from "../utils/helperFunctions";
 import { BetDetails } from "../utils/types";
 
 export const useAddBetForm = () => {
@@ -11,6 +12,7 @@ export const useAddBetForm = () => {
     initialBetDetailValues,
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [modifyIndex, setModifyIndex] = useState<number | null>(null); // REMOVE THIS??
 
   // Handles all types of bet inputs
   const handleBetInput = (
@@ -31,6 +33,12 @@ export const useAddBetForm = () => {
     }));
   };
 
+  // RENMOVE THIS ??
+  const handleModifyBet = (index: number) => {
+    setModifyIndex(index);
+    scrollToTop();
+  };
+
   return {
     addBetDetails,
     setAddBetDetails,
@@ -38,5 +46,8 @@ export const useAddBetForm = () => {
     setErrors,
     handleBetInput,
     handleSelectChange,
+    modifyIndex,
+    setModifyIndex,
+    handleModifyBet,
   };
 };

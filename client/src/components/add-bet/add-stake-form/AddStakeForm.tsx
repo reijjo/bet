@@ -5,9 +5,10 @@ import { Dispatch, SetStateAction } from "react";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Bet } from "../../utils/types";
-import { FinishBetForm } from "../index";
-import { initialBetValues, isBetBuilderType } from "./betUtils";
+import { Bet } from "../../../utils/types";
+import { FinishBetForm } from "../../index";
+import { initialBetValues, isBetBuilderType } from "../betUtils";
+import { BetToStake } from "./BetToStake";
 
 type MyBetsProps = {
   myBet: Bet;
@@ -20,9 +21,9 @@ type MyBetsProps = {
 export const AddStakeForm = ({
   myBet,
   setMyBet,
-  handleModifyBet,
   modifyIndex,
   setModifyIndex,
+  handleModifyBet,
 }: MyBetsProps) => {
   const cancelBet = () => {
     setModifyIndex(null);
@@ -40,14 +41,8 @@ export const AddStakeForm = ({
         </button>
       </div>
       <div className="mybet-add-stake">
-        <div className="finish-mybet-slip-headers">
-          <div className="mybet-match">match</div>
-          <div className="mybet-selection">selection</div>
-          <div className="mybet-odds">odds</div>
-          <div className="mybet-more" style={{ visibility: "hidden" }}>
-            <FontAwesomeIcon icon={faPenToSquare} />
-          </div>
-        </div>
+        {/* <BetToStake myBet={myBet} /> */}
+        <BetToStake />
         {myBet.betDetails
           .filter((bet) => bet.odds !== "")
           .map((bet, index) => (
