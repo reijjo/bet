@@ -1,7 +1,6 @@
-import "./ModifyBetForm.css";
+import "./ModifyBetDetailsForm.css";
 
 import {
-  ChangeEvent,
   Dispatch,
   SetStateAction,
   SyntheticEvent,
@@ -9,11 +8,11 @@ import {
   useState,
 } from "react";
 
+import { useEditBetMutation } from "../../../../features/api/betsApiSlice";
+import { useAddBetForm } from "../../../../hooks/useAddBetForm";
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { changeBetStatus } from "../../../../reducers/betReducer";
-import { useAppDispatch } from "../../../../store/hooks";
 import { validateBetDetailsInputs } from "../../../../utils/inputValidators";
-import { Bet, BetDetails } from "../../../../utils/types";
+import { Bet } from "../../../../utils/types";
 import {
   BetbuilderInput,
   DateInput,
@@ -23,12 +22,9 @@ import {
   SelectionInput,
   TypeInput,
 } from "../../../add-bet";
-import {
-  getInputValue,
-  initialBetDetailValues,
-  isBetBuilderType,
-} from "../../../add-bet/betUtils";
+import { isBetBuilderType } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
+import { Error } from "../../fallback/Error";
 
 type ModifyBetFormProps = {
   myBet: Bet;
@@ -38,51 +34,38 @@ type ModifyBetFormProps = {
   disabled: boolean;
 };
 
-export const ModifyBetForm = ({
+export const ModifyBetDetailsForm = ({
   myBet,
-  // setMyBet,
   modifyIndex,
   setModifyIndex,
   disabled,
 }: ModifyBetFormProps) => {
-  const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
-    initialBetDetailValues,
-  );
+  const {
+    handleBetInput,
+    handleSelectChange,
+    addBetDetails,
+    setAddBetDetails,
+  } = useAddBetForm();
+  const [editBet, { isLoading, isError, error }] = useEditBetMutation();
+
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
+    console.log("IM IN MODIFYBETDETAILFOMR COMPONENT");
+
     if (modifyIndex !== null) {
       setAddBetDetails(myBet.betDetails[modifyIndex]);
     }
-  }, [modifyIndex, myBet.betDetails]);
+  }, [modifyIndex, myBet.betDetails, setAddBetDetails]);
 
-  const dispatch = useAppDispatch();
   const { isTablet, isMobile } = useScreenWidth();
-
-  // Handles all types of bet inputs
-  const handleBetInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
-    const inputValue = getInputValue(type, checked, value);
-    setAddBetDetails((prev) => ({
-      ...prev,
-      [name]: inputValue,
-    }));
-  };
-
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setAddBetDetails((bet) => ({
-      ...bet,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const handleCancel = () => {
     setModifyIndex(null);
   };
 
-  const handleMyBet = (e: SyntheticEvent) => {
+  // Updates the bet details
+  const handleMyBet = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     // Validate fields before submitting
@@ -94,17 +77,25 @@ export const ModifyBetForm = ({
     }
 
     if (modifyIndex !== null) {
-      const updatedBetDetails = [...myBet.betDetails];
-      updatedBetDetails[modifyIndex] = addBetDetails;
-      const updatedBet = { ...myBet, betDetails: updatedBetDetails };
-      // setMyBet(updatedBet);
-      dispatch(changeBetStatus(updatedBet));
-      setErrors({});
+      try {
+        const updatedBetDetails = [...myBet.betDetails];
+        updatedBetDetails[modifyIndex] = addBetDetails;
+
+        const updatedBet = { ...myBet, betDetails: updatedBetDetails };
+
+        await editBet(updatedBet);
+        setErrors({});
+        handleCancel();
+      } catch (error: unknown) {
+        console.log("Error updating bet", error);
+      }
     }
-    handleCancel();
   };
 
   console.log("BET", myBet);
+
+  // Returns
+  if (isError) return <Error error={error} />;
 
   return (
     <div className="modifybetform-container">
@@ -116,7 +107,6 @@ export const ModifyBetForm = ({
         <MatchInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
           gridColumn={isTablet || isMobile ? "1 / -1" : "1 / 3"}
           gridRow="1 / 2"
@@ -124,7 +114,6 @@ export const ModifyBetForm = ({
         <DateInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
           gridRow="2 / 3"
           gridColumn={isTablet || isMobile ? "1 / 2" : "4 / 5"}
@@ -132,7 +121,6 @@ export const ModifyBetForm = ({
         <FreeLiveInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
           gridColumn={isTablet || isMobile ? "2 / 3" : "4 / 5"}
           gridRow={isTablet || isMobile ? "2 / 3" : "1 / 2"}
@@ -142,7 +130,6 @@ export const ModifyBetForm = ({
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
-            modifyIndex={modifyIndex}
             disabled={disabled}
             error={errors}
             setError={setErrors}
@@ -154,7 +141,6 @@ export const ModifyBetForm = ({
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
-            modifyIndex={modifyIndex}
             disabled={disabled}
             error={errors}
             setError={setErrors}
@@ -165,7 +151,6 @@ export const ModifyBetForm = ({
         <OddsInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
           error={errors}
           setError={setErrors}
@@ -176,7 +161,6 @@ export const ModifyBetForm = ({
           handleSelectChange={handleSelectChange}
           details={addBetDetails}
           disabled={disabled}
-          // modifyIndex={modifyIndex}
           gridColumn={isTablet || isMobile ? "2 / 3" : ""}
           gridRow={isTablet || isMobile ? "3 / 4" : "1 / 2"}
         />
@@ -186,7 +170,7 @@ export const ModifyBetForm = ({
           style={isTablet || isMobile ? { gridColumn: "1 / -1" } : {}}
         >
           <Button
-            children="Save"
+            children={isLoading ? "Saving..." : "Save"}
             type="submit"
             className="btn btn-filled"
             disabled={disabled}

@@ -21,7 +21,28 @@ export const betApiSlice = createApi({
       query: (id) => `/bets/${id}`,
       providesTags: (_result, _error, id) => [{ type: "Bet", id }],
     }),
+    addNewBet: builder.mutation<Bet, Partial<Bet>>({
+      query: (newBet) => ({
+        url: "/bets",
+        method: "POST",
+        body: newBet,
+      }),
+      invalidatesTags: ["Bet"],
+    }),
+    editBet: builder.mutation<Bet, Partial<Bet>>({
+      query: (bet) => ({
+        url: `/bets/${bet.id}`,
+        method: "PATCH",
+        body: bet,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: "Bet", id }],
+    }),
   }),
 });
 
-export const { useGetBetsQuery, useGetBetByIdQuery } = betApiSlice;
+export const {
+  useGetBetsQuery,
+  useGetBetByIdQuery,
+  useAddNewBetMutation,
+  useEditBetMutation,
+} = betApiSlice;

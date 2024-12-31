@@ -5,8 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { changeBetStatus } from "../../../reducers/betReducer";
-import { useAppDispatch } from "../../../store/hooks";
+import { useEditBetMutation } from "../../../features/api/betsApiSlice";
 import { BetStatus } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
 
@@ -19,7 +18,7 @@ const endedBetBallColor = (value: BetStatus) => {
     return "bet-status-won";
   } else if (value === "Lost" || value === "Half Lost") {
     return "bet-status-lost";
-  } else if (value === "Push" || value === "Void") {
+  } else if (value === "Void") {
     return "bet-status-void";
   } else {
     return "bet-status-pending";
@@ -28,9 +27,11 @@ const endedBetBallColor = (value: BetStatus) => {
 
 export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch();
+  const [updateTodo, { isLoading }] = useEditBetMutation();
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Closes the dropdown when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -40,6 +41,7 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
     }
   };
 
+  // Listens for clicks outside the dropdown
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -47,13 +49,21 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
     };
   }, []);
 
-  const changeStatus = (newStatus: BetStatus) => {
-    const updatedBet = { ...bet, status: newStatus };
-    dispatch(changeBetStatus(updatedBet));
+  // Changes the status of the bet
+  const changeStatus = async (newStatus: BetStatus) => {
+    try {
+      await updateTodo({ id: bet.id, status: newStatus }).unwrap();
+    } catch (error: unknown) {
+      console.log("Error changing bet status", error);
+    }
     setIsOpen(false);
   };
 
+  // Filters the current bet status from the options
   const options = Object.values(BetStatus).filter((op) => op !== bet.status);
+
+  // Returns
+  if (isLoading) return <td className="table-status">...</td>;
 
   return (
     <td className="table-status">

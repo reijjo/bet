@@ -3,15 +3,17 @@ import "./BetToStake.css";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// import { Bet } from "../../../utils/types";
-// import { isBetBuilderType } from "../betUtils";
+import { Bet } from "../../../utils/types";
+import { isBetBuilderType } from "../betUtils";
 
-// type BetToStakeProps = {
-//   myBet: Bet;
-// };
+type BetToStakeProps = {
+  myBet: Bet;
+  handleModifyBet: (index: number) => void;
+};
 
-// export const BetToStake = ({ myBet }: BetToStakeProps) => {
-export const BetToStake = () => {
+export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
+  // export const BetToStake = () => {
+
   return (
     <>
       <div className="finish-mybet-slip-headers">
@@ -22,7 +24,7 @@ export const BetToStake = () => {
           <FontAwesomeIcon icon={faPenToSquare} />
         </div>
       </div>
-      {/* {myBet.betDetails
+      {myBet.betDetails
         .filter((bet) => bet.odds !== "")
         .map((bet, index) => (
           <div key={index} className="finish-mybet-slip">
@@ -48,7 +50,7 @@ export const BetToStake = () => {
               </a>
             </div>
           </div>
-        ))} */}
+        ))}
     </>
   );
 };

@@ -3,42 +3,41 @@ import { useEffect, useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { betApi } from "../../../../api/betApi";
+import { useGetBetByIdQuery } from "../../../../features/api/betsApiSlice";
 import { resetModal } from "../../../../features/modalSlice";
+import { useAddBetForm } from "../../../../hooks/useAddBetForm";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { Bet } from "../../../../utils/types";
 import { initialBetValues } from "../../../add-bet/betUtils";
-import { ModifyBetForm } from "./ModifyBetForm";
+import { Error } from "../../fallback/Error";
+import { Loading } from "../../fallback/Loading";
+import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
 import { ModifyBetSlip } from "./ModifyBetSlip";
 
 export const ModifyBetModal = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);
-  const [modifyIndex, setModifyIndex] = useState<number | null>(null);
+
+  const { id } = useAppSelector((state) => state.modal.isModifyBetModalOpen);
+  const { modifyIndex, setModifyIndex, handleModifyBet } = useAddBetForm();
+  const {
+    data: fetchedBet,
+    isLoading,
+    isError,
+    error,
+  } = useGetBetByIdQuery(String(id));
 
   const dispatch = useAppDispatch();
-  const { id } = useAppSelector((state) => state.modal.isModifyBetModalOpen);
 
   useEffect(() => {
-    const fetchBet = async () => {
-      try {
-        const bet = await betApi.findBetById(String(id));
-        setMyBet(bet);
-      } catch (error) {
-        console.log("Error finding a bet", error);
-      }
-    };
-    fetchBet();
-  }, [id]);
+    console.log("IM IN MODIFYBETMODAL COMPONENT");
+    if (fetchedBet) {
+      setMyBet(fetchedBet);
+    }
+  }, [fetchedBet]);
 
-  const handleModifyBet = (index: number) => {
-    setModifyIndex(index);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
-  };
-
-  // console.log("BETID", betId);
-  // console.log("BETTT", myBet);
+  // Returns
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
 
   return (
     <div className="modal-container">
@@ -51,7 +50,7 @@ export const ModifyBetModal = () => {
         </div>
       </div>
       {modifyIndex !== null && (
-        <ModifyBetForm
+        <ModifyBetDetailsForm
           myBet={myBet}
           setMyBet={setMyBet}
           modifyIndex={modifyIndex}
@@ -64,8 +63,6 @@ export const ModifyBetModal = () => {
           myBet={myBet}
           setMyBet={setMyBet}
           handleModifyBet={handleModifyBet}
-          modifyIndex={modifyIndex}
-          setModifyIndex={setModifyIndex}
         />
       )}
     </div>

@@ -26,4 +26,5 @@
 .main-dashboard {
   display: grid;
   grid-template-rows: 10vh 1fr 8vh;
+  height: auto;
 }

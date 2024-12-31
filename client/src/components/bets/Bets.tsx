@@ -1,15 +1,16 @@
 import "./Bets.css";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { useGetBetsQuery } from "../../features/api/betsApiSlice";
 import { isModifyBetModalOpen } from "../../features/modalSlice";
-import { initAllBets } from "../../reducers/betReducer";
 import { useAppDispatch } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
 import { Button } from "../common/button/Button";
+import { Error } from "../common/fallback/Error";
+import { Loading } from "../common/fallback/Loading";
 import { BetsFilter, BetsSort } from "./BetsSortFilter";
 import { SelectedFilters, SelectedSort } from "./SelectedSortFilter";
 import {
@@ -31,21 +32,13 @@ import {
 } from "./bets-table";
 
 export const Bets = () => {
-  // const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
-  const { data: allBets = [] } = useGetBetsQuery();
+  const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
 
-  // TODO: useMemo for sort and filter
   const [currentSort, setCurrentSort] = useState<SortOption>({
     field: "date",
     direction: "desc",
   });
   const [activeFilters, setActiveFilters] = useState<FilterOption[]>([]);
-
-  // const sortedAndFiltered = sortFilteredBets(
-  //   allBets,
-  //   currentSort,
-  //   activeFilters,
-  // );
 
   const sortedAndFiltered = useMemo(() => {
     return sortFilteredBets(allBets, currentSort, activeFilters);
@@ -54,13 +47,13 @@ export const Bets = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(initAllBets());
-  }, [dispatch]);
-
   const modifybet = (id: number | string) => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
+
+  // TODO: Own component wrapper for isLoading ??
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
 
   return (
     <div className="wrapper">

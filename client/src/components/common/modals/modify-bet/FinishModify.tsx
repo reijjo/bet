@@ -2,10 +2,8 @@ import "./FinishModify.css";
 
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 
+import { useEditBetMutation } from "../../../../features/api/betsApiSlice";
 import { resetModal } from "../../../../features/modalSlice";
-import {
-  changeBetStatus, // deleteBetbyId,
-} from "../../../../reducers/betReducer";
 import { useAppDispatch } from "../../../../store/hooks";
 import { Bet } from "../../../../utils/types";
 import {
@@ -16,14 +14,12 @@ import {
 } from "../../../add-bet";
 import { initialBetValues } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
-// import { ModalConfirm } from "../confirm/ModalConfirm";
+import { Error } from "../../fallback/Error";
 import { Result } from "./ModifyBetSlip";
 
 type FinishModifyProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
-  modifyIndex: number | null;
-  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
   result: Result;
 };
 
@@ -32,6 +28,7 @@ export const FinishModify = ({
   setMyBet,
   result,
 }: FinishModifyProps) => {
+  const [editBet, { isLoading, isError, error }] = useEditBetMutation();
   const dispatch = useAppDispatch();
 
   const handleTextInput = (
@@ -51,7 +48,7 @@ export const FinishModify = ({
     }));
   };
 
-  const finishBet = (e: SyntheticEvent) => {
+  const finishBet = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     const updatedBet = {
@@ -62,9 +59,14 @@ export const FinishModify = ({
       })),
     };
 
-    dispatch(changeBetStatus(updatedBet));
-    dispatch(resetModal());
-    setMyBet(initialBetValues);
+    try {
+      await editBet(updatedBet).unwrap();
+
+      dispatch(resetModal());
+      setMyBet(initialBetValues);
+    } catch (error: unknown) {
+      console.log("Error Updating bet", error);
+    }
   };
 
   // const handleCancel = () => {
@@ -84,6 +86,9 @@ export const FinishModify = ({
   //   }
   // };
 
+  // Returns
+  if (isError) return <Error error={error} />;
+
   return (
     <>
       <form className="finish-modifybet-form" onSubmit={finishBet}>
@@ -96,7 +101,7 @@ export const FinishModify = ({
           <Button
             type="submit"
             className="btn btn-filled"
-            children="Save Changes"
+            children={isLoading ? "Saving..." : "Save Changes"}
           />
           <Button
             type="button"

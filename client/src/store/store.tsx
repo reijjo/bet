@@ -9,7 +9,6 @@ export const store = configureStore({
     modal: modalReducer,
     sidebar: sidebarReducer,
     bets: betReducer,
-    // bets: betReducer,
     [betApiSlice.reducerPath]: betApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -14,8 +14,7 @@ export const MatchInput = ({
   disabled,
   gridColumn,
   gridRow,
-}: // modifyIndex,
-MatchInputProps) => (
+}: MatchInputProps) => (
   <div
     className="match-input"
     style={{ gridColumn: gridColumn, gridRow: gridRow }}

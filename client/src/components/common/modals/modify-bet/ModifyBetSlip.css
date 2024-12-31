@@ -10,102 +10,15 @@
   overflow: visible !important;
 }
 
-.finish-modifybet-slip-headers,
-.finish-modifybet-slip {
-  display: grid;
-  grid-template-columns:
-    minmax(150px, 1fr) minmax(100px, 1fr) minmax(120px, 1fr)
-    40px;
-  gap: 8px;
-
-  padding: 8px 0;
-  color: var(--secondary-xlight);
-  /* font-size: 0.925em; */
-  align-items: center;
-
-  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
-  text-transform: capitalize;
-
-  @media screen and (max-width: 581px) {
-    grid-template-columns:
-      minmax(80px, 1fr) minmax(80px, 1fr) minmax(80px, 0.5fr)
-      40px;
-  }
-}
-
-.modifybet-slip-odds,
 .modifybet-odds {
   display: none;
 }
 
-.modifybet-slip-match {
-  gap: 4px;
-  display: flex;
-  flex-direction: column;
-}
-
-.modifybet-match,
-.modifybet-slip-match {
+.modifybet-match {
   padding-left: 8px;
 }
 
-.modifybet-slip-selection .bet-selection {
-  text-transform: none;
-  position: relative;
-
-  & a:hover {
-    cursor: pointer;
-  }
-}
-
-/* Tooltip styles */
-.tooltip-container {
-  position: static;
-  display: inline-block;
-}
-
-.tooltip-trigger {
-  all: unset;
-  padding: 4px;
-  cursor: pointer;
-}
-
-.tooltip-content {
-  position: fixed;
-  background-color: var(--primary-50);
-  padding: 6px 12px;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
-
-  /* We'll position it using JavaScript for better accuracy */
-  transform: translate(-50%, -100%);
-  margin-top: -8px;
-
-  /* Animation */
-  animation: tooltipFade 0.2s ease-out;
-  pointer-events: none;
-}
-
-.tooltip-text {
-  white-space: nowrap;
-  color: #333;
-  font-size: var(--font-xsmall);
-}
-
-@keyframes tooltipFade {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -90%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -100%);
-  }
-}
-
-.modifybet-more,
-.modifybet-slip-more {
+.modifybet-more {
   display: flex;
   justify-content: center;
 }
@@ -117,40 +30,4 @@
 .finish-modifybet-slip {
   background-color: rgba(0, 0, 0, 0.1);
   font-size: var(--font-smaller);
-}
-
-.modifybet-result-inputs {
-  height: 100%;
-  display: flex;
-}
-
-.modifybet-result-fields-betbuilder {
-  align-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  justify-content: space-around;
-}
-
-.modifybet-result-fields {
-  gap: 4px;
-  display: flex;
-  flex-direction: column;
-}
-
-.modifybet-result-fields input,
-.modifybet-result-fields-betbuilder input {
-  width: 3rem;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  padding: 4px 6px;
-
-  background-color: rgba(43, 98, 238, 0.5);
-
-  text-align: center;
-}
-
-.modifybet-result-fields-betbuilder input {
-  width: 6rem;
 }

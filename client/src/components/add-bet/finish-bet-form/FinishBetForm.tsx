@@ -9,11 +9,12 @@ import {
 } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
-import { addNewBet } from "../../../reducers/betReducer";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
 import { Bookmaker } from "../../../utils/enums";
+import { scrollToTop } from "../../../utils/helperFunctions";
 import { Bet } from "../../../utils/types";
 import { FinishBetButtons } from "../../index";
 import { getFinalBetType, initialBetValues } from "../betUtils";
@@ -32,10 +33,11 @@ export const FinishBetForm = ({
   setModifyIndex,
 }: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
+  const [addNewBet, { isLoading }] = useAddNewBetMutation();
 
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
@@ -53,49 +55,53 @@ export const FinishBetForm = ({
     }));
   };
 
-  const addBet = (e: SyntheticEvent) => {
+  // Adds new bet to the list of bets
+  const addBet = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     const finalType = getFinalBetType(myBet.betDetails);
-    const updatedType = {
+    // TODO: ID comes from the backend and userId from logged user
+    const betToSave = {
       ...myBet,
       bet_final_type: finalType,
+      id: uuidv4(),
+      user_id: 1,
     };
 
-    dispatch(addNewBet(updatedType));
-    setMyBet(initialBetValues);
-    window.scrollTo({ top: 0 });
-    navigate("/bets");
+    try {
+      await addNewBet(betToSave).unwrap();
+      setMyBet(initialBetValues);
+      scrollToTop();
+      navigate("/bets");
+    } catch (error: unknown) {
+      console.error("Failes to add new bet", error);
+    }
   };
 
   // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend
-
   // TODO2: Tipper default value username
-
-  console.log("myBet", myBet);
-  console.log("typeee", getFinalBetType(myBet.betDetails));
 
   return (
     <form className="finishbet-form" onSubmit={addBet}>
       <SportInput
         onChange={handleSelectChange}
         value={myBet.sport}
-        disabled={addStake || modifyIndex !== null}
+        disabled={addStake || modifyIndex !== null || isLoading}
       />
       <BookmakerInput
         onChange={handleSelectChange}
-        value={myBet.bookmaker ?? Bookmaker.Other}
-        disabled={addStake || modifyIndex !== null}
+        value={myBet.bookmaker ?? Bookmaker.Unibet}
+        disabled={addStake || modifyIndex !== null || isLoading}
       />
       <TipperInput
         onChange={handleTextInput}
         value={myBet.tipper}
-        disabled={addStake || modifyIndex !== null}
+        disabled={addStake || modifyIndex !== null || isLoading}
       />
       <NotesInput
         onChange={handleTextInput}
         value={myBet.notes ?? ""}
-        disabled={addStake || modifyIndex !== null}
+        disabled={addStake || modifyIndex !== null || isLoading}
       />
       <FinishBetButtons
         myBet={myBet}

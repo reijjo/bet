@@ -40,14 +40,11 @@ export const AddBetForm = ({
     setErrors,
     handleBetInput,
     handleSelectChange,
-    // modifyIndex,
-    // setModifyIndex,
   } = useAddBetForm();
 
   // Checks what bet to modify
   useEffect(() => {
     if (modifyIndex !== null) {
-      console.log("MODIFTYYYY INDEEX", modifyIndex);
       setAddBetDetails(myBet.betDetails[modifyIndex]);
     }
   }, [setAddBetDetails, modifyIndex, myBet.betDetails]);
@@ -93,12 +90,8 @@ export const AddBetForm = ({
     scrollDown();
   };
 
-  console.log("addbetdetails", addBetDetails);
-  console.log("errors", errors);
-
   // TODO: Add different input field for tulosveto and moniveto
   // TODO2: Add moneyline bettype?a<§
-  // TODO3: Add betbuilder input in ladderchallenge
 
   return (
     <div className="addbet-container">
@@ -107,19 +100,16 @@ export const AddBetForm = ({
         <MatchInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
         />
         <TypeInput
           handleSelectChange={handleSelectChange}
           details={addBetDetails}
           disabled={disabled}
-          // modifyIndex={modifyIndex}
         />
         <FreeLiveInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
         />
         {isBetBuilderType(addBetDetails.bet_type) ? (
@@ -136,7 +126,6 @@ export const AddBetForm = ({
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
-            modifyIndex={modifyIndex}
             disabled={disabled}
             error={errors}
             setError={setErrors}
@@ -145,7 +134,6 @@ export const AddBetForm = ({
         <OddsInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
           error={errors}
           setError={setErrors}
@@ -153,7 +141,6 @@ export const AddBetForm = ({
         <DateInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
-          modifyIndex={modifyIndex}
           disabled={disabled}
         />
         <div className="add-bet-buttons">

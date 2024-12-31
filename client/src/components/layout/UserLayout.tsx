@@ -15,9 +15,6 @@ export const UserLayout = () => {
 
   return (
     <main className="main-logged">
-      {/* {modalState.isModalOpen && (
-        <Modal>{modalState.modifyBetModal && <ModifyBetModal />}</Modal>
-      )} */}
       {isModifyBetModalOpen.isOpen && (
         <Modal>
           <ModifyBetModal />
@@ -28,8 +25,8 @@ export const UserLayout = () => {
         {sidebarState.sidebar && <Modal />}
         <NavbarUser />
         <Outlet />
+        <Footer />
       </div>
-      <Footer />
     </main>
   );
 };

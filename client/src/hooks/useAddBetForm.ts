@@ -3,16 +3,18 @@ import { ChangeEvent, useState } from "react";
 import {
   getInputValue,
   initialBetDetailValues,
+  initialBetValues,
 } from "../components/add-bet/betUtils";
 import { scrollToTop } from "../utils/helperFunctions";
-import { BetDetails } from "../utils/types";
+import { Bet, BetDetails } from "../utils/types";
 
 export const useAddBetForm = () => {
+  const [myBet, setMyBet] = useState<Bet>(initialBetValues);
   const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
     initialBetDetailValues,
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [modifyIndex, setModifyIndex] = useState<number | null>(null); // REMOVE THIS??
+  const [modifyIndex, setModifyIndex] = useState<number | null>(null);
 
   // Handles all types of bet inputs
   const handleBetInput = (
@@ -33,7 +35,6 @@ export const useAddBetForm = () => {
     }));
   };
 
-  // RENMOVE THIS ??
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);
     scrollToTop();
@@ -49,5 +50,7 @@ export const useAddBetForm = () => {
     modifyIndex,
     setModifyIndex,
     handleModifyBet,
+    myBet,
+    setMyBet,
   };
 };

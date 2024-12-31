@@ -1,22 +1,10 @@
-import { useState } from "react";
-
 import { useAddBetForm } from "../../hooks/useAddBetForm";
-import { scrollToTop } from "../../utils/helperFunctions";
-import { Bet } from "../../utils/types";
 import { AddBetForm } from "../index";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
-import { initialBetValues } from "./betUtils";
 
 export const AddBet = () => {
-  const [myBet, setMyBet] = useState<Bet>(initialBetValues);
-  // const [modifyIndex, setModifyIndex] = useState<number | null>(null);
-  const { modifyIndex, setModifyIndex } = useAddBetForm();
-
-  const handleModifyBet = (index: number) => {
-    console.log("INDEEEEXXXX", index);
-    setModifyIndex(index);
-    scrollToTop();
-  };
+  const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
+    useAddBetForm();
 
   console.log("myBet", myBet);
 

@@ -1,0 +1,4 @@
+.loading-component {
+  display: grid;
+  place-items: center;
+}

@@ -31,6 +31,7 @@ export const initialBetValues = {
   bet_final_type: BetType.Single,
   sport: SportLeague.Other,
   betDetails: [],
+  user_id: 0,
 };
 
 // Checks the type of the input

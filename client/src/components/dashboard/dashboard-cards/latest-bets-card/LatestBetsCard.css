@@ -4,8 +4,8 @@
   grid-row: 3 / 4;
   grid-column: 5 / 13;
 
-  min-height: 10rem;
-  height: max-content;
+  min-height: 1fr;
+  height: auto;
 
   border: 1px solid rgb(255, 255, 255, 0.5);
   border-radius: 8px;
