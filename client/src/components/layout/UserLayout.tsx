@@ -20,6 +20,7 @@ export const UserLayout = () => {
           <ModifyBetModal />
         </Modal>
       )}
+
       <Sidebar />
       <div className="main-dashboard">
         {sidebarState.sidebar && <Modal />}

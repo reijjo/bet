@@ -3,8 +3,13 @@ import "./FinishModify.css";
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 
 import { useEditBetMutation } from "../../../../features/api/betsApiSlice";
-import { resetModal } from "../../../../features/modalSlice";
-import { useAppDispatch } from "../../../../store/hooks";
+import {
+  closeConfirmModal,
+  openConfirmModal,
+  resetModal,
+} from "../../../../features/modalSlice";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
 import { Bet } from "../../../../utils/types";
 import {
   BookmakerInput,
@@ -15,6 +20,7 @@ import {
 import { initialBetValues } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
 import { Error } from "../../fallback/Error";
+import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";
 
 type FinishModifyProps = {
@@ -29,6 +35,9 @@ export const FinishModify = ({
   result,
 }: FinishModifyProps) => {
   const [editBet, { isLoading, isError, error }] = useEditBetMutation();
+  const { isConfirmModalOpen } = useAppSelector(
+    (state: RootState) => state.modal,
+  );
   const dispatch = useAppDispatch();
 
   const handleTextInput = (
@@ -69,22 +78,22 @@ export const FinishModify = ({
     }
   };
 
-  // const handleCancel = () => {
-  //   dispatch(resetModal());
-  // };
+  const handleCancel = () => {
+    dispatch(closeConfirmModal());
+  };
 
   const deleteBet = (id: number | string) => {
     console.log("delete bet id", id);
-    // dispatch(openConfirmModal(id));
+    dispatch(openConfirmModal());
   };
 
-  // const confirmDelete = () => {
-  //   if (myBet.id) {
-  //     dispatch(deleteBetbyId(myBet.id));
-  //     dispatch(resetModal());
-  //     setMyBet(initialBetValues);
-  //   }
-  // };
+  const confirmDelete = () => {
+    if (myBet.id) {
+      // dispatch(deleteBetbyId(myBet.id));
+      // dispatch(resetModal());
+      setMyBet(initialBetValues);
+    }
+  };
 
   // Returns
   if (isError) return <Error error={error} />;
@@ -111,12 +120,12 @@ export const FinishModify = ({
           />
         </div>
       </form>
-      {/* {confirmModal && (
+      {isConfirmModalOpen && (
         <ModalConfirm
           handleCancel={handleCancel}
           handleConfirm={confirmDelete}
         />
-      )} */}
+      )}
     </>
   );
 };
