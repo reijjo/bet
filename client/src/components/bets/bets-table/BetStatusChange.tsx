@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEditBetMutation } from "../../../features/api/betsApiSlice";
 import { BetStatus } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
+import { Error } from "../../common/fallback/Error";
 
 type BetStatusChangeProps = {
   bet: Bet;
@@ -27,7 +28,7 @@ const endedBetBallColor = (value: BetStatus) => {
 
 export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [updateTodo, { isLoading }] = useEditBetMutation();
+  const [updateTodo, { isLoading, isError, error }] = useEditBetMutation();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +64,7 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const options = Object.values(BetStatus).filter((op) => op !== bet.status);
 
   // Returns
-  if (isLoading) return <td className="table-status">...</td>;
+  if (isError) return <Error error={error} />;
 
   return (
     <td className="table-status">
@@ -91,7 +92,11 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
               <a
                 key={op}
                 className="bet-status-options-list status-with-ball"
-                onClick={() => changeStatus(op)}
+                onClick={() => !isLoading && changeStatus(op)}
+                style={{
+                  opacity: isLoading ? 0.5 : 1,
+                  cursor: isLoading ? "not-allowed" : "pointer",
+                }}
               >
                 <div
                   className={`bet-status-ball ${endedBetBallColor(op)}`}

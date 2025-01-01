@@ -37,6 +37,13 @@ export const betApiSlice = createApi({
       }),
       invalidatesTags: (_result, _error, { id }) => [{ type: "Bet", id }],
     }),
+    deleteBet: builder.mutation<void, number | string>({
+      query: (id) => ({
+        url: `/bets/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (_result, _error, id) => [{ type: "Bet", id }],
+    }),
   }),
 });
 
@@ -45,4 +52,5 @@ export const {
   useGetBetByIdQuery,
   useAddNewBetMutation,
   useEditBetMutation,
+  useDeleteBetMutation,
 } = betApiSlice;

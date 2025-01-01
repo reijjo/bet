@@ -2,7 +2,10 @@ import "./FinishModify.css";
 
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 
-import { useEditBetMutation } from "../../../../features/api/betsApiSlice";
+import {
+  useDeleteBetMutation,
+  useEditBetMutation,
+} from "../../../../features/api/betsApiSlice";
 import {
   closeConfirmModal,
   openConfirmModal,
@@ -17,7 +20,7 @@ import {
   SportInput,
   TipperInput,
 } from "../../../add-bet";
-import { initialBetValues } from "../../../add-bet/betUtils";
+import { getFinalBetType, initialBetValues } from "../../../add-bet/betUtils";
 import { Button } from "../../button/Button";
 import { Error } from "../../fallback/Error";
 import { ModalConfirm } from "../confirm/ModalConfirm";
@@ -34,7 +37,14 @@ export const FinishModify = ({
   setMyBet,
   result,
 }: FinishModifyProps) => {
-  const [editBet, { isLoading, isError, error }] = useEditBetMutation();
+  const [
+    editBet,
+    { isLoading: isEditing, isError: editError, error: editErrorDetails },
+  ] = useEditBetMutation();
+  const [
+    deleteBet,
+    { isLoading: isDeleting, isError: deleteError, error: deleteErrorDetails },
+  ] = useDeleteBetMutation();
   const { isConfirmModalOpen } = useAppSelector(
     (state: RootState) => state.modal,
   );
@@ -59,9 +69,11 @@ export const FinishModify = ({
 
   const finishBet = async (e: SyntheticEvent) => {
     e.preventDefault();
+    const finalType = getFinalBetType(myBet.betDetails);
 
     const updatedBet = {
       ...myBet,
+      bet_final_type: finalType,
       betDetails: myBet.betDetails.map((bet, index) => ({
         ...bet,
         ...result[index],
@@ -82,21 +94,22 @@ export const FinishModify = ({
     dispatch(closeConfirmModal());
   };
 
-  const deleteBet = (id: number | string) => {
+  const deletingBet = (id: number | string) => {
     console.log("delete bet id", id);
     dispatch(openConfirmModal());
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (myBet.id) {
-      // dispatch(deleteBetbyId(myBet.id));
-      // dispatch(resetModal());
+      await deleteBet(myBet.id).unwrap();
+      dispatch(resetModal());
       setMyBet(initialBetValues);
     }
   };
 
   // Returns
-  if (isError) return <Error error={error} />;
+  if (editError) return <Error error={editErrorDetails} />;
+  if (deleteError) return <Error error={deleteErrorDetails} />;
 
   return (
     <>
@@ -110,13 +123,13 @@ export const FinishModify = ({
           <Button
             type="submit"
             className="btn btn-filled"
-            children={isLoading ? "Saving..." : "Save Changes"}
+            children={isEditing ? "Saving..." : "Save Changes"}
           />
           <Button
             type="button"
             className="btn btn-delete"
-            children="Delete Bet"
-            onClick={() => deleteBet(myBet.id as number | string)}
+            children={isDeleting ? "Deleting..." : "Delete Bet"}
+            onClick={() => deletingBet(String(myBet.id))}
           />
         </div>
       </form>
