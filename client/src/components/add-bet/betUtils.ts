@@ -50,11 +50,9 @@ export const getFinalBetType = (details: BetDetails[]): BetType => {
   let finalType = BetType.Single;
 
   if (
-    // details.length === 1 ||
-    // (details.length > 1 && details[0].bet_type === BetType.Moniveto) ||
-    // (details.length > 1 && details[0].bet_type === BetType.Tuplaus)
-    details.length === 1 &&
-    isBetBuilderType(details[0].bet_type)
+    details.length === 1 ||
+    (details.length > 1 && details[0].bet_type === BetType.Moniveto) ||
+    (details.length > 1 && details[0].bet_type === BetType.Tuplaus)
   ) {
     finalType = details[0].bet_type;
   } else if (details.length === 2) {

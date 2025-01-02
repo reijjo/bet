@@ -51,3 +51,10 @@
 .login-p {
   font-size: var(--font-smaller);
 }
+
+.login-page {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 32px 0;
+}

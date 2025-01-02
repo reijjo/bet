@@ -9,6 +9,7 @@ body {
   color: var(--text);
   background: url("./assets/images/circle-bg.svg") no-repeat center / cover;
   /* background: linear-gradient(to bottom, var(--background), var(--background2)); */
+  /* background-color: var(--primary); */
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -59,7 +60,7 @@ body {
 
 h1 {
   /* font-size: clamp(32px, 5vw, 48px); */
-  font-size: 5rem;
+  font-size: 4rem;
   @media only screen and (max-width: 800px) {
     /* 8 grids */
     font-size: 4rem;
@@ -113,14 +114,14 @@ a {
   /* Colors */
 
   /* Primary */
-  --primary: #2b2b91;
+  --primary: rgb(43, 43, 145);
   --primary-50: rgb(237, 242, 255);
   --primary-100: #dee7ff;
   --primary-200: #c3d2ff;
   --primary-300: #9eb1ff;
-  --primary-400: #788aff;
+  --primary-400: hsl(232, 100%, 74%);
   --primary-500: #5962fb;
-  --primary-600: #3e3bf0;
+  --primary-600: rgb(62, 59, 240);
   --primary-700: #342dd5;
   --primary-800: #2b28ab;
   --primary-900: #2b2b91;
@@ -242,4 +243,6 @@ a {
   --shadow-white: 0px 0px 64px rgba(255, 255, 255, 0.3);
   --shadow-test: 0 0 4px rgba(255, 255, 255, 0.05),
     0 0 16px rgba(255, 255, 255, 0.1), 0 4px 64px rgba(255, 255, 255, 0.05);
+
+  --shadow-l-primary: 0px 4px 64px rgba(62, 59, 240, 0.5);
 }
