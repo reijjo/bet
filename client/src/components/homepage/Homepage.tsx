@@ -3,7 +3,12 @@ import "./Homepage.css";
 import { useNavigate } from "react-router-dom";
 
 import bb from "../../assets/images/bb-crop.jpeg";
+import add1 from "../../assets/images/homepage/add1.png";
+import add2 from "../../assets/images/homepage/add2.png";
+import bets from "../../assets/images/homepage/bets.png";
+import dash from "../../assets/images/homepage/dash.png";
 import { Button } from "../common/button/Button";
+import { FeatureCard } from "./FeatureCard";
 
 export const Homepage = () => {
   const navigate = useNavigate();
@@ -11,7 +16,7 @@ export const Homepage = () => {
   const spotsLeft = "99";
 
   return (
-    <div className="wrapper">
+    <div className="wrapper flex-wrapper">
       <div className="hero-section">
         <div className="hero-text">
           <h5>Only {spotsLeft} spots left for the beta!</h5>
@@ -38,6 +43,30 @@ export const Homepage = () => {
         <div className="hero-image">
           <img src={bb} alt="hero-bb" />
         </div>
+      </div>
+      <h2>Contains at least these Features:</h2>
+      <div className="home-features">
+        <FeatureCard
+          highlighted="Dashboard"
+          text="shows a recap of your betting."
+          image={dash}
+          extraClass="span2"
+        />
+        <FeatureCard
+          highlighted="Add Bet"
+          text="has different bet types and leagues to choose from. "
+          image={add1}
+        />
+        <FeatureCard
+          text="You can also add a single bet or a parlay."
+          image={add2}
+        />
+        <FeatureCard
+          highlighted="Bets"
+          text="section shows all your bets in one place."
+          image={bets}
+          extraClass="span2"
+        />
       </div>
     </div>
   );
