@@ -60,7 +60,7 @@
 
   text-transform: capitalize;
   letter-spacing: 1px;
-  font-size: 1.125em;
+  font-size: 1rem;
 
   a {
     display: flex;

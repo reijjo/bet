@@ -3,9 +3,17 @@ import "./NavbarUser.css";
 import { useEffect, useRef, useState } from "react";
 
 import {
+  faArrowRightFromBracket,
+  faBank,
   faBars,
   faCaretDown,
   faCaretUp,
+  faChartLine,
+  faGear,
+  faList,
+  faPenToSquare,
+  faTableColumns,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -70,11 +78,11 @@ export const NavbarUser = () => {
                 />
               </div>
               <a className="nav-profile" onClick={toggleUserMenu}>
-                <p>{USER}</p>
+                <p className="nav-profile-username">{USER}</p>
                 {!isUserMenuOpen ? (
-                  <FontAwesomeIcon icon={faCaretDown} />
+                  <FontAwesomeIcon icon={faCaretDown} className="caret-icon" />
                 ) : (
-                  <FontAwesomeIcon icon={faCaretUp} />
+                  <FontAwesomeIcon icon={faCaretUp} className="caret-icon" />
                 )}
               </a>
             </div>
@@ -87,27 +95,38 @@ export const NavbarUser = () => {
                 <ul>
                   <li className="user-menu-item">
                     <Link to="/dash">Dashboard</Link>
+                    <FontAwesomeIcon icon={faTableColumns} />
                   </li>
                   <li className="user-menu-item">
-                    <a onClick={() => console.log("something")}>Analytics</a>
+                    <Link to="/analytics">Analytics</Link>
+                    <FontAwesomeIcon icon={faChartLine} />
+                  </li>
+                  <li className="user-menu-item">
+                    <Link to="/bank">Transactions</Link>
+                    <FontAwesomeIcon icon={faBank} />
                   </li>
                   <Divider />
                   <li className="user-menu-item">
                     <Link to="/add-bet">Add bet</Link>
+                    <FontAwesomeIcon icon={faPenToSquare} />
                   </li>
                   <li className="user-menu-item">
                     <Link to="/bets">Bets</Link>
+                    <FontAwesomeIcon icon={faList} />
                   </li>
                   <Divider />
                   <li className="user-menu-item">
                     <Link to="/">Profile</Link>
+                    <FontAwesomeIcon icon={faUser} />
                   </li>
                   <li className="user-menu-item">
                     <Link to="/">Settings</Link>
+                    <FontAwesomeIcon icon={faGear} />
                   </li>
                   <Divider />
                   <li className="user-menu-logout">
                     <a onClick={() => console.log("logout")}>Logout</a>
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   </li>
                 </ul>
               </div>

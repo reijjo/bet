@@ -61,7 +61,7 @@ export const Sidebar = () => {
           link="/bank"
           icon={faBank}
           iconSize="xs"
-          linkText="Deposit/Withdraw"
+          linkText="Deposit / Withdraw"
           onClick={handleCloseSidebar}
         />
         <LinkWithIcon

@@ -24,6 +24,6 @@ describe("Sidebar", async () => {
 
   test("finds all links in the sidebar", async () => {
     const links = screen.getAllByRole("link");
-    expect(links).toHaveLength(8);
+    expect(links).toHaveLength(9);
   });
 });

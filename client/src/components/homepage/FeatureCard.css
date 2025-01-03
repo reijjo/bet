@@ -4,9 +4,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   font-size: var(--font-larger);
   margin-top: auto;
+
+  padding: 12px 24px;
+
+  /* & figcaption {
+    backdrop-filter: blur(16px);
+    width: max-content;
+  } */
 
   & span {
     color: var(--secondary);
@@ -19,8 +27,4 @@
     border-radius: 16px;
     box-shadow: 0 8px 32px hsla(232, 100%, 74%, 0.2);
   }
-}
-
-.span2 {
-  grid-column: 1 / span 2;
 }

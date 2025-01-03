@@ -61,10 +61,12 @@
   padding: 0 8px;
 
   gap: 0.5rem;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.nav-profile:has(:hover) .nav-profile-username,
+.nav-profile:has(:hover) .caret-icon {
+  color: var(--secondary-300);
+  cursor: pointer;
 }
 
 .user-img-wrapper {
@@ -108,6 +110,7 @@
   border-radius: 0 0 8px 8px;
   overflow: hidden;
   padding-top: 16px;
+  font-size: var(--font-small);
 
   box-shadow:
     2px 2px 2px hsla(228, 100%, 81%, 0.1),
@@ -133,12 +136,15 @@
 
   & li {
     list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 16px;
 
     & a {
       width: 100%;
       height: 100%;
       display: flex;
-      padding: 12px 16px;
     }
   }
 }
