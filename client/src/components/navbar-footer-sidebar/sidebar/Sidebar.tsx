@@ -2,6 +2,7 @@ import "./Sidebar.css";
 
 import {
   faArrowRightFromBracket,
+  faBank,
   faChartLine,
   faGear,
   faList,
@@ -13,13 +14,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-import { closeSidebar } from "../../../reducers/sidebarReducer";
+import { closeSidebar } from "../../../features/sidebarSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
-  const modalOpen = useAppSelector((state) => state.modal.modalOpen);
+  const modalOpen = useAppSelector((state) => state.modal.isModalOpen);
   const dispatch = useAppDispatch();
 
   const handleCloseSidebar = () => {
@@ -54,6 +55,13 @@ export const Sidebar = () => {
           icon={faChartLine}
           iconSize="xs"
           linkText="Analytics"
+          onClick={handleCloseSidebar}
+        />
+        <LinkWithIcon
+          link="/bank"
+          icon={faBank}
+          iconSize="xs"
+          linkText="Deposit/Withdraw"
           onClick={handleCloseSidebar}
         />
         <LinkWithIcon

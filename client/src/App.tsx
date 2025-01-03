@@ -10,6 +10,7 @@ import {
   Register,
   UserLayout,
 } from "./components";
+import { UnderCons } from "./components/common/fallback/UnderCons";
 import { useAppSelector } from "./store/hooks";
 import { RootState } from "./store/store";
 
@@ -27,6 +28,8 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/bank" element={<UnderCons />} />
+          <Route path="/analytics" element={<UnderCons />} />
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="*" element={<h1>404</h1>} />
         </Route>

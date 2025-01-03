@@ -34,15 +34,13 @@ export const PieChartDashboard = ({
     },
     {
       name: "Void",
-      value:
-        myBets.filter((b) => b.status === "Void").length +
-        myBets.filter((b) => b.status === "Push").length,
+      value: myBets.filter((b) => b.status === "Void").length,
     },
   ];
 
   const colors = [
     "var(--ok-light)",
-    "var(--error-light)",
+    "var(--error-xlight)",
     "var(--warning-medium)",
   ];
 
@@ -56,7 +54,7 @@ export const PieChartDashboard = ({
           innerRadius={"80%"}
           outerRadius={"100%"}
           fill="#8884d8"
-          paddingAngle={1}
+          paddingAngle={2}
           dataKey="value"
           stroke="none"
           onMouseEnter={(entry) => onHover(entry)}

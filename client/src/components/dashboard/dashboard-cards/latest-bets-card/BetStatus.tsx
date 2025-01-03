@@ -32,7 +32,7 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
       return "bet-status-won";
     } else if (bet.status === "Lost" || bet.status === "Half Lost") {
       return "bet-status-lost";
-    } else if (bet.status === "Push" || bet.status === "Void") {
+    } else if (bet.status === "Void") {
       return "bet-status-void";
     } else {
       return "bet-status-pending";
@@ -58,7 +58,7 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
       return (combinedOdds * Number(bet.stake) - Number(bet.stake)).toFixed(2);
     } else if (bet.status === "Lost" || bet.status === "Half Lost") {
       return Number(bet.stake).toFixed(2);
-    } else if (bet.status === "Push" || bet.status === "Void") {
+    } else if (bet.status === "Void") {
       return "0";
     } else {
       return "... ";

@@ -12,8 +12,8 @@ import { Link } from "react-router-dom";
 
 import { Divider } from "../../";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
+import { openSidebar } from "../../../features/sidebarSlice";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
-import { openSidebar } from "../../../reducers/sidebarReducer";
 import { useAppDispatch } from "../../../store/hooks";
 
 const USER = "TestUser";
@@ -21,7 +21,6 @@ const USER = "TestUser";
 export const NavbarUser = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  // const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const { isMobile } = useScreenWidth();
 
   const dispatch = useAppDispatch();

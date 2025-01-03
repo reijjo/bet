@@ -54,7 +54,7 @@
 }
 
 .bet-profit-lost {
-  color: var(--error-light);
+  color: var(--error-xlight);
 }
 
 .bet-profit-won {

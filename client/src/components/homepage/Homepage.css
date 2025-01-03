@@ -1,9 +1,10 @@
 .hero-section {
   width: calc(12 * 8.33%);
-  height: 80%;
+  min-height: 80%;
+  height: auto;
   position: relative;
   margin: 0 auto;
-  padding-top: 24px;
+  margin-top: 24px;
   border-radius: 16px;
   overflow: hidden;
   /* border: 1px solid red; */
@@ -22,6 +23,10 @@
   /* background-image: url("../../assets/images/basketball-wide.jpeg");
   background-position: center;
   background-size: cover; */
+
+  @media screen and (max-width: 1100px) {
+    padding: 24px 0;
+  }
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */
