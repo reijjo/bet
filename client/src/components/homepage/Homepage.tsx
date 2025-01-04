@@ -1,11 +1,17 @@
 import "./Homepage.css";
 
+import {
+  faChartLine,
+  faCheck,
+  faDumbbell,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
 import bb from "../../assets/images/homepage/bb-crop.jpeg";
-// import bets from "../../assets/images/homepage/bets.png";
+import bets from "../../assets/images/homepage/bets.png";
 import dash from "../../assets/images/homepage/dash.png";
 import { Button } from "../common/button/Button";
 import { FeatureCard } from "./FeatureCard";
@@ -48,7 +54,7 @@ export const Homepage = () => {
       </section>
       <section className="home-features-section">
         {/* <h2 className="wrapper-styles">Check the Features:</h2> */}
-        <div className="home-features wrapper-styles">
+        <div className="home-features">
           <FeatureCard
             highlighted="Dashboard"
             text="shows a recap of your betting."
@@ -72,18 +78,36 @@ export const Homepage = () => {
               <img src={add2} alt="Add Bet" width="100%" />
             </figure>
           </div>
-
-          {/* <FeatureCard
-            highlighted="Bets"
-            text="section shows all your bets in one place."
-            image={bets}
-            extraClass="span2"
-          /> */}
         </div>
       </section>
       <section className="home-features-why">
         <div className="why-to-register wrapper-styles">
           <h2>Why you should register?</h2>
+          <div className="why-to-register-boxes">
+            <div className="why-to-register-box">
+              <FontAwesomeIcon icon={faCheck} size="2x" />
+              <p>Keep track of your bets</p>
+            </div>
+            <div className="why-to-register-box">
+              <FontAwesomeIcon icon={faChartLine} size="2x" />
+              <p>Analytics improves your betting</p>
+            </div>
+            <div className="why-to-register-box">
+              <FontAwesomeIcon icon={faDumbbell} size="2x" />
+              <p>You learn your betting strenghts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="home-features-section">
+        <div className="home-features">
+          <FeatureCard
+            highlighted="Bets"
+            text="section shows all your bets in one place."
+            image={bets}
+            imageWidth="80%"
+            extraClass="span2"
+          />
         </div>
       </section>
     </div>

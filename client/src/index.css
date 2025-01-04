@@ -241,6 +241,8 @@ a {
   --shadow-xl: 0px 8px 64px hsla(228, 100%, 81%, 0.2);
 
   --shadow-white: 0px 0px 64px rgba(255, 255, 255, 0.3);
+  --shadow-primary: 0px 0px 64px rgba(62, 59, 240, 0.3);
+
   --shadow-test: 0 0 4px rgba(255, 255, 255, 0.05),
     0 0 16px rgba(255, 255, 255, 0.1), 0 4px 64px rgba(255, 255, 255, 0.05);
 

@@ -40,7 +40,8 @@ export const PieChartDashboard = ({
 
   const colors = [
     "var(--ok-light)",
-    "var(--error-xlight)",
+    // "var(--error-xlight)",
+    "rgb(241, 182, 167)",
     "var(--warning-medium)",
   ];
 
