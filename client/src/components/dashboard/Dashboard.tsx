@@ -1,6 +1,8 @@
 import "./Dashboard.css";
 
 import { useGetBetsQuery } from "../../features/api/betsApiSlice";
+import { Error } from "../common/fallback/Error";
+import { Loading } from "../common/fallback/Loading";
 import {
   LatestBetsCard,
   MiniSummaryCards,
@@ -10,10 +12,12 @@ import {
 } from "./dashboard-cards";
 
 export const Dashboard = () => {
-  // const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
-  const { data: allBets = [] } = useGetBetsQuery();
+  const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
 
   console.log("BETS", allBets);
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
 
   return (
     <div className="wrapper dashboard-grid">
