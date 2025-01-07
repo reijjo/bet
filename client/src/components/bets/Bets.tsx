@@ -71,6 +71,7 @@ export const Bets = () => {
           onClick={() => navigate("/add-bet")}
           width="max-content"
           margin="0 0 0 auto"
+          height="max-content"
         />
         <SelectedSort
           currentSort={currentSort}
