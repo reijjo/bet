@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development bun --watch run src/index.ts",
-    "clean": "rm -rf node_modules .bun bun.lockb dist"
+    "clean": "rm -rf node_modules .bun bun.lockb **/dist data",
+		"clean:db": "rm -rf data"
   },
   "devDependencies": {
     "@types/bun": "latest",

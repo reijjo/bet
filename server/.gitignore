@@ -175,4 +175,5 @@ dist
 .DS_Store
 
 # Database stuff
-/database
+/data
+**/servers.json

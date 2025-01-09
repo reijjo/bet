@@ -1,0 +1,15 @@
+{
+	"Servers": {
+		"1": {
+			"Name": "${DB_NAME}",
+			"Group": "Vetoo",
+			"Host": "{DB_HOST}",
+			"Port": "${DB_PORT}",
+			"MaintenanceDB": "${DB_MAINTENANCE}",
+			"Username": "${POSTGRES_USER}",
+			"Password": "${POSTGRES_PASSWORD}",
+			"SSLMode": "prefer",
+			"Comment": "Repen jutut!"
+		}
+	}
+}
