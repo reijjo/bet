@@ -15,7 +15,9 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4
+    build:
+      context: .
+      dockerfile: Dockerfile.pgadmin
     depends_on:
       - postgres
     ports:
@@ -23,7 +25,13 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_MAINTENANCE=${DB_MAINTENANCE}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - ./src/utils/db/config/servers.json:/pgadmin4/servers.json
+      - ./src/utils/db/config/servers.template.json:/tmp/servers.template.json
       - ./data/pgadmin:/var/lib/pgadmin
     restart: unless-stopped

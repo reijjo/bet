@@ -1,0 +1,13 @@
+FROM dpage/pgadmin4
+
+# Switch to root user to perform package installation
+USER root
+
+# Install gettext for envsubst
+RUN apk update && apk add --no-cache gettext
+
+# Copy the template file into the container
+COPY src/utils/db/config/servers.template.json /tmp/servers.template.json
+
+# Command to run on container start: perform envsubst before entrypoint.sh
+ENTRYPOINT [ "sh", "-c", "envsubst < /tmp/servers.template.json > /pgadmin4/servers.json && /entrypoint.sh" ]
