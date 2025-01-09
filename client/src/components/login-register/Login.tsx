@@ -30,7 +30,7 @@ export const Login = () => {
         margin="0 auto"
         alignSelf="center"
         boxShadow="var(--shadow-test)"
-        gap="16px"
+        gap="1rem"
       >
         <form className="form-register">
           <p className="form-header">Login to track your bets.</p>
@@ -51,7 +51,11 @@ export const Login = () => {
             name="looginPasswd"
             id="loginPasswd"
             placeholder="Password..."
+            width="100%"
           />
+          <button className="none-styles form-input-text">
+            <p className="text-btn-styles">Forgot Password?</p>
+          </button>
           <Button
             type="submit"
             className="btn btn-filled"

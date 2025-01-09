@@ -2,7 +2,7 @@
 	"Servers": {
 		"1": {
 			"Name": "${DB_NAME}",
-			"Group": "Vetoo",
+			"Group": "Servers",
 			"Host": "${DB_HOST}",
 			"Port": 5432,
 			"MaintenanceDB": "${DB_MAINTENANCE}",
