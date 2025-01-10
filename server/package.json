@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_ENV=development bun --watch run src/index.ts",
     "clean": "rm -rf node_modules .bun bun.lockb **/dist data",
-		"clean:db": "rm -rf data"
+    "clean:db": "rm -rf data"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -21,6 +21,9 @@
     "colorette": "^2.0.20",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "helmet": "^8.0.0"
+    "helmet": "^8.0.0",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
   }
 }
