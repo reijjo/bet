@@ -4,7 +4,7 @@ import { blueBright, redBright } from "colorette";
 
 const { DATABASE_URL } = config
 
-const sequelize = new Sequelize(DATABASE_URL, {
+export const sequelize = new Sequelize(DATABASE_URL, {
 	retry: {
 		max: 3,
 		timeout: 3000
@@ -18,6 +18,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
 	dialectOptions: {
     connectTimeout: 10000,
   },
+
 	logging: false
 });
 

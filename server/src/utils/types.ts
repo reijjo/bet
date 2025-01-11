@@ -1,7 +1,7 @@
 import type { Bookmaker, BetStatus, BetType, SportLeague } from "./enums";
 
 export type Bet = {
-  id?: number | string;
+  id: number | string;
   user_id: number;
   stake: string | number;
   bookmaker: Bookmaker;
@@ -14,6 +14,7 @@ export type Bet = {
 };
 
 export type BetDetails = {
+	id: number
   date: string;
   home_team: string;
   away_team: string;
