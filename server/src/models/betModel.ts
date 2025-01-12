@@ -1,8 +1,21 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, type Optional } from "sequelize";
 import { sequelize } from "../utils/db/db";
 import { BetStatus, BetType, Bookmaker, SportLeague } from "../utils/enums";
+import type { Bet } from "../utils/types";
 
-class BetModel extends Model {}
+export interface BetCreation extends Optional<Bet, 'id'> {}
+
+export class BetModel extends Model<Bet, BetCreation> implements Bet {
+	declare id: number;
+	declare user_id: number;
+	declare stake: number;
+	declare bookmaker: Bookmaker;
+	declare tipper?: string;
+	declare status: BetStatus;
+	declare bet_final_type: BetType;
+	declare sport: SportLeague;
+	declare notes?: string;
+}
 
 BetModel.init(
 	{
@@ -22,7 +35,7 @@ BetModel.init(
 			// onDelete: 'CASCADE'
 		},
 		stake: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.DECIMAL(10, 2),
 			allowNull: false
 		},
 		bookmaker: {
@@ -55,5 +68,3 @@ BetModel.init(
 		modelName: 'Bet',
 	}
 )
-
-export { BetModel }

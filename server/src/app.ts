@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { errorHandler } from "./middleware/errorHandler";
 import { notFoundHandler } from "./middleware/notFoundHandler";
+import { betRouter } from "./routes/betRoute";
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(cors(corsOptions));
 app.get("/", (_req, res) => {
   res.send("hello todo");
 });
+
+app.use( "/api/bets", betRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

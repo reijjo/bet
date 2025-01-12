@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
+import { ValidationError } from "sequelize";
 
 interface CustomError extends Error {
 	statusCode?: number;
@@ -17,7 +18,11 @@ export const errorHandler = (error: CustomError, req: Request, res: Response, ne
 		// ...(Bun.env.NODE_ENV === 'development' && { stack: error.stack }),
 	}
 
-	console.error(`[Error] ${error.message}`, errorResponse);
+	if (error instanceof ValidationError) {
+		console.error(`[ValidationError] ${error.message}`, errorResponse);
+	} else {
+		console.error(`[Error] ${error.message}`, errorResponse);
+	}
 
 	res.status(statusCode).json(errorResponse);
 }

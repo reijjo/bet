@@ -1,7 +1,7 @@
 import { blueBright } from "colorette";
 import { sequelize } from "../utils/db/db";
-import { BetModel } from "./bet";
-import { BetDetailsModel } from "./betDetail";
+import { BetModel } from "./betModel";
+import { BetDetailsModel } from "./betDetailModel";
 
 BetModel.hasMany(BetDetailsModel, {
 	foreignKey: 'bet_id',
@@ -23,7 +23,7 @@ const syncDatabase = async () => {
     // await sequelize.sync({ force: true }); // WARNING: This drops all tables
 
     console.log(blueBright("Database synchronized successfully."));
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error synchronizing database:", error);
     process.exit(1); // Exit if sync fails
   }

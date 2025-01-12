@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../utils/db/db";
 import { BetType } from "../utils/enums";
-import { BetModel } from "./bet";
+import { BetModel } from "./betModel";
 
 class BetDetailsModel extends Model {}
 
