@@ -95,15 +95,18 @@ export const FinishModify = ({
   };
 
   const deletingBet = (id: number | string) => {
-    console.log("delete bet id", id);
+    if (!id) return;
     dispatch(openConfirmModal());
   };
 
   const confirmDelete = async () => {
-    if (myBet.id) {
-      await deleteBet(myBet.id).unwrap();
+    if (!myBet.id) return;
+    try {
       dispatch(resetModal());
+      await deleteBet(myBet.id).unwrap();
       setMyBet(initialBetValues);
+    } catch (error: unknown) {
+      console.error("Error deleting bet", error);
     }
   };
 

@@ -24,16 +24,24 @@ export const ModifyBetModal = () => {
     isLoading,
     isError,
     error,
-  } = useGetBetByIdQuery(String(id));
+  } = useGetBetByIdQuery(Number(id), { skip: !id });
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("IM IN MODIFYBETMODAL COMPONENT");
-    if (fetchedBet) {
+    console.log("IM IN MODIFYBETMODAL COMPONENT", fetchedBet);
+    if (fetchedBet && fetchedBet.id !== myBet.id) {
+      console.log("fetchBet", fetchedBet);
       setMyBet(fetchedBet);
     }
-  }, [fetchedBet]);
+  }, [fetchedBet, myBet.id]);
+
+  useEffect(() => {
+    if (isError) {
+      console.error("Error fetching bet", error);
+      dispatch(resetModal());
+    }
+  }, [isError, error, dispatch]);
 
   // Returns
   if (isLoading) return <Loading />;

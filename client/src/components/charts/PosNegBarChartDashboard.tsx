@@ -55,12 +55,12 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 export const PosNegBarChartDashboard = ({ allBets }: allBetsProp) => {
   const posNegBarData = last4months(allBets);
 
-  console.log("posNegBarData", posNegBarData);
+  // console.log("posNegBarData", posNegBarData);
 
-  console.log(
-    "mapped",
-    posNegBarData.every((bet) => bet.profit === 0),
-  );
+  // console.log(
+  //   "mapped",
+  //   posNegBarData.every((bet) => bet.profit === 0),
+  // );
 
   if (posNegBarData.every((bet) => bet.profit === 0)) {
     return (

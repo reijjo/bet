@@ -25,8 +25,8 @@ const LatestBets = ({ allBets }: allBetsProp) => {
   const latestBets = allBets.slice(0, 3);
   const dispatch = useAppDispatch();
 
-  console.log("allBets", allBets);
-  console.log("latgestBets", latestBets);
+  // console.log("allBets", allBets);
+  // console.log("latgestBets", latestBets);
 
   const modifybet = (id: number | string) => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));

@@ -26,7 +26,7 @@ export const ModifyBetSelection = ({
 
   const { isMobile } = useScreenWidth();
 
-  console.log("hoveredSelection", hoveredSelection);
+  // console.log("hoveredSelection", hoveredSelection);
 
   return (
     <div className="modifybet-slip-selection" style={{ position: "static" }}>
