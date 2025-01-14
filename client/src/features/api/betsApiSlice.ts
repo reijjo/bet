@@ -46,10 +46,7 @@ export const betApiSlice = createApi({
         method: "PATCH",
         body: bet,
       }),
-      invalidatesTags: (_result, _error, { id }) => [
-        { type: "Bet", id },
-        "Bet",
-      ],
+      invalidatesTags: (_result, _error, { id }) => [{ type: "Bet", id }],
     }),
     deleteBet: builder.mutation<{ id: number }, number | string>({
       query: (id) => ({

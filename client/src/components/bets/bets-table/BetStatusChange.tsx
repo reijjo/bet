@@ -28,7 +28,7 @@ const endedBetBallColor = (value: BetStatus) => {
 
 export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [updateTodo, { isLoading, isError, error }] = useEditBetMutation();
+  const [updateBet, { isLoading, isError, error }] = useEditBetMutation();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +53,7 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   // Changes the status of the bet
   const changeStatus = async (newStatus: BetStatus) => {
     try {
-      await updateTodo({ id: bet.id, status: newStatus }).unwrap();
+      await updateBet({ id: bet.id, status: newStatus }).unwrap();
     } catch (error: unknown) {
       console.log("Error changing bet status", error);
     }

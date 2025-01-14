@@ -51,8 +51,6 @@ export const ModifyBetDetailsForm = ({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    console.log("IM IN MODIFYBETDETAILFOMR COMPONENT");
-
     if (modifyIndex !== null) {
       setAddBetDetails(myBet.betDetails[modifyIndex]);
     }
@@ -82,6 +80,7 @@ export const ModifyBetDetailsForm = ({
         updatedBetDetails[modifyIndex] = addBetDetails;
 
         const updatedBet = { ...myBet, betDetails: updatedBetDetails };
+        console.log("UPDATED BET", updatedBet);
 
         await editBet(updatedBet);
         setErrors({});
@@ -93,6 +92,7 @@ export const ModifyBetDetailsForm = ({
   };
 
   console.log("BET", myBet);
+  console.log("addBetDetails", addBetDetails);
 
   // Returns
   if (isError) return <Error error={error} />;

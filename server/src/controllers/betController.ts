@@ -108,7 +108,7 @@ export const getBetById = async (
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
+): Promise<void> => {
   try {
     const { id } = req.params;
 
@@ -135,6 +135,98 @@ export const getBetById = async (
 
     res.status(200).json({ data: bet });
   } catch (error: unknown) {
+    next(error);
+  }
+};
+
+//
+// PATCH
+// Update a bet by id
+export const updateBet = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  const transaction = await sequelize.transaction();
+
+  try {
+    const { id } = req.params;
+    const { stake, bookmaker, tipper, status, sport, notes, betDetails } =
+      req.body;
+
+    if (!Number(id)) {
+      throw new HttpError(
+        "Bet ID must be a number.",
+        400,
+        "Don't mess with the ID.",
+      );
+    }
+
+    const bet = await BetModel.findByPk(Number(id), {
+      include: [
+        {
+          model: BetDetailsModel,
+          as: "betDetails",
+        },
+      ],
+    });
+
+    if (!bet) {
+      throw new HttpError("Bet not found.", 404);
+    }
+
+    console.log("betdetails", betDetails);
+    console.log("bet", JSON.stringify(bet, null, 2));
+
+    // Update the bet with transaction
+    await bet.update(
+      {
+        stake,
+        bookmaker,
+        tipper,
+        status,
+        sport,
+        notes,
+      },
+      { transaction },
+    );
+
+    if (betDetails && Array.isArray(betDetails)) {
+      // Delete old bet details with transaction
+      await BetDetailsModel.destroy({
+        where: { bet_id: bet.id },
+        transaction,
+      });
+
+      // Create new bet details with transaction
+      const betDetailsData = betDetails.map((details: BetDetails) => ({
+        ...details,
+        bet_id: bet.id,
+      }));
+
+      await BetDetailsModel.bulkCreate(betDetailsData, { transaction });
+    }
+
+    // Commit transaction
+    await transaction.commit();
+
+    // Fetch updated bet with its details
+    const updatedBet = await BetModel.findByPk(Number(id), {
+      include: [
+        {
+          model: BetDetailsModel,
+          as: "betDetails",
+        },
+      ],
+    });
+
+    res.status(200).json({
+      data: updatedBet,
+      message: "Bet updated successfully.",
+    });
+  } catch (error: unknown) {
+    // Rollback transaction on error
+    await transaction.rollback();
     next(error);
   }
 };
