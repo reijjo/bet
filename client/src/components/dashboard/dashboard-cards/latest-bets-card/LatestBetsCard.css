@@ -30,7 +30,7 @@
     width: 100%;
   }
 
-  @media only screen and (max-width: 481px) {
+  @media only screen and (max-width: 581px) {
     /* 4 grids */
     padding: 4px 8px;
     grid-row: 5 / 6;
@@ -159,7 +159,10 @@
   }
 }
 
-@media only screen and (max-width: 481px) {
+@media only screen and (max-width: 581px) {
+  .latest-bet-header-selection {
+    text-align: start;
+  }
   .bet-selection {
     width: 15ch;
   }

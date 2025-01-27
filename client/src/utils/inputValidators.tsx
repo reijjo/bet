@@ -28,7 +28,6 @@ export const hasInputError = (errorText: string) => {
   };
 
   const liStyle = {
-    // transform: "translateX(-4px)",
     listStyle: "none",
   };
 

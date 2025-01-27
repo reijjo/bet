@@ -64,7 +64,7 @@ export const PosNegBarChartDashboard = ({ allBets }: allBetsProp) => {
 
   if (posNegBarData.every((bet) => bet.profit === 0)) {
     return (
-      <p style={{ display: "grid", placeContent: "center" }}>
+      <p style={{ display: "grid", placeContent: "center", padding: "1rem" }}>
         No settled bets yet.
       </p>
     );

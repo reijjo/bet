@@ -28,7 +28,7 @@
     height: 100%;
   }
 
-  @media only screen and (max-width: 481px) {
+  @media only screen and (max-width: 581px) {
     /* 4 grids */
     grid-row: 4 / 5;
     grid-column: 1 / -1;

@@ -91,7 +91,6 @@ export const AddBetForm = ({
   };
 
   // TODO: Add different input field for tulosveto and moniveto
-  // TODO2: Add moneyline bettype?a<§
 
   return (
     <div className="addbet-container">

@@ -1,22 +1,23 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
-import { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
+import { BetStatus, BetType, Bookmaker } from "./enums";
 
 export type Bet = {
-  id?: number | string;
+  id?: number;
   user_id: number;
-  stake: string | number;
+  stake: number;
   bookmaker: Bookmaker;
   tipper: string;
   status: BetStatus;
-  bet_final_type: BetType;
-  sport: SportLeague;
+  sport: string;
   notes?: string;
+  bet_final_type: BetType;
+  bet_final_odds: number;
   betDetails: BetDetails[];
 };
 
 export type BetDetails = {
-  date: string;
+  date: Date;
   home_team: string;
   away_team: string;
   selection: string;

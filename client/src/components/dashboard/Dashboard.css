@@ -1,6 +1,5 @@
 .dashboard-grid {
   display: grid;
-  grid-template-rows: 0.5fr 1fr minmax(1fr, max-content);
   grid-template-rows: 0.5fr 1fr minmax(1fr, auto);
 
   grid-template-columns: repeat(12, 1fr);
@@ -17,7 +16,7 @@
     max-height: 100%;
   }
 
-  @media only screen and (max-width: 481px) {
+  @media only screen and (max-width: 581px) {
     /* 4 grids */
     grid-template-columns: repeat(4, 1fr);
     grid-row: auto;

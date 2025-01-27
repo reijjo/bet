@@ -39,6 +39,7 @@ const LatestBets = ({ allBets }: allBetsProp) => {
           display: "grid",
           placeContent: "center",
           gridRow: "3 / span 4",
+          padding: "1rem",
         }}
       >
         No settled bets yet.

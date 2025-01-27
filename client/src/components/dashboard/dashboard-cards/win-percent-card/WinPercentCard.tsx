@@ -41,7 +41,13 @@ export const WinPercentCard = ({ allBets }: allBetsProp) => {
           />
         </Suspense>
       ) : (
-        <p style={{ alignContent: "center", textAlign: "center" }}>
+        <p
+          style={{
+            alignContent: "center",
+            textAlign: "center",
+            padding: "1rem",
+          }}
+        >
           No settled bets yet.
         </p>
       )}

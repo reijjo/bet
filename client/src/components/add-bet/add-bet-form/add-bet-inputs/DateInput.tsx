@@ -1,5 +1,6 @@
 import "./DateInput.css";
 
+import { useParsers } from "../../../../hooks/useParsers";
 import { BetInputProps } from "../../../../utils/types";
 import { TextInput } from "../../../index";
 
@@ -14,20 +15,24 @@ export const DateInput = ({
   disabled,
   gridRow,
   gridColumn,
-}: DateInputProps) => (
-  <div
-    className="date-input"
-    style={{ gridRow: gridRow, gridColumn: gridColumn }}
-  >
-    <TextInput
-      className="text-input"
-      label="Date"
-      type="date"
-      id="date"
-      name="date"
-      onChange={handleBetInput}
-      value={details.date}
-      disabled={disabled}
-    />
-  </div>
-);
+}: DateInputProps) => {
+  const { parseDate } = useParsers();
+
+  return (
+    <div
+      className="date-input"
+      style={{ gridRow: gridRow, gridColumn: gridColumn }}
+    >
+      <TextInput
+        className="text-input"
+        label="Date"
+        type="date"
+        id="date"
+        name="date"
+        onChange={handleBetInput}
+        value={parseDate(details.date)}
+        disabled={disabled}
+      />
+    </div>
+  );
+};

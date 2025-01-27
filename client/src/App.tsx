@@ -17,12 +17,15 @@ import { RootState } from "./store/store";
 function App() {
   const reduxState = useAppSelector((state: RootState) => state);
 
-  // const testDate = new Date();
-  // console.log("TEST DATE", testDate);
   console.log("REDUX STATE", reduxState);
 
   return (
-    <Router>
+    <Router
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+      }}
+    >
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Homepage />} />
