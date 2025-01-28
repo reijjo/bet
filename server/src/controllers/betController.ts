@@ -44,12 +44,12 @@ export const createBet = async (
   try {
     const {
       user_id,
-      sport_id,
       stake,
       bookmaker,
       tipper,
       status,
       bet_final_type,
+      bet_final_odds,
       sport,
       notes,
       betDetails,
@@ -71,12 +71,12 @@ export const createBet = async (
     const newBet = await BetModel.create(
       {
         user_id,
-        sport_id,
         stake,
         bookmaker,
         tipper,
         status,
         bet_final_type,
+        bet_final_odds,
         sport,
         notes,
       },

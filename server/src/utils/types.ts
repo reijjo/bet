@@ -1,15 +1,15 @@
-import type { BetStatus, BetType, Bookmaker } from "./enums";
+import type { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
 
 export type Bet = {
   id: number;
   user_id: number;
-  sport_id: number;
   stake: number;
   bookmaker: Bookmaker;
   tipper?: string;
   status: BetStatus;
   bet_final_type: BetType;
-  sport?: Sport;
+  bet_final_odds: number;
+  sport?: SportLeague;
   notes?: string;
   betDetails?: BetDetails[];
 };

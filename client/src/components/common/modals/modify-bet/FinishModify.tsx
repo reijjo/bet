@@ -11,16 +11,17 @@ import {
   openConfirmModal,
   resetModal,
 } from "../../../../features/modalSlice";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { RootState } from "../../../../store/store";
-import { Bet } from "../../../../utils/types";
 import {
   BookmakerInput,
   NotesInput,
   SportInput,
   TipperInput,
-} from "../../../add-bet";
-import { getFinalBetType, initialBetValues } from "../../../add-bet/betUtils";
+} from "../../../../pages/add-bet";
+import { getFinalBetType } from "../../../../pages/add-bet/betUtils";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { RootState } from "../../../../store/store";
+import { initialBetValues } from "../../../../utils/defaults";
+import { Bet } from "../../../../utils/types";
 import { Button } from "../../button/Button";
 import { Error } from "../../fallback/Error";
 import { ModalConfirm } from "../confirm/ModalConfirm";

@@ -1,10 +1,7 @@
 import { ChangeEvent, useState } from "react";
 
-import {
-  getInputValue,
-  initialBetDetailValues,
-  initialBetValues,
-} from "../components/add-bet/betUtils";
+import { getInputValue } from "../pages/add-bet/betUtils";
+import { initialBetDetailValues, initialBetValues } from "../utils/defaults";
 import { scrollToTop } from "../utils/helperFunctions";
 import { Bet, BetDetails } from "../utils/types";
 

@@ -1,5 +1,5 @@
 import { sequelize } from "../utils/db/db";
-import { BetStatus, BetType, Bookmaker } from "../utils/enums";
+import { BetStatus, BetType, Bookmaker, SportLeague } from "../utils/enums";
 import type { Bet } from "../utils/types";
 import { SportsModel } from "./sportsModel";
 import { DataTypes, Model, type Optional } from "sequelize";
@@ -9,11 +9,11 @@ export interface BetCreation extends Optional<Bet, "id"> {}
 export class BetModel extends Model<Bet, BetCreation> implements Bet {
   declare id: number;
   declare user_id: number;
-  declare sport_id: number;
   declare stake: number;
   declare bookmaker: Bookmaker;
   declare tipper?: string;
   declare status: BetStatus;
+  declare bet_final_odds: number;
   declare bet_final_type: BetType;
   declare notes?: string;
 }
@@ -35,14 +35,6 @@ BetModel.init(
       // },
       // onDelete: 'CASCADE'
     },
-    sport_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: SportsModel,
-        key: "id",
-      },
-    },
     stake: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
@@ -54,12 +46,21 @@ BetModel.init(
     tipper: {
       type: DataTypes.STRING,
     },
+    sport: {
+      type: DataTypes.ENUM(...Object.values(SportLeague)),
+      allowNull: false,
+      defaultValue: SportLeague.NBA,
+    },
     status: {
       type: DataTypes.ENUM(...Object.values(BetStatus)),
       allowNull: false,
     },
     bet_final_type: {
       type: DataTypes.ENUM(...Object.values(BetType)),
+      allowNull: false,
+    },
+    bet_final_odds: {
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     notes: {

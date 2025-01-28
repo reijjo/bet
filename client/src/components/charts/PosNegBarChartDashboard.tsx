@@ -11,8 +11,8 @@ import {
   YAxis,
 } from "recharts";
 
+import { last4months } from "../../pages/dashboard/dashboard-cards/summaryUtils";
 import { allBetsProp } from "../../utils/types";
-import { last4months } from "../dashboard/dashboard-cards/summaryUtils";
 
 type CustomTooltipProps = {
   active: boolean;

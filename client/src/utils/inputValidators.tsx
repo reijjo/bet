@@ -1,4 +1,4 @@
-import { isBetBuilderType } from "../components/add-bet/betUtils";
+import { isBetBuilderType } from "../pages/add-bet/betUtils";
 import { BetType } from "./enums";
 import { BetDetails } from "./types";
 

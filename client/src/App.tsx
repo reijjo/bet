@@ -1,16 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import {
-  AddBet,
-  Bets,
-  Dashboard,
-  Homepage,
-  Layout,
-  Login,
-  Register,
-  UserLayout,
-} from "./components";
+import { Layout, UserLayout } from "./components";
 import { UnderCons } from "./components/common/fallback/UnderCons";
+import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { useAppSelector } from "./store/hooks";
 import { RootState } from "./store/store";
 

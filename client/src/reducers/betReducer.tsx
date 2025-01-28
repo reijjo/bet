@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { betApi } from "../api/betApi";
-import { initialBetValues } from "../components/add-bet/betUtils";
 import { resetModal } from "../features/modalSlice";
+import { initialBetValues } from "../pages/add-bet/betUtils";
 import { AppDispatch } from "../store/store";
 import { Bet } from "../utils/types";
 
