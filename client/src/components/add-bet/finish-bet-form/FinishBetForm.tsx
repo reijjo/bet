@@ -10,7 +10,6 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-// import { v4 as uuidv4 } from "uuid";
 import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
 import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
 import { Bookmaker } from "../../../utils/enums";
@@ -64,7 +63,6 @@ export const FinishBetForm = ({
     const betToSave = {
       ...myBet,
       bet_final_type: finalType,
-      // id: uuidv4(),
       user_id: 1,
     };
 

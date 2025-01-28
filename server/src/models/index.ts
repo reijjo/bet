@@ -1,17 +1,29 @@
-import { blueBright } from "colorette";
 import { sequelize } from "../utils/db/db";
-import { BetModel } from "./betModel";
 import { BetDetailsModel } from "./betDetailModel";
+import { BetModel } from "./betModel";
+import { SportsModel } from "./sportsModel";
+import { blueBright } from "colorette";
 
 BetModel.hasMany(BetDetailsModel, {
-	foreignKey: 'bet_id',
-	onDelete: 'CASCADE',
-	as: 'betDetails'
+  foreignKey: "bet_id",
+  onDelete: "CASCADE",
+  as: "betDetails",
 });
 
 BetDetailsModel.belongsTo(BetModel, {
-	foreignKey: 'bet_id',
-	as: 'bet'
+  foreignKey: "bet_id",
+  as: "bet",
+});
+
+SportsModel.hasMany(BetModel, {
+  foreignKey: "sport_id",
+  onDelete: "CASCADE",
+  as: "bets",
+});
+
+BetModel.belongsTo(SportsModel, {
+  foreignKey: "sport_id",
+  as: "sport",
 });
 
 // Sync models with database
@@ -34,4 +46,4 @@ export const initializeDatabase = async () => {
   await syncDatabase();
 };
 
-export { BetModel, BetDetailsModel }
+export { BetModel, BetDetailsModel };

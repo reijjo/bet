@@ -45,3 +45,8 @@ export type BetInputProps = {
 export type allBetsProp = {
   allBets: Bet[];
 };
+
+export type Sport = {
+  id: number;
+  name: string;
+};

@@ -12,8 +12,7 @@ const { BACKEND_URL } = config;
 console.log("BACKEND_URL", BACKEND_URL);
 
 export const betApiSlice = createApi({
-  reducerPath: "api",
-  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
+  reducerPath: "betsApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_URL}/api` }),
   tagTypes: ["Bet"],
   endpoints: (builder) => ({

@@ -12,7 +12,6 @@ type BetToStakeProps = {
 };
 
 export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
-  // export const BetToStake = () => {
 
   return (
     <>

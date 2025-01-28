@@ -44,6 +44,7 @@ export const createBet = async (
   try {
     const {
       user_id,
+      sport_id,
       stake,
       bookmaker,
       tipper,
@@ -70,6 +71,7 @@ export const createBet = async (
     const newBet = await BetModel.create(
       {
         user_id,
+        sport_id,
         stake,
         bookmaker,
         tipper,

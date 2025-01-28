@@ -3,6 +3,7 @@ import helmet from "helmet";
 import { errorHandler } from "./middleware/errorHandler";
 import { notFoundHandler } from "./middleware/notFoundHandler";
 import { betRouter } from "./routes/betRoute";
+import { sportRouter } from "./routes/sportRoute";
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
@@ -26,6 +27,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/bets", betRouter);
+app.use("/api/sports", sportRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

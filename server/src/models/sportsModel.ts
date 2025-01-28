@@ -1,7 +1,11 @@
 import { sequelize } from "../utils/db/db";
+import type { Sport } from "../utils/types";
 import { DataTypes, Model } from "sequelize";
 
-export class SportsModel extends Model {}
+export class SportsModel extends Model<Sport> implements Sport {
+  declare id: number;
+  declare name: string;
+}
 
 SportsModel.init(
   {

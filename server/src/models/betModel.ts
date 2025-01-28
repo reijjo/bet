@@ -1,70 +1,75 @@
-import { DataTypes, Model, type Optional } from "sequelize";
 import { sequelize } from "../utils/db/db";
-import { BetStatus, BetType, Bookmaker, SportLeague } from "../utils/enums";
+import { BetStatus, BetType, Bookmaker } from "../utils/enums";
 import type { Bet } from "../utils/types";
+import { SportsModel } from "./sportsModel";
+import { DataTypes, Model, type Optional } from "sequelize";
 
-export interface BetCreation extends Optional<Bet, 'id'> {}
+export interface BetCreation extends Optional<Bet, "id"> {}
 
 export class BetModel extends Model<Bet, BetCreation> implements Bet {
-	declare id: number;
-	declare user_id: number;
-	declare stake: number;
-	declare bookmaker: Bookmaker;
-	declare tipper?: string;
-	declare status: BetStatus;
-	declare bet_final_type: BetType;
-	declare sport: SportLeague;
-	declare notes?: string;
+  declare id: number;
+  declare user_id: number;
+  declare sport_id: number;
+  declare stake: number;
+  declare bookmaker: Bookmaker;
+  declare tipper?: string;
+  declare status: BetStatus;
+  declare bet_final_type: BetType;
+  declare notes?: string;
 }
 
 BetModel.init(
-	{
-		id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			primaryKey: true
-		},
-		user_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			defaultValue: 1,
-			// references: {
-			// 	model: 'UserModel',
-			// 	key: 'id'
-			// },
-			// onDelete: 'CASCADE'
-		},
-		stake: {
-			type: DataTypes.DECIMAL(10, 2),
-			allowNull: false
-		},
-		bookmaker: {
-			type: DataTypes.ENUM(...Object.values(Bookmaker)),
-			allowNull: false
-		},
-		tipper: {
-			type: DataTypes.STRING,
-		},
-		status: {
-			type: DataTypes.ENUM(...Object.values(BetStatus)),
-			allowNull: false
-		},
-		bet_final_type: {
-			type: DataTypes.ENUM(...Object.values(BetType)),
-			allowNull: false
-		},
-		sport: {
-			type: DataTypes.ENUM(...Object.values(SportLeague)),
-			allowNull: false
-		},
-		notes: {
-			type: DataTypes.STRING
-		},
-	},
-	{
-		sequelize,
-		underscored: true,
-		timestamps: true,
-		modelName: 'Bet',
-	}
-)
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+      // references: {
+      // 	model: 'UserModel',
+      // 	key: 'id'
+      // },
+      // onDelete: 'CASCADE'
+    },
+    sport_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: SportsModel,
+        key: "id",
+      },
+    },
+    stake: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    bookmaker: {
+      type: DataTypes.ENUM(...Object.values(Bookmaker)),
+      allowNull: false,
+    },
+    tipper: {
+      type: DataTypes.STRING,
+    },
+    status: {
+      type: DataTypes.ENUM(...Object.values(BetStatus)),
+      allowNull: false,
+    },
+    bet_final_type: {
+      type: DataTypes.ENUM(...Object.values(BetType)),
+      allowNull: false,
+    },
+    notes: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    underscored: true,
+    timestamps: true,
+    modelName: "Bet",
+  },
+);

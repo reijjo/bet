@@ -15,6 +15,7 @@ export { TextInput } from "./common/inputs/TextInput";
 export { Select } from "./common/inputs/Select";
 export { TextArea } from "./common/inputs/TextArea";
 export { Checkbox } from "./common/inputs/Checkbox";
+export { DataListInput } from "./common/inputs/DataListInput";
 export { Modal } from "./common/modals/Modal";
 export { ModifyBetModal } from "./common/modals/modify-bet/ModifyBetModal";
 
