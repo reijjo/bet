@@ -3,13 +3,14 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Layout, UserLayout } from "./components";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
-import { useAppSelector } from "./store/hooks";
-import { RootState } from "./store/store";
+
+// import { useAppSelector } from "./store/hooks";
+// import { RootState } from "./store/store";
 
 function App() {
-  const reduxState = useAppSelector((state: RootState) => state);
+  // const reduxState = useAppSelector((state: RootState) => state);
 
-  console.log("REDUX STATE", reduxState);
+  // console.log("REDUX STATE", reduxState);
 
   return (
     <Router

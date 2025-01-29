@@ -29,7 +29,6 @@ export const ModifyBetModal = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("IM IN MODIFYBETMODAL COMPONENT", fetchedBet);
     if (fetchedBet && fetchedBet.id !== myBet.id) {
       console.log("fetchBet", fetchedBet);
       setMyBet(fetchedBet);
@@ -43,6 +42,7 @@ export const ModifyBetModal = () => {
     }
   }, [isError, error, dispatch]);
 
+  console.log("MODIFY INDEX", modifyIndex);
   // Returns
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;

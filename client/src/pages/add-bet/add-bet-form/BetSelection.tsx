@@ -26,8 +26,6 @@ export const BetSelection = ({
     });
   };
 
-  console.log("selection", details.selection);
-
   return (
     <>
       {details?.betbuilder_selection && isBetBuilderType(details.bet_type) ? (

@@ -21,6 +21,10 @@ export type CreateSportApiResponse = {
   data: string;
 };
 
+export type GetBetDetailsApiResponse = {
+  data: BetDetails[];
+};
+
 export type GetDetailByIdApiResponse = {
   data: BetDetails;
 };

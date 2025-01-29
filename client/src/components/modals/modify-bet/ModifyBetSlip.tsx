@@ -54,11 +54,31 @@ export const ModifyBetSlip = ({
     setResult(initialResult);
   }, [myBet]);
 
+  // console.log("myBet", myBet);
+  // TODO: USE BET ID NOT BETINDEX
   // Return
   return (
     <div className="modifybet-container">
       <div className="modifybet-add-stake">
         <ModifyBetHeaders />
+        {/* {myBet.betDetails.map((bet) => (
+          <div key={bet.bet_id} className="finish-modifybet-slip">
+            <ModifyBetMatch bet={bet} />
+            <ModifyBetResultInputs
+              bet={bet}
+              result={result}
+              betIndex={Number(bet.bet_id)}
+              setResult={setResult}
+              myBet={myBet}
+            />
+            <ModifyBetSelection details={bet} betIndex={Number(bet.bet_id)} />
+            <ModifyBetOdds details={bet} />
+            <ModifyBetMore
+              handleModifyBet={handleModifyBet}
+              betIndex={Number(bet.bet_id)}
+            />
+          </div>
+        ))} */}
         {myBet.betDetails.map((bet, betIndex) => (
           <div key={betIndex} className="finish-modifybet-slip">
             <ModifyBetMatch bet={bet} />
@@ -71,6 +91,7 @@ export const ModifyBetSlip = ({
             />
             <ModifyBetSelection details={bet} betIndex={betIndex} />
             <ModifyBetOdds details={bet} />
+            {/* THIS OPENS THE DETAILS  MODIFY FORM */}
             <ModifyBetMore
               handleModifyBet={handleModifyBet}
               betIndex={betIndex}

@@ -2,7 +2,6 @@ import { useAddBetForm } from "../../hooks/useAddBetForm";
 import { AddBetForm } from "./add-bet-form/AddBetForm";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
 
-// TODO: bet_finalO_odds!!!!!!!!
 export const AddBet = () => {
   const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();

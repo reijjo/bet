@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 
-import { Button, Error } from "../../";
-import { useEditBetMutation } from "../../../features/api/betsApiSlice";
+import { Button, Error, Loading } from "../../";
+import { useEditDetailsMutation } from "../../../features/api/detailsApiSlice";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import {
@@ -45,7 +45,8 @@ export const ModifyBetDetailsForm = ({
     addBetDetails,
     setAddBetDetails,
   } = useAddBetForm();
-  const [editBet, { isLoading, isError, error }] = useEditBetMutation();
+  const [updateDetails, { isLoading, isError, error }] =
+    useEditDetailsMutation();
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -75,13 +76,7 @@ export const ModifyBetDetailsForm = ({
 
     if (modifyIndex !== null) {
       try {
-        const updatedBetDetails = [...myBet.betDetails];
-        updatedBetDetails[modifyIndex] = addBetDetails;
-
-        const updatedBet = { ...myBet, betDetails: updatedBetDetails };
-        console.log("UPDATED BET", updatedBet);
-
-        await editBet(updatedBet);
+        await updateDetails(addBetDetails).unwrap();
         setErrors({});
         handleCancel();
       } catch (error: unknown) {
@@ -90,10 +85,10 @@ export const ModifyBetDetailsForm = ({
     }
   };
 
-  console.log("BET", myBet);
   console.log("addBetDetails", addBetDetails);
 
   // Returns
+  if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
 
   return (

@@ -16,6 +16,7 @@ export type Bet = {
 
 export type BetDetails = {
   id: number;
+  bet_id: number;
   date: string;
   home_team: string;
   away_team: string;
