@@ -117,8 +117,6 @@ export const BetsFilter = ({
     });
   };
 
-  console.log("activeFilters", activeFilters);
-
   return (
     <div
       className="filters-list filters-list-filter"

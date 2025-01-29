@@ -88,7 +88,7 @@ export const Bets = () => {
               <tr
                 key={bet.id}
                 className={getRowColor(bet.status)}
-                onClick={() => modifybet(String(bet.id))}
+                onClick={() => modifybet(Number(bet.id))}
               >
                 <DateBetsTable bet={bet} />
                 <SportBetsTable bet={bet} />

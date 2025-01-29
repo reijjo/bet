@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { Button, TextInput } from "../../components/";
+import { useBetCalculations } from "../../hooks/useBetCalculations";
 import { initialBetDetailValues } from "../../utils/defaults";
 import { scrollToTop } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
@@ -31,16 +32,19 @@ export const FinishBetButtons = ({
   setModifyIndex,
 }: FinishBetButtonsProps) => {
   const [potentialWin, setPotentialWin] = useState<string>("0.00");
-  const allOdds = myBet.betDetails
-    .reduce((acc, bet) => acc * Number(bet.odds), 1)
-    .toFixed(2);
+  // const allOdds = myBet.betDetails
+  //   .reduce((acc, bet) => acc * Number(bet.odds), 1)
+  //   .toFixed(2);
+  const { finalOdds } = useBetCalculations();
 
   useEffect(() => {
     const potentialWin = () => {
-      setPotentialWin((Number(allOdds) * Number(myBet.stake)).toFixed(2));
+      setPotentialWin(
+        (finalOdds(myBet.betDetails) * Number(myBet.stake)).toFixed(2),
+      );
     };
     potentialWin();
-  }, [myBet, allOdds]);
+  }, [myBet, finalOdds]);
 
   const handleStakeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMyBet((prev) => ({
@@ -92,7 +96,7 @@ export const FinishBetButtons = ({
               onChange={handleStakeChange}
             />
             <div className="mybet-slip-potential">
-              <p>x {allOdds}</p>
+              <p>x {finalOdds(myBet.betDetails)}</p>
               <p>Potential Win:</p>
               <p>
                 <b>{potentialWin} &euro;</b>

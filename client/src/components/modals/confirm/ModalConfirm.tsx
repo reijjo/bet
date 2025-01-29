@@ -3,7 +3,7 @@ import "./ModalConfirm.css";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Divider } from "../../divider/Divider";
+import { Divider } from "../../";
 
 type ModalConfirmProps = {
   handleCancel: () => void;

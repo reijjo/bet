@@ -2,28 +2,28 @@ import "./FinishModify.css";
 
 import { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent } from "react";
 
+import { Button } from "../../";
+import { Error } from "../../";
 import {
   useDeleteBetMutation,
   useEditBetMutation,
-} from "../../../../features/api/betsApiSlice";
+} from "../../../features/api/betsApiSlice";
 import {
   closeConfirmModal,
   openConfirmModal,
   resetModal,
-} from "../../../../features/modalSlice";
+} from "../../../features/modalSlice";
 import {
   BookmakerInput,
   NotesInput,
   SportInput,
   TipperInput,
-} from "../../../../pages/add-bet";
-import { getFinalBetType } from "../../../../pages/add-bet/betUtils";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { RootState } from "../../../../store/store";
-import { initialBetValues } from "../../../../utils/defaults";
-import { Bet } from "../../../../utils/types";
-import { Button } from "../../button/Button";
-import { Error } from "../../fallback/Error";
+} from "../../../pages/add-bet";
+import { getFinalBetType } from "../../../pages/add-bet/betUtils";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { RootState } from "../../../store/store";
+import { initialBetValues } from "../../../utils/defaults";
+import { Bet } from "../../../utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";
 

@@ -1,14 +1,14 @@
 import "./OddsBetsTable.css";
 
+import { useBetCalculations } from "../../../hooks/useBetCalculations";
 import { Bet } from "../../../utils/types";
-import { calculateCombinedOdds } from "../../dashboard/dashboard-cards/summaryUtils";
 
 interface OddsBetsTableProps {
   bet: Bet;
 }
 
-export const OddsBetsTable = ({ bet }: OddsBetsTableProps) => (
-  <td className="table-odds">
-    {calculateCombinedOdds(bet.betDetails).toFixed(2)}
-  </td>
-);
+export const OddsBetsTable = ({ bet }: OddsBetsTableProps) => {
+  const { finalOdds } = useBetCalculations();
+
+  return <td className="table-odds">{finalOdds(bet.betDetails).toFixed(2)}</td>;
+};

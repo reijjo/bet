@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
 import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
+import { useBetCalculations } from "../../../hooks/useBetCalculations";
 import { initialBetValues } from "../../../utils/defaults";
 import { Bookmaker } from "../../../utils/enums";
 import { scrollToTop } from "../../../utils/helperFunctions";
@@ -34,6 +35,8 @@ export const FinishBetForm = ({
 }: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
   const [addNewBet, { isLoading }] = useAddNewBetMutation();
+
+  const { finalOdds } = useBetCalculations();
 
   const navigate = useNavigate();
 
@@ -64,6 +67,7 @@ export const FinishBetForm = ({
     const betToSave = {
       ...myBet,
       bet_final_type: finalType,
+      bet_final_odds: finalOdds(myBet.betDetails),
       user_id: 1,
     };
 

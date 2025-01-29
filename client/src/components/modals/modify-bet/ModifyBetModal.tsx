@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useGetBetByIdQuery } from "../../../../features/api/betsApiSlice";
-import { resetModal } from "../../../../features/modalSlice";
-import { useAddBetForm } from "../../../../hooks/useAddBetForm";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { initialBetValues } from "../../../../utils/defaults";
-import { Bet } from "../../../../utils/types";
-import { Error } from "../../fallback/Error";
-import { Loading } from "../../fallback/Loading";
+import { useGetBetByIdQuery } from "../../../features/api/betsApiSlice";
+import { resetModal } from "../../../features/modalSlice";
+import { useAddBetForm } from "../../../hooks/useAddBetForm";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { initialBetValues } from "../../../utils/defaults";
+import { Bet } from "../../../utils/types";
+import { Error } from "../../common/fallback/Error";
+import { Loading } from "../../common/fallback/Loading";
 import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
 import { ModifyBetSlip } from "./ModifyBetSlip";
 

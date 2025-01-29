@@ -2,9 +2,9 @@ import "./ModifyBet.css";
 
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
-import { isBetBuilderType } from "../../../../../pages/add-bet/betUtils";
-import { BetType } from "../../../../../utils/enums";
-import { Bet } from "../../../../../utils/types";
+import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
+import { BetType } from "../../../../utils/enums";
+import { Bet } from "../../../../utils/types";
 
 type Result = {
   [key: number]: {

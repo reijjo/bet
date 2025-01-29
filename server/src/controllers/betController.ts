@@ -55,6 +55,8 @@ export const createBet = async (
       betDetails,
     } = req.body;
 
+    console.log("BET FINAL ODDS", bet_final_odds);
+
     if (!stake) {
       throw new HttpError('The "stake" field is required.', 400);
     } else if (!bookmaker) {

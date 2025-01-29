@@ -8,9 +8,10 @@ import {
   useState,
 } from "react";
 
-import { useEditBetMutation } from "../../../../features/api/betsApiSlice";
-import { useAddBetForm } from "../../../../hooks/useAddBetForm";
-import { useScreenWidth } from "../../../../hooks/useScreenWidth";
+import { Button, Error } from "../../";
+import { useEditBetMutation } from "../../../features/api/betsApiSlice";
+import { useAddBetForm } from "../../../hooks/useAddBetForm";
+import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import {
   BetbuilderInput,
   DateInput,
@@ -19,12 +20,10 @@ import {
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "../../../../pages/add-bet";
-import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
-import { validateBetDetailsInputs } from "../../../../utils/inputValidators";
-import { Bet } from "../../../../utils/types";
-import { Button } from "../../button/Button";
-import { Error } from "../../fallback/Error";
+} from "../../../pages/add-bet";
+import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
+import { validateBetDetailsInputs } from "../../../utils/inputValidators";
+import { Bet } from "../../../utils/types";
 
 type ModifyBetFormProps = {
   myBet: Bet;

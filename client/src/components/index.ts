@@ -20,8 +20,8 @@ export { TextArea } from "./common/inputs/TextArea";
 export { Checkbox } from "./common/inputs/Checkbox";
 export { DataListInput } from "./common/inputs/DataListInput";
 
-export { Modal } from "./common/modals/Modal";
-export { ModifyBetModal } from "./common/modals/modify-bet/ModifyBetModal";
+export { Modal } from "./modals/Modal";
+export { ModifyBetModal } from "./modals/modify-bet/ModifyBetModal";
 
 export { Container } from "./common/container/Container";
 
