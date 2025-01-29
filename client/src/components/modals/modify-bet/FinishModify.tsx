@@ -26,6 +26,7 @@ import { initialBetValues } from "../../../utils/defaults";
 import { Bet } from "../../../utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";
+import { StatusChange } from "./StatusChange";
 
 type FinishModifyProps = {
   myBet: Bet;
@@ -122,6 +123,7 @@ export const FinishModify = ({
         <BookmakerInput onChange={handleSelectChange} value={myBet.bookmaker} />
         <TipperInput onChange={handleTextInput} value={myBet.tipper} />
         <NotesInput onChange={handleTextInput} value={myBet.notes ?? ""} />
+        <StatusChange bet={myBet} setMyBet={setMyBet} />
 
         <div className="finish-modifybet-buttons">
           <Button

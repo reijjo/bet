@@ -1,7 +1,6 @@
 import { sequelize } from "../utils/db/db";
 import { BetStatus, BetType, Bookmaker, SportLeague } from "../utils/enums";
 import type { Bet } from "../utils/types";
-import { SportsModel } from "./sportsModel";
 import { DataTypes, Model, type Optional } from "sequelize";
 
 export interface BetCreation extends Optional<Bet, "id"> {}

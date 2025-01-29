@@ -2,7 +2,7 @@ import "./ModifyBetSlip.css";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { Bet } from "../../../../utils/types";
+import { Bet } from "../../../utils/types";
 import { FinishModify } from "./FinishModify";
 import {
   ModifyBetHeaders,

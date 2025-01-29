@@ -167,20 +167,23 @@
 }
 
 .btn-delete {
-  color: var(--button-danger-normal);
+  color: white;
   border-radius: 8px;
   border: 0.5px solid var(--button-danger-normal);
-  background-color: var(--button-danger-bgColor-rest);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--button-danger-bgColor-hover);
 
   &:hover {
-    background-color: var(--button-danger-bgColor-hover);
+    background-color: var(--button-danger-bgColor-active);
     color: white;
     /* background-image: linear-gradient(
       var(--error-base) 0%,
       var(--error-dark) 100%
     ); */
     box-shadow: 0 2px 16px hsla(0, 75%, 65%, 0.4);
+  }
+
+  &:active {
+    background-color: var(--error-dark);
   }
 }
 

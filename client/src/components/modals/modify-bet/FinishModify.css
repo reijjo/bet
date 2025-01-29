@@ -19,7 +19,29 @@
   margin-bottom: 8px;
 
   @media screen and (max-width: 800px) {
-    grid-row: 3 / 4;
+    grid-row: 4/ 5;
     grid-column: 1 / 3;
+  }
+}
+
+.modify-change {
+  height: 2.5rem;
+
+  @media screen and (max-width: 800px) {
+    grid-column: 1 / -1;
+  }
+}
+
+.bet-status-change-value-modify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  & p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    /* max-width: 5ch; */
   }
 }

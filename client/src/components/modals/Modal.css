@@ -24,7 +24,6 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   padding: 8px 16px;
-  background: url("../../../assets/images/circle-bg.svg") no-repeat center /
-    cover;
+  background: url("../../assets/images/circle-bg.svg") no-repeat center / cover;
   box-shadow: var(--shadow-s);
 }
