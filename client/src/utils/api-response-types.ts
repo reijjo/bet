@@ -1,4 +1,4 @@
-import type { Bet, Sport } from "./types";
+import type { Bet, BetDetails, Sport } from "./types";
 
 export type GetBetsApiResponse = {
   data: Bet[];
@@ -19,4 +19,8 @@ export type GetSportApiResponse = {
 
 export type CreateSportApiResponse = {
   data: string;
+};
+
+export type GetDetailByIdApiResponse = {
+  data: BetDetails;
 };
