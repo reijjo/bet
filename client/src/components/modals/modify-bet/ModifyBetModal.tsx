@@ -25,17 +25,23 @@ export const ModifyBetModal = () => {
     isError,
     error,
   } = useGetBetByIdQuery(Number(id), {
-    skip: !id,
+    // skip: !id,
   });
+
+  // console.log("MODIFY BET ID", id);
+  console.log("fetchBet", fetchedBet);
+  // console.log("myBet", myBet.betDetails[0]?.betbuilder_result);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (fetchedBet && fetchedBet.id !== myBet.id) {
-      console.log("fetchBet", fetchedBet);
+    // if (fetchedBet && fetchedBet.id !== myBet.id) {
+    //   console.log("fetchBet", fetchedBet);
+    if (fetchedBet) {
       setMyBet(fetchedBet);
     }
-  }, [fetchedBet, myBet.id]);
+    // }
+  }, [fetchedBet]);
 
   useEffect(() => {
     if (isError) {

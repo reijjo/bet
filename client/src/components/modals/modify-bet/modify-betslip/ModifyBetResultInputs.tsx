@@ -67,9 +67,6 @@ export const ModifyBetResultInputs = ({
     });
   };
 
-  console.log("bet", bet);
-  console.log("result2", result);
-
   return (
     <div className="modifybet-result-inputs">
       {isBetBuilderType(bet.bet_type) ? (

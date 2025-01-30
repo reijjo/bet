@@ -36,17 +36,21 @@ export const ModifyBetSlip = ({
 }: MyBetsProps) => {
   const [result, setResult] = useState<Result>({});
 
+  console.log("mybet id", myBet);
   const {
     data: detailsData,
     isLoading,
     isError,
     error,
-  } = useGetBetDetailsQuery(myBet.id as number);
+  } = useGetBetDetailsQuery(myBet.id as number, {
+    skip: !myBet.id,
+    refetchOnMountOrArgChange: true,
+  });
 
+  console.log("RESULT AT START", result);
+  console.log("DetailsData", detailsData);
   // TODO: ON MOBILE show selection and make a result to open on click
   // POPOVER html css
-
-  console.log("detailsData", detailsData);
 
   // Makes enough result objects for each bet
   useEffect(() => {
@@ -67,6 +71,7 @@ export const ModifyBetSlip = ({
     setResult(initialResult);
   }, [detailsData]);
 
+  console.log("RESULT AFTER USEEFFECT", result);
   // console.log("myBet", myBet);
   // TODO: USE BET ID NOT BETINDEX
   // Return

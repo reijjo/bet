@@ -100,7 +100,7 @@ const getOdds = (bet: Bet): number => {
 const getSortValue = (bet: Bet, field: SortField): number => {
   switch (field) {
     case "date":
-      return new Date(bet.betDetails[0].date).getTime();
+      return new Date(bet.createdAt || bet.betDetails[0].date).getTime();
     case "stake":
       return Number(bet.stake);
     case "odds":

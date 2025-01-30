@@ -88,7 +88,6 @@ export const ModifyBetDetailsForm = ({
     if (modifyIndex !== null) {
       try {
         const updated = await updateDetails(addBetDetails).unwrap();
-        console.log("updated", updated);
         setErrors({});
         handleCancel();
         setAddBetDetails(updated);

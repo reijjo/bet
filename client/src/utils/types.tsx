@@ -13,6 +13,7 @@ export type Bet = {
   notes?: string;
   bet_final_type: BetType;
   bet_final_odds: number;
+  createdAt?: Date;
   betDetails: BetDetails[];
 };
 

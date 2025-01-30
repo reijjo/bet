@@ -14,7 +14,7 @@ console.log("BACKEND_URL", BACKEND_URL);
 export const betApiSlice = createApi({
   reducerPath: "betsApi",
   baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_URL}/api` }),
-  tagTypes: ["Bet"],
+  tagTypes: ["Bet", "Details"],
   endpoints: (builder) => ({
     getBets: builder.query<Bet[], void>({
       query: () => "/bets",
@@ -29,7 +29,10 @@ export const betApiSlice = createApi({
     getBetById: builder.query<Bet, string | number>({
       query: (id) => `/bets/${id}`,
       transformResponse: (response: GetBetByIdApiResponse) => response.data,
-      providesTags: (_result, _error, id) => [{ type: "Bet", id }],
+      providesTags: (_result, _error, id) => [
+        { type: "Bet", id },
+        { type: "Details", id },
+      ],
     }),
     addNewBet: builder.mutation<Bet, Partial<Bet>>({
       query: (newBet) => ({

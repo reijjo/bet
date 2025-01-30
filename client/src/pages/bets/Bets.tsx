@@ -34,7 +34,7 @@ export const Bets = () => {
 
   const [currentSort, setCurrentSort] = useState<SortOption>({
     field: "date",
-    direction: "desc",
+    direction: "asc",
   });
   const [activeFilters, setActiveFilters] = useState<FilterOption[]>([]);
 
@@ -49,6 +49,7 @@ export const Bets = () => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
+  console.log("allBets", allBets[0]);
   // TODO: Own component wrapper for isLoading ??
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
