@@ -2,6 +2,8 @@ import "./ModifyBetSlip.css";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+import { Error, Loading } from "../..";
+import { useGetBetDetailsQuery } from "../../../features/api/detailsApiSlice";
 import { Bet } from "../../../utils/types";
 import { FinishModify } from "./FinishModify";
 import {
@@ -34,14 +36,25 @@ export const ModifyBetSlip = ({
 }: MyBetsProps) => {
   const [result, setResult] = useState<Result>({});
 
+  const {
+    data: detailsData,
+    isLoading,
+    isError,
+    error,
+  } = useGetBetDetailsQuery(myBet.id as number);
+
   // TODO: ON MOBILE show selection and make a result to open on click
   // POPOVER html css
 
+  console.log("detailsData", detailsData);
+
   // Makes enough result objects for each bet
   useEffect(() => {
+    if (!detailsData) return;
+
     const initialResult: Result = {};
-    myBet.betDetails.forEach((bet, index) => {
-      initialResult[index] = {
+    detailsData?.forEach((bet) => {
+      initialResult[Number(bet.id)] = {
         home_result: bet.home_result || "",
         away_result: bet.away_result || "",
         betbuilder_result:
@@ -52,49 +65,31 @@ export const ModifyBetSlip = ({
       };
     });
     setResult(initialResult);
-  }, [myBet]);
+  }, [detailsData]);
 
   // console.log("myBet", myBet);
   // TODO: USE BET ID NOT BETINDEX
   // Return
+  if (isLoading) return <Loading />;
+  if (isError) return <Error error={error} />;
   return (
     <div className="modifybet-container">
       <div className="modifybet-add-stake">
         <ModifyBetHeaders />
-        {/* {myBet.betDetails.map((bet) => (
-          <div key={bet.bet_id} className="finish-modifybet-slip">
+        {detailsData?.map((bet) => (
+          <div key={bet.id} className="finish-modifybet-slip">
             <ModifyBetMatch bet={bet} />
             <ModifyBetResultInputs
               bet={bet}
               result={result}
-              betIndex={Number(bet.bet_id)}
+              betIndex={Number(bet.id)}
               setResult={setResult}
-              myBet={myBet}
             />
-            <ModifyBetSelection details={bet} betIndex={Number(bet.bet_id)} />
+            <ModifyBetSelection details={bet} betIndex={Number(bet.id)} />
             <ModifyBetOdds details={bet} />
             <ModifyBetMore
               handleModifyBet={handleModifyBet}
-              betIndex={Number(bet.bet_id)}
-            />
-          </div>
-        ))} */}
-        {myBet.betDetails.map((bet, betIndex) => (
-          <div key={betIndex} className="finish-modifybet-slip">
-            <ModifyBetMatch bet={bet} />
-            <ModifyBetResultInputs
-              bet={bet}
-              result={result}
-              betIndex={betIndex}
-              setResult={setResult}
-              myBet={myBet}
-            />
-            <ModifyBetSelection details={bet} betIndex={betIndex} />
-            <ModifyBetOdds details={bet} />
-            {/* THIS OPENS THE DETAILS  MODIFY FORM */}
-            <ModifyBetMore
-              handleModifyBet={handleModifyBet}
-              betIndex={betIndex}
+              betIndex={Number(bet.id)}
             />
           </div>
         ))}

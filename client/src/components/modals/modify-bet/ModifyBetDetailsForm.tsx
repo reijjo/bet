@@ -9,7 +9,10 @@ import {
 } from "react";
 
 import { Button, Error, Loading } from "../../";
-import { useEditDetailsMutation } from "../../../features/api/detailsApiSlice";
+import {
+  useEditDetailsMutation,
+  useGetDetailByIdQuery,
+} from "../../../features/api/detailsApiSlice";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import {
@@ -26,7 +29,6 @@ import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet } from "../../../utils/types";
 
 type ModifyBetFormProps = {
-  myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
   modifyIndex: number | null;
   setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
@@ -34,7 +36,6 @@ type ModifyBetFormProps = {
 };
 
 export const ModifyBetDetailsForm = ({
-  myBet,
   modifyIndex,
   setModifyIndex,
   disabled,
@@ -45,16 +46,26 @@ export const ModifyBetDetailsForm = ({
     addBetDetails,
     setAddBetDetails,
   } = useAddBetForm();
-  const [updateDetails, { isLoading, isError, error }] =
-    useEditDetailsMutation();
+  const {
+    data: detailData,
+    isLoading,
+    isError,
+    error,
+  } = useGetDetailByIdQuery(modifyIndex as number, {
+    skip: modifyIndex === null,
+  });
+  const [
+    updateDetails,
+    { isLoading: isUpdating, isError: isUpdateError, error: updateError },
+  ] = useEditDetailsMutation();
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    if (modifyIndex !== null) {
-      setAddBetDetails(myBet.betDetails[modifyIndex]);
+    if (modifyIndex !== null && detailData) {
+      setAddBetDetails(detailData);
     }
-  }, [modifyIndex, myBet.betDetails, setAddBetDetails]);
+  }, [modifyIndex, detailData, setAddBetDetails]);
 
   const { isTablet, isMobile } = useScreenWidth();
 
@@ -76,19 +87,20 @@ export const ModifyBetDetailsForm = ({
 
     if (modifyIndex !== null) {
       try {
-        await updateDetails(addBetDetails).unwrap();
+        const updated = await updateDetails(addBetDetails).unwrap();
+        console.log("updated", updated);
         setErrors({});
         handleCancel();
+        setAddBetDetails(updated);
       } catch (error: unknown) {
         console.log("Error updating bet", error);
       }
     }
   };
 
-  console.log("addBetDetails", addBetDetails);
-
   // Returns
   if (isLoading) return <Loading />;
+  if (isUpdateError) return <Error error={updateError} />;
   if (isError) return <Error error={error} />;
 
   return (
@@ -164,7 +176,7 @@ export const ModifyBetDetailsForm = ({
           style={isTablet || isMobile ? { gridColumn: "1 / -1" } : {}}
         >
           <Button
-            children={isLoading ? "Saving..." : "Save"}
+            children={isUpdating ? "Saving..." : "Save"}
             type="submit"
             className="btn btn-filled"
             disabled={disabled}

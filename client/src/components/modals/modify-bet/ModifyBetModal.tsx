@@ -24,7 +24,9 @@ export const ModifyBetModal = () => {
     isLoading,
     isError,
     error,
-  } = useGetBetByIdQuery(Number(id), { skip: !id });
+  } = useGetBetByIdQuery(Number(id), {
+    skip: !id,
+  });
 
   const dispatch = useAppDispatch();
 
@@ -42,7 +44,6 @@ export const ModifyBetModal = () => {
     }
   }, [isError, error, dispatch]);
 
-  console.log("MODIFY INDEX", modifyIndex);
   // Returns
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
@@ -59,7 +60,6 @@ export const ModifyBetModal = () => {
       </div>
       {modifyIndex !== null && (
         <ModifyBetDetailsForm
-          myBet={myBet}
           setMyBet={setMyBet}
           modifyIndex={modifyIndex}
           setModifyIndex={setModifyIndex}

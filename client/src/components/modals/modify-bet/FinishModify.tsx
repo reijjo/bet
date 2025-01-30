@@ -76,11 +76,13 @@ export const FinishModify = ({
     const updatedBet = {
       ...myBet,
       bet_final_type: finalType,
-      betDetails: myBet.betDetails.map((bet, index) => ({
+      betDetails: myBet.betDetails.map((bet) => ({
         ...bet,
-        ...result[index],
+        ...result[Number(bet.id)],
       })),
     };
+
+    console.log("UPDATEDBET", updatedBet);
 
     try {
       await editBet(updatedBet).unwrap();

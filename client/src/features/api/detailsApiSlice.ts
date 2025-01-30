@@ -14,7 +14,7 @@ export const detailsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_URL}/api` }),
   tagTypes: ["Details", "Bet"],
   endpoints: (builder) => ({
-    getBetDetails: builder.query<BetDetails[], void>({
+    getBetDetails: builder.query<BetDetails[], number>({
       query: (id) => `/bets/${id}/details`,
       transformResponse: (response: GetBetDetailsApiResponse) => response.data,
       providesTags: (result = []) => [
@@ -36,11 +36,13 @@ export const detailsApiSlice = createApi({
       invalidatesTags: (_result, _error, { id, bet_id }) => [
         { type: "Details", id },
         { type: "Bet", bet_id },
-        "Bet",
       ],
     }),
   }),
 });
 
-export const { useGetDetailByIdQuery, useEditDetailsMutation } =
-  detailsApiSlice;
+export const {
+  useGetBetDetailsQuery,
+  useGetDetailByIdQuery,
+  useEditDetailsMutation,
+} = detailsApiSlice;

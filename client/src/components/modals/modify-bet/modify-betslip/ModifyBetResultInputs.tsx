@@ -4,7 +4,6 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
 import { BetType } from "../../../../utils/enums";
-import { Bet } from "../../../../utils/types";
 
 type Result = {
   [key: number]: {
@@ -22,7 +21,6 @@ type ModifyBetResultInputsProps = {
   result: Result;
   betIndex: number;
   setResult: Dispatch<SetStateAction<Result>>;
-  myBet: Bet;
 };
 
 export const ModifyBetResultInputs = ({
@@ -30,7 +28,6 @@ export const ModifyBetResultInputs = ({
   result,
   betIndex,
   setResult,
-  myBet,
 }: ModifyBetResultInputsProps) => {
   const handleResultChange = (
     event: ChangeEvent<HTMLInputElement>,
@@ -44,6 +41,7 @@ export const ModifyBetResultInputs = ({
         [name]: value,
       },
     }));
+    console.log("result", result);
   };
 
   const handleBetbuilderResultChange = (
@@ -53,8 +51,7 @@ export const ModifyBetResultInputs = ({
   ) => {
     const { value } = event.target;
     setResult((prev) => {
-      const totalSelections =
-        myBet.betDetails[betIndex].betbuilder_selection?.length || 0;
+      const totalSelections = bet.betbuilder_selection?.length || 0;
       const currentResults =
         prev[betIndex]?.betbuilder_result || Array(totalSelections).fill("");
       const newResults = [...currentResults];
@@ -69,6 +66,9 @@ export const ModifyBetResultInputs = ({
       };
     });
   };
+
+  console.log("bet", bet);
+  console.log("result2", result);
 
   return (
     <div className="modifybet-result-inputs">

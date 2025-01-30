@@ -36,6 +36,35 @@ export const getDetailsByBetId = async (
 };
 
 //
+// GET
+// Get detail by ID
+export const getDetailById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.params;
+
+    if (!Number(id)) {
+      throw new HttpError(
+        "Details ID must be a number.",
+        400,
+        "Don't mess with the ID.",
+      );
+    }
+
+    const details = await BetDetailsModel.findByPk(Number(id));
+    if (!details) {
+      throw new HttpError("Details not found.", 404);
+    }
+    res.status(200).json({ data: details });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
+
+//
 // PATCH
 // Update details by id
 export const updateDetails = async (
