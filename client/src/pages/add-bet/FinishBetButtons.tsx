@@ -49,7 +49,7 @@ export const FinishBetButtons = ({
   const handleStakeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMyBet((prev) => ({
       ...prev,
-      stake: parseFloat(e.target.value),
+      stake: e.target.value,
     }));
   };
 

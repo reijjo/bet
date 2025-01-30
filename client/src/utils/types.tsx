@@ -5,7 +5,7 @@ import { BetStatus, BetType, Bookmaker } from "./enums";
 export type Bet = {
   id?: number;
   user_id: number;
-  stake: number;
+  stake: number | string;
   bookmaker: Bookmaker;
   tipper: string;
   status: BetStatus;
