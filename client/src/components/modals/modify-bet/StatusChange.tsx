@@ -78,11 +78,11 @@ export const StatusChange = ({ bet, setMyBet }: StatusChangeProps) => {
         </div>
       </a>
       {isOpen && (
-        <div className="bet-status-change-options">
+        <div className="bet-status-change-options-modify">
           {options.map((op) => (
             <a
               key={op}
-              className="bet-status-options-list status-with-ball"
+              className="bet-status-options-list-modify status-with-ball"
               onClick={() => changeStatus(op)}
             >
               <div className={`bet-status-ball ${endedBetBallColor(op)}`}></div>

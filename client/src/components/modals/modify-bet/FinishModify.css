@@ -45,3 +45,31 @@
     /* max-width: 5ch; */
   }
 }
+
+.bet-status-change-options-modify {
+  position: absolute;
+  top: 36px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  width: 100%;
+  min-width: max-content;
+  z-index: 1;
+}
+
+.bet-status-options-list-modify {
+  height: 2rem;
+
+  & p {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
