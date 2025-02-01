@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -10,7 +10,7 @@ import { SportLeague } from "../../../utils/enums";
 import { FinishBetForm } from "./FinishBetForm";
 
 describe("FinishBetForm", () => {
-  // const user = userEvent.setup();
+  const user = userEvent.setup();
   const mockSetMyBet = vi.fn();
   const mockSetModifyIndex = vi.fn();
 
@@ -50,11 +50,12 @@ describe("FinishBetForm", () => {
 
     // await user.selectOptions(
     //   screen.getByRole("combobox", { name: /sport/i }),
-    //   screen.getByRole("option", { name: "NHL" }),
+    //   screen.getByRole("option", { name: SportLeague.NHL }),
     // );
-    // await waitFor(() => {
-    //   expect(sportInput).toHaveValue("NHL");
-    // });
+
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // expect(sportInput).toHaveValue("NHL");
 
     // console.log("After", sportInput.value);
 
