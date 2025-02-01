@@ -7,7 +7,6 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { store } from "../../../store/store";
 import { initialBetValues } from "../../../utils/defaults";
 import { SportLeague } from "../../../utils/enums";
-// import { SportLeague } from "../../../utils/enums";
 import { FinishBetForm } from "./FinishBetForm";
 
 describe("FinishBetForm", () => {
@@ -30,26 +29,44 @@ describe("FinishBetForm", () => {
     );
 
     const sportInput = screen.getByLabelText(/sport/i) as HTMLSelectElement;
+    const options = Array.from(sportInput.querySelectorAll("option")).map(
+      (option) => option.value,
+    );
+    const expectedValues = Object.values(SportLeague);
 
     expect(sportInput).toBeInTheDocument();
+    expect(options).toEqual(expectedValues);
     await waitFor(() => expect(sportInput).not.toBeDisabled());
-    expect(sportInput).toHaveValue(SportLeague.NBA);
 
-    // console.log("Before selection:", sportInput.value);
-    // const options = Array.from(sportInput.querySelectorAll("option")).map(
-    //   (option) => option.value,
+    expect(
+      (screen.getByRole("option", { name: "NBA" }) as HTMLOptionElement)
+        .selected,
+    ).toBe(true);
+    expect((screen.getByText(/nhl/i) as HTMLOptionElement).selected).toBe(
+      false,
+    );
+
+    // console.log("Before", sportInput.value);
+
+    // await user.selectOptions(
+    //   screen.getByRole("combobox", { name: /sport/i }),
+    //   screen.getByRole("option", { name: "NHL" }),
     // );
-    // console.log("Options:", options);
-
-    // // Simulate selecting "NHL" from the dropdown
-    // await user.selectOptions(sportInput, SportLeague.NHL);
-
-    // // Log the updated value for debugging
-    // console.log("After selection:", sportInput.value);
-
-    // // Verify the updated value
     // await waitFor(() => {
-    //   expect(sportInput).toHaveValue(SportLeague.NHL);
+    //   expect(sportInput).toHaveValue("NHL");
+    // });
+
+    // console.log("After", sportInput.value);
+
+    // await waitFor(() => {
+    //   expect(sportInput).toHaveValue("NHL");
+    // expect((screen.getByText(/nhl/i) as HTMLOptionElement).selected).toBe(
+    //   true,
+    // );
+    // expect(
+    //   (screen.getByRole("option", { name: "NHL" }) as HTMLOptionElement)
+    //     .selected,
+    // ).toBe(true);
     // });
   });
 });

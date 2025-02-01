@@ -10,7 +10,7 @@ type SportInputProps = {
 };
 export const SportInput = ({ value, disabled, onChange }: SportInputProps) => {
   return (
-    <div className="sport-input">
+    <div className="sport-input" data-testid="sport-input">
       <Select
         className="text-input"
         label="Sport / League"
