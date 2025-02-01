@@ -18,7 +18,7 @@ export const initialBetDetailValues = {
 
 export const initialBetValues = {
   stake: 0,
-  bookmaker: Bookmaker.Unibet,
+  bookmaker: Bookmaker.Bet365,
   status: BetStatus.Pending,
   tipper: "Reijjo",
   bet_final_type: BetType.Single,

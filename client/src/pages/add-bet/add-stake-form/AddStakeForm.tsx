@@ -31,7 +31,11 @@ export const AddStakeForm = ({
   };
 
   return (
-    <div className="addbet-container" id="finish-my-bet">
+    <div
+      className="addbet-container"
+      id="finish-my-bet"
+      data-testid="add-stake"
+    >
       <div className="mybet-header">
         <h3 className="container-header">Add Stake</h3>
         <button className="mybets-close" disabled={modifyIndex !== null}>

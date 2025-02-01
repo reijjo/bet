@@ -96,7 +96,11 @@ export const AddBetForm = ({
   return (
     <div className="addbet-container">
       <h3 className="container-header">Add Bet</h3>
-      <form className="addbet-form" onSubmit={handleMyBet}>
+      <form
+        className="addbet-form"
+        data-testid="addbet-form"
+        onSubmit={handleMyBet}
+      >
         <MatchInput
           handleBetInput={handleBetInput}
           details={addBetDetails}
