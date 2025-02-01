@@ -9,5 +9,18 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
+    coverage: {
+      clean: true,
+      exclude: [
+        "**/*.spec.{ts,tsx}",
+        "**/*.test.{ts,tsx}",
+        "**/dist/**",
+        "**/vite.config.ts",
+        "**/.eslintrc.cjs",
+        "**mockdata/**",
+        "**/*.d.ts",
+        "**/index.{ts,tsx}",
+      ],
+    },
   },
 });

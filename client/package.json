@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "bun-build": "bunx --bun vite build",
     "clean": "rm -rf node_modules .bun bun.lockb **/dist out && bun install",
-    "test": "NODE_ENV=test vitest"
+    "test": "NODE_ENV=test vitest",
+    "test:cover": "NODE_ENV=test vitest --coverage"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -42,6 +43,7 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitejs/plugin-react-swc": "^3.7.2",
+    "@vitest/coverage-v8": "2.1.8",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.16",

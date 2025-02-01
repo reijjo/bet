@@ -62,11 +62,12 @@
 }
 
 .bet-status-options-list-modify {
-  height: 2rem;
+  height: 1.5rem;
 
   & p {
     padding: 8px;
-    gap: 8px;
+    /* gap: 8px; */
+    font-size: 0.925rem;
   }
 
   &:hover {
