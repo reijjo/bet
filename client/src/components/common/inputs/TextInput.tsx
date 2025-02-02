@@ -13,6 +13,8 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   backgroundColor?: string;
   errorStyle?: boolean;
+  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export const TextInput = ({
@@ -26,6 +28,8 @@ export const TextInput = ({
   width = "100%",
   height = "2.5rem",
   backgroundColor = "white",
+  handleBlur,
+  handleFocus,
   ...props
 }: TextInputProps) => {
   return (
@@ -39,6 +43,8 @@ export const TextInput = ({
       <input
         name={name}
         id={id}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         {...props}
         className={`${errorStyle && "input-error"}`}
         style={{

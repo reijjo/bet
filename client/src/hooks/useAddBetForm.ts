@@ -1,8 +1,12 @@
 import { ChangeEvent, useState } from "react";
 
 import { getInputValue } from "../pages/add-bet/betUtils";
-import { initialBetDetailValues, initialBetValues } from "../utils/defaults";
+import {
+  initialBetDetailValues,
+  initialBetValues,
+} from "../utils/defaults/defaults";
 import { scrollToTop } from "../utils/helperFunctions";
+import { validateBetDetailsInputs } from "../utils/inputValidators";
 import { Bet, BetDetails } from "../utils/types";
 
 export const useAddBetForm = () => {
@@ -23,12 +27,15 @@ export const useAddBetForm = () => {
       ...prev,
       [name]: inputValue,
     }));
+    invalidDetailsInput(name, value);
   };
 
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleDetailsSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+
     setAddBetDetails((bet) => ({
       ...bet,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     }));
   };
 
@@ -37,17 +44,51 @@ export const useAddBetForm = () => {
     scrollToTop();
   };
 
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    console.log("focus:", name, value);
+    invalidDetailsInput(name, value);
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name } = e.target;
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+
+  // Shows input errors on the go
+  const invalidDetailsInput = (name: string, value: string | number) => {
+    const validation = validateBetDetailsInputs({
+      ...addBetDetails,
+      [name]: value,
+    });
+    console.log("validation:", validation);
+
+    if (!validation.isValid) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: validation.errors[name] || "",
+      }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    }
+  };
+
   return {
     addBetDetails,
     setAddBetDetails,
     errors,
     setErrors,
     handleBetInput,
-    handleSelectChange,
+    handleDetailsSelect,
     modifyIndex,
     setModifyIndex,
     handleModifyBet,
     myBet,
     setMyBet,
+    handleFocus,
+    handleBlur,
   };
 };

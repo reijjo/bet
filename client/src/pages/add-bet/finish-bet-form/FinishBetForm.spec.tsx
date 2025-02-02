@@ -1,16 +1,16 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { store } from "../../../store/store";
-import { initialBetValues } from "../../../utils/defaults";
+import { initialBetValues } from "../../../utils/defaults/defaults";
 import { SportLeague } from "../../../utils/enums";
 import { FinishBetForm } from "./FinishBetForm";
 
 describe("FinishBetForm", () => {
-  const user = userEvent.setup();
+  // const user = userEvent.setup();
   const mockSetMyBet = vi.fn();
   const mockSetModifyIndex = vi.fn();
 

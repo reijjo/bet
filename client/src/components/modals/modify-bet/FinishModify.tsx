@@ -22,7 +22,7 @@ import {
 import { getFinalBetType } from "../../../pages/add-bet/betUtils";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
-import { initialBetValues } from "../../../utils/defaults";
+import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bet } from "../../../utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";

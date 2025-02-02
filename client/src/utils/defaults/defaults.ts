@@ -1,4 +1,4 @@
-import { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
+import { BetStatus, BetType, Bookmaker, SportLeague } from "../enums";
 
 export const initialBetDetailValues = {
   home_team: "",

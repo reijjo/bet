@@ -15,5 +15,5 @@ export const mockUseAddBetForm = {
   errors: {},
   setErrors: vi.fn(),
   handleBetInput: vi.fn(),
-  handleSelectChange: vi.fn(),
+  handleDetailsSelect: vi.fn(),
 };

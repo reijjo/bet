@@ -9,6 +9,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   id: string;
   name: string;
   options: string[];
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   height?: string;
   width?: string;
   backgroundColor?: string;
@@ -21,6 +22,7 @@ export const Select = ({
   id,
   name,
   options,
+  onChange,
   width = "100%",
   height = "2.5rem",
   backgroundColor = "white",
@@ -29,15 +31,16 @@ export const Select = ({
   return (
     <div className={className}>
       {label && (
-        <label htmlFor={name}>
+        <label htmlFor={id}>
           {label}{" "}
           {optional && <p className="text-input-paragraph">({optional})</p>}
         </label>
       )}
       <select
+        {...props}
         id={id}
         name={name}
-        {...props}
+        onChange={onChange}
         style={{
           height: height,
           width: width,

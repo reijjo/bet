@@ -13,7 +13,7 @@ import {
 } from "..";
 import { Button } from "../../../components/common/button/Button";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
-import { initialBetDetailValues } from "../../../utils/defaults";
+import { initialBetDetailValues } from "../../../utils/defaults/defaults";
 import { scrollDown } from "../../../utils/helperFunctions";
 import { validateBetDetailsInputs } from "../../../utils/inputValidators";
 import { Bet } from "../../../utils/types";
@@ -40,7 +40,9 @@ export const AddBetForm = ({
     errors,
     setErrors,
     handleBetInput,
-    handleSelectChange,
+    handleDetailsSelect,
+    handleBlur,
+    handleFocus,
   } = useAddBetForm();
 
   // Checks what bet to modify
@@ -105,9 +107,12 @@ export const AddBetForm = ({
           handleBetInput={handleBetInput}
           details={addBetDetails}
           disabled={disabled}
+          error={errors}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
         />
         <TypeInput
-          handleSelectChange={handleSelectChange}
+          handleSelectChange={handleDetailsSelect}
           details={addBetDetails}
           disabled={disabled}
         />
@@ -141,6 +146,8 @@ export const AddBetForm = ({
           disabled={disabled}
           error={errors}
           setError={setErrors}
+          // handleFocus={handleFocus}
+          // handleBlur={handleBlur}
         />
         <DateInput
           handleBetInput={handleBetInput}

@@ -10,7 +10,7 @@ import {
 
 import { Button, TextInput } from "../../components/";
 import { useBetCalculations } from "../../hooks/useBetCalculations";
-import { initialBetDetailValues } from "../../utils/defaults";
+import { initialBetDetailValues } from "../../utils/defaults/defaults";
 import { scrollToTop } from "../../utils/helperFunctions";
 import { Bet } from "../../utils/types";
 

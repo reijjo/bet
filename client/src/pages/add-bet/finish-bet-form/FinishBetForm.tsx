@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
 import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
 import { useBetCalculations } from "../../../hooks/useBetCalculations";
-import { initialBetValues } from "../../../utils/defaults";
+import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bookmaker } from "../../../utils/enums";
 import { scrollToTop } from "../../../utils/helperFunctions";
 import { Bet } from "../../../utils/types";
@@ -42,7 +42,7 @@ export const FinishBetForm = ({
 
   // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
   const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value, type } = e.target;
     setMyBet((prev) => ({
@@ -52,10 +52,30 @@ export const FinishBetForm = ({
   };
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setMyBet((myBet) => ({
-      ...myBet,
-      [e.target.name]: e.target.value,
-    }));
+    if (!e) {
+      console.log("No event object received");
+      return;
+    }
+    if (!e.target) {
+      console.log("No event target");
+      return;
+    }
+
+    console.log("handleSelectChange triggered");
+    const value = e.target.value;
+    console.log("event target:", e.target);
+    console.log("name:", e.target.name);
+    console.log("value:", value);
+
+    setMyBet((prevBet) => {
+      console.log("Previous bet:", prevBet);
+      const newBet = {
+        ...prevBet,
+        [e.target.name]: value,
+      };
+      console.log("New bet:", newBet);
+      return newBet;
+    });
   };
 
   // Adds new bet to the list of bets

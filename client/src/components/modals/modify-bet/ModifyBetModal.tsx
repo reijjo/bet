@@ -7,7 +7,7 @@ import { useGetBetByIdQuery } from "../../../features/api/betsApiSlice";
 import { resetModal } from "../../../features/modalSlice";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { initialBetValues } from "../../../utils/defaults";
+import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bet } from "../../../utils/types";
 import { Error } from "../../common/fallback/Error";
 import { Loading } from "../../common/fallback/Loading";
