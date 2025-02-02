@@ -6,8 +6,6 @@ export const AddBet = () => {
   const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();
 
-  console.log("myBet", myBet);
-
   return (
     <div className="wrapper">
       <AddBetForm

@@ -43,8 +43,8 @@ describe("MatchInput", () => {
     // Now we can check the result
     expect(updatedState.betDetails[0]).toEqual(
       expect.objectContaining({
-        // bet_type: LimitedBetType.Over,
-        // odds: "2.0",
+        bet_type: LimitedBetType.Over,
+        odds: "2.0",
         selection: "Test Selection",
       }),
     );
