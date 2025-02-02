@@ -7,22 +7,22 @@ import { inputErrors } from "../../../../../utils/defaults/errors";
 import { AddBetForm } from "../../AddBetForm";
 import { afterEach } from "node:test";
 
+const user = userEvent.setup();
+const mockFn = vi.fn();
+
+beforeEach(() => {
+  render(
+    <AddBetForm
+      myBet={initialBetValues}
+      setMyBet={mockFn}
+      modifyIndex={null}
+      setModifyIndex={mockFn}
+      disabled={false}
+    />,
+  );
+});
+
 describe("MatchInput", () => {
-  const user = userEvent.setup();
-  const mockFn = vi.fn();
-
-  beforeEach(() => {
-    render(
-      <AddBetForm
-        myBet={initialBetValues}
-        setMyBet={mockFn}
-        modifyIndex={null}
-        setModifyIndex={mockFn}
-        disabled={false}
-      />,
-    );
-  });
-
   it("max 30chars per team", async () => {
     const home = screen.getByPlaceholderText("Home Team");
     const away = screen.getByPlaceholderText("Away Team");
@@ -47,8 +47,27 @@ describe("MatchInput", () => {
     expect(screen.queryByText(inputErrors.match)).not.toBeInTheDocument();
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
-    vi.resetAllMocks();
+  it("alert input", async () => {
+    const home = screen.getByPlaceholderText("Home Team");
+    const continueButton = screen.getByRole("button", { name: /continue/i });
+
+    const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
+
+    expect(home).toBeInTheDocument();
+    expect(continueButton).toBeInTheDocument();
+    expect(screen.queryByText(inputErrors.match)).not.toBeInTheDocument();
+
+    await user.type(home, "<script>alert('XSS')</script>");
+    await user.click(continueButton);
+
+    expect(alertMock).not.toHaveBeenCalled();
+
+    // Clean up the mock
+    alertMock.mockRestore();
   });
+});
+
+afterEach(() => {
+  vi.clearAllMocks();
+  vi.resetAllMocks();
 });

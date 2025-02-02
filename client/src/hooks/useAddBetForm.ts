@@ -32,10 +32,11 @@ export const useAddBetForm = () => {
 
   const handleDetailsSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
+    const name = e.target.name;
 
     setAddBetDetails((bet) => ({
       ...bet,
-      [e.target.name]: value,
+      [name]: value,
     }));
   };
 
@@ -64,7 +65,6 @@ export const useAddBetForm = () => {
       ...addBetDetails,
       [name]: value,
     });
-    console.log("validation:", validation);
 
     if (!validation.isValid) {
       setErrors((prevErrors) => ({

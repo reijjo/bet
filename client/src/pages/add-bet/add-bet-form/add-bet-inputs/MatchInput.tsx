@@ -27,7 +27,6 @@ export const MatchInput = ({
   handleBlur,
   handleFocus,
 }: MatchInputProps) => {
-  console.log("error", error);
   return (
     <div
       className="match-input"

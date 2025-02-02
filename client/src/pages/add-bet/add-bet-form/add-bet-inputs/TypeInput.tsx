@@ -21,6 +21,8 @@ export const TypeInput = ({
   gridColumn,
   gridRow,
 }: TypeInputProps) => {
+  console.log("details:", details);
+
   return (
     <div
       className="bet-type-input"
