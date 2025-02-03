@@ -10,9 +10,9 @@ import {
 
 import { TextInputWithButton } from "../../../../components/common/inputs/TextInputWithButton";
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { hasInputError } from "../../../../utils/inputValidators";
 import { BetDetails, BetInputProps } from "../../../../utils/types";
 import { BetSelection } from "../BetSelection";
+import { hasInputError } from "../add-bet-inputs/InputError";
 
 interface BetbuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;

@@ -10,6 +10,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   name: string;
   options: string[];
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  value: string;
   height?: string;
   width?: string;
   backgroundColor?: string;
@@ -23,6 +24,7 @@ export const Select = ({
   name,
   options,
   onChange,
+  value,
   width = "100%",
   height = "2.5rem",
   backgroundColor = "white",
@@ -41,6 +43,7 @@ export const Select = ({
         id={id}
         name={name}
         onChange={onChange}
+        value={value}
         style={{
           height: height,
           width: width,

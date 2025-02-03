@@ -3,19 +3,15 @@ import "./SelectionInput.css";
 import { Dispatch, SetStateAction } from "react";
 
 import { TextInput } from "../../../../components/index";
-import { hasInputError } from "../../../../utils/inputValidators";
 import { BetDetails, BetInputProps } from "../../../../utils/types";
 import { BetSelection } from "../BetSelection";
+import { hasInputError } from "../add-bet-inputs/InputError";
 
 interface SelectionInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
   error?: { [key: string]: string };
-  setError: Dispatch<
-    SetStateAction<{
-      [key: string]: string;
-    }>
-  >;
-
+  handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   gridRow?: string;
   gridColumn?: string;
 }
@@ -26,7 +22,8 @@ export const SelectionInput = ({
   setDetails,
   disabled,
   error,
-
+  handleBlur,
+  handleFocus,
   gridColumn,
   gridRow,
 }: SelectionInputProps) => {
@@ -46,6 +43,8 @@ export const SelectionInput = ({
         value={details.selection}
         disabled={disabled}
         errorStyle={!!error?.selection}
+        handleBlur={handleBlur}
+        handleFocus={handleFocus}
       />
       {error?.selection && hasInputError(error.selection)}
       {details?.selection && (

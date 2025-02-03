@@ -3,8 +3,8 @@ import "./OddsInput.css";
 import { Dispatch, SetStateAction } from "react";
 
 import { TextInput } from "../../../../components/index";
-import { hasInputError } from "../../../../utils/inputValidators";
 import { BetInputProps } from "../../../../utils/types";
+import { hasInputError } from "../add-bet-inputs/InputError";
 
 interface OddsInputProps extends BetInputProps {
   error?: { [key: string]: string };

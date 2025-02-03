@@ -21,6 +21,8 @@ export const TypeInput = ({
   gridColumn,
   gridRow,
 }: TypeInputProps) => {
+  const betTypeValue = details.bet_type ?? LimitedBetType.Single;
+
   return (
     <div
       className="bet-type-input"
@@ -33,7 +35,7 @@ export const TypeInput = ({
         className="text-input"
         options={Object.values(LimitedBetType)}
         onChange={handleSelectChange}
-        value={details.bet_type}
+        value={betTypeValue}
         height="2.4rem"
         disabled={disabled}
       />

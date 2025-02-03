@@ -1,18 +1,13 @@
 import "./MatchInput.css";
 
 import { TextInput } from "../../../../components/common/inputs/TextInput";
-import { hasInputError } from "../../../../utils/inputValidators";
 import { BetInputProps } from "../../../../utils/types";
+import { hasInputError } from "../add-bet-inputs/InputError";
 
 interface MatchInputProps extends BetInputProps {
   gridRow?: string;
   gridColumn?: string;
   error?: { [key: string]: string };
-  // setError: Dispatch<
-  //   SetStateAction<{
-  //     [key: string]: string;
-  //   }>
-  // >;
   handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
@@ -27,6 +22,7 @@ export const MatchInput = ({
   handleBlur,
   handleFocus,
 }: MatchInputProps) => {
+  console.log("errirs", error);
   return (
     <div
       className="match-input"

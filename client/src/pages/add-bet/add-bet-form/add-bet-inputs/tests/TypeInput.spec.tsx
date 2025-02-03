@@ -32,7 +32,35 @@ describe("MatchInput", () => {
     await user.type(selectionInput, "Test Selection");
 
     const typeSelect = screen.getByLabelText(/bet type/i);
+    const options = Array.from(typeSelect.querySelectorAll("option")).map(
+      (option) => option.value,
+    );
+
+    expect(options).toEqual(Object.values(LimitedBetType));
+    expect(
+      (
+        screen.getByRole("option", {
+          name: LimitedBetType.Single,
+        }) as HTMLOptionElement
+      ).selected,
+    ).toBe(true);
+    expect(
+      (
+        screen.getByRole("option", {
+          name: LimitedBetType.Over,
+        }) as HTMLOptionElement
+      ).selected,
+    ).toBe(false);
+
     await user.selectOptions(typeSelect, LimitedBetType.Over);
+
+    expect(
+      (
+        screen.getByRole("option", {
+          name: LimitedBetType.Over,
+        }) as HTMLOptionElement
+      ).selected,
+    ).toBe(true);
 
     await user.click(screen.getByText("Continue"));
 

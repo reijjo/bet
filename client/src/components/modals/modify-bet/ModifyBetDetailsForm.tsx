@@ -42,9 +42,11 @@ export const ModifyBetDetailsForm = ({
 }: ModifyBetFormProps) => {
   const {
     handleBetInput,
-    handleSelectChange,
+    handleDetailsSelect,
     addBetDetails,
     setAddBetDetails,
+    handleBlur,
+    handleFocus,
   } = useAddBetForm();
   const {
     data: detailData,
@@ -115,6 +117,8 @@ export const ModifyBetDetailsForm = ({
           disabled={disabled}
           gridColumn={isTablet || isMobile ? "1 / -1" : "1 / 3"}
           gridRow="1 / 2"
+          handleBlur={handleBlur}
+          handleFocus={handleFocus}
         />
         <DateInput
           handleBetInput={handleBetInput}
@@ -148,7 +152,8 @@ export const ModifyBetDetailsForm = ({
             setDetails={setAddBetDetails}
             disabled={disabled}
             error={errors}
-            setError={setErrors}
+            handleBlur={handleBlur}
+            handleFocus={handleFocus}
             gridColumn={isTablet || isMobile ? "1 / -1" : "1 / 3"}
             gridRow={isTablet || isMobile ? "3 / 4" : "2 / 4"}
           />
@@ -163,7 +168,7 @@ export const ModifyBetDetailsForm = ({
           gridRow={isTablet || isMobile ? "3 / 4" : "2 / 3"}
         />
         <TypeInput
-          handleSelectChange={handleSelectChange}
+          handleSelectChange={handleDetailsSelect}
           details={addBetDetails}
           disabled={disabled}
           gridColumn={isTablet || isMobile ? "2 / 3" : ""}
