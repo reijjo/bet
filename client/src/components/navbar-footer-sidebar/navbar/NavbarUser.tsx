@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 import { Divider } from "../../";
+import logo from "../../../assets/fishing.png";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
 import { openSidebar } from "../../../features/sidebarSlice";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
@@ -66,7 +67,9 @@ export const NavbarUser = () => {
             </a>
           </div>
           <div className={`nav-logo ${isMobile ? "none" : ""}`}>
+            <img src={logo} alt="logo" height={32} width={32} />
             <h3>Tärpit</h3>
+            <img src={logo} alt="logo" height={32} width={32} />
           </div>
           <div className="nav-profile">
             <div className="user-img-wrapper">

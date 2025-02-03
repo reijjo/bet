@@ -48,6 +48,8 @@
   width: 100%;
   font-variant-caps: small-caps;
   padding-left: 24px;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .sidebar-links {

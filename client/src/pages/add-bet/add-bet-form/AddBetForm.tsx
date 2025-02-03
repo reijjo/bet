@@ -128,7 +128,8 @@ export const AddBetForm = ({
             setDetails={setAddBetDetails}
             disabled={disabled}
             error={errors}
-            setError={setErrors}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
           />
         ) : (
           <SelectionInput

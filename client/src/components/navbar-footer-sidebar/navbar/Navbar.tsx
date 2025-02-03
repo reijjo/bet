@@ -3,6 +3,8 @@ import "./Navbar.css";
 
 import { NavLink } from "react-router-dom";
 
+import logo from "../../../assets/fishing.png";
+
 export const Navbar = () => {
   return (
     <nav>
@@ -10,7 +12,8 @@ export const Navbar = () => {
         <div className="nav-links-common">
           <div className="nav-logo-visible">
             <NavLink to="/" className="btn-font underline-hover">
-              tärpit
+              <img src={logo} alt="logo" height={32} width={32} />
+              <p>tärpit</p>
             </NavLink>
           </div>
           <div className="nav-login">

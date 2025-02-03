@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
+import logo from "../../../assets/fishing.png";
 import { closeSidebar } from "../../../features/sidebarSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Divider, LinkWithIcon } from "../../index";
@@ -40,6 +41,7 @@ export const Sidebar = () => {
       </div>
 
       <Link to="/" className="sidebar-logo" onClick={handleCloseSidebar}>
+        <img src={logo} alt="logo" height={32} width={32} />
         <h3>Tärpit</h3>
       </Link>
       <div className="sidebar-links">

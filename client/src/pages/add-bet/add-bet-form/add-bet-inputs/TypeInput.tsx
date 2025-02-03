@@ -20,25 +20,21 @@ export const TypeInput = ({
   disabled,
   gridColumn,
   gridRow,
-}: TypeInputProps) => {
-  const betTypeValue = details.bet_type ?? LimitedBetType.Single;
-
-  return (
-    <div
-      className="bet-type-input"
-      style={{ gridColumn: gridColumn, gridRow: gridRow }}
-    >
-      <Select
-        id="bet_type"
-        name="bet_type"
-        label="Bet Type"
-        className="text-input"
-        options={Object.values(LimitedBetType)}
-        onChange={handleSelectChange}
-        value={betTypeValue}
-        height="2.4rem"
-        disabled={disabled}
-      />
-    </div>
-  );
-};
+}: TypeInputProps) => (
+  <div
+    className="bet-type-input"
+    style={{ gridColumn: gridColumn, gridRow: gridRow }}
+  >
+    <Select
+      id="bet_type"
+      name="bet_type"
+      label="Bet Type"
+      className="text-input"
+      options={Object.values(LimitedBetType)}
+      onChange={handleSelectChange}
+      value={details.bet_type}
+      height="2.4rem"
+      disabled={disabled}
+    />
+  </div>
+);

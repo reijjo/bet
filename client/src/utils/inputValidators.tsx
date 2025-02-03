@@ -28,18 +28,18 @@ export const validMatch = (home: string, away: string) => {
 
 export const validSelection = (selection: string, betType: BetType) => {
   if (!isBetBuilderType(betType) && !hasLength(selection)) {
-    return "Selection is required";
+    return inputErrors.selection;
   }
   return "";
 };
 
 export const validOdds = (odds: string | number) => {
   if (!hasLength(String(odds))) {
-    return "Odds is required";
+    return inputErrors.oddsEmpty;
   }
 
   if (!isNumber(String(odds))) {
-    return "Odds must be a number";
+    return inputErrors.oddsNotNumber;
   }
   return "";
 };
@@ -53,7 +53,7 @@ export const validBetBuilderSelection = (
     (betType === BetType.BetBuilder || betType === BetType.Tuplaus) &&
     !hasBuilderSelections(selections)
   ) {
-    return "One or more selections are required";
+    return inputErrors.buildSelections;
   }
   return "";
 };
@@ -83,13 +83,12 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   }
 
   // Check betbuilder selections
-  if (
-    details.betbuilder_selection &&
-    (details.bet_type === BetType.BetBuilder ||
-      details.bet_type === BetType.Tuplaus) &&
-    !hasBuilderSelections(details.betbuilder_selection)
-  ) {
-    errors.betbuilder_selection = "One or more selections are required";
+  const builderSelectionError = validBetBuilderSelection(
+    details.betbuilder_selection as string[],
+    details.bet_type,
+  );
+  if (builderSelectionError) {
+    errors.betbuilder_selection = inputErrors.buildSelections;
   }
 
   return {

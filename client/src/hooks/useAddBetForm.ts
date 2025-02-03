@@ -27,8 +27,6 @@ export const useAddBetForm = () => {
     });
   };
 
-  console.log('ERRORS"', errors);
-
   // Handles all types of bet inputs
   const handleBetInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -41,44 +39,51 @@ export const useAddBetForm = () => {
       [name]: inputValue,
     }));
 
-    if (name === "home_team" || name === "away_team") {
-      clearTeamErrors();
-    }
+    // Clear field-specific error when user starts typing
+    setErrors((prev) => {
+      const newErrors = { ...prev };
+      delete newErrors[name];
 
-    const validation = validateBetDetailsInputs({
-      ...addBetDetails,
-      [name]: inputValue,
+      // Special handling for team fields
+      if (name === "home_team" || name === "away_team") {
+        delete newErrors.match;
+        delete newErrors.home_team;
+        delete newErrors.away_team;
+      }
+
+      return newErrors;
     });
 
-    if (!validation.isValid) {
-      setErrors((prev) => ({
-        ...prev,
-        ...validation.errors,
-      }));
-    } else {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        if (name === "home_team" || name === "away_team") {
-          delete newErrors.match;
-          delete newErrors.home_team;
-          delete newErrors.away_team;
-        }
-        return newErrors;
+    // Only validate after user has entered something
+    if (inputValue) {
+      const validation = validateBetDetailsInputs({
+        ...addBetDetails,
+        [name]: inputValue,
       });
+
+      if (!validation.isValid && validation.errors[name]) {
+        setErrors((prev) => ({
+          ...prev,
+          [name]: validation.errors[name],
+        }));
+      }
     }
   };
 
   const handleDetailsSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    const name = e.target.name;
+    const { name, value } = e.target;
 
-    setAddBetDetails((bet) => ({
-      ...bet,
+    setAddBetDetails((prev) => ({
+      ...prev,
       [name]: value,
     }));
 
-    // return value;
+    // Clear the error when a selection is made
+    setErrors((prev) => {
+      const newErrors = { ...prev };
+      delete newErrors[name];
+      return newErrors;
+    });
   };
 
   const handleModifyBet = (index: number) => {
@@ -87,58 +92,38 @@ export const useAddBetForm = () => {
   };
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    console.log("FOCUS NAME", name);
-
-    if (name === "home_team" || name === "away_team") {
-      clearTeamErrors();
-    }
-
-    invalidDetailsInput(name, value);
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
 
+    // Only clear errors on focus, don't validate
     if (name === "home_team" || name === "away_team") {
       clearTeamErrors();
-    }
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: "",
-    }));
-  };
-
-  // Shows input errors on the go
-  const invalidDetailsInput = (name: string, value: string | number) => {
-    const validation = validateBetDetailsInputs({
-      ...addBetDetails,
-      [name]: value,
-    });
-
-    if (!validation.isValid) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: validation.errors[name] || "",
-        // Clear match error if we're validating team inputs
-        ...(name === "home_team" || name === "away_team"
-          ? { matcherror: "" }
-          : {}),
-      }));
     } else {
       setErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[name];
-
-        // Clear match error if we're validating team inputs
-        if (name === "home_team" || name === "away_team") {
-          delete newErrors.matcherror;
-        }
-
         return newErrors;
       });
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    // Validate on blur only if there's a value
+    if (value) {
+      const validation = validateBetDetailsInputs({
+        ...addBetDetails,
+        [name]: value,
+      });
+
+      if (!validation.isValid && validation.errors[name]) {
+        if (name === "betbuilder_selection") return;
+
+        setErrors((prev) => ({
+          ...prev,
+          [name]: validation.errors[name],
+        }));
+      }
     }
   };
 

@@ -31,9 +31,14 @@ export const BetSelection = ({
       {details?.betbuilder_selection && isBetBuilderType(details.bet_type) ? (
         <div className="betbuilder-selections-container">
           {details.betbuilder_selection.map((selection, index) => (
-            <div key={index} className="bet-selection-component">
+            <div
+              key={index}
+              className="bet-selection-component"
+              data-testid="bet-selection-component"
+            >
               <p title={selection}>{selection}</p>
               <button
+                data-testid="remove-selection"
                 onClick={() => removeSelection && removeSelection(index)}
                 type="button"
               >

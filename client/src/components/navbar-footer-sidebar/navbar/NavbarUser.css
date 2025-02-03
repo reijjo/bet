@@ -44,7 +44,13 @@
   display: none;
 
   @media (width < 1180px) {
-    display: block;
+    display: flex;
+    gap: 1rem;
+
+    & img:last-child {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
   }
 }
 
