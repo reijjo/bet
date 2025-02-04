@@ -38,7 +38,11 @@ export const AddStakeForm = ({
     >
       <div className="mybet-header">
         <h3 className="container-header">Add Stake</h3>
-        <button className="mybets-close" disabled={modifyIndex !== null}>
+        <button
+          className="mybets-close"
+          disabled={modifyIndex !== null}
+          data-testid="mybets-close"
+        >
           <a onClick={cancelBet} title="Close">
             <FontAwesomeIcon icon={faXmark} />
           </a>

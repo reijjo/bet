@@ -9,7 +9,6 @@ type SportInputProps = {
   disabled?: boolean;
 };
 export const SportInput = ({ value, disabled, onChange }: SportInputProps) => {
-  console.log("value", value);
   return (
     <div className="sport-input" data-testid="sport-input">
       <Select

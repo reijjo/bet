@@ -99,6 +99,8 @@ export const ModifyBetDetailsForm = ({
     }
   };
 
+  console.log("modifyIndex", modifyIndex);
+
   // Returns
   if (isLoading) return <Loading />;
   if (isUpdateError) return <Error error={updateError} />;
@@ -141,7 +143,8 @@ export const ModifyBetDetailsForm = ({
             setDetails={setAddBetDetails}
             disabled={disabled}
             error={errors}
-            setError={setErrors}
+            handleBlur={handleBlur}
+            handleFocus={handleFocus}
             gridColumn={isTablet || isMobile ? "1 / -1" : "1 / 3"}
             gridRow={isTablet || isMobile ? "4 / 5" : "2 / 4"}
           />

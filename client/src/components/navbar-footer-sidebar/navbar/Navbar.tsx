@@ -11,9 +11,9 @@ export const Navbar = () => {
       <div className="wrapper">
         <div className="nav-links-common">
           <div className="nav-logo-visible">
-            <NavLink to="/" className="btn-font underline-hover">
+            <NavLink to="/" className="btn-font ">
               <img src={logo} alt="logo" height={32} width={32} />
-              <p>tärpit</p>
+              <p className="underline-hover">tärpit</p>
             </NavLink>
           </div>
           <div className="nav-login">
