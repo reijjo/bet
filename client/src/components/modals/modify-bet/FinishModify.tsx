@@ -23,7 +23,7 @@ import { getFinalBetType } from "../../../pages/add-bet/betUtils";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
 import { initialBetValues } from "../../../utils/defaults/defaults";
-import { Bet } from "../../../utils/types";
+import { Bet, BetDetails } from "../../../utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
 import { Result } from "./ModifyBetSlip";
 import { StatusChange } from "./StatusChange";
@@ -32,12 +32,14 @@ type FinishModifyProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
   result: Result;
+  details: BetDetails[];
 };
 
 export const FinishModify = ({
   myBet,
   setMyBet,
   result,
+  details,
 }: FinishModifyProps) => {
   const [
     editBet,
@@ -76,12 +78,12 @@ export const FinishModify = ({
     const updatedBet = {
       ...myBet,
       bet_final_type: finalType,
-      betDetails: myBet.betDetails.map((bet) => ({
+      betDetails: details.map((bet) => ({
         ...bet,
         ...result[Number(bet.id)],
       })),
     };
-
+    console.log("MYBET.DETAILS", myBet.betDetails);
     console.log("UPDATEDBET", updatedBet);
 
     try {

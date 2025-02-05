@@ -68,7 +68,7 @@ export const ModifyBetSlip = ({
     setResult(initialResult);
   }, [detailsData]);
 
-  console.log("detailsData-home_result", detailsData?.[0].home_result);
+  console.log("THIS DETAILS DATA", detailsData);
 
   // Return
   if (isLoading) return <Loading />;
@@ -94,7 +94,12 @@ export const ModifyBetSlip = ({
             />
           </div>
         ))}
-        <FinishModify myBet={myBet} setMyBet={setMyBet} result={result} />
+        <FinishModify
+          myBet={myBet}
+          setMyBet={setMyBet}
+          result={result}
+          details={detailsData ?? []}
+        />
       </div>
     </div>
   );

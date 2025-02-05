@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 
+// import { Result } from "../components/modals/modify-bet/ModifyBetSlip";
 import { getInputValue } from "../pages/add-bet/betUtils";
 import {
   initialBetDetailValues,
@@ -85,6 +86,34 @@ export const useAddBetForm = () => {
       return newErrors;
     });
   };
+
+  // const spyResultChange = (bet: BetDetails, result: Result) => {
+  //   // Only update if we have both bet and result data
+  //   if (!bet || !result) return false;
+
+  //   const betId = Number(bet.id);
+  //   const resultData = result[betId];
+
+  //   // Check if there are any differences between bet and result
+  //   const hasChanges =
+  //     bet.home_result !== resultData?.home_result ||
+  //     bet.away_result !== resultData?.away_result ||
+  //     JSON.stringify(bet.betbuilder_result) !==
+  //       JSON.stringify(resultData?.betbuilder_result);
+
+  //   if (hasChanges) {
+  //     // If there are changes, update the bet with the new results
+  //     return {
+  //       ...bet,
+  //       home_result: resultData?.home_result || bet.home_result,
+  //       away_result: resultData?.away_result || bet.away_result,
+  //       betbuilder_result:
+  //         resultData?.betbuilder_result || bet.betbuilder_result,
+  //     };
+  //   }
+
+  //   return false;
+  // };
 
   const handleModifyBet = (index: number) => {
     setModifyIndex(index);

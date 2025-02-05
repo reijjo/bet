@@ -99,7 +99,7 @@ export const ModifyBetDetailsForm = ({
     }
   };
 
-  console.log("modifyIndex", modifyIndex);
+  console.log("Add bet details", addBetDetails);
 
   // Returns
   if (isLoading) return <Loading />;
