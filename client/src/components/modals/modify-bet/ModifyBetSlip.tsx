@@ -68,8 +68,6 @@ export const ModifyBetSlip = ({
     setResult(initialResult);
   }, [detailsData]);
 
-  console.log("THIS DETAILS DATA", detailsData);
-
   // Return
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;

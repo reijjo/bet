@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { betReducer, modalReducer, sidebarReducer } from "../features";
+import { modalReducer, sidebarReducer } from "../features";
 import { betApiSlice } from "../features/api/betsApiSlice";
 import { detailsApiSlice } from "../features/api/detailsApiSlice";
 import { sportsApiSlice } from "../features/api/sportApiSlice";
@@ -9,7 +9,7 @@ export const store = configureStore({
   reducer: {
     modal: modalReducer,
     sidebar: sidebarReducer,
-    bets: betReducer,
+    // bets: betReducer,
     [betApiSlice.reducerPath]: betApiSlice.reducer,
     [sportsApiSlice.reducerPath]: sportsApiSlice.reducer,
     [detailsApiSlice.reducerPath]: detailsApiSlice.reducer,
