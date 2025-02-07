@@ -1,24 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { modalReducer, sidebarReducer } from "../features";
-import { betApiSlice } from "../features/api/betsApiSlice";
-import { detailsApiSlice } from "../features/api/detailsApiSlice";
-import { sportsApiSlice } from "../features/api/sportApiSlice";
+import { baseApi } from "../features/api/baseApi";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
     sidebar: sidebarReducer,
-    // bets: betReducer,
-    [betApiSlice.reducerPath]: betApiSlice.reducer,
-    [sportsApiSlice.reducerPath]: sportsApiSlice.reducer,
-    [detailsApiSlice.reducerPath]: detailsApiSlice.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(betApiSlice.middleware)
-      .concat(sportsApiSlice.middleware)
-      .concat(detailsApiSlice.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
   devTools: import.meta.env.NODE_ENV !== "production",
 });
 

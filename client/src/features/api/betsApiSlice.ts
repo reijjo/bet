@@ -1,20 +1,16 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 import {
   GetBetByIdApiResponse,
   GetBetsApiResponse,
 } from "../../utils/api-response-types";
 import { config } from "../../utils/config";
 import { Bet } from "../../utils/types";
+import { baseApi } from "./baseApi";
 
 const { BACKEND_URL } = config;
 
 console.log("BACKEND_URL", BACKEND_URL);
 
-export const betApiSlice = createApi({
-  reducerPath: "betsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_URL}/api` }),
-  tagTypes: ["Bet", "Details"],
+export const betApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getBets: builder.query<Bet[], void>({
       query: () => "/bets",
