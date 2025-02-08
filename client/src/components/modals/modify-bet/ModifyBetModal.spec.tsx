@@ -1,44 +1,60 @@
-// import { render, screen } from "@testing-library/react";
-// import { Provider } from "react-redux";
-import { describe, expect, it } from "vitest";
+import { configureStore } from "@reduxjs/toolkit";
+import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
-// import { store } from "../../../store/store";
-// import { mockBet } from "../../../tests/mocks/betMock";
-// import { ModifyBetModal } from "./ModifyBetModal";
+import { modalReducer, sidebarReducer } from "../../../features";
+import { baseApi } from "../../../features/api/baseApi";
+import { mockBet } from "../../../tests/mocks/betMock";
+import { ModifyBetModal } from "./ModifyBetModal";
 
-// vi.mock("../../../features/api/betsApiSlice", () => ({
-//   useGetBetByIdQuery: () => ({
-//     data: mockBet,
-//     isLoading: false,
-//     isError: false,
-//   }),
-// }));
-
-// vi.mock("../../../hooks/useAddBetForm", () => ({
-//   useAddBetForm: () => ({
-//     modifyIndex: null,
-//     setModifyIndex: vi.fn(),
-//     handleModifyBet: vi.fn(),
-//   }),
-// }));
-
-// vi.mock("../../../store/hooks", () => ({
-//   useAppSelector: () => ({ id: mockBet.id }),
-//   useAppDispatch: () => vi.fn(),
-// }));
+vi.mock("../../../features/api/betsApiSlice", () => ({
+  useGetBetByIdQuery: () => ({
+    data: mockBet,
+    isLoading: false,
+    isError: false,
+    error: null,
+    refetch: vi.fn(),
+  }),
+}));
 
 describe("ModifyBetModal", () => {
-  // const renderComponent = () => {
-  //   return render(
-  //     <Provider store={store}>
-  //       <ModifyBetModal />
-  //     </Provider>,
-  //   );
-  // };
+  const createTestStore = () =>
+    configureStore({
+      reducer: {
+        modal: modalReducer,
+        sidebar: sidebarReducer,
+        [baseApi.reducerPath]: baseApi.reducer,
+      },
+      preloadedState: {
+        modal: {
+          isModifyBetModalOpen: { id: mockBet.id, isOpen: true },
+          isModalOpen: true,
+          isConfirmModalOpen: false,
+        },
+        sidebar: {
+          sidebar: false,
+        },
+      },
+      middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(baseApi.middleware),
+    });
 
-  it("renders the ModifyBetModal component", () => {
-    expect(true).toBe(true);
-    // renderComponent();
-    // expect(screen.getByRole("heading")).toHaveTextContent("Modify Bet");
+  let testStore: ReturnType<typeof createTestStore>;
+
+  beforeEach(() => {
+    testStore = createTestStore();
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+  });
+
+  it("renders the ModifyBetModal component", async () => {
+    render(
+      <Provider store={testStore}>
+        <ModifyBetModal />
+      </Provider>,
+    );
+
+    expect(screen.getByText("Modify Bet")).toBeInTheDocument();
   });
 });

@@ -10,7 +10,6 @@ interface ResultBetsTableProps {
 }
 
 export const ResultBetsTable = ({ bet }: ResultBetsTableProps) => {
-  // console.log("bet", bet);
   const renderBetBuildSelection = (result?: string[]) => {
     if (!Array.isArray(result) || result.length === 0) {
       return <p>-</p>;
