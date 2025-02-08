@@ -99,8 +99,6 @@ export const ModifyBetDetailsForm = ({
     }
   };
 
-  console.log("Add bet details", addBetDetails);
-
   // Returns
   if (isLoading) return <Loading />;
   if (isUpdateError) return <Error error={updateError} />;
@@ -110,6 +108,7 @@ export const ModifyBetDetailsForm = ({
     <div className="modifybetform-container">
       <form
         className="addbet-form"
+        data-testid="modify-bet-form"
         onSubmit={handleMyBet}
         style={isTablet ? { gridTemplateColumns: "repeat(2, 1fr)" } : {}}
       >

@@ -10,16 +10,6 @@ import { baseApi } from "../../../features/api/baseApi";
 import { mockBet } from "../../../tests/mocks/betMock";
 import { ModifyBetModal } from "./ModifyBetModal";
 
-// vi.mock("../../../features/api/betsApiSlice", () => ({
-//   useGetBetByIdQuery: () => ({
-//     data: mockBet,
-//     isLoading: false,
-//     isError: false,
-//     error: null,
-//     refetch: vi.fn(),
-//   }),
-// }));
-
 const mockUseGetBetByIdQuery = vi.fn();
 
 vi.mock("../../../features/api/betsApiSlice", () => ({
