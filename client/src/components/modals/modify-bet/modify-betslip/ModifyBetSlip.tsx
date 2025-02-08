@@ -2,10 +2,6 @@ import "./ModifyBetSlip.css";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { Error, Loading } from "../..";
-import { useGetBetDetailsQuery } from "../../../features/api/detailsApiSlice";
-import { Bet } from "../../../utils/types";
-import { FinishModify } from "./FinishModify";
 import {
   ModifyBetHeaders,
   ModifyBetMatch,
@@ -13,7 +9,11 @@ import {
   ModifyBetOdds,
   ModifyBetResultInputs,
   ModifyBetSelection,
-} from "./modify-betslip";
+} from ".";
+import { Error, Loading } from "../../..";
+import { useGetBetDetailsQuery } from "../../../../features/api/detailsApiSlice";
+import { Bet } from "../../../../utils/types";
+import { FinishModify } from "../FinishModify";
 
 type MyBetsProps = {
   myBet: Bet;

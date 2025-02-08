@@ -12,7 +12,7 @@ import { Bet } from "../../../utils/types";
 import { Error } from "../../common/fallback/Error";
 import { Loading } from "../../common/fallback/Loading";
 import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
-import { ModifyBetSlip } from "./ModifyBetSlip";
+import { ModifyBetSlip } from "./modify-betslip/ModifyBetSlip";
 
 export const ModifyBetModal = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);

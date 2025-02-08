@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { configureStore } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { modalReducer, sidebarReducer } from "../../../features";
@@ -8,14 +10,20 @@ import { baseApi } from "../../../features/api/baseApi";
 import { mockBet } from "../../../tests/mocks/betMock";
 import { ModifyBetModal } from "./ModifyBetModal";
 
+// vi.mock("../../../features/api/betsApiSlice", () => ({
+//   useGetBetByIdQuery: () => ({
+//     data: mockBet,
+//     isLoading: false,
+//     isError: false,
+//     error: null,
+//     refetch: vi.fn(),
+//   }),
+// }));
+
+const mockUseGetBetByIdQuery = vi.fn();
+
 vi.mock("../../../features/api/betsApiSlice", () => ({
-  useGetBetByIdQuery: () => ({
-    data: mockBet,
-    isLoading: false,
-    isError: false,
-    error: null,
-    refetch: vi.fn(),
-  }),
+  useGetBetByIdQuery: (...args: any) => mockUseGetBetByIdQuery(...args),
 }));
 
 describe("ModifyBetModal", () => {
@@ -49,6 +57,14 @@ describe("ModifyBetModal", () => {
   });
 
   it("renders the ModifyBetModal component", async () => {
+    mockUseGetBetByIdQuery.mockReturnValue({
+      data: mockBet,
+      isLoading: false,
+      isError: false,
+      error: null,
+      refetch: vi.fn(),
+    });
+
     render(
       <Provider store={testStore}>
         <ModifyBetModal />
@@ -56,5 +72,29 @@ describe("ModifyBetModal", () => {
     );
 
     expect(screen.getByText("Modify Bet")).toBeInTheDocument();
+  });
+
+  it("shows error on ModifyBetModal", async () => {
+    mockUseGetBetByIdQuery.mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      isError: true,
+      error: {
+        status: 404,
+        data: { message: "Bet not found" },
+      },
+      refetch: vi.fn(),
+    });
+
+    render(
+      <Provider store={testStore}>
+        <MemoryRouter>
+          <ModifyBetModal />
+        </MemoryRouter>
+      </Provider>,
+    );
+
+    expect(screen.getByText("Something shady happened")).toBeInTheDocument();
+    expect(screen.getByText("Error: 404")).toBeInTheDocument();
   });
 });

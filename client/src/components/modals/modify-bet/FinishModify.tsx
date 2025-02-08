@@ -25,8 +25,8 @@ import { RootState } from "../../../store/store";
 import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bet, BetDetails } from "../../../utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
-import { Result } from "./ModifyBetSlip";
 import { StatusChange } from "./StatusChange";
+import { Result } from "./modify-betslip/ModifyBetSlip";
 
 type FinishModifyProps = {
   myBet: Bet;
