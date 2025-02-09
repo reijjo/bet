@@ -28,5 +28,5 @@ export const mockBetBuilderDetail: BetDetails = {
   betbuilder_result: [],
   freebet: false,
   livebet: false,
-  bet_type: BetType.Single,
+  bet_type: BetType.BetBuilder,
 };

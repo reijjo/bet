@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { modalReducer, sidebarReducer } from "../../../features";
@@ -187,5 +188,78 @@ describe("ModifyBetDetailsForm", () => {
     expect(mockSetModifyIndex).not.toHaveBeenCalled();
   });
 
-  it("isBetbuilderType works", async () => {});
+  it("changes to betbuilder input", async () => {
+    mockUseGetDetailByIdQuery.mockReturnValue({
+      data: mockBetDetail,
+      isLoading: false,
+      isError: false,
+      error: null,
+    });
+    render(
+      <Provider store={testStore}>
+        <ModifyBetDetailsForm
+          modifyIndex={mockBet.id as number}
+          setMyBet={mockSetMyBet}
+          setModifyIndex={mockSetModifyIndex}
+          disabled={mockDisabled}
+        />
+      </Provider>,
+    );
+    expect(screen.getByLabelText("Selection")).toBeInTheDocument();
+    expect(screen.queryByLabelText(/your selection/i)).not.toBeInTheDocument();
+
+    const typeSelect = screen.getByLabelText(/bet type/i);
+    expect(typeSelect).toBeInTheDocument();
+
+    await user.selectOptions(typeSelect, "Bet Builder");
+
+    expect(screen.getByLabelText(/your selection/i)).toBeInTheDocument();
+    expect(screen.queryByLabelText("Selection")).not.toBeInTheDocument();
+  });
+
+  it("shows loading state", () => {
+    mockUseGetDetailByIdQuery.mockReturnValue({
+      data: null,
+      isLoading: true,
+      isError: false,
+      error: null,
+    });
+
+    render(
+      <Provider store={testStore}>
+        <ModifyBetDetailsForm
+          modifyIndex={mockBet.id as number}
+          setMyBet={mockSetMyBet}
+          setModifyIndex={mockSetModifyIndex}
+          disabled={mockDisabled}
+        />
+      </Provider>,
+    );
+
+    expect(screen.getByTestId("loading-component")).toBeInTheDocument();
+  });
+
+  it("shows error state for get details query", () => {
+    mockUseGetDetailByIdQuery.mockReturnValue({
+      data: null,
+      isLoading: false,
+      isError: true,
+      error: { message: "Failed to fetch" },
+    });
+
+    render(
+      <Provider store={testStore}>
+        <MemoryRouter>
+          <ModifyBetDetailsForm
+            modifyIndex={mockBet.id as number}
+            setMyBet={mockSetMyBet}
+            setModifyIndex={mockSetModifyIndex}
+            disabled={mockDisabled}
+          />
+        </MemoryRouter>
+      </Provider>,
+    );
+
+    expect(screen.getByTestId("error-component")).toBeInTheDocument();
+  });
 });

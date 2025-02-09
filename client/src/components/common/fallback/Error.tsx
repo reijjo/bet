@@ -32,7 +32,7 @@ export const Error = ({ error }: ErrorProps) => {
   };
 
   return (
-    <div className="wrapper error-component">
+    <div className="wrapper error-component" data-testid="error-component">
       <h2>Something shady happened</h2>
       <p>{getErrorMessage()}</p>
 
