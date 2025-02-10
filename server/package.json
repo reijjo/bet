@@ -5,18 +5,22 @@
   "scripts": {
     "dev": "NODE_ENV=development bun --watch run src/index.ts",
     "clean": "rm -rf node_modules .bun bun.lockb **/dist data",
-    "clean:db": "rm -rf data"
+    "clean:db": "rm -rf data",
+    "test": "NODE_ENV=test bun test",
+    "test:cover": "NODE_ENV=test bun test --coverage"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/bun": "latest",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
-    "morgan": "^1.10.0"
+    "@types/supertest": "^6.0.2",
+    "morgan": "^1.10.0",
+    "supertest": "^7.0.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "colorette": "^2.0.20",
