@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development bun --watch run src/index.ts",
-    "clean": "rm -rf node_modules .bun bun.lockb **/dist data",
+    "clean": "rm -rf node_modules .bun bun.lockb **/dist",
     "clean:db": "rm -rf data",
     "test": "NODE_ENV=test bun test",
     "test:cover": "NODE_ENV=test bun test --coverage"
