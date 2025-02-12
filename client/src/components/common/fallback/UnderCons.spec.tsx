@@ -47,7 +47,6 @@ describe("UnderCons", () => {
   });
 
   beforeEach(() => {
-    // Clear mock calls before each test
     mockNavigate.mockClear();
   });
 });
