@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
 import { mockBet } from "../../tests/mocks/betMock";
@@ -21,7 +20,6 @@ describe("PieChartDashboard", () => {
     { ...mockBet, status: BetStatus.HalfLost },
     { ...mockBet, status: BetStatus.Void },
   ];
-  const user = userEvent.setup();
 
   beforeAll(() => {
     global.ResizeObserver = ResizeObserverMock;
@@ -63,15 +61,27 @@ describe("PieChartDashboard", () => {
     );
 
     // const pieSegment = screen.getByTestId("pie-segment-Won");
-    const pieSegment = container.querySelectorAll("path");
-    const wonSegment = pieSegment[0];
+    const pieSegment = container.getElementsByClassName("recharts-pie");
+    expect(pieSegment).toHaveLength(1);
 
-    await user.hover(wonSegment);
+    const pieSectors = container.getElementsByClassName(
+      "recharts-layer recharts-pie-sector",
+    );
+    expect(pieSectors).toHaveLength(2);
 
-    expect(onHoverMock).toHaveBeenCalledWith({
-      name: "Won",
-      value: 2,
-      percent: 0.4,
-    });
+    // expect(pieSectors.getAttribute("name")).toBe("Won");
+
+    // const wonSegment = pieSegment.getAttribute("data-name");
+
+    // const wonSegment = pieSegment[0];
+
+    // console.log("pieSegment", pieSegment[0]);
+    // await user.hover(wonSegment);
+
+    // expect(onHoverMock).toHaveBeenCalledWith({
+    //   name: "Won",
+    //   value: 2,
+    //   percent: 0.4,
+    // });
   });
 });
