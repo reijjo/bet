@@ -10,6 +10,7 @@ const envVars = [
   "PGADMIN_DEFAULT_EMAIL",
   "PGADMIN_DEFAULT_PASSWORD",
   "PG_PORT",
+  "SESSION_SECRET",
 ] as const;
 
 // Validates that env variables exists
@@ -31,6 +32,7 @@ const {
   PGADMIN_DEFAULT_EMAIL,
   PGADMIN_DEFAULT_PASSWORD,
   PG_PORT,
+  SESSION_SECRET,
 } = Bun.env;
 const DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_NAME}`;
 
@@ -47,4 +49,5 @@ export const config = {
   PGADMIN_DEFAULT_PASSWORD,
   PG_PORT,
   DATABASE_URL,
+  SESSION_SECRET,
 };

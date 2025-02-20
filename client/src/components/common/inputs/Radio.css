@@ -1,0 +1,26 @@
+input[type="radio"] {
+  height: 1rem;
+  cursor: pointer;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.radio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-input-label {
+  display: inline-flex;
+  align-items: flex-start;
+  width: 75%;
+  padding: 0 4px;
+  font-size: var(--font-small);
+}

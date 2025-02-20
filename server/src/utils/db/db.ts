@@ -1,38 +1,46 @@
-import { ConnectionRefusedError, Sequelize } from "sequelize";
-import { config } from '../config'
+import { config } from "../config";
 import { blueBright, redBright } from "colorette";
+import PgSession from "connect-pg-simple";
+import session from "express-session";
+import pg from "pg";
+import { ConnectionRefusedError, Sequelize } from "sequelize";
 
-const { DATABASE_URL } = config
+const { DATABASE_URL } = config;
 
 export const sequelize = new Sequelize(DATABASE_URL, {
-	retry: {
-		max: 3,
-		timeout: 3000
-	},
-	pool: {
-		max: 5,
-		min: 0,
-		acquire: 30000,
-		idle: 10000,
-	},
-	dialectOptions: {
+  retry: {
+    max: 3,
+    timeout: 3000,
+  },
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+  dialectOptions: {
     connectTimeout: 10000,
   },
 
-	logging: false
+  logging: false,
 });
 
 export const connectToDB = async () => {
-	try {
-		await sequelize.authenticate()
-		console.log(blueBright('Connected to database.'))
-	} catch (error: unknown) {
-		if (error instanceof ConnectionRefusedError) {
-			console.error(redBright("Database connection refused!"));
-			console.log(blueBright('Check that database is running.'))
-		} else {
-			console.error(redBright('Unexpected error during startup: '), error)
-		}
-		process.exit(1)
-	}
-}
+  try {
+    await sequelize.authenticate();
+    console.log(blueBright("Connected to database."));
+  } catch (error: unknown) {
+    if (error instanceof ConnectionRefusedError) {
+      console.error(redBright("Database connection refused!"));
+      console.log(blueBright("Check that database is running."));
+    } else {
+      console.error(redBright("Unexpected error during startup: "), error);
+    }
+    process.exit(1);
+  }
+};
+
+export const pgStore = new (PgSession(session))({
+  pool: new pg.Pool({ connectionString: DATABASE_URL }),
+  tableName: "sessions",
+});

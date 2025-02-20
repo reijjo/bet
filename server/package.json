@@ -12,9 +12,11 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/bun": "latest",
+    "@types/connect-pg-simple": "^7.0.3",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
+    "@types/pg": "^8.11.11",
     "@types/supertest": "^6.0.2",
     "morgan": "^1.10.0",
     "supertest": "^7.0.0"
@@ -24,11 +26,13 @@
   },
   "dependencies": {
     "colorette": "^2.0.20",
+    "connect-pg-simple": "^10.0.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
     "helmet": "^8.0.0",
-    "pg": "^8.13.2",
+    "pg": "^8.13.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5"
   }

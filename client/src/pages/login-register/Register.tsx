@@ -1,6 +1,6 @@
 import "./LoginRegister.css";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 
 import {
   faFacebook,
@@ -24,6 +24,11 @@ export const Register = () => {
     setRegEmail(e.target.value);
   };
 
+  const handleRegister = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log("Registering with email:", regEmail);
+  };
+
   return (
     <Container
       width="min(400px, 95%)"
@@ -32,10 +37,10 @@ export const Register = () => {
       padding="24px 16px"
       margin="0 auto"
       alignSelf="center"
-      boxShadow="var(--shadow-l)"
+      boxShadow="var(--box-shadow)"
       gap="16px"
     >
-      <form className="form-register">
+      <form className="form-register" onSubmit={handleRegister}>
         <p className="form-header">Start tracking your bets at Tärpit</p>
         <TextInput
           className="form-input-text"
@@ -45,7 +50,7 @@ export const Register = () => {
           id="regEmail"
           value={regEmail}
           onChange={handleEmail}
-          placeholder="e.g. user@tarpit.com"
+          placeholder="user@tarpit.com"
         />
         <Button
           type="submit"

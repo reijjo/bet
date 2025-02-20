@@ -7,6 +7,10 @@
   gap: 0.5rem;
 
   text-align: center;
+
+  & button {
+    margin-top: 1rem;
+  }
 }
 
 .form-header {
@@ -81,4 +85,8 @@
     color: var(--secondary-200);
     border-bottom: thin solid var(--secondary-200);
   }
+}
+
+.margin-top {
+  margin-top: 1rem;
 }
