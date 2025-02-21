@@ -27,3 +27,10 @@ export const initialBetValues = {
   betDetails: [],
   user_id: 0,
 };
+
+export const initialRegisterValues = {
+  email: "",
+  username: "",
+  password: "",
+  password2: "",
+};

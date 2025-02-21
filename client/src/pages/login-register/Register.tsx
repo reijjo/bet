@@ -16,12 +16,17 @@ import {
   OauthButton,
   TextInput,
 } from "../../components";
+import { initialRegisterValues } from "../../utils/defaults/defaults";
+import { RegisterValues } from "../../utils/types";
 
 export const Register = () => {
-  const [regEmail, setRegEmail] = useState("");
+  const [regEmail, setRegEmail] = useState<RegisterValues>(
+    initialRegisterValues,
+  );
 
-  const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setRegEmail(e.target.value);
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRegEmail({ ...regEmail, [name]: value });
   };
 
   const handleRegister = (e: SyntheticEvent) => {
@@ -46,10 +51,10 @@ export const Register = () => {
           className="form-input-text"
           type="text"
           label="Email"
-          name="regEmail"
-          id="regEmail"
-          value={regEmail}
-          onChange={handleEmail}
+          name="email"
+          id="email"
+          value={regEmail.email}
+          onChange={handleEmailChange}
           placeholder="user@tarpit.com"
         />
         <Button

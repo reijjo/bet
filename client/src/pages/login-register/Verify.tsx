@@ -1,18 +1,27 @@
 import "./LoginRegister.css";
 
-import { SyntheticEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { Button, Container, TextInput } from "../../components";
+import { RegisterValues } from "../../utils/types";
 
 // import { genderOptions } from "../../components/common/inputs/radio-input-options/gender";
+const EMAIL = "teemu.aitomeri@gmail.com";
+const user = {
+  email: EMAIL,
+  username: "",
+  password: "",
+};
 
 export const Verify = () => {
-  const EMAIL = "teemu.aitomeri@gmail.com";
+  const [regUser, setRegUser] = useState<RegisterValues>(user);
 
-  const handleVerifyInput = (e: SyntheticEvent) => {
-    e.preventDefault();
+  const handleVerifyInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRegUser({ ...regUser, [name]: value });
   };
 
+  console.log("regUser:", regUser);
   return (
     <Container
       width="min(400px, 95%)"
@@ -26,7 +35,7 @@ export const Verify = () => {
     >
       <form className="form-register">
         <p className="form-header" style={{ marginBottom: 0 }}>
-          Finish creating your account
+          Create account
         </p>
         <p style={{ marginBottom: 8 }}>{EMAIL}</p>
         <TextInput
@@ -51,8 +60,8 @@ export const Verify = () => {
           className="form-input-text"
           type="text"
           label="Confirm password"
-          name="confirm password"
-          id="confirm password"
+          name="password2"
+          id="password2"
           placeholder="confirm password"
           onChange={handleVerifyInput}
         />

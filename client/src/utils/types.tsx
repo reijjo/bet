@@ -53,3 +53,10 @@ export type Sport = {
   id: number;
   name: string;
 };
+
+export interface RegisterValues {
+  email: string;
+  username?: string;
+  password?: string;
+  password2?: string;
+}
