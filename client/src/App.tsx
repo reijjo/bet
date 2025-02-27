@@ -29,14 +29,13 @@ function App() {
           <Route path="/bank" element={<UnderCons />} />
           <Route path="/analytics" element={<UnderCons />} />
           <Route path="/about" element={<h1>About</h1>} />
-          <Route path="*" element={<h1>404</h1>} />
         </Route>
         <Route element={<UserLayout />}>
           <Route path="/dash" element={<Dashboard />} />
           <Route path="/bets" element={<Bets />} />
           <Route path="/add-bet" element={<AddBet />} />
-          <Route path="*" element={<h1>404</h1>} />
         </Route>
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </Router>
   );
