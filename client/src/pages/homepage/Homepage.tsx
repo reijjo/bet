@@ -26,7 +26,7 @@ export const Homepage = () => {
       <section className="wrapper vh-wrapper ">
         <div className="hero-section">
           <div className="hero-text">
-            <h5>Only {spotsLeft} spots left for the beta!</h5>
+            <h4>Only {spotsLeft} spots left for the beta!</h4>
             <h1>Track your bets online without annoying excel sheets</h1>
             <p>
               But we have all the best features from Excel sheets to analyze and

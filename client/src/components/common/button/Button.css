@@ -5,16 +5,11 @@
   background-color: inherit;
   color: var(--text);
 
-  /* font-family: "Bebas Neue", sans-serif; */
-  /* font-optical-sizing: auto; */
-  /* font-style: normal; */
-  /* font-size: 1.125rem; */
-  /* letter-spacing: 0.125em; */
-
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  font-size: 0.925rem;
 
   @media only screen and (max-width: 481px) {
     /* 4 grids */
@@ -69,7 +64,11 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px hsla(47, 100%, 87%, 0.2);
   transition: box-shadow 0.2s ease-out;
+
   text-transform: capitalize;
+  font-weight: 400;
+  font-size: 0.925rem;
+  letter-spacing: 0.3px;
 
   &:hover {
     border: 1px solid var(--secondary);
@@ -91,14 +90,14 @@
 
 .btn-filled,
 .btn-primary-color {
-  /* font-family: "Bebas Neue", sans-serif; */
-
   border-radius: 8px;
   box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
   color: var(--text-dark);
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 0.925rem;
+  letter-spacing: 0.5px;
 }
 
 .btn-filled {

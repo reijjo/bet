@@ -1,3 +1,3 @@
 docker compose down &&
 docker rmi -f $(docker images -a -q) &&
-docker volume prune -f &&
+docker volume prune -f

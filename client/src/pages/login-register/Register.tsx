@@ -64,10 +64,10 @@ export const Register = () => {
           width="75%"
         />
       </form>
-      <DividerWithText text="or" />
-      <OauthButton provider="Google" icon={faGoogle} action="register" />
-      <OauthButton provider="Facebook" icon={faFacebook} action="register" />
-      <OauthButton provider="Microsoft" icon={faMicrosoft} action="register" />
+      <DividerWithText text="or login with" />
+      <OauthButton provider="Google" icon={faGoogle} action="login" />
+      <OauthButton provider="Facebook" icon={faFacebook} action="login" />
+      <OauthButton provider="Microsoft" icon={faMicrosoft} action="login" />
 
       <p className="login-p">
         Already have an account?{" "}

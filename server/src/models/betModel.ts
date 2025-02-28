@@ -27,12 +27,11 @@ BetModel.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1,
-      // references: {
-      // 	model: 'UserModel',
-      // 	key: 'id'
-      // },
-      // onDelete: 'CASCADE'
+      references: {
+        model: "users",
+        key: "id",
+      },
+      onDelete: "CASCADE",
     },
     stake: {
       type: DataTypes.DECIMAL(10, 2),

@@ -1,4 +1,10 @@
-import type { BetStatus, BetType, Bookmaker, SportLeague } from "./enums";
+import type {
+  BetStatus,
+  BetType,
+  Bookmaker,
+  SportLeague,
+  UserRolesType,
+} from "./enums";
 
 export type Bet = {
   id: number;
@@ -34,4 +40,14 @@ export type BetDetails = {
 export type Sport = {
   id?: number;
   name: string;
+};
+
+export type User = {
+  id: number;
+  email: string;
+  username?: string;
+  password?: string;
+  role: UserRolesType;
+  resetToken?: string;
+  resetTokenExpiration?: Date;
 };

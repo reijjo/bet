@@ -12,7 +12,7 @@ export const SportLeague = {
   Other: "Other",
 } as const;
 
-export type SportLeague = typeof SportLeague[keyof typeof SportLeague];
+export type SportLeague = (typeof SportLeague)[keyof typeof SportLeague];
 
 export const BetStatus = {
   Pending: "Pending",
@@ -23,7 +23,7 @@ export const BetStatus = {
   HalfLost: "Half Lost",
 } as const;
 
-export type BetStatus = typeof BetStatus[keyof typeof BetStatus];
+export type BetStatus = (typeof BetStatus)[keyof typeof BetStatus];
 
 export const Bookmaker = {
   EpicBet: "EpicBet",
@@ -33,7 +33,7 @@ export const Bookmaker = {
   Other: "Other",
 } as const;
 
-export type Bookmaker = typeof Bookmaker[keyof typeof Bookmaker];
+export type Bookmaker = (typeof Bookmaker)[keyof typeof Bookmaker];
 
 export const BetType = {
   Single: "Single",
@@ -52,7 +52,7 @@ export const BetType = {
   Props: "Player Props",
 } as const;
 
-export type BetType = typeof BetType[keyof typeof BetType];
+export type BetType = (typeof BetType)[keyof typeof BetType];
 
 export const LimitedBetType = {
   Single: "Single",
@@ -67,7 +67,8 @@ export const LimitedBetType = {
   Other: "Other",
 } as const;
 
-export type LimitedBetType = typeof LimitedBetType[keyof typeof LimitedBetType];
+export type LimitedBetType =
+  (typeof LimitedBetType)[keyof typeof LimitedBetType];
 
 export const BetBuilderInputTypes = {
   BetBuilder: "Bet Builder",
@@ -76,4 +77,14 @@ export const BetBuilderInputTypes = {
   Other: "Other",
 } as const;
 
-export type BetBuilderInputTypes = typeof BetBuilderInputTypes[keyof typeof BetBuilderInputTypes];
+export type BetBuilderInputTypes =
+  (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes];
+
+export const UserRoles = {
+  Admin: "Admin",
+  User: "User",
+  Guest: "Guest",
+  Registered: "Registered",
+} as const;
+
+export type UserRolesType = (typeof UserRoles)[keyof typeof UserRoles];

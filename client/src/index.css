@@ -48,14 +48,23 @@ body {
 }
 
 /* Headers */
-:is(h1, h2, h3, h4, h5, h6) {
+:is(h1, h2, h3) {
   font-family: "Bebas Neue", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
   text-transform: capitalize;
-
   color: var(--text);
+}
+
+:is(h4, h5, h6) {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.125px;
+  font-size: 1.125rem;
 }
 
 h1 {
@@ -72,7 +81,6 @@ h1 {
 }
 
 h2 {
-  /* font-size: clamp(24px, 4vw, 40px); */
   font-size: 2.5rem;
   @media only screen and (max-width: 800px) {
     /* 8 grids */
@@ -89,18 +97,16 @@ h3 {
   text-transform: uppercase;
 }
 
-h4 {
-  font-size: 1.5rem;
-}
-
 h5 {
-  font-size: 1.25em;
-  letter-spacing: 1px;
+  font-weight: 300;
 }
 
 h6 {
-  font-weight: 100;
+  font-size: 0.825rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
 }
+
 /* END Headers */
 
 /* Link */

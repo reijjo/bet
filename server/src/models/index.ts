@@ -1,6 +1,7 @@
 import { sequelize } from "../utils/db/db";
 import { BetDetailsModel } from "./betDetailModel";
 import { BetModel } from "./betModel";
+import { UserModel } from "./userModel.ts";
 import { blueBright } from "colorette";
 
 BetModel.hasMany(BetDetailsModel, {
@@ -12,6 +13,17 @@ BetModel.hasMany(BetDetailsModel, {
 BetDetailsModel.belongsTo(BetModel, {
   foreignKey: "bet_id",
   as: "bet",
+});
+
+UserModel.hasMany(BetModel, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+  as: "bets",
+});
+
+BetModel.belongsTo(UserModel, {
+  foreignKey: "user_id",
+  as: "user",
 });
 
 // Sync models with database
