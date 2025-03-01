@@ -1,0 +1,34 @@
+.message-success {
+  color: var(--ok-dark);
+  background-color: var(--ok-xxlight);
+  border-color: var(--ok-dark);
+}
+
+.message-error {
+  color: var(--error-dark);
+  background-color: var(--error-xxlight);
+  border-color: var(--error-dark);
+}
+
+.message-info {
+  color: var(--info-dark);
+  background-color: var(--info-xxlight);
+  border-color: var(--info-dark);
+}
+
+.message-container {
+  padding: 0.5rem 0.75rem;
+  list-style-position: inside;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: var(--font-xsmall);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  text-wrap: balance;
+  display: flex;
+
+  overflow-wrap: anywhere;
+}

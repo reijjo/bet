@@ -5,7 +5,10 @@ import { config } from "../../utils/config";
 const { BACKEND_URL } = config;
 
 export const baseApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_URL}/api` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${BACKEND_URL}/api`,
+    credentials: "include",
+  }),
   endpoints: () => ({}),
   tagTypes: ["Bet", "Details"],
 });

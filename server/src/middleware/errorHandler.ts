@@ -49,7 +49,7 @@ export const errorHandler = (
     console.error(`[TypeError] ${error.message}`, errorResponse);
   } else if (error instanceof HttpError) {
     errorResponse.comment = error.comment || "No comments.";
-    console.log("Error", error);
+    // console.log("Error", error);
     console.error(`[HttpError] ${error.message}`, errorResponse);
   } else {
     console.log("NO NAME ERROR", error);

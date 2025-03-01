@@ -2,7 +2,7 @@ nav {
   z-index: 5;
   width: 100%;
 
-  /* backdrop-filter: blur(24px); */
+  /* backdrop-filter: blur(10rem); */
   background-color: var(--primary);
 
   box-shadow: 0 4px 24px hsla(330, 100%, 87%, 0.1);

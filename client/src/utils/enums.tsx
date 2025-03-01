@@ -60,8 +60,26 @@ export enum LimitedBetType {
 }
 
 export const BetBuilderInputTypes = {
-  BetBuilder: "Bet Builder" as const,
-  Tuplaus: "Ladder Challenge" as const,
-  Props: "Player Props" as const,
-  Other: "Other" as const,
-};
+  BetBuilder: "Bet Builder",
+  Tuplaus: "Ladder Challenge",
+  Props: "Player Props",
+  Other: "Other",
+} as const;
+
+export const UserRoles = {
+  Admin: "Admin",
+  User: "User",
+  Guest: "Guest",
+  Registered: "Registered",
+} as const;
+
+export type UserRolesType = (typeof UserRoles)[keyof typeof UserRoles];
+
+export const MessageTypes = {
+  Success: "Success",
+  Error: "Error",
+  Info: "Info",
+  Warning: "Warning",
+} as const;
+
+export type MessageType = (typeof MessageTypes)[keyof typeof MessageTypes];

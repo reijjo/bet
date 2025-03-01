@@ -3,6 +3,11 @@ import { inputErrors } from "./defaults/errors";
 import { BetType } from "./enums";
 import { BetDetails } from "./types";
 
+export const isEmail = (email: string): boolean => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
+
 export const hasLength = (value: string) => {
   return value?.trim().length > 0;
 };

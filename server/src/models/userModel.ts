@@ -3,7 +3,8 @@ import { UserRoles, type UserRolesType } from "../utils/enums";
 import type { User } from "../utils/types";
 import { DataTypes, Model, type Optional } from "sequelize";
 
-export interface UserCreation extends Optional<User, "username" | "password"> {}
+export interface UserCreation
+  extends Optional<User, "id" | "username" | "password" | "role"> {}
 
 class UserModel extends Model<User, UserCreation> implements User {
   declare id: number;

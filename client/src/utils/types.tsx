@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
-import { BetStatus, BetType, Bookmaker } from "./enums";
+import { BetStatus, BetType, Bookmaker, UserRolesType } from "./enums";
 
 export type Bet = {
   id?: number;
@@ -59,4 +59,24 @@ export interface RegisterValues {
   username?: string;
   password?: string;
   password2?: string;
+}
+
+export type User = {
+  id: number;
+  email: string;
+  username?: string;
+  password?: string;
+  role: UserRolesType;
+  resetToken?: string;
+  resetTokenExpiration?: Date;
+};
+
+export interface ApiErrorResponse {
+  success: boolean;
+  timestamp: string;
+  path: string;
+  method: string;
+  message: string;
+  status: number;
+  comment?: string;
 }

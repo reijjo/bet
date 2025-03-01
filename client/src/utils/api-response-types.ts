@@ -28,3 +28,9 @@ export type GetBetDetailsApiResponse = {
 export type GetDetailByIdApiResponse = {
   data: BetDetails;
 };
+
+export type RegisterUserApiResponse = {
+  data?: string;
+  success: boolean;
+  message: string;
+};

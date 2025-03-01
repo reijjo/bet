@@ -2,12 +2,14 @@ import helmet from "helmet";
 
 import { errorHandler } from "./middleware/errorHandler";
 import { notFoundHandler } from "./middleware/notFoundHandler";
+import { authRouter } from "./routes/authRoute";
 import { betRouter } from "./routes/betRoute";
 import { detailsRouter } from "./routes/detailsRoute";
 import { sportRouter } from "./routes/sportRoute";
+import { userRouter } from "./routes/userRoute";
 import { corsOptions, sessionConfig } from "./utils/appConfig";
 import cors from "cors";
-import express from "express";
+import express, { application } from "express";
 import session from "express-session";
 // import rateLimit from "express-rate-limit";
 import morgan from "morgan";
@@ -25,8 +27,10 @@ app.get("/", (_req, res) => {
   res.send("hello todo");
 });
 
+app.use("/api/auth", authRouter);
 app.use("/api/bets", betRouter);
 app.use("/api/sports", sportRouter);
+app.use("/api/users", userRouter);
 app.use("/api", detailsRouter);
 
 app.use(notFoundHandler);
