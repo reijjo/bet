@@ -2,11 +2,7 @@ import "./LoginRegister.css";
 
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 
-import {
-  faFacebook,
-  faGoogle,
-  faMicrosoft,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
 import {
@@ -127,7 +123,6 @@ export const Register = () => {
       <DividerWithText text="or login with" />
       <OauthButton provider="Google" icon={faGoogle} action="login" />
       <OauthButton provider="Facebook" icon={faFacebook} action="login" />
-      <OauthButton provider="Microsoft" icon={faMicrosoft} action="login" />
 
       <p className="login-p">
         Already have an account?{" "}
