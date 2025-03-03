@@ -7,9 +7,22 @@
 body {
   font-size: 1rem;
   color: var(--text);
-  background: url("./assets/images/circle-bg.svg") no-repeat center / cover;
+  /* background: url("./assets/images/circle-bg.svg") no-repeat center / cover; */
   /* background: linear-gradient(to bottom, var(--background), var(--background2)); */
-  /* background-color: var(--primary); */
+  background-color: var(--primary);
+  background: radial-gradient(
+    var(--accent-500),
+    var(--primary-800),
+    var(--primary)
+  );
+  background: linear-gradient(
+    to bottom right,
+    var(--accent-700),
+    var(--primary-800),
+    var(--primary-900),
+    var(--primary-900),
+    var(--accent-500)
+  );
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -120,7 +133,7 @@ a {
   /* Colors */
 
   /* Primary */
-  --primary: rgb(43, 43, 145);
+  --primary: #2b2b91;
   --primary-50: rgb(237, 242, 255);
   --primary-100: #dee7ff;
   --primary-200: #c3d2ff;
