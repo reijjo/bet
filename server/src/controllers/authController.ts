@@ -1,5 +1,6 @@
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
+import { sendVerificationEmail } from "../utils/emailService";
 import { isEmail } from "../utils/inputValidators";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
@@ -32,23 +33,31 @@ export const register = async (
     );
   }
 
-  const verifyToken = randomBytes(32).toString("hex");
+  try {
+    const verifyToken = randomBytes(32).toString("hex");
 
-  console.log("VERIFY TOKEN", verifyToken);
+    // Set token expiration (1 hour from now)
+    const tokenExpiration = new Date();
+    tokenExpiration.setHours(tokenExpiration.getHours() + 1);
 
-  // Set token expiration (1 hour from now)
-  const tokenExpiration = new Date();
-  tokenExpiration.setHours(tokenExpiration.getHours() + 1);
+    const newUser = await UserModel.create({
+      email: email,
+      resetToken: verifyToken,
+      resetTokenExpiration: tokenExpiration,
+    });
 
-  const newUser = await UserModel.create({
-    email: email,
-    resetToken: verifyToken,
-    resetTokenExpiration: tokenExpiration,
-  });
+    // Send verification email
+    await sendVerificationEmail(email, verifyToken);
 
-  res.status(200).json({
-    success: true,
-    message: `User '${email}' registered! Check your email to verify your account.`,
-    data: newUser.id,
-  });
+    res.status(200).json({
+      success: true,
+      message: `User '${email}' registered! Check your email to verify your account.`,
+      data: newUser.id,
+    });
+  } catch (error) {
+    console.error("Registration error:", error);
+    return next(
+      new HttpError("Failed to register user. Please try again later.", 500),
+    );
+  }
 };

@@ -98,20 +98,20 @@ export const Register = () => {
             errorStyle={!!hasError}
             onFocus={() => setInputError("")}
           />
-          {(hasError || isLoading) && (
+          {hasError && (
             <Message
               message={hasError ? inputError : "Registering..."}
               type={messageType}
               width="75%"
             />
           )}
-          {/* {isLoading && (
+          {isLoading && (
             <Message
               message="Registering..."
               type={MessageTypes.Info}
               width="75%"
             />
-          )} */}
+          )}
         </Container>
         <Button
           type="submit"
