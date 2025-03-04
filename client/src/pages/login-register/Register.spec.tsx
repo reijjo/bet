@@ -1,19 +1,27 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
+import { store } from "../../store/store";
 import { Register } from "./Register";
 
 const user = userEvent.setup();
 
-describe("Register", () => {
-  it("renders component", () => {
+describe.only("Register", () => {
+  const renderComponent = () => {
     render(
-      <MemoryRouter>
-        <Register />
-      </MemoryRouter>,
+      <Provider store={store}>
+        <MemoryRouter>
+          <Register />
+        </MemoryRouter>
+      </Provider>,
     );
+  };
+
+  it("renders component", () => {
+    renderComponent();
 
     expect(
       screen.getByText("Start tracking your bets at Tärpit"),
@@ -21,11 +29,7 @@ describe("Register", () => {
   });
 
   it("handles email input", async () => {
-    render(
-      <MemoryRouter>
-        <Register />
-      </MemoryRouter>,
-    );
+    renderComponent();
 
     const emailInput = screen.getByLabelText("Email");
     expect(emailInput).toBeInTheDocument();
@@ -35,24 +39,17 @@ describe("Register", () => {
     expect(emailInput).toHaveValue("repe@repe.com");
   });
 
-  it("register button submits form", async () => {
-    const consoleSpy = vi.spyOn(console, "log");
-
-    render(
-      <MemoryRouter>
-        <Register />
-      </MemoryRouter>,
-    );
+  it("throws invalid email error", async () => {
+    renderComponent();
 
     const emailInput = screen.getByLabelText("Email");
     const registerButton = screen.getByText("sign up");
 
-    await user.type(emailInput, "repe@repe.com");
+    await user.type(emailInput, "repe@repe");
     await user.click(registerButton);
 
-    expect(consoleSpy).toHaveBeenCalledWith(
-      "Registering with email:",
-      "repe@repe.com",
-    );
+    await waitFor(() => {
+      expect(screen.getByText("Invalid email")).toBeInTheDocument();
+    });
   });
 });
