@@ -1,7 +1,7 @@
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
 import { sendVerificationEmail } from "../utils/emailService";
-import { isEmail } from "../utils/inputValidators";
+import { isEmailValid } from "../utils/input-validators/email";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 
@@ -12,10 +12,9 @@ export const register = async (
 ) => {
   const { email } = req.body;
 
-  console.log("email", req.body);
-
-  if (!email || !isEmail(email)) {
-    return next(new HttpError("Invalid email", 400));
+  const emailValidation = isEmailValid(email);
+  if (emailValidation) {
+    return next(new HttpError(emailValidation, 400));
   }
 
   // Check if email is already registered
@@ -40,7 +39,7 @@ export const register = async (
     const tokenExpiration = new Date();
     tokenExpiration.setHours(tokenExpiration.getHours() + 1);
 
-    const newUser = await UserModel.create({
+    await UserModel.create({
       email: email,
       resetToken: verifyToken,
       resetTokenExpiration: tokenExpiration,
@@ -49,10 +48,10 @@ export const register = async (
     // Send verification email
     await sendVerificationEmail(email, verifyToken);
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: `User '${email}' registered! Check your email to verify your account.`,
-      data: newUser.id,
+      data: email,
     });
   } catch (error) {
     console.error("Registration error:", error);

@@ -1,3 +1,4 @@
+import { initializeDatabase } from "../../models";
 import { config } from "../config";
 import { blueBright, redBright } from "colorette";
 import PgSession from "connect-pg-simple";
@@ -37,6 +38,15 @@ export const connectToDB = async () => {
       console.error(redBright("Unexpected error during startup: "), error);
     }
     process.exit(1);
+  }
+};
+
+export const closeDBconnection = async () => {
+  try {
+    await sequelize.close();
+    console.log(blueBright("Database connection closed."));
+  } catch (error: unknown) {
+    console.error(redBright("Error closing database connection: "), error);
   }
 };
 

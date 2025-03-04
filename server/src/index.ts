@@ -5,7 +5,7 @@ import { initializeDatabase } from "./models";
 import { config } from "./utils/config";
 import { connectToDB } from "./utils/db/db";
 import { setupTokenCleanup } from "./utils/helperFunctions";
-import { cyanBright, redBright, yellowBright } from "colorette";
+import { cyanBright, yellowBright } from "colorette";
 
 const { PORT } = config;
 let server = http.createServer(app);
@@ -17,7 +17,7 @@ let server = http.createServer(app);
 //   });
 // };
 
-const startServer = async () => {
+export const startServer = async () => {
   try {
     await connectToDB();
     await initializeDatabase();

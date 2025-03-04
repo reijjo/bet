@@ -13,8 +13,9 @@ Go to frontend folder (client)
 - `bun run test:cover` to run unit tests and see the test coverage
 
 ### Backend
-coming...
+Go to backend folder (server)
+- `bun run test` to run unit tests
+- `bun run test:cover` to run unit tests and see the test coverage
 
 ### End-to-end
 coming...
-

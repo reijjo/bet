@@ -11,13 +11,12 @@ const envVars = [
   "PGADMIN_DEFAULT_PASSWORD",
   "PG_PORT",
   "SESSION_SECRET",
-  "EMAIL_HOST",
-  "EMAIL_PORT",
   "EMAIL_USER",
   "EMAIL_PASS",
   "FRONTEND_URL",
   "EMAIL_FROM",
   "GMAIL_APP_PASSWORD",
+  "DB_TEST_NAME",
 ] as const;
 
 // Validates that env variables exists
@@ -40,15 +39,17 @@ const {
   PGADMIN_DEFAULT_PASSWORD,
   PG_PORT,
   SESSION_SECRET,
-  EMAIL_HOST,
-  EMAIL_PORT,
   EMAIL_USER,
   EMAIL_PASS,
   FRONTEND_URL,
   EMAIL_FROM,
   GMAIL_APP_PASSWORD,
+  DB_TEST_NAME,
 } = Bun.env;
-const DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_NAME}`;
+const DB_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_NAME}`;
+const DB_TEST_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_TEST_NAME}`;
+
+const DATABASE_URL = Bun.env.NODE_ENV === "test" ? DB_TEST_URL : DB_URL;
 
 export const config = {
   PORT,
@@ -64,8 +65,6 @@ export const config = {
   PG_PORT,
   DATABASE_URL,
   SESSION_SECRET,
-  EMAIL_HOST,
-  EMAIL_PORT,
   EMAIL_USER,
   EMAIL_PASS,
   FRONTEND_URL,
