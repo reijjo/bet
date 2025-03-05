@@ -2,7 +2,7 @@ import "./Message.css";
 
 import { MessageType, MessageTypes } from "../../../utils/enums";
 
-interface MessageProps {
+export interface MessageProps {
   message: string;
   type: MessageType;
   width?: string;

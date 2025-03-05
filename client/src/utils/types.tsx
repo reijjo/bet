@@ -80,3 +80,14 @@ export interface ApiErrorResponse {
   status: number;
   comment?: string;
 }
+
+export interface TokenUpdate {
+  token: string;
+  email: string;
+}
+
+export interface ErrorWithData {
+  data?: {
+    message?: string;
+  };
+}

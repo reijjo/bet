@@ -26,6 +26,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "colorette": "^2.0.20",
     "connect-pg-simple": "^10.0.0",
     "cors": "^2.8.5",

@@ -1,3 +1,5 @@
+import { ApiErrorResponse } from "./types";
+
 export const scrollToTop = () => {
   setTimeout(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -31,4 +33,8 @@ export const getRowColor = (status: string) => {
     default:
       return "";
   }
+};
+
+export const apiErrorWrapper = (error: unknown) => {
+  return error as { data: ApiErrorResponse };
 };

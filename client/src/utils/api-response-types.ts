@@ -1,4 +1,4 @@
-import type { Bet, BetDetails, Sport } from "./types";
+import type { Bet, BetDetails, Sport, User } from "./types";
 
 export type GetBetsApiResponse = {
   data: Bet[];
@@ -34,3 +34,15 @@ export type RegisterUserApiResponse = {
   success: boolean;
   message: string;
 };
+
+export type BasicApiResponse = {
+  data?: string;
+  success: boolean;
+  message: string;
+};
+
+export interface FinishUserResponse {
+  data: User;
+  success: boolean;
+  message: string;
+}

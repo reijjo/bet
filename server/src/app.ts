@@ -9,7 +9,7 @@ import { sportRouter } from "./routes/sportRoute";
 import { userRouter } from "./routes/userRoute";
 import { corsOptions, sessionConfig } from "./utils/appConfig";
 import cors from "cors";
-import express, { application } from "express";
+import express from "express";
 import session from "express-session";
 // import rateLimit from "express-rate-limit";
 import morgan from "morgan";
@@ -20,6 +20,7 @@ app.use(helmet());
 // app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(session(sessionConfig));
 

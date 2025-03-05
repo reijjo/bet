@@ -31,7 +31,7 @@ export const startServer = async () => {
       );
     });
 
-    setupTokenCleanup();
+    // setupTokenCleanup();
   } catch (error: unknown) {
     throw error;
   }

@@ -1,7 +1,10 @@
-import type { Request, Response, NextFunction } from "express";
+import { HttpError } from "./errorHandler";
+import type { NextFunction, Request, Response } from "express";
 
-export const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
-  res.status(404);
-  next(error);
+export const notFoundHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  return next(new HttpError(`Not Found - ${req.originalUrl}`, 404));
 };
