@@ -99,11 +99,7 @@ export const Register = () => {
             onFocus={() => setInputError("")}
           />
           {hasError && (
-            <Message
-              message={hasError ? inputError : "Registering..."}
-              type={messageType}
-              width="75%"
-            />
+            <Message message={inputError} type={messageType} width="75%" />
           )}
           {isLoading && (
             <Message
