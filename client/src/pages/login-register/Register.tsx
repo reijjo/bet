@@ -40,14 +40,19 @@ export const Register = () => {
   const handleRegister = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    if (!isEmail(regEmail.email)) {
+    const sanitezedEmail = regEmail.email.trim().toLowerCase();
+
+    if (!isEmail(sanitezedEmail)) {
       setInputError("Invalid email");
       setMessageType(MessageTypes.Error);
       return;
     }
 
     try {
-      const response = await register(regEmail).unwrap();
+      const response = await register({
+        ...regEmail,
+        email: sanitezedEmail,
+      }).unwrap();
       console.log("response", response);
       setInputError(response.message);
       setMessageType(MessageTypes.Success);

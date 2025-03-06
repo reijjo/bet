@@ -5,6 +5,8 @@ import { UserModel } from "../models/userModel";
 import { sendVerificationEmail } from "../utils/emailService";
 import { UserRoles } from "../utils/enums";
 import { isEmailValid } from "../utils/input-validators/email";
+import { isPasswordValid } from "../utils/input-validators/password";
+import { isUsernameValid } from "../utils/input-validators/username";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 
@@ -20,7 +22,6 @@ export const register = async (
     return next(new HttpError(emailValidation, 400));
   }
 
-  // Check if email is already registered
   const userExists = await UserModel.findOne({
     where: { email },
   });
@@ -72,7 +73,7 @@ export const verifyAccount = async (
   const { token } = req.params;
   const now = new Date().getTime();
 
-  if (!token) {
+  if (token.length < 5) {
     return next(new HttpError("Invalid token", 400));
   }
 
@@ -87,8 +88,6 @@ export const verifyAccount = async (
       );
     }
 
-    console.log("expiration", accountToFinish.resetTokenExpiration);
-
     if (
       !accountToFinish.resetTokenExpiration ||
       new Date(accountToFinish.resetTokenExpiration).getTime() < now
@@ -97,8 +96,6 @@ export const verifyAccount = async (
         new HttpError(`${accountToFinish.email}`, 400, "Token expired"),
       );
     }
-
-    console.log("token", token);
 
     res.status(200).json({
       success: true,
@@ -120,9 +117,6 @@ export const refreshToken = async (
   next: NextFunction,
 ) => {
   const { email } = req.body;
-
-  console.log("email", email);
-  console.log("reqbody", req.body);
 
   if (!email) {
     return next(new HttpError("Email is required", 400));
@@ -174,6 +168,16 @@ export const finishRegistration = async (
 
   if (!username || !password) {
     return next(new HttpError("Username and password are required", 400));
+  }
+
+  const usernameValidation = isUsernameValid(email);
+  if (usernameValidation) {
+    return next(new HttpError(usernameValidation, 400));
+  }
+
+  const passwordValidation = isPasswordValid(email);
+  if (passwordValidation) {
+    return next(new HttpError(passwordValidation, 400));
   }
 
   try {

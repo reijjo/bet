@@ -44,7 +44,7 @@ export const VerifyForm = ({
   }, [data?.data, setValue]);
 
   const onSubmit: SubmitHandler<RegisterValues> = (data) => {
-    finishRegister(data);
+    finishRegister({ ...data, username: data.username?.trim().toLowerCase() });
   };
 
   const passwordMatcher = watch("password");
