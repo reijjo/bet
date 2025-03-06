@@ -164,18 +164,18 @@ export const finishRegistration = async (
 ) => {
   const { email, username, password } = req.body;
 
-  console.log("req.body", req.body);
-
-  if (!username || !password) {
-    return next(new HttpError("Username and password are required", 400));
+  if (!username || !password || !email) {
+    return next(
+      new HttpError("Username, email and password are required", 400),
+    );
   }
 
-  const usernameValidation = isUsernameValid(email);
+  const usernameValidation = isUsernameValid(username);
   if (usernameValidation) {
     return next(new HttpError(usernameValidation, 400));
   }
 
-  const passwordValidation = isPasswordValid(email);
+  const passwordValidation = isPasswordValid(password);
   if (passwordValidation) {
     return next(new HttpError(passwordValidation, 400));
   }

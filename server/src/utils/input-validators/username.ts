@@ -6,12 +6,12 @@ export const isUsername = (username: string): boolean => {
 };
 
 export const isUsernameValid = (username: string) => {
-  if (!isUsername(sanitazeValue(username))) {
-    return "Invalid username";
-  }
-
   if (!hasMinMaxLength(sanitazeValue(username), 3, 20)) {
     return "Username must be between 3 and 20 characters";
+  }
+
+  if (!isUsername(sanitazeValue(username))) {
+    return "Invalid username";
   }
 
   return "";

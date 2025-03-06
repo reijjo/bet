@@ -21,23 +21,23 @@ export const hasSpecialChar = (value: string): boolean => {
 };
 
 export const isPasswordValid = (password: string) => {
-  if (!hasMinMaxLength(sanitazeValue(password), 8, 50)) {
+  if (!hasMinMaxLength(password.trim(), 8, 50)) {
     return "Password must be between 8 and 50 characters";
   }
 
-  if (!hasUppercase(sanitazeValue(password))) {
+  if (!hasUppercase(password.trim())) {
     return "Password must contain at least one uppercase letter";
   }
 
-  if (!hasLowercase(sanitazeValue(password))) {
+  if (!hasLowercase(password.trim())) {
     return "Password must contain at least one lowercase letter";
   }
 
-  if (!hasNumber(sanitazeValue(password))) {
+  if (!hasNumber(password.trim())) {
     return "Password must contain at least one number";
   }
 
-  if (!hasSpecialChar(sanitazeValue(password))) {
+  if (!hasSpecialChar(password.trim())) {
     return "Password must contain at least one special character";
   }
 
