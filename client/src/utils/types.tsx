@@ -89,5 +89,6 @@ export interface TokenUpdate {
 export interface ErrorWithData {
   data?: {
     message?: string;
+    status?: number;
   };
 }

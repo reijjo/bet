@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Layout, UserLayout } from "./components";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
-import { Verify } from "./pages/login-register/Verify";
+import { Verify } from "./pages/login-register/verify-account/Verify";
 
 // import { useAppSelector } from "./store/hooks";
 // import { RootState } from "./store/store";
