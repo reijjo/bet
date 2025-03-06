@@ -1,14 +1,19 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useEffect } from "react";
 
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button, TextInput } from "../../../components";
+import { InputErrorContainer } from "../../../components/common/inputs/input-errors/InputErrorContainer";
 import { Message } from "../../../components/common/message/Message";
 import { RegisterUserApiResponse } from "../../../utils/api-response-types";
-import { initialRegisterValues } from "../../../utils/defaults/defaults";
 import { MessageTypes } from "../../../utils/enums";
 import { getErrorMessage } from "../../../utils/helperFunctions";
+import {
+  isValidPassword,
+  isValidUsername,
+} from "../../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../../utils/types";
 
 interface VerifyFormProps {
@@ -26,22 +31,27 @@ export const VerifyForm = ({
   isFinishError,
   finishError,
 }: VerifyFormProps) => {
-  const [regUser, setRegUser] = useState<RegisterValues>({
-    ...initialRegisterValues,
-    email: data?.data ?? "",
-  });
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    watch,
+    handleSubmit,
+  } = useForm<RegisterValues>({ mode: "onChange", criteriaMode: "all" });
 
-  const handleVerifyInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setRegUser({ ...regUser, [name]: value });
+  useEffect(() => {
+    setValue("email", data?.data || "");
+  }, [data?.data, setValue]);
+
+  const onSubmit: SubmitHandler<RegisterValues> = (data) => {
+    finishRegister(data);
   };
 
-  const handleFinishAccount = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    finishRegister(regUser);
-  };
+  const passwordMatcher = watch("password");
+  console.log("WAHT IS WATCH", watch());
+
   return (
-    <form className="form-register" onSubmit={handleFinishAccount}>
+    <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
       <p className="form-header" style={{ marginBottom: 0 }}>
         Finish your account
       </p>
@@ -50,29 +60,41 @@ export const VerifyForm = ({
         className="form-input-text"
         type="text"
         label="Username"
-        name="username"
         id="username"
-        placeholder="username"
-        onChange={handleVerifyInput}
+        placeholder="Username"
+        {...register("username", isValidUsername)}
       />
+      {errors.username && (
+        <InputErrorContainer errors={errors.username?.types || {}} />
+      )}
       <TextInput
         className="form-input-text"
-        type="text"
+        type="password"
         label="Password"
-        name="password"
         id="password"
-        placeholder="password"
-        onChange={handleVerifyInput}
+        placeholder="Password"
+        {...register("password", isValidPassword)}
       />
+      {errors.password && (
+        <InputErrorContainer
+          errors={errors.password?.types || {}}
+          field="Password"
+        />
+      )}
       <TextInput
         className="form-input-text"
-        type="text"
+        type="password"
         label="Confirm password"
-        name="password2"
         id="password2"
-        placeholder="confirm password"
-        onChange={handleVerifyInput}
+        placeholder="Confirm Password"
+        {...register("password2", {
+          validate: (value) =>
+            value === passwordMatcher || "Passwords don't match",
+        })}
       />
+      {errors.password2 && (
+        <InputErrorContainer errors={errors.password2?.types || {}} />
+      )}
       {(isFinishing || isFinishError) && (
         <Message
           message={

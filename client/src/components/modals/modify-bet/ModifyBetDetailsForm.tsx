@@ -25,7 +25,7 @@ import {
   TypeInput,
 } from "../../../pages/add-bet";
 import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
-import { validateBetDetailsInputs } from "../../../utils/inputValidators";
+import { validateBetDetailsInputs } from "../../../utils/input-validators/inputValidators";
 import { Bet } from "../../../utils/types";
 
 type ModifyBetFormProps = {

@@ -7,7 +7,7 @@ import {
   initialBetValues,
 } from "../utils/defaults/defaults";
 import { scrollToTop } from "../utils/helperFunctions";
-import { validateBetDetailsInputs } from "../utils/inputValidators";
+import { validateBetDetailsInputs } from "../utils/input-validators/inputValidators";
 import { Bet, BetDetails } from "../utils/types";
 
 export const useAddBetForm = () => {

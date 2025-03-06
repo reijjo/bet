@@ -10,7 +10,7 @@ import { modalReducer, sidebarReducer } from "../../../features";
 import { baseApi } from "../../../features/api/baseApi";
 import { mockBetDetail } from "../../../tests/mocks/betDetailMock";
 import { mockBet } from "../../../tests/mocks/betMock";
-import * as validators from "../../../utils/inputValidators";
+import * as validators from "../../../utils/input-validators/inputValidators";
 import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
 
 const user = userEvent.setup();

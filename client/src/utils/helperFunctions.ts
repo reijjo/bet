@@ -1,4 +1,4 @@
-import { isErrorWithData } from "./typeGuards";
+import { isErrorWithData } from "./input-validators/typeGuards";
 import { ApiErrorResponse } from "./types";
 
 export const scrollToTop = () => {

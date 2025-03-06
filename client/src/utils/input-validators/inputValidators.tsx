@@ -1,7 +1,7 @@
-import { isBetBuilderType } from "../pages/add-bet/betUtils";
-import { inputErrors } from "./defaults/errors";
-import { BetType } from "./enums";
-import { BetDetails } from "./types";
+import { isBetBuilderType } from "../../pages/add-bet/betUtils";
+import { inputErrors } from "../defaults/errors";
+import { BetType } from "../enums";
+import { BetDetails } from "../types";
 
 export const isEmail = (email: string): boolean => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,6 +18,10 @@ export const isNumber = (value: string) => {
 
 export const hasBuilderSelections = (selections: string[]) => {
   return Array.isArray(selections) && selections.length > 0;
+};
+
+export const hasMinLength = (value: string, minLength: number) => {
+  return value.trim().length >= minLength;
 };
 
 export const hasMaxLength = (value: string, maxLength: number) => {

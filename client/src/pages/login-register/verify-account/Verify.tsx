@@ -49,11 +49,11 @@ export const Verify = () => {
 
   return (
     <Container
-      width="min(400px, 95%)"
+      width="min(500px, 95%)"
       border="0.5px solid"
       borderColor="var(--primary-700)"
       padding="24px 16px"
-      margin="0 auto"
+      margin="2rem auto"
       alignSelf="center"
       boxShadow="var(--box-shadow)"
       gap="16px"

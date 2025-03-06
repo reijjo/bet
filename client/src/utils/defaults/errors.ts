@@ -4,4 +4,5 @@ export const inputErrors = {
   oddsEmpty: "Odds is required",
   oddsNotNumber: "Odds must be a number",
   buildSelections: "One or more selections are required",
+  usernameLength: "Username must be between 3 and 20 characters",
 };

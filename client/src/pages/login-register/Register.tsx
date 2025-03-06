@@ -16,7 +16,7 @@ import { Message } from "../../components/common/message/Message";
 import { useRegisterMutation } from "../../features/api/authApi";
 import { initialRegisterValues } from "../../utils/defaults/defaults";
 import { MessageType, MessageTypes } from "../../utils/enums";
-import { isEmail } from "../../utils/inputValidators";
+import { isEmail } from "../../utils/input-validators/inputValidators";
 import { ApiErrorResponse, RegisterValues } from "../../utils/types";
 
 export const Register = () => {
