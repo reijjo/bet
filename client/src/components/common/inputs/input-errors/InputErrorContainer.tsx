@@ -20,7 +20,7 @@ export const InputErrorContainer = ({
       {field && <p>{field} must contain:</p>}
       {Object.entries(errors).map(([key, message]) =>
         message ? (
-          <li key={key} className="input-error-message">
+          <li key={key} className="input-error-message" role="alert">
             {String(message)}
           </li>
         ) : null,

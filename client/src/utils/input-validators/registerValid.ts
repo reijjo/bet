@@ -1,28 +1,22 @@
 export const isValidUsername = {
-  minLength: {
-    value: 3,
-    message: "Min 3 characters on username",
-  },
-  maxLength: {
-    value: 20,
-    message: "Max 20 characters on username",
-  },
-  pattern: {
-    value: /^[a-zA-Z0-9_.-]+$/,
-    message: "Only letters, numbers and _-. allowed",
+  validate: {
+    minLength: (value: string | undefined) =>
+      value && value.length >= 3 ? true : "Min 3 characters on username",
+    maxLength: (value: string | undefined) =>
+      value && value.length <= 20 ? true : "Max 20 characters on username",
+    isValid: (value: string | undefined) =>
+      value && /^[a-zA-Z0-9_.-]+$/.test(value)
+        ? true
+        : "Only numbers, letters, and ._-",
   },
 };
 
 export const isValidPassword = {
-  minLength: {
-    value: 8,
-    message: "Min 8 characters",
-  },
-  maxLength: {
-    value: 50,
-    message: "Max 50 characters",
-  },
   validate: {
+    minLength: (value: string | undefined) =>
+      value && value.length >= 3 ? true : "Min 8 characters",
+    maxLength: (value: string | undefined) =>
+      value && value.length <= 20 ? true : "Max 50 characters",
     hasUppercase: (value: string | undefined) =>
       value && /[A-Z]/.test(value) ? true : "One uppercase letter",
     hasLowercase: (value: string | undefined) =>

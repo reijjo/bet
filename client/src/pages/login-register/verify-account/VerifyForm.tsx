@@ -48,7 +48,6 @@ export const VerifyForm = ({
   };
 
   const passwordMatcher = watch("password");
-  console.log("WAHT IS WATCH", watch());
 
   return (
     <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
