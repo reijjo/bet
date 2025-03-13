@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import {
@@ -10,12 +11,18 @@ import {
   OauthButton,
   TextInput,
 } from "../../components";
+import { LoginValues } from "../../utils/types";
 
 export const Login = () => {
   const [loginName, setLoginName] = useState("");
+  const { handleSubmit } = useForm<LoginValues>();
 
   const handleLogin = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginName(e.target.value);
+  };
+
+  const onSubmit: SubmitHandler<LoginValues> = (data) => {
+    console.log("LOOOG", data);
   };
 
   return (
@@ -30,7 +37,7 @@ export const Login = () => {
         boxShadow="var(--shadow-test)"
         gap="1rem"
       >
-        <form className="form-register">
+        <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
           <p className="form-header">Login to track your bets.</p>
           <TextInput
             className="form-input-text"

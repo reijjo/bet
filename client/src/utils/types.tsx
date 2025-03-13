@@ -61,6 +61,11 @@ export interface RegisterValues {
   password2?: string;
 }
 
+export interface LoginValues {
+  login: string;
+  password: string;
+}
+
 export type User = {
   id: number;
   email: string;
