@@ -46,3 +46,10 @@ export interface FinishUserResponse {
   success: boolean;
   message: string;
 }
+
+export interface LoginUserApiResponse {
+  data: User;
+  success: boolean;
+  message?: string;
+  error?: string;
+}

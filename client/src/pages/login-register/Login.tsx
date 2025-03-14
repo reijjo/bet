@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -11,18 +11,39 @@ import {
   OauthButton,
   TextInput,
 } from "../../components";
+import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
+import { Message } from "../../components/common/message/Message";
+import { useLoginMutation } from "../../features/api/authApi";
+import { MessageTypes } from "../../utils/enums";
+import { getErrorMessage } from "../../utils/helperFunctions";
 import { LoginValues } from "../../utils/types";
 
+const ForgotPassword = () => (
+  <Link to="/forgot" className="none-styles form-input-text">
+    <p className="text-btn-styles">Forgot Password?</p>
+  </Link>
+);
+
 export const Login = () => {
-  const [loginName, setLoginName] = useState("");
-  const { handleSubmit } = useForm<LoginValues>();
+  const [login, { data, isLoading, isError, error }] = useLoginMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginValues>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
-  const handleLogin = (e: ChangeEvent<HTMLInputElement>) => {
-    setLoginName(e.target.value);
-  };
+  const [apiError, setApiError] = useState<string | null>(null);
 
-  const onSubmit: SubmitHandler<LoginValues> = (data) => {
-    console.log("LOOOG", data);
+  const onSubmit: SubmitHandler<LoginValues> = async (data) => {
+    try {
+      const response = await login({
+        ...data,
+        login: data.login.toLowerCase(),
+      });
+      console.log("RESPONSE", response);
+    } catch (error) {
+      console.log("ERROR", error);
+    }
   };
 
   return (
@@ -43,24 +64,29 @@ export const Login = () => {
             className="form-input-text"
             type="text"
             label="Username / Email"
-            name="loginName"
             id="loginName"
-            value={loginName}
-            onChange={handleLogin}
             placeholder="Username or Email..."
+            {...register("login", { required: "Username/Email is required" })}
           />
+          {errors.login && <InputErrorContainer errors={errors.login} />}
           <TextInput
             className="form-input-text"
             type="password"
             label="Password"
-            name="looginPasswd"
             id="loginPasswd"
             placeholder="Password..."
-            width="100%"
+            {...register("password", { required: "Password is required" })}
           />
-          <button className="none-styles form-input-text">
-            <p className="text-btn-styles">Forgot Password?</p>
-          </button>
+          {errors.password && <InputErrorContainer errors={errors.password} />}
+          <ForgotPassword />
+          {(isError || isLoading) && (
+            <Message
+              message={isLoading ? "Logging in..." : getErrorMessage(error)}
+              type={isLoading ? MessageTypes.Info : MessageTypes.Error}
+              width="75%"
+            />
+          )}
+
           <Button
             type="submit"
             className="btn btn-filled"
@@ -69,8 +95,18 @@ export const Login = () => {
           />
         </form>
         <DividerWithText text="or" />
-        <OauthButton provider="Google" icon={faGoogle} action="login" />
-        <OauthButton provider="Facebook" icon={faFacebook} action="login" />
+        <OauthButton
+          provider="Google"
+          icon={faGoogle}
+          action="login"
+          disabled
+        />
+        <OauthButton
+          provider="Facebook"
+          icon={faFacebook}
+          action="login"
+          disabled
+        />
 
         <p className="login-p">
           Need an account?{" "}

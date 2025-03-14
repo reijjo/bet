@@ -1,11 +1,11 @@
 import "./TextInput.css";
 
-import { InputHTMLAttributes, forwardRef } from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   showLabel?: boolean;
-  optional?: string;
+  optional?: string | ReactNode;
   className?: string;
   name: string;
   id: string;

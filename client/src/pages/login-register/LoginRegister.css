@@ -64,6 +64,13 @@
   padding: 32px 0;
 }
 
+.login-password-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .none-styles {
   border: none;
   font: inherit;
