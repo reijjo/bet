@@ -7,6 +7,7 @@ import { UserRoles } from "../utils/enums";
 import { isEmailValid } from "../utils/input-validators/email";
 import { isPasswordValid } from "../utils/input-validators/password";
 import { isUsernameValid } from "../utils/input-validators/username";
+import type { LoginValues } from "../utils/types";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 
@@ -209,5 +210,75 @@ export const finishRegistration = async (
         500,
       ),
     );
+  }
+};
+
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { login, password } = req.body as LoginValues;
+  let user;
+
+  if (!login || !password) {
+    return next(new HttpError("Username and password are required", 400));
+  }
+
+  try {
+    if (login.includes("@")) {
+      user = await UserModel.findOne({ where: { email: login } });
+    } else {
+      user = await UserModel.findOne({ where: { username: login } });
+    }
+
+    if (!user) {
+      return next(new HttpError(`No user found with ${login}`, 404));
+    }
+
+    const validPassword = await bcryptjs.compare(
+      password,
+      user.password as string,
+    );
+
+    if (!validPassword) {
+      return next(new HttpError("Invalid password", 400));
+    }
+
+    req.session.user = {
+      id: user.id,
+      email: user.email,
+      username: user.username as string,
+      role: user.role,
+    };
+
+    res.status(200).json({
+      success: true,
+      message: "User logged in successfully",
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return next(new HttpError("Failed to login. Please try again later.", 500));
+  }
+};
+
+export const logout = async (req: Request, res: Response) => {
+  req.session.destroy(() => {
+    res.clearCookie("connect.sid");
+    res.status(200).json({
+      success: true,
+      message: "User logged out successfully",
+    });
+  });
+};
+
+export const getSessionUser = (req: Request, res: Response) => {
+  if (req.session.user) {
+    res.status(200).json({ success: true, data: req.session.user });
+  } else {
+    res.status(401).json({
+      success: false,
+      message: "No user session found",
+    });
   }
 };

@@ -51,3 +51,8 @@ export type User = {
   resetToken?: string;
   resetTokenExpiration?: Date;
 };
+
+export interface LoginValues {
+  login: string;
+  password: string;
+}
