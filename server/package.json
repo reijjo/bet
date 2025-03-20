@@ -14,7 +14,7 @@
     "@types/bun": "latest",
     "@types/connect-pg-simple": "^7.0.3",
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
+    "@types/express": "^5.0.1",
     "@types/morgan": "^1.9.9",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.11",
@@ -33,9 +33,9 @@
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "express-session": "^1.18.1",
-    "helmet": "^8.0.0",
+    "helmet": "^8.1.0",
     "nodemailer": "^6.10.0",
-    "pg": "^8.14.0",
+    "pg": "^8.14.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.6"
   }

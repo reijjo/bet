@@ -23,11 +23,13 @@
 
   &:disabled {
     cursor: not-allowed;
-    background-color: var(--neutral-500);
+    background-color: var(--neutral-400);
+    border: 1px solid var(--neutral-500);
+    color: var(--neutral-500);
   }
 
   &:is(:disabled):hover {
-    background-color: var(--neutral-500);
+    background-color: var(--neutral-400);
   }
 }
 

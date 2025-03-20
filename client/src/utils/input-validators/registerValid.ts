@@ -1,3 +1,12 @@
+export const isValidEmail = {
+  validate: {
+    isValid: (value: string | undefined) =>
+      value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        ? true
+        : "Invalid email",
+  },
+};
+
 export const isValidUsername = {
   validate: {
     minLength: (value: string | undefined) =>

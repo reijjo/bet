@@ -1,5 +1,8 @@
 import {
   finishRegistration,
+  getSessionUser,
+  login,
+  logout,
   refreshToken,
   register,
   verifyAccount,
@@ -13,3 +16,7 @@ authRouter.patch("/register", finishRegistration);
 
 authRouter.get("/register/:token", verifyAccount);
 authRouter.patch("/register/:token", refreshToken);
+
+authRouter.post("/login", login);
+authRouter.post("/logout", logout);
+authRouter.get("/me", getSessionUser);
