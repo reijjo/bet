@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { modalReducer, sidebarReducer } from "../features";
+import { modalReducer, registerReducer, sidebarReducer } from "../features";
 import { baseApi } from "../features/api/baseApi";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
     sidebar: sidebarReducer,
+    register: registerReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

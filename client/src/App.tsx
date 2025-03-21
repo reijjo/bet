@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Layout, UserLayout } from "./components";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
+import { FinishRegister } from "./pages/login-register/verify-account/FinishRegister";
 import { Verify } from "./pages/login-register/verify-account/Verify";
 
 // import { useAppSelector } from "./store/hooks";
@@ -24,6 +25,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/register/finish" element={<FinishRegister />} />
           <Route path="/register/:token" element={<Verify />} />
           <Route path="/login" element={<Login />} />
           <Route path="/bank" element={<UnderCons />} />

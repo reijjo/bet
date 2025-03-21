@@ -9,13 +9,6 @@ import { baseApi } from "./baseApi";
 
 export const authApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    register: builder.mutation<RegisterUserApiResponse, RegisterValues>({
-      query: (email) => ({
-        url: "/auth/register",
-        method: "POST",
-        body: email,
-      }),
-    }),
     verify: builder.query<RegisterUserApiResponse, string>({
       query: (token) => `/auth/register/${token}`,
       transformErrorResponse: (error) => ({
@@ -56,7 +49,6 @@ export const authApiSlice = baseApi.injectEndpoints({
 });
 
 export const {
-  useRegisterMutation,
   useVerifyQuery,
   useUpdateTokenMutation,
   useFinishRegisterMutation,

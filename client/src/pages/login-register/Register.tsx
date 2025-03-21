@@ -3,7 +3,7 @@ import "./LoginRegister.css";
 // import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -13,21 +13,28 @@ import {
   TextInput,
 } from "../../components";
 import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
-// import { Message } from "../../components/common/message/Message";
-// import { useRegisterMutation } from "../../features/api/authApi";
-// import { initialRegisterValues } from "../../utils/defaults/defaults";
-// import { MessageType, MessageTypes } from "../../utils/enums";
+import { Message } from "../../components/common/message/Message";
+import { useLazyGetUserByEmailQuery } from "../../features/api/userApi";
+import { setRegister } from "../../features/registerSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { MessageTypes } from "../../utils/enums";
+import { getErrorMessage } from "../../utils/helperFunctions";
 import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
 export const Register = () => {
-  // const [regEmail, setRegEmail] = useState<RegisterValues>(
-  //   initialRegisterValues,
-  // );
-  // const [inputError, setInputError] = useState("");
-  // const [messageType, setMessageType] = useState<MessageType>(
-  //   MessageTypes.Error,
-  // );
+  // const [emailToCheck, setEmailToCheck] = useState("");
+
+  const [
+    trigger,
+    {
+      data: fetchData,
+      isLoading,
+      isError,
+      error,
+      // refetch,
+    },
+  ] = useLazyGetUserByEmailQuery();
 
   const {
     register,
@@ -39,50 +46,31 @@ export const Register = () => {
     reValidateMode: "onChange",
     criteriaMode: "all",
   });
-  const onSubmit: SubmitHandler<RegisterValues> = (data) => console.log(data);
 
-  // const [register, { isLoading, isError, error }] = useRegisterMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  // const hasError = isError || error || inputError;
+  const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
+    const sanitazedEmail = data.email.trim().toLowerCase();
+    console.log(data);
+    // setEmailToCheck(sanitazedEmail);
 
-  // const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setRegEmail({ ...regEmail, [name]: value });
-  // };
+    try {
+      const result = await trigger(sanitazedEmail);
 
-  // const handleRegister = async (e: SyntheticEvent) => {
-  //   e.preventDefault();
+      if (result.isSuccess) {
+        dispatch(setRegister({ ...data, email: sanitazedEmail }));
+        navigate("/register/finish");
+      }
+    } catch (error) {
+      console.error("Verification error:", error);
+    }
+  };
 
-  //   const sanitezedEmail = regEmail.email.trim().toLowerCase();
-
-  //   if (!isEmail(sanitezedEmail)) {
-  //     setInputError("Invalid email");
-  //     setMessageType(MessageTypes.Error);
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await register({
-  //       ...regEmail,
-  //       email: sanitezedEmail,
-  //     }).unwrap();
-  //     console.log("response", response);
-  //     setInputError(response.message);
-  //     setMessageType(MessageTypes.Success);
-
-  //     setRegEmail(initialRegisterValues);
-  //   } catch (error: unknown) {
-  //     setMessageType(MessageTypes.Error);
-
-  //     const apiError = error as { data: ApiErrorResponse };
-  //     setInputError(apiError?.data?.message);
-  //     console.log("INPUTERROR", error);
-  //   }
-  // };
-
-  // console.log("iserror", isError);
-  // console.log("error", error);
-  // console.log("inputerror", inputError);
+  console.log("error", error);
+  console.log("isError", isError);
+  console.log("isLoading", isLoading);
+  console.log("fetchData", fetchData);
 
   return (
     <Container
@@ -117,17 +105,21 @@ export const Register = () => {
           {errors.email && (
             <InputErrorContainer errors={errors.email?.types || {}} />
           )}
-          {/* {hasError && (
-            <Message message={inputError} type={messageType} width="75%" />
-          )}
-          {isLoading && (
-            <Message
-              message="Registering..."
-              type={MessageTypes.Info}
-              width="75%"
-            />
-          )} */}
         </Container>
+        {isLoading && (
+          <Message
+            message="Checking email..."
+            type={MessageTypes.Info}
+            width="75%"
+          />
+        )}
+        {isError && (
+          <Message
+            message={getErrorMessage(error)}
+            type={MessageTypes.Error}
+            width="75%"
+          />
+        )}
         <Button
           type="submit"
           className="btn btn-filled"
