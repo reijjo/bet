@@ -102,61 +102,6 @@ export const refreshToken = async (
   }
 };
 
-export const finishRegistration = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  const { email, username, password } = req.body;
-
-  if (!username || !password || !email) {
-    return next(
-      new HttpError("Username, email and password are required", 400),
-    );
-  }
-
-  const usernameValidation = isUsernameValid(username);
-  if (usernameValidation) {
-    return next(new HttpError(usernameValidation, 400));
-  }
-
-  const passwordValidation = isPasswordValid(password);
-  if (passwordValidation) {
-    return next(new HttpError(passwordValidation, 400));
-  }
-
-  try {
-    const user = await UserModel.findOne({
-      where: { email },
-    });
-
-    if (!user) {
-      return next(new HttpError("User not found", 404));
-    }
-
-    const hashPw = await bcryptjs.hash(password, 10);
-    const newUser = await user.update({
-      username: username.toLowerCase(),
-      password: hashPw,
-      role: UserRoles.Guest,
-    });
-
-    res.status(201).json({
-      success: true,
-      message: `User ${username} created successfully!`,
-      data: newUser,
-    });
-  } catch (error) {
-    console.error("Finish registration error:", error);
-    return next(
-      new HttpError(
-        "Failed to finish registration. Please try again later.",
-        500,
-      ),
-    );
-  }
-};
-
 export const login = async (
   req: Request,
   res: Response,

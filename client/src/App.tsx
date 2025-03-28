@@ -4,7 +4,8 @@ import { Layout, UserLayout } from "./components";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/verify-account/FinishRegister";
-import { Verify } from "./pages/login-register/verify-account/Verify";
+
+// import { Verify } from "./pages/login-register/verify-account/Verify";
 
 // import { useAppSelector } from "./store/hooks";
 // import { RootState } from "./store/store";
@@ -26,7 +27,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register/finish" element={<FinishRegister />} />
-          <Route path="/register/:token" element={<Verify />} />
+          {/* <Route path="/register/:token" element={<Verify />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/bank" element={<UnderCons />} />
           <Route path="/analytics" element={<UnderCons />} />

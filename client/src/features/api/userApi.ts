@@ -14,10 +14,10 @@ export const userApiSlice = baseApi.injectEndpoints({
       query: (username) => `/users/find?username=${username}`,
     }),
     registerUser: builder.mutation<RegisterUserApiResponse, RegisterValues>({
-      query: (email) => ({
+      query: (user) => ({
         url: "/users",
         method: "POST",
-        body: email,
+        body: user,
       }),
     }),
   }),

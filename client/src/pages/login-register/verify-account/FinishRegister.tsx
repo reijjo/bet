@@ -37,7 +37,13 @@ export const FinishRegister = () => {
   console.log("REGISTER STATE", registerState);
 
   const onSubmit: SubmitHandler<RegisterValues> = (data) => {
-    const userToCreate = { ...data, email: registerState };
+    const sanitizedUsername = data.username?.trim().toLowerCase();
+
+    const userToCreate = {
+      ...data,
+      username: sanitizedUsername,
+      email: registerState,
+    };
     console.log("DATA", userToCreate);
     // finishRegister({ ...data, username: data.username?.trim().toLowerCase() });
   };

@@ -1,5 +1,4 @@
 import {
-  finishRegistration,
   getSessionUser,
   login,
   logout,
@@ -9,8 +8,6 @@ import {
 import express from "express";
 
 export const authRouter = express.Router({ mergeParams: true });
-
-authRouter.patch("/register", finishRegistration);
 
 authRouter.get("/register/:token", verifyAccount);
 authRouter.patch("/register/:token", refreshToken);

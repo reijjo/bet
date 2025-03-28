@@ -23,18 +23,8 @@ import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
 export const Register = () => {
-  // const [emailToCheck, setEmailToCheck] = useState("");
-
-  const [
-    trigger,
-    {
-      data: fetchData,
-      isLoading,
-      isError,
-      error,
-      // refetch,
-    },
-  ] = useLazyGetUserByEmailQuery();
+  const [checkDuplicateEmail, { data: fetchData, isLoading, isError, error }] =
+    useLazyGetUserByEmailQuery();
 
   const {
     register,
@@ -53,10 +43,9 @@ export const Register = () => {
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     const sanitazedEmail = data.email.trim().toLowerCase();
     console.log(data);
-    // setEmailToCheck(sanitazedEmail);
 
     try {
-      const result = await trigger(sanitazedEmail);
+      const result = await checkDuplicateEmail(sanitazedEmail);
 
       if (result.isSuccess) {
         dispatch(setRegister({ ...data, email: sanitazedEmail }));
