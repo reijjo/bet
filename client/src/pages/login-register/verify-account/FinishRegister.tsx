@@ -1,14 +1,19 @@
-// import { useEffect } from "react";
+import { useState } from "react";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button, Container, TextInput } from "../../../components";
 import { InputErrorContainer } from "../../../components/common/inputs/input-errors/InputErrorContainer";
+import {
+  Message,
+  MessageProps,
+} from "../../../components/common/message/Message";
 import { useRegisterUserMutation } from "../../../features/api/userApi";
-import { useAppSelector } from "../../../store/hooks";
+import { resetRegister } from "../../../features/registerSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
-// import { Message } from "../../../components/common/message/Message";
-// import { MessageTypes } from "../../../utils/enums";
-// import { getErrorMessage } from "../../../utils/helperFunctions";
+import { MessageTypes } from "../../../utils/enums";
+import { getErrorMessage } from "../../../utils/helperFunctions";
 import {
   isValidPassword,
   isValidUsername,
@@ -16,12 +21,16 @@ import {
 import { RegisterValues } from "../../../utils/types";
 
 export const FinishRegister = () => {
-  const [registerUser, { isLoading, isError, error }] =
-    useRegisterUserMutation();
+  const [message, setMessage] = useState<MessageProps>({
+    message: "",
+    type: MessageTypes.Info,
+  });
+  const [registerUser] = useRegisterUserMutation();
 
   const {
     register,
     formState: { errors },
+    reset,
     watch,
     handleSubmit,
   } = useForm<RegisterValues>({
@@ -31,12 +40,15 @@ export const FinishRegister = () => {
     criteriaMode: "all",
   });
 
+  const passwordMatcher = watch("password");
+
   const registerState = useAppSelector(
     (state: RootState) => state.register.email,
   );
+  const dispatch = useAppDispatch();
   console.log("REGISTER STATE", registerState);
 
-  const onSubmit: SubmitHandler<RegisterValues> = (data) => {
+  const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     const sanitizedUsername = data.username?.trim().toLowerCase();
 
     const userToCreate = {
@@ -44,11 +56,30 @@ export const FinishRegister = () => {
       username: sanitizedUsername,
       email: registerState,
     };
-    console.log("DATA", userToCreate);
-    // finishRegister({ ...data, username: data.username?.trim().toLowerCase() });
-  };
 
-  const passwordMatcher = watch("password");
+    setMessage({
+      message: "Creating your account...",
+      type: MessageTypes.Info,
+    });
+
+    try {
+      const res = await registerUser(userToCreate).unwrap();
+
+      setMessage({
+        message: res.message,
+        type: MessageTypes.Success,
+      });
+
+      reset();
+      dispatch(resetRegister());
+    } catch (error) {
+      console.log("ERROR", error);
+      setMessage({
+        message: getErrorMessage(error),
+        type: MessageTypes.Error,
+      });
+    }
+  };
 
   return (
     <Container
@@ -105,17 +136,9 @@ export const FinishRegister = () => {
         {errors.password2 && (
           <InputErrorContainer errors={errors.password2?.types || {}} />
         )}
-        {/* {(isFinishing || isFinishError) && (
-					<Message
-						message={
-							isFinishing
-								? "Finishing your account..."
-								: getErrorMessage(finishError)
-						}
-						type={isFinishing ? MessageTypes.Info : MessageTypes.Error}
-						width="75%"
-					/>
-				)} */}
+        {message.message !== "" && (
+          <Message message={message.message} type={message.type} width="75%" />
+        )}
         <Button
           type="submit"
           className="btn btn-filled"

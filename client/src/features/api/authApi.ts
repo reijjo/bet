@@ -3,7 +3,11 @@ import {
   LoginUserApiResponse,
   RegisterUserApiResponse,
 } from "../../utils/api-response-types";
-import { LoginValues, TokenUpdate } from "../../utils/types";
+import {
+  LoginValues,
+  SessionApiResponse,
+  TokenUpdate,
+} from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const authApiSlice = baseApi.injectEndpoints({
@@ -33,8 +37,18 @@ export const authApiSlice = baseApi.injectEndpoints({
         };
       },
     }),
+    getSessionUser: builder.query<SessionApiResponse, void>({
+      query: () => ({
+        url: "/auth/me",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useVerifyQuery, useUpdateTokenMutation, useLoginMutation } =
-  authApiSlice;
+export const {
+  useVerifyQuery,
+  useUpdateTokenMutation,
+  useLoginMutation,
+  useGetSessionUserQuery,
+} = authApiSlice;

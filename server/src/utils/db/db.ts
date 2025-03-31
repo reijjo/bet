@@ -53,4 +53,5 @@ export const closeDBconnection = async () => {
 export const pgStore = new (PgSession(session))({
   pool: new pg.Pool({ connectionString: DATABASE_URL }),
   tableName: "sessions",
+  createTableIfMissing: true,
 });

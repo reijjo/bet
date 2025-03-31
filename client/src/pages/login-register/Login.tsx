@@ -1,8 +1,6 @@
-import { useState } from "react";
-
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -13,10 +11,15 @@ import {
 } from "../../components";
 import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
 import { Message } from "../../components/common/message/Message";
-import { useLoginMutation } from "../../features/api/authApi";
+import {
+  useGetSessionUserQuery,
+  useLoginMutation,
+} from "../../features/api/authApi";
+import { loginUser } from "../../features/authSlice";
+import { useAppDispatch } from "../../store/hooks";
 import { MessageTypes } from "../../utils/enums";
 import { getErrorMessage } from "../../utils/helperFunctions";
-import { LoginValues } from "../../utils/types";
+import { LoginValues, User } from "../../utils/types";
 
 const ForgotPassword = () => (
   <Link to="/forgot" className="none-styles form-input-text">
@@ -25,22 +28,31 @@ const ForgotPassword = () => (
 );
 
 export const Login = () => {
-  const [login, { data, isLoading, isError, error }] = useLoginMutation();
+  const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
+  const { refetch } = useGetSessionUserQuery();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginValues>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
-  const [apiError, setApiError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<LoginValues> = async (data) => {
     try {
       const response = await login({
         ...data,
-        login: data.login.toLowerCase(),
+        login: data.login.trim().toLowerCase(),
       });
-      console.log("RESPONSE", response);
+      console.log("LOGIN RESPONSE", response);
+
+      if (isSuccess && response.data) {
+        const sessionResult = await refetch().unwrap();
+        dispatch(loginUser(sessionResult.data as User));
+      }
+      navigate("/dash");
     } catch (error) {
       console.log("ERROR", error);
     }

@@ -23,9 +23,9 @@ export const isValidUsername = {
 export const isValidPassword = {
   validate: {
     minLength: (value: string | undefined) =>
-      value && value.length >= 3 ? true : "Min 8 characters",
+      value && value.length >= 8 ? true : "Min 8 characters",
     maxLength: (value: string | undefined) =>
-      value && value.length <= 20 ? true : "Max 50 characters",
+      value && value.length <= 50 ? true : "Max 50 characters",
     hasUppercase: (value: string | undefined) =>
       value && /[A-Z]/.test(value) ? true : "One uppercase letter",
     hasLowercase: (value: string | undefined) =>

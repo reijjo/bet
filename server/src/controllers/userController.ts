@@ -86,16 +86,25 @@ export const registration = async (
 
   try {
     // Check for duplicate email and username
-    // const user = await UserModel.findOne({
-    //   where: { email },
-    // });
+    let user = await UserModel.findOne({
+      where: { email },
+    });
 
-    // if (!user) {
-    //   return next(new HttpError("User not found", 404));
-    // }
+    if (user) {
+      return next(new HttpError("Email already in use.", 404));
+    }
+
+    user = await UserModel.findOne({
+      where: { username },
+    });
+
+    if (user) {
+      return next(new HttpError("Username already in use.", 404));
+    }
 
     const hashPw = await bcryptjs.hash(password, 10);
-    const newUser = await user.update({
+    const newUser = await UserModel.create({
+      email: email,
       username: username.toLowerCase(),
       password: hashPw,
       role: UserRoles.Guest,
@@ -106,7 +115,7 @@ export const registration = async (
     // On return Change message to please verify your email create verifytoken and expiration and send check your email message
     res.status(201).json({
       success: true,
-      message: `User ${username} created successfully!`,
+      message: `Check your email '${email}' to verify your account.`,
       data: newUser,
     });
   } catch (error) {

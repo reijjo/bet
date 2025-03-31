@@ -97,3 +97,8 @@ export interface ErrorWithData {
     status?: number;
   };
 }
+
+export interface SessionApiResponse {
+  success: boolean;
+  data: User | null;
+}
