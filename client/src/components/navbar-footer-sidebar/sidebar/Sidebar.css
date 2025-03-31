@@ -19,11 +19,11 @@
 
   border-right: 2px solid var(--secondary-light);
 
-  /* background-color: var(--primary-800); */
-  background-image: url("../../../assets/images/circle-bg3.svg");
+  background-color: var(--primary);
+  /* background-image: url("../../../assets/images/circle-bg3.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 
   box-shadow: 4px 0 8px hsla(330, 100%, 87%, 0.2);
 

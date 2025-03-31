@@ -26,6 +26,12 @@ export const authApiSlice = baseApi.injectEndpoints({
         body: credentials,
       }),
     }),
+    logout: builder.mutation<BasicApiResponse, void>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "POST",
+      }),
+    }),
     updateToken: builder.mutation<BasicApiResponse, TokenUpdate>({
       query: (patch) => {
         console.log("email", patch.email);
@@ -50,5 +56,6 @@ export const {
   useVerifyQuery,
   useUpdateTokenMutation,
   useLoginMutation,
+  useLogoutMutation,
   useGetSessionUserQuery,
 } = authApiSlice;

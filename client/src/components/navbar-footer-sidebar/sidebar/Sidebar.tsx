@@ -15,11 +15,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 import logo from "../../../assets/fishing.png";
+import { useLogoutMutation } from "../../../features/api/authApi";
+import { logoutUser } from "../../../features/authSlice";
 import { closeSidebar } from "../../../features/sidebarSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
+  const [logout, { isLoading, error }] = useLogoutMutation();
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const modalOpen = useAppSelector((state) => state.modal.isModalOpen);
   const dispatch = useAppDispatch();
@@ -27,6 +30,20 @@ export const Sidebar = () => {
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
   };
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(logoutUser());
+      dispatch(closeSidebar());
+
+      console.log("logout");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  console.log("ERROR MUTATION", error);
 
   return (
     <div
@@ -100,12 +117,12 @@ export const Sidebar = () => {
         />
         <Divider color="var(--primary-800)" />
         <LinkWithIcon
-          link="/logout"
+          link="/"
           className="logout-button"
           icon={faArrowRightFromBracket}
           iconSize="xs"
-          linkText="Logout"
-          onClick={handleCloseSidebar}
+          linkText={isLoading ? "Logging out..." : "Logout"}
+          onClick={handleLogout}
         />
       </div>
     </div>

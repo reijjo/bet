@@ -16,23 +16,37 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Divider } from "../../";
 import logo from "../../../assets/fishing.png";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
+import { useLogoutMutation } from "../../../features/api/authApi";
+import { logoutUser } from "../../../features/authSlice";
 import { openSidebar } from "../../../features/sidebarSlice";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
-import { useAppDispatch } from "../../../store/hooks";
-
-const USER = "TestUser";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 
 export const NavbarUser = () => {
+  const [logout, { isLoading, error }] = useLogoutMutation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useScreenWidth();
 
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(logoutUser());
+      navigate("/");
+      console.log("logout");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Closes dropdown when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
@@ -56,6 +70,8 @@ export const NavbarUser = () => {
   const toggleUserMenu = () => {
     setIsUserMenuOpen((prevState) => !prevState);
   };
+
+  console.log("ERROR MUTATION", error);
 
   return (
     <nav>
@@ -81,7 +97,7 @@ export const NavbarUser = () => {
                 />
               </div>
               <a className="nav-profile" onClick={toggleUserMenu}>
-                <p className="nav-profile-username">{USER}</p>
+                <p className="nav-profile-username">{user?.username}</p>
                 {!isUserMenuOpen ? (
                   <FontAwesomeIcon icon={faCaretDown} className="caret-icon" />
                 ) : (
@@ -128,7 +144,9 @@ export const NavbarUser = () => {
                   </li>
                   <Divider />
                   <li className="user-menu-logout">
-                    <a onClick={() => console.log("logout")}>Logout</a>
+                    <a onClick={handleLogout}>
+                      {isLoading ? "Logging out..." : "Logout"}
+                    </a>
                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   </li>
                 </ul>

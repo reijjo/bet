@@ -21,13 +21,16 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if ((isSuccess && data?.success, data?.data)) {
+    if (isSuccess && data?.success && data?.data) {
       dispatch(loginUser(data.data));
     }
   }, [isSuccess, data, dispatch]);
 
+  console.log("App - isError:", isError, "error:", error, "data:", data);
+
   console.log("isError", isError);
   console.log("error", error);
+  console.log("data", data);
 
   return (
     <Router

@@ -28,7 +28,7 @@ const ForgotPassword = () => (
 );
 
 export const Login = () => {
-  const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
+  const [login, { isLoading, isError, error }] = useLoginMutation();
   const { refetch } = useGetSessionUserQuery();
 
   const {
@@ -45,13 +45,12 @@ export const Login = () => {
       const response = await login({
         ...data,
         login: data.login.trim().toLowerCase(),
-      });
+      }).unwrap();
+
       console.log("LOGIN RESPONSE", response);
 
-      if (isSuccess && response.data) {
-        const sessionResult = await refetch().unwrap();
-        dispatch(loginUser(sessionResult.data as User));
-      }
+      const sessionResult = await refetch().unwrap();
+      dispatch(loginUser(sessionResult.data as User));
       navigate("/dash");
     } catch (error) {
       console.log("ERROR", error);
