@@ -9,11 +9,6 @@ import * as registerSlice from "../../features/registerSlice";
 import { store } from "../../store/store";
 import { Register } from "./Register";
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
-
 const mockNavigate = vi.fn();
 const user = userEvent.setup();
 
