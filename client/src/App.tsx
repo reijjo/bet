@@ -8,7 +8,7 @@ import { UnderCons } from "./components/common/fallback/UnderCons";
 import { useGetSessionUserQuery } from "./features/api/authApi";
 import { loginUser } from "./features/authSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
-import { FinishRegister } from "./pages/login-register/verify-account/FinishRegister";
+import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppDispatch } from "./store/hooks";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";

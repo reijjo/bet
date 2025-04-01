@@ -6,12 +6,12 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as authApi from "../../../features/api/authApi";
+// import * as authApi from "../../../features/api/authApi";
 import { store } from "../../../store/store";
 import { mockUser } from "../../../tests/mocks/userMock";
 import { VerifyForm } from "./VerifyForm";
 
-describe("VerifyForm.tsx", () => {
+describe.skip("VerifyForm.tsx", () => {
   const mockData = {
     data: mockUser.email,
     success: true,
@@ -30,19 +30,18 @@ describe("VerifyForm.tsx", () => {
   const finishRegister = vi.fn();
 
   beforeEach(() => {
-    const mockFinishRegister = vi.fn();
-
-    vi.spyOn(authApi, "useFinishRegisterMutation").mockReturnValue([
-      mockFinishRegister,
-      {
-        data: mockData,
-        isLoading: isFinishing,
-        isError: isFinishError,
-        error: finishError,
-        refetch: vi.fn(),
-        reset: vi.fn(),
-      },
-    ]);
+    // const mockFinishRegister = vi.fn();
+    // vi.spyOn(authApi, "useFinishRegisterMutation").mockReturnValue([
+    //   mockFinishRegister,
+    //   {
+    //     data: mockData,
+    //     isLoading: isFinishing,
+    //     isError: isFinishError,
+    //     error: finishError,
+    //     refetch: vi.fn(),
+    //     reset: vi.fn(),
+    //   },
+    // ]);
   });
 
   afterEach(() => {

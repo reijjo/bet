@@ -2,23 +2,20 @@ import { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button, Container, TextInput } from "../../../components";
-import { InputErrorContainer } from "../../../components/common/inputs/input-errors/InputErrorContainer";
-import {
-  Message,
-  MessageProps,
-} from "../../../components/common/message/Message";
-import { useRegisterUserMutation } from "../../../features/api/userApi";
-import { resetRegister } from "../../../features/registerSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { RootState } from "../../../store/store";
-import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/helperFunctions";
+import { Button, Container, TextInput } from "../../components";
+import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
+import { Message, MessageProps } from "../../components/common/message/Message";
+import { useRegisterUserMutation } from "../../features/api/userApi";
+import { resetRegister } from "../../features/registerSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
+import { MessageTypes } from "../../utils/enums";
+import { getErrorMessage } from "../../utils/helperFunctions";
 import {
   isValidPassword,
   isValidUsername,
-} from "../../../utils/input-validators/registerValid";
-import { RegisterValues } from "../../../utils/types";
+} from "../../utils/input-validators/registerValid";
+import { RegisterValues } from "../../utils/types";
 
 export const FinishRegister = () => {
   const [message, setMessage] = useState<MessageProps>({

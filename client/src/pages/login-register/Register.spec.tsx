@@ -1,29 +1,55 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, useNavigate } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as authApi from "../../features/api/authApi";
+import * as userApi from "../../features/api/userApi";
+import * as registerSlice from "../../features/registerSlice";
 import { store } from "../../store/store";
 import { Register } from "./Register";
 
+if (process.env.NODE_ENV === "test") {
+  console.log = function () {};
+  console.error = function () {};
+}
+
+const mockNavigate = vi.fn();
 const user = userEvent.setup();
 
-describe.only("Register", () => {
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: vi.fn(),
+  };
+});
+
+describe("Register", () => {
+  const mockSetRegister = vi.fn();
+  const mockCheckDuplicateEmail = vi.fn();
+
   beforeEach(() => {
-    vi.spyOn(authApi, "useRegisterMutation").mockReturnValue([
-      vi.fn().mockImplementation(() => ({
-        unwrap: vi
-          .fn()
-          .mockResolvedValue({ message: "Registered successfully" }),
-      })),
-      { isLoading: false, isError: false, error: null, reset: vi.fn() },
-    ]);
+    (useNavigate as any).mockReturnValue(mockNavigate);
+
+    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+      mockCheckDuplicateEmail,
+      {
+        data: null,
+        isLoading: false,
+        isError: false,
+        error: null,
+      },
+    ] as any);
+
+    vi.spyOn(registerSlice, "setRegister").mockImplementation(mockSetRegister);
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    mockNavigate.mockReset();
+    mockSetRegister.mockReset();
+    mockCheckDuplicateEmail.mockReset();
   });
 
   const renderComponent = () => {
@@ -51,13 +77,11 @@ describe.only("Register", () => {
     expect(emailInput).toBeInTheDocument();
 
     await user.type(emailInput, "repe@repe.com");
-
     expect(emailInput).toHaveValue("repe@repe.com");
   });
 
   it("shows invalid email error", async () => {
     renderComponent();
-
     const emailInput = screen.getByLabelText("Email");
     const registerButton = screen.getByText("sign up");
 
@@ -65,104 +89,63 @@ describe.only("Register", () => {
     await user.click(registerButton);
 
     await waitFor(() => {
-      expect(screen.getByText("Invalid email")).toBeInTheDocument();
+      const errorElement = screen.getByRole("alert");
+      expect(errorElement).toBeInTheDocument();
+      expect(errorElement).toHaveTextContent("Invalid email");
     });
   });
 
-  it("handles registration error", async () => {
-    vi.spyOn(authApi, "useRegisterMutation").mockReturnValue([
-      vi.fn().mockImplementation(() => ({
-        unwrap: vi.fn().mockRejectedValue({
-          data: { message: "Email already in use" },
-        }),
-      })),
-      {
-        isLoading: false,
-        isError: true,
-        error: { data: { message: "Email already in use" } },
-        reset: vi.fn(),
-      },
-    ]);
+  it("shows loading state while checking email", async () => {
+    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+      mockCheckDuplicateEmail,
+      { data: null, isLoading: true, isError: false, error: null },
+    ] as any);
 
     renderComponent();
-    const emailInput = screen.getByLabelText("Email");
-    const registerButton = screen.getByText("sign up");
 
-    await user.type(emailInput, "repe@repe.com");
-    await user.click(registerButton);
+    await waitFor(() => {
+      expect(screen.getByText("Checking email...")).toBeInTheDocument();
+    });
+  });
+
+  it("shows error when email is already in use", async () => {
+    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+      mockCheckDuplicateEmail,
+      {
+        data: null,
+        isLoading: false,
+        isError: true,
+        error: { status: 409, data: { message: "Email already in use" } },
+      },
+    ] as any);
+
+    renderComponent();
 
     await waitFor(() => {
       expect(screen.getByText("Email already in use")).toBeInTheDocument();
     });
   });
 
-  it("handles successful registration", async () => {
-    vi.spyOn(authApi, "useRegisterMutation").mockReturnValue([
-      vi.fn().mockImplementation(() => ({
-        unwrap: vi
-          .fn()
-          .mockResolvedValue({ message: "Registered successfully" }),
-      })),
-      { isLoading: false, isError: false, error: null, reset: vi.fn() },
-    ]);
-
-    renderComponent();
-    const emailInput = screen.getByLabelText("Email");
-    const registerButton = screen.getByText("sign up");
-
-    await user.type(emailInput, "repe@repe.com");
-    await user.click(registerButton);
-
-    await waitFor(() => {
-      expect(screen.getByText("Registered successfully")).toBeInTheDocument();
+  it("handles successful submission and navigates to next step", async () => {
+    mockCheckDuplicateEmail.mockResolvedValue({
+      isSuccess: true,
+      data: null,
     });
-  });
-
-  it('shows "Registering..." text', async () => {
-    vi.spyOn(authApi, "useRegisterMutation").mockReturnValue([
-      vi.fn().mockImplementation(() => ({
-        unwrap: vi
-          .fn()
-          .mockResolvedValue({ message: "Registered successfully" }),
-      })),
-      { isLoading: true, isError: false, error: null, reset: vi.fn() },
-    ]);
 
     renderComponent();
 
     const emailInput = screen.getByLabelText("Email");
     const registerButton = screen.getByText("sign up");
 
-    await user.type(emailInput, "repe@repe.com");
-    await user.click(registerButton);
-
-    expect(screen.getByText("Registering...")).toBeInTheDocument();
-  });
-
-  it("shows input error when registration fails", async () => {
-    vi.spyOn(authApi, "useRegisterMutation").mockReturnValue([
-      vi.fn().mockImplementation(() => ({
-        unwrap: vi.fn().mockRejectedValue({
-          data: { message: "Something went wrong" },
-        }),
-      })),
-      {
-        isLoading: false,
-        isError: true,
-        error: { data: { message: "Something went wrong" } },
-        reset: vi.fn(),
-      },
-    ]);
-
-    renderComponent();
-    const emailInput = screen.getByLabelText("Email");
-    const registerButton = screen.getByText("sign up");
-
-    await user.type(emailInput, "repe@repe.com");
+    await user.type(emailInput, "test@example.com");
     await user.click(registerButton);
 
     await waitFor(() => {
-      expect(screen.getByText("Something went wrong")).toBeInTheDocument();
+      expect(mockCheckDuplicateEmail).toHaveBeenCalledWith("test@example.com");
+
+      expect(mockSetRegister).toHaveBeenCalledWith({
+        email: "test@example.com",
+      });
     });
   });
 });
