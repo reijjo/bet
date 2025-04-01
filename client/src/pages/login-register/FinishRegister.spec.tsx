@@ -114,6 +114,41 @@ describe("FinishRegister.tsx", () => {
     ).toBeInTheDocument();
   });
 
+  it("invalid username", async () => {
+    renderComponent();
+
+    const usernameInput = screen.getByRole("textbox", { name: /username/i });
+    const submitButton = screen.getByRole("button", {
+      name: /create account/i,
+    });
+
+    await user.type(usernameInput, "testuser!");
+    await user.click(submitButton);
+
+    expect(
+      await screen.findByText(/only numbers, letters, and ._-/i),
+    ).toBeInTheDocument();
+
+    await user.clear(usernameInput);
+    await user.type(usernameInput, "aa");
+    await user.click(submitButton);
+
+    expect(
+      await screen.findByText(/Min 3 characters on username/i),
+    ).toBeInTheDocument();
+
+    await user.clear(usernameInput);
+    await user.type(
+      usernameInput,
+      "aaasddaljsdklasdklasjdlkajdlkasdjlkasdjlaksdjlkasdjladjsalslkdljk",
+    );
+    await user.click(submitButton);
+
+    expect(
+      await screen.findByText(/Max 20 characters on username/i),
+    ).toBeInTheDocument();
+  });
+
   it("shows error message when registration fails", async () => {
     const mockRegisterUserResult = {
       unwrap: () =>
