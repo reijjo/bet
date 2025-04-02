@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Error } from "../../../components";
 import { useEditBetMutation } from "../../../features/api/betsApiSlice";
+import { useAppSelector } from "../../../store/hooks";
 import { BetStatus } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
 
@@ -29,6 +30,8 @@ const endedBetBallColor = (value: BetStatus) => {
 export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [updateBet, { isLoading, isError, error }] = useEditBetMutation();
+
+  const user = useAppSelector((state) => state.auth.user);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +56,11 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   // Changes the status of the bet
   const changeStatus = async (newStatus: BetStatus) => {
     try {
-      await updateBet({ id: bet.id, status: newStatus }).unwrap();
+      await updateBet({
+        id: bet.id,
+        user_id: user?.id,
+        status: newStatus,
+      }).unwrap();
     } catch (error: unknown) {
       console.log("Error changing bet status", error);
     }

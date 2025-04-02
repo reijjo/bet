@@ -57,6 +57,7 @@ export const createBet = async (
       betDetails,
     } = req.body;
 
+    console.log("USER ID", user_id);
     console.log("BET FINAL ODDS", bet_final_odds);
 
     if (!stake) {
@@ -157,8 +158,18 @@ export const updateBet = async (
 
   try {
     const { id } = req.params;
-    const { stake, bookmaker, tipper, status, sport, notes, betDetails } =
-      req.body;
+    const {
+      user_id,
+      stake,
+      bookmaker,
+      tipper,
+      status,
+      sport,
+      notes,
+      betDetails,
+    } = req.body;
+
+    console.log("USER ID", user_id);
 
     if (!Number(id)) {
       throw new HttpError(
@@ -179,6 +190,10 @@ export const updateBet = async (
 
     if (!bet) {
       throw new HttpError("Bet not found.", 404);
+    }
+
+    if (user_id !== bet.user_id) {
+      throw new HttpError("You are not authorized to update this bet.", 403);
     }
 
     console.log("betdetails", betDetails);
@@ -232,6 +247,7 @@ export const updateBet = async (
     });
   } catch (error: unknown) {
     // Rollback transaction on error
+    console.log("error", error);
     await transaction.rollback();
     next(error);
   }

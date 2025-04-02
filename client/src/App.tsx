@@ -13,9 +13,6 @@ import { useAppDispatch } from "./store/hooks";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
-// import { useAppSelector } from "./store/hooks";
-// import { RootState } from "./store/store";
-
 function App() {
   const { data, isSuccess, isError, error } = useGetSessionUserQuery();
   const dispatch = useAppDispatch();

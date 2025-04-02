@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
 import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
 import { useBetCalculations } from "../../../hooks/useBetCalculations";
+import { useAppSelector } from "../../../store/hooks";
 import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bookmaker } from "../../../utils/enums";
 import { scrollToTop } from "../../../utils/helperFunctions";
@@ -39,6 +40,7 @@ export const FinishBetForm = ({
   const { finalOdds } = useBetCalculations();
 
   const navigate = useNavigate();
+  const user = useAppSelector((state) => state.auth.user);
 
   // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
   const handleTextInput = (
@@ -88,7 +90,7 @@ export const FinishBetForm = ({
       ...myBet,
       bet_final_type: finalType,
       bet_final_odds: finalOdds(myBet.betDetails),
-      user_id: 1,
+      user_id: user?.id,
     };
 
     try {
@@ -118,7 +120,7 @@ export const FinishBetForm = ({
       />
       <TipperInput
         onChange={handleTextInput}
-        value={myBet.tipper}
+        value={user?.username ?? ""}
         disabled={addStake || modifyIndex !== null || isLoading}
       />
       <NotesInput

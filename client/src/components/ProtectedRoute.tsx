@@ -16,6 +16,8 @@ export const ProtectedRoute = () => {
     isLoading,
     "isAuthenticated",
     isAuthenticated,
+    "data",
+    data,
   );
 
   if (isLoading) {

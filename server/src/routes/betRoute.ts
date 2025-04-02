@@ -10,8 +10,8 @@ import express from "express";
 
 export const betRouter = express.Router({ mergeParams: true });
 
-betRouter.post("/", createBet);
+betRouter.post("/", authCheck(), createBet);
 betRouter.get("/", authCheck(), getBets);
 betRouter.get("/:id", getBetById);
-betRouter.patch("/:id", updateBet);
+betRouter.patch("/:id", authCheck(), updateBet);
 betRouter.delete("/:id", deleteBet);
