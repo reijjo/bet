@@ -8,11 +8,6 @@ import * as userApi from "../../features/api/userApi";
 import { store } from "../../store/store";
 import { FinishRegister } from "./FinishRegister";
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
-
 const user = userEvent.setup();
 
 describe("FinishRegister.tsx", () => {

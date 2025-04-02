@@ -108,18 +108,15 @@ export const login = async (
   next: NextFunction,
 ) => {
   const { login, password } = req.body as LoginValues;
-  let user;
 
   if (!login || !password) {
     return next(new HttpError("Username and password are required", 400));
   }
 
   try {
-    if (login.includes("@")) {
-      user = await UserModel.findOne({ where: { email: login } });
-    } else {
-      user = await UserModel.findOne({ where: { username: login } });
-    }
+    const user = await UserModel.findOne({
+      where: login.includes("@") ? { email: login } : { username: login },
+    });
 
     if (!user) {
       return next(new HttpError(`No user found with ${login}`, 404));
@@ -165,9 +162,10 @@ export const getSessionUser = (req: Request, res: Response) => {
   if (req.session.user) {
     res.status(200).json({ success: true, data: req.session.user });
   } else {
-    res.status(401).json({
+    res.status(200).json({
       success: false,
       message: "No user session found",
+      data: null,
     });
   }
 };

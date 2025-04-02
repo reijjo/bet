@@ -6,7 +6,7 @@ import { Layout } from "./components";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { useGetSessionUserQuery } from "./features/api/authApi";
-import { loginUser } from "./features/authSlice";
+import { loginUser, logoutUser } from "./features/authSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppDispatch } from "./store/hooks";
@@ -23,14 +23,14 @@ function App() {
   useEffect(() => {
     if (isSuccess && data?.success && data?.data) {
       dispatch(loginUser(data.data));
+    } else {
+      dispatch(logoutUser());
     }
-  }, [isSuccess, data, dispatch]);
 
-  console.log("App - isError:", isError, "error:", error, "data:", data);
-
-  console.log("isError", isError);
-  console.log("error", error);
-  console.log("data", data);
+    if (isError && error && "status" in error && error.status !== 401) {
+      console.error("Unexpected error:", error);
+    }
+  }, [isSuccess, data, dispatch, error, isError]);
 
   return (
     <Router
