@@ -15,15 +15,26 @@ import { initializeDatabase } from "../../models";
 import { UserModel } from "../../models/userModel";
 import { closeDBconnection, connectToDB } from "../../utils/db/db";
 import * as emailService from "../../utils/emailService";
+import { createTestiukko, testiukko } from "./userController.spec";
 import { randomBytes } from "crypto";
 import supertest from "supertest";
 
 const api = supertest(app);
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
+// if (process.env.NODE_ENV === "test") {
+//   console.log = function () {};
+//   console.error = function () {};
+// }
+
+export const loginTestiukko = async () => {
+  const res = await api.post("/api/auth/login").send({
+    login: testiukko.username,
+    password: testiukko.password,
+  });
+
+  expect(res.status).toBe(200);
+  return res;
+};
 
 // beforeAll(async () => {
 //   await connectToDB();
@@ -34,8 +45,113 @@ if (process.env.NODE_ENV === "test") {
 //   await closeDBconnection();
 // });
 
-describe("verifyAccount route", () => {
-  test.only("invalid token", async () => {
+describe.only("AUTH CONTROLLER", () => {
+  describe("login route", () => {
+    test("login successfully with email", async () => {
+      await createTestiukko();
+
+      const res = await api.post("/api/auth/login").send({
+        login: testiukko.email,
+        password: testiukko.password,
+      });
+
+      expect(res.status).toBe(200);
+    });
+
+    test("login successfully with username", async () => {
+      await createTestiukko();
+
+      const res = await api.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: testiukko.password,
+      });
+
+      expect(res.status).toBe(200);
+    });
+
+    test("empty credentials", async () => {
+      await createTestiukko();
+      const res = await api.post("/api/auth/login").send({
+        login: "",
+        password: "",
+      });
+      expect(res.status).toBe(400);
+      expect(res.body.message).toBe("Login and password are required");
+    });
+
+    test("user not found", async () => {
+      const res = await api.post("/api/auth/login").send({
+        login: "nonexistentuser",
+        password: "password123",
+      });
+      expect(res.status).toBe(404);
+      expect(res.body.message).toBe("No user found with nonexistentuser");
+    });
+
+    test("invalid password", async () => {
+      await createTestiukko();
+      const res = await api.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: "wrongpassword",
+      });
+      expect(res.status).toBe(400);
+      expect(res.body.message).toBe("Invalid password");
+    });
+
+    test("catch error", async () => {
+      const loginSpy = spyOn(UserModel, "findOne").mockImplementation(
+        async () => {
+          throw new Error("Database error");
+        },
+      );
+
+      const res = await api.post("/api/auth/login").send({
+        login: "testiukko",
+        password: "password123",
+      });
+
+      expect(res.status).toBe(500);
+      expect(res.body.message).toBe("Failed to login. Please try again later.");
+
+      loginSpy.mockRestore();
+    });
+  });
+
+  describe("logout route", () => {
+    test("logout successfully", async () => {
+      await createTestiukko();
+      await loginTestiukko();
+
+      const res = await api.post("/api/auth/logout");
+
+      expect(res.status).toBe(200);
+      expect(res.body.message).toBe("User logged out successfully");
+    });
+  });
+
+  describe("Am I logged in route", () => {
+    test("logged in", async () => {
+      await createTestiukko();
+      const loginres = await loginTestiukko();
+      const cookie = loginres.headers["set-cookie"];
+
+      const res = await api.get("/api/auth/me").set("Cookie", cookie);
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+    });
+
+    test("not logged in", async () => {
+      const res = await api.get("/api/auth/me");
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(false);
+    });
+  });
+});
+
+describe.skip("verifyAccount route", () => {
+  test("invalid token", async () => {
     const res = await api.get("/api/auth/register/aa");
 
     expect(res.status).toBe(400);

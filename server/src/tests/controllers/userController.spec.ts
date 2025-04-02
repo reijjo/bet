@@ -1,4 +1,3 @@
-import { password } from "bun";
 import {
   afterAll,
   afterEach,
@@ -32,7 +31,7 @@ const api = supertest(app);
 //   await closeDBconnection();
 // });
 
-const createTestiukko = async () => {
+export const createTestiukko = async () => {
   const res = await api.post("/api/users").send({
     username: "testiukko",
     password: "Testi_123",
@@ -43,7 +42,7 @@ const createTestiukko = async () => {
   return res;
 };
 
-const testiukko = {
+export const testiukko = {
   username: "testiukko",
   password: "Testi_123",
   email: "testi@ukko.com",
