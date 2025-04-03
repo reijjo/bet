@@ -4,7 +4,9 @@ import { useGetSessionUserQuery } from "../features/api/authApi";
 import { useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
 import { Loading } from "./common/fallback/Loading";
-import { UserLayout } from "./layout/UserLayout";
+import { AppLayout } from "./layout/AppLayout";
+
+// import { UserLayout } from "./layout/UserLayout";
 
 export const ProtectedRoute = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
@@ -30,5 +32,5 @@ export const ProtectedRoute = () => {
     return <Navigate to="/login" replace />;
   }
 
-  return <UserLayout />;
+  return <AppLayout />;
 };

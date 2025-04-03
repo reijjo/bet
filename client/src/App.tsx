@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-import { Layout } from "./components";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UnderCons } from "./components/common/fallback/UnderCons";
+import { AppLayout } from "./components/layout/AppLayout";
 import { useGetSessionUserQuery } from "./features/api/authApi";
 import { loginUser, logoutUser } from "./features/authSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
@@ -37,7 +37,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<AppLayout />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register/finish" element={<FinishRegister />} />
@@ -52,7 +52,7 @@ function App() {
           <Route path="/bets" element={<Bets />} />
           <Route path="/add-bet" element={<AddBet />} />
         </Route>
-        <Route path="*" element={<h1>404</h1>} />
+        <Route path="*" element={<UnderCons />} />
       </Routes>
     </Router>
   );

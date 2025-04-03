@@ -120,7 +120,7 @@ export const FinishBetForm = ({
       />
       <TipperInput
         onChange={handleTextInput}
-        value={user?.username ?? ""}
+        value={user?.username ?? myBet.tipper}
         disabled={addStake || modifyIndex !== null || isLoading}
       />
       <NotesInput

@@ -7,7 +7,6 @@ import { RootState } from "../../store/store";
 import { Footer, Modal, ModifyBetModal, NavbarUser, Sidebar } from "../index";
 
 export const UserLayout = () => {
-  // const modalState = useSelector((state: RootState) => state.modal);
   const { isModifyBetModalOpen } = useSelector(
     (state: RootState) => state.modal,
   );

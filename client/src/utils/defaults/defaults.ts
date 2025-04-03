@@ -20,7 +20,7 @@ export const initialBetValues = {
   stake: 0,
   bookmaker: Bookmaker.Bet365,
   status: BetStatus.Pending,
-  tipper: "Reijjo",
+  tipper: "",
   bet_final_type: BetType.Single,
   bet_final_odds: 0,
   sport: SportLeague.NBA,
