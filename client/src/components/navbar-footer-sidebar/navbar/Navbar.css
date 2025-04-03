@@ -1,15 +1,27 @@
 nav {
   z-index: 5;
   width: 100%;
+  height: min(8vh, 5rem);
 
-  /* backdrop-filter: blur(10rem); */
-  background-color: var(--primary);
+  /* backdrop-filter: blur(5rem); */
+  /* background-color: var(--primary); */
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  /* backdrop-filter: blur(1rem); */
 
-  box-shadow: 0 4px 24px hsla(330, 100%, 87%, 0.1);
+  /* box-shadow: 0 4px 24px hsla(330, 100%, 87%, 0.1); */
 
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
+}
+
+.nav-wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1rem);
+
+  width: 90%;
+  border-radius: 2rem;
+  margin-top: 1vh;
 }
 
 .nav-links-common {
@@ -39,5 +51,5 @@ nav {
   } */
   display: inline-flex;
   place-items: center;
-  gap: 1em;
+  gap: 1.5em;
 }

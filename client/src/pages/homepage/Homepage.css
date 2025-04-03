@@ -4,108 +4,66 @@
   gap: 32px;
 }
 
-.vh-wrapper {
-  height: 100dvh;
-  display: grid;
-  place-items: center;
-}
-
 .hero-section {
-  width: calc(12 * 8.33%);
-  height: 70vh;
-  position: relative;
+  width: 100%;
+  min-height: 70dvh;
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(35, 31, 32, 1),
+      rgba(35, 31, 32, 0.75),
+      rgba(35, 31, 32, 0.1)
+    ),
+    url("../../assets/images/homepage/bb-crop.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: 0 auto;
-  margin-top: 24px;
-  border-radius: 16px;
-  overflow: hidden;
-
-  display: flex;
-
-  background-color: var(--primary);
-  box-shadow: var(--shadow-l-primary);
-
-  @media screen and (max-width: 1100px) {
-    padding: 24px 0;
-  }
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */
-    width: 80%;
+    /* width: 80%; */
   }
 
   @media only screen and (max-width: 481px) {
     /* 4 grids */
-    width: 90%;
+    /* width: 90%; */
   }
+}
 
+.hero-slogan {
   & h1 {
     background: linear-gradient(
       to right,
-      var(--accent),
-      var(--text),
-      var(--secondary)
+      var(--accent-50),
+      var(--accent-50),
+      var(--primary-200)
     );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+}
 
-  & p {
-    width: 80%;
-
-    @media only screen and (max-width: 800px) {
-      width: 80%;
-    }
-
-    @media only screen and (max-width: 481px) {
-      width: 100%;
-    }
-  }
+.hero-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .hero-text {
-  z-index: 1;
-  width: calc(6 * 8.33%);
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
-  gap: 16px;
+  grid-column: 1 / span 6;
+  /* border: 1px solid blue; */
   text-wrap: balance;
-  padding-left: 24px;
-  padding: 24px;
-
-  /* text-align: center; */
+  justify-content: space-around;
+  padding-top: min(8vh, 5rem);
 }
 
 .hero-buttons {
-  width: 80%;
+  width: 40%;
   display: flex;
   gap: 16px;
-}
-
-.hero-image {
-  width: calc(8 * 8.33%);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  & img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-}
-
-.hero-image::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: linear-gradient(to left, transparent, var(--primary));
 }
 
 .home-features-section {

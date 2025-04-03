@@ -8,10 +8,10 @@ import logo from "../../../assets/fishing.png";
 export const Navbar = () => {
   return (
     <nav>
-      <div className="wrapper">
+      <div className="wrapper nav-wrapper">
         <div className="nav-links-common">
           <div className="nav-logo-visible">
-            <NavLink to="/" className="btn-font ">
+            <NavLink to="/" className="btn-font">
               <img src={logo} alt="logo" height={32} width={32} />
               <p className="underline-hover">tärpit</p>
             </NavLink>

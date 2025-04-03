@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
-import bb from "../../assets/images/homepage/bb-crop.jpeg";
 import bets from "../../assets/images/homepage/bets.png";
 import dash from "../../assets/images/homepage/dash.png";
 import { Button } from "../../components/";
@@ -21,32 +20,33 @@ export const Homepage = () => {
 
   return (
     <div className="flex-wrapper">
-      <section className="wrapper vh-wrapper ">
-        <div className="hero-section">
+      <section className="hero-section">
+        <div className="hero-wrapper wrapper">
           <div className="hero-text">
             <h4>Discover the Bet Tracking Platform 10+ Users Love</h4>
-            <h1>Track your bets online without annoying excel sheets</h1>
-            <p>
-              But we have all the best features from Excel sheets to analyze and
-              track your bets on the go!{" "}
-            </p>
+            <div className="hero-slogan">
+              <h1>Track your bets online without annoying excel sheets!</h1>
+              <p>
+                But we have all the best features from Excel sheets to analyze
+                and track your bets on the go!{" "}
+              </p>
+            </div>
             <div className="hero-buttons">
               <Button
                 type="button"
                 className="btn btn-filled"
-                children="Sign Up!"
+                children="Sign Up here!"
                 onClick={() => navigate("/dash")}
+                height="3rem"
               />
-              <Button
+              {/* <Button
                 type="button"
                 className="btn btn-outline"
                 children="Try Demo"
                 onClick={() => navigate("/dash")}
-              />
+                height="3rem"
+              /> */}
             </div>
-          </div>
-          <div className="hero-image">
-            <img src={bb} alt="hero-bb" />
           </div>
         </div>
       </section>
