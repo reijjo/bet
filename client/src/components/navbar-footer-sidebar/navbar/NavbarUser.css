@@ -1,9 +1,26 @@
+.nav-user-wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1rem);
+
+  /* width: 90%; */
+  width: max-content;
+
+  border-radius: 2rem;
+  margin-top: 1vh;
+
+  padding: 0.5rem 2rem;
+
+  @media (width < 1180px) {
+    width: 90%;
+  }
+}
+
 .nav-menu {
   display: none;
 
   @media (width < 1180px) {
     display: block;
-    border: 1px solid hsla(228, 100%, 81%, 0.5);
+    border: 1px solid var(--primary-600);
     border-radius: 4px;
     overflow: hidden;
     width: 40px;
@@ -24,10 +41,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media (width >= 1180px) {
-    justify-content: flex-end;
-  }
 }
 
 .hamburger {
@@ -64,9 +77,14 @@
   align-items: center;
   position: relative;
 
-  padding: 0 8px;
+  /* padding: 0 8px; */
 
   gap: 0.5rem;
+
+  @media (width >= 1180px) {
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .nav-profile:has(:hover) .nav-profile-username,
@@ -115,15 +133,11 @@
   backdrop-filter: blur(24px);
 
   border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   overflow: hidden;
-  padding-top: 16px;
   font-size: var(--font-small);
 
-  box-shadow:
-    2px 2px 2px hsla(228, 100%, 81%, 0.1),
-    -2px 2px 2px hsla(228, 100%, 81%, 0.1);
-  /* border: 1px solid hsla(228, 100%, 81%, 0.5);
-  border-top: none; */
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 1);
 
   /* border: none;
   border-bottom: 1px solid hsla(228, 100%, 81%, 0.5); */

@@ -4,6 +4,7 @@ export const useScreenWidth = () => {
   const [screenWidth, setScreenWidth] = useState({
     isMobile: false,
     isTablet: false,
+    isSidebarOpen: false,
   });
 
   useEffect(() => {
@@ -12,6 +13,7 @@ export const useScreenWidth = () => {
       setScreenWidth({
         isMobile: width <= 581,
         isTablet: width > 581 && width <= 800,
+        isSidebarOpen: width >= 1180,
       });
     };
 

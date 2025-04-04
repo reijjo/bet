@@ -9,6 +9,7 @@
 
   margin: auto;
   padding-bottom: 2rem;
+  padding-top: 10vh;
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */

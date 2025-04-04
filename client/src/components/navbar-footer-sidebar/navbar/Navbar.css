@@ -20,8 +20,10 @@ nav {
   backdrop-filter: blur(1rem);
 
   width: 90%;
+  width: max-content;
   border-radius: 2rem;
   margin-top: 1vh;
+  padding: 0.5rem 2rem;
 }
 
 .nav-links-common {

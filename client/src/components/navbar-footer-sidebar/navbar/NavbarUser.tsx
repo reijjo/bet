@@ -31,7 +31,7 @@ export const NavbarUser = () => {
   const [logout, { isLoading, error }] = useLogoutMutation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useScreenWidth();
+  const { isMobile, isSidebarOpen } = useScreenWidth();
 
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
@@ -75,7 +75,7 @@ export const NavbarUser = () => {
 
   return (
     <nav>
-      <div className="wrapper">
+      <div className={`wrapper ${!isSidebarOpen ? "nav-user-wrapper" : ""}`}>
         <div className="nav-links">
           <div className="nav-menu" data-testid="nav-menu">
             <a className="hamburger" onClick={() => dispatch(openSidebar())}>
@@ -87,7 +87,9 @@ export const NavbarUser = () => {
             <h3>Tärpit</h3>
             <img src={logo} alt="logo" height={32} width={32} />
           </div>
-          <div className="nav-profile">
+          <div
+            className={`nav-profile ${isSidebarOpen ? "nav-user-wrapper" : ""}`}
+          >
             <div className="user-img-wrapper">
               <div className="nav-profile-img">
                 <img

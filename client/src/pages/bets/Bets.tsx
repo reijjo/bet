@@ -54,7 +54,7 @@ export const Bets = () => {
   if (isError) return <Error error={error} />;
 
   return (
-    <div className="wrapper">
+    <div className="wrapper navbar-padding">
       <h1>Bets</h1>
       <div className="bets-filters">
         <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />

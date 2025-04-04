@@ -7,7 +7,7 @@ export const AddBet = () => {
     useAddBetForm();
 
   return (
-    <div className="wrapper">
+    <div className="wrapper navbar-padding">
       <AddBetForm
         myBet={myBet}
         setMyBet={setMyBet}
