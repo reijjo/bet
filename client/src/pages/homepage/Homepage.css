@@ -6,7 +6,7 @@
 
 .hero-section {
   width: 100%;
-  min-height: 70dvh;
+  min-height: 80dvh;
   background-image:
     linear-gradient(
       to right,
@@ -25,23 +25,22 @@
     /* width: 80%; */
   }
 
-  @media only screen and (max-width: 481px) {
+  @media only screen and (max-width: 581px) {
     /* 4 grids */
     /* width: 90%; */
   }
 }
 
-.hero-slogan {
-  & h1 {
-    background: linear-gradient(
-      to right,
-      var(--accent-50),
-      var(--accent-50),
-      var(--primary-200)
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+@media only screen and (max-width: 800px) {
+  .hero-section {
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(35, 31, 32, 0.85),
+        rgba(35, 31, 32, 0.85),
+        rgba(35, 31, 32, 0.85)
+      ),
+      url("../../assets/images/homepage/bb-crop.jpeg");
   }
 }
 
@@ -58,23 +57,67 @@
   text-wrap: balance;
   justify-content: space-around;
   padding-top: min(8vh, 5rem);
+
+  @media only screen and (max-width: 1180px) {
+    grid-column: 1 / span 7;
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-column: 1 /-1;
+    width: 80%;
+    justify-self: center;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 581px) {
+    width: 100%;
+  }
+}
+
+.hero-slogan {
+  & h1 {
+    background: linear-gradient(
+      to right,
+      var(--accent-200),
+      var(--primary-50) 25%,
+      var(--accent-200) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .hero-buttons {
   width: 40%;
   display: flex;
-  gap: 16px;
+  gap: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    width: 70%;
+    align-self: center;
+  }
 }
 
-.home-features-section {
+.home-features-section,
+.home-features-section-dark {
   position: relative;
   gap: 32px;
   display: flex;
   flex-direction: inherit;
   width: 100%;
   min-width: 100%;
-  /* background: url("../../assets/images/homepage/field.jpeg"); */
-  /* background-size: cover; */
+}
+
+.home-features-section:before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-100);
+  z-index: 0;
 }
 
 .home-features {
@@ -84,6 +127,8 @@
   width: 100%;
   gap: 3rem;
   margin-bottom: 32px;
+  z-index: 1;
+  position: relative;
 
   width: min(100%, 1366px);
   margin: 0 auto;
@@ -95,43 +140,34 @@
   width: 100%;
   padding: 12px 24px;
   display: flex;
-  justify-content: flex-end;
   font-size: var(--font-larger);
   position: relative;
+  color: var(--text-dark);
 
   & span {
     color: var(--secondary);
     font-weight: bold;
   }
-}
 
-.home-feature-addbet-image1,
-.home-feature-addbet-image2 {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  height: max-content;
-
-  text-align: center;
-  gap: 16px;
-  padding: 8px;
-  box-shadow: 0 0px 16px rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  backdrop-filter: blur(16px);
-
-  & img {
-    border-radius: 8px;
+  @media (width < 800px) {
+    font-size: 1rem;
   }
 }
 
-.home-feature-addbet-image1 {
-  position: absolute;
-  top: 0;
-  left: 16px;
+.addbet-feature {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  text-wrap: balance;
+
+  @media (width < 581px) {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-.home-feature-addbet-image2 {
-  margin-top: 14rem;
+.addbet-feature-order {
+  order: 2;
 }
 
 /* END ADD BET */
@@ -164,18 +200,29 @@
 }
 
 .why-to-register {
-  padding: 24px 0;
+  padding: 1.5rem 2;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+
+  @media only screen and (max-width: 581px) {
+    text-align: center;
+    text-wrap: balance;
+  }
 }
 
 .why-to-register-boxes {
   display: grid;
+  place-items: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
+
+  @media only screen and (max-width: 800px) {
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+  }
 }
 
 .why-to-register-box {
@@ -184,10 +231,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 15rem;
+  width: 80%;
   aspect-ratio: 1/1;
   padding: 8px;
-  gap: 1rem;
+  gap: 3rem;
+
+  text-wrap: balance;
 
   background: linear-gradient(to bottom, var(--primary-800), var(--primary));
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -211,5 +260,21 @@
         var(--primary)
       );
     }
+  }
+
+  @media only screen and (max-width: 800px) {
+    flex-direction: row;
+    height: 10rem;
+    width: 20rem;
+    padding: 1rem 2rem;
+  }
+
+  @media only screen and (max-width: 581px) {
+    flex-direction: column;
+    height: 10rem;
+    width: 10rem;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    font-size: 0.925rem;
   }
 }

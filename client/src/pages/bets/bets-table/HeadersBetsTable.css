@@ -17,7 +17,7 @@ thead {
 }
 
 .table-header-sport {
-  @media only screen and (max-width: 481px) {
+  @media only screen and (max-width: 581px) {
     display: none;
   }
 }

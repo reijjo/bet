@@ -28,3 +28,11 @@
     box-shadow: 0 8px 32px hsla(232, 100%, 74%, 0.2);
   }
 }
+
+@media (width < 581px) {
+  .home-feature-card {
+    font-size: 1rem;
+    text-wrap: balance;
+    text-align: center;
+  }
+}

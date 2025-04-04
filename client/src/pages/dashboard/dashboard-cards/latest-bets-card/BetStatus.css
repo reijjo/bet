@@ -69,7 +69,7 @@
   color: var(--info-xxlight);
 }
 
-@media only screen and (max-width: 481px) {
+@media only screen and (max-width: 581px) {
   .bet-status-latest-text {
     display: none;
   }

@@ -19,11 +19,15 @@ nav {
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(1rem);
 
-  width: 90%;
   width: max-content;
   border-radius: 2rem;
   margin-top: 1vh;
   padding: 0.5rem 2rem;
+
+  @media (width < 581px) {
+    justify-content: space-between;
+    width: 95%;
+  }
 }
 
 .nav-links-common {
@@ -54,4 +58,8 @@ nav {
   display: inline-flex;
   place-items: center;
   gap: 1.5em;
+}
+
+.display-none {
+  display: none;
 }

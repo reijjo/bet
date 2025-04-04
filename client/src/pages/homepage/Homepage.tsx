@@ -12,10 +12,12 @@ import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
 import bets from "../../assets/images/homepage/bets.png";
 import dash from "../../assets/images/homepage/dash.png";
-import { Button } from "../../components/";
+import { Button, Divider } from "../../components/";
+import { useScreenWidth } from "../../hooks/useScreenWidth";
 import { FeatureCard } from "./FeatureCard";
 
 export const Homepage = () => {
+  const { isMobile } = useScreenWidth();
   const navigate = useNavigate();
 
   return (
@@ -36,7 +38,7 @@ export const Homepage = () => {
                 type="button"
                 className="btn btn-filled"
                 children="Sign Up here!"
-                onClick={() => navigate("/dash")}
+                onClick={() => navigate("/register")}
                 height="3rem"
               />
               {/* <Button
@@ -51,7 +53,6 @@ export const Homepage = () => {
         </div>
       </section>
       <section className="home-features-section">
-        {/* <h2 className="wrapper-styles">Check the Features:</h2> */}
         <div className="home-features">
           <FeatureCard
             highlighted="Dashboard"
@@ -60,20 +61,26 @@ export const Homepage = () => {
             imageWidth="80%"
             extraClass="span2"
           />
+          {isMobile && <Divider />}
           <div className="home-feature-addbet">
-            <figure className="home-feature-addbet-image1">
-              <figcaption>
-                <span>Add Bet</span> has different bet types and leagues to
-                choose from.
-              </figcaption>
-              <img src={add1} alt="Add Bet" width="100%" />
+            <figure className="addbet-feature">
+              <p>
+                <span>Add Bet</span> has many different bet types to choose
+                from. <span>Single</span>, <span>Over</span>, <span>Under</span>
+                , <span>Bet Builder</span> and more!
+              </p>
+              <img src={add1} alt="Add Bet" width="60%" />
             </figure>
-            <figure className="home-feature-addbet-image2">
-              <figcaption>
-                You can also add a <span>single bet</span> or a{" "}
-                <span>parlay</span>.
-              </figcaption>
-              <img src={add2} alt="Add Bet" width="100%" />
+          </div>
+          {isMobile && <Divider />}
+          <div className="home-feature-addbet">
+            <figure className="addbet-feature">
+              <p className="addbet-feature-order">
+                You can also add a <span>Single Bet</span> or a{" "}
+                <span>Parlay</span> and your favorite <span>Tipper</span> and{" "}
+                <span>Sport/League</span> that helps analyze the bets.
+              </p>
+              <img src={add2} alt="Add Bet" width="60%" />
             </figure>
           </div>
         </div>
@@ -83,21 +90,28 @@ export const Homepage = () => {
           <h2>Why you should register?</h2>
           <div className="why-to-register-boxes">
             <div className="why-to-register-box">
-              <FontAwesomeIcon icon={faCheck} size="2x" />
+              <FontAwesomeIcon icon={faCheck} size={isMobile ? "2x" : "3x"} />
+              {/* <p>Keep track of your bets and stay organized</p> */}
               <p>Keep track of your bets</p>
             </div>
             <div className="why-to-register-box">
-              <FontAwesomeIcon icon={faChartLine} size="2x" />
+              <FontAwesomeIcon
+                icon={faChartLine}
+                size={isMobile ? "2x" : "3x"}
+              />
               <p>Analytics improves your betting</p>
             </div>
             <div className="why-to-register-box">
-              <FontAwesomeIcon icon={faDumbbell} size="2x" />
+              <FontAwesomeIcon
+                icon={faDumbbell}
+                size={isMobile ? "2x" : "3x"}
+              />
               <p>You learn your betting strenghts</p>
             </div>
           </div>
         </div>
       </section>
-      <section className="home-features-section">
+      <section className="home-features-section-dark">
         <div className="home-features">
           <FeatureCard
             highlighted="Bets"

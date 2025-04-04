@@ -11,7 +11,7 @@
   padding: 0.5rem 2rem;
 
   @media (width < 1180px) {
-    width: 90%;
+    width: 95%;
   }
 }
 
@@ -76,8 +76,6 @@
   justify-content: flex-end;
   align-items: center;
   position: relative;
-
-  /* padding: 0 8px; */
 
   gap: 0.5rem;
 
