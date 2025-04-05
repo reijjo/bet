@@ -90,7 +90,11 @@ export const Homepage = () => {
           <h2>Why you should register?</h2>
           <div className="why-to-register-boxes">
             <div className="why-to-register-box">
-              <FontAwesomeIcon icon={faCheck} size={isMobile ? "2x" : "3x"} />
+              <FontAwesomeIcon
+                icon={faCheck}
+                size={isMobile ? "2x" : "3x"}
+                data-testid="why-icon"
+              />
               {/* <p>Keep track of your bets and stay organized</p> */}
               <p>Keep track of your bets</p>
             </div>
@@ -98,6 +102,7 @@ export const Homepage = () => {
               <FontAwesomeIcon
                 icon={faChartLine}
                 size={isMobile ? "2x" : "3x"}
+                data-testid="why-icon"
               />
               <p>Analytics improves your betting</p>
             </div>
@@ -105,6 +110,7 @@ export const Homepage = () => {
               <FontAwesomeIcon
                 icon={faDumbbell}
                 size={isMobile ? "2x" : "3x"}
+                data-testid="why-icon"
               />
               <p>You learn your betting strenghts</p>
             </div>

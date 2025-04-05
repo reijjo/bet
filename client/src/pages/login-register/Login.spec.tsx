@@ -8,11 +8,6 @@ import * as authApi from "../../features/api/authApi";
 import { store } from "../../store/store";
 import { Login } from "./Login";
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
-
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
