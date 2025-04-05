@@ -138,6 +138,8 @@ export const login = async (
       role: user.role,
     };
 
+    console.log("User session:", req.session);
+
     res.status(200).json({
       success: true,
       message: "User logged in successfully",
