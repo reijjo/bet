@@ -1,3 +1,6 @@
+import { logoutUser } from "../features/authSlice";
+import { AppDispatch } from "../store/store";
+import { BasicApiResponse } from "./api-response-types";
 import { isErrorWithData } from "./input-validators/typeGuards";
 import { ApiErrorResponse } from "./types";
 
@@ -52,4 +55,16 @@ export const getErrorStatus = (error: unknown): number => {
     return error.data.status;
   }
   return 500;
+};
+
+export const handleLogout = async (
+  logout: () => Promise<BasicApiResponse>,
+  dispatch: AppDispatch,
+) => {
+  try {
+    await logout();
+  } catch (error) {
+    console.log("Error logging out", error);
+  }
+  dispatch(logoutUser());
 };

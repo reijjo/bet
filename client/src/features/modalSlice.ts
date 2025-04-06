@@ -11,12 +11,14 @@ type ModalState = {
   isModalOpen: boolean;
   isModifyBetModalOpen: ModifyBetState;
   isConfirmModalOpen: boolean;
+  isRefreshModalOpen: boolean;
 };
 
 const initialState: ModalState = {
   isModalOpen: false,
   isModifyBetModalOpen: { id: undefined, isOpen: false },
   isConfirmModalOpen: false,
+  isRefreshModalOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -29,6 +31,9 @@ const modalSlice = createSlice({
     },
     confirmModalOpen: (state, action: PayloadAction<boolean>) => {
       state.isConfirmModalOpen = action.payload;
+    },
+    refreshModalOpen: (state, action: PayloadAction<boolean>) => {
+      state.isRefreshModalOpen = action.payload;
     },
     resetModal: () => initialState,
   },

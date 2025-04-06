@@ -6,14 +6,17 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useNavigate } from "react-router-dom";
 
+// import { logoutUser } from "../../../features/authSlice";
+// import { useAppDispatch } from "../../../store/hooks";
 import { Button } from "../button/Button";
 
-type ErrorProps = {
+export type ErrorProps = {
   error: FetchBaseQueryError | SerializedError;
 };
 
 export const Error = ({ error }: ErrorProps) => {
   const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
   console.log("error", error);
 
   const getErrorMessage = () => {
@@ -22,6 +25,9 @@ export const Error = ({ error }: ErrorProps) => {
       const fetchError = error as FetchBaseQueryError;
       if (fetchError.status === "PARSING_ERROR") {
         return `Error ${fetchError.originalStatus}: ${fetchError.data || "Unknown error occurred"}`;
+        // } else if (fetchError.status === 401) {
+        //   dispatch(logoutUser());
+        //   return "user not logged in";
       } else {
         return `Error: ${fetchError.status}`;
       }

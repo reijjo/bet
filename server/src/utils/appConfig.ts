@@ -18,6 +18,7 @@ export const sessionConfig = {
   cookie: {
     httpOnly: true,
     secure: Bun.env.NODE_ENV === "production",
+    // maxAge: 1000 * 5,
     maxAge: 1000 * 60 * 60,
   },
 };

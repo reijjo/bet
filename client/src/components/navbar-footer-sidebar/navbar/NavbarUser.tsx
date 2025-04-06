@@ -28,7 +28,7 @@ import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 
 export const NavbarUser = () => {
-  const [logout, { isLoading, error }] = useLogoutMutation();
+  const [logout, { isLoading }] = useLogoutMutation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { isMobile, isSidebarOpen } = useScreenWidth();
@@ -70,8 +70,6 @@ export const NavbarUser = () => {
   const toggleUserMenu = () => {
     setIsUserMenuOpen((prevState) => !prevState);
   };
-
-  console.log("ERROR MUTATION", error);
 
   return (
     <nav>

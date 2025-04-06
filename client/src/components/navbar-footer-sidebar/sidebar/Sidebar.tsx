@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
-  const [logout, { isLoading, error }] = useLogoutMutation();
+  const [logout, { isLoading }] = useLogoutMutation();
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const modalOpen = useAppSelector((state) => state.modal.isModalOpen);
   const dispatch = useAppDispatch();
@@ -42,8 +42,6 @@ export const Sidebar = () => {
       console.error(error);
     }
   };
-
-  console.log("ERROR MUTATION", error);
 
   return (
     <div

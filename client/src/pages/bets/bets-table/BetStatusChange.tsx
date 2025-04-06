@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Error } from "../../../components";
 import { useEditBetMutation } from "../../../features/api/betsApiSlice";
-import { useAppSelector } from "../../../store/hooks";
+import { logoutUser } from "../../../features/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { BetStatus } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";
 
@@ -32,7 +33,7 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const [updateBet, { isLoading, isError, error }] = useEditBetMutation();
 
   const user = useAppSelector((state) => state.auth.user);
-
+  const dispatch = useAppDispatch();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Closes the dropdown when clicking outside
@@ -71,7 +72,11 @@ export const BetStatusChange = ({ bet }: BetStatusChangeProps) => {
   const options = Object.values(BetStatus).filter((op) => op !== bet.status);
 
   // Returns
-  if (isError) return <Error error={error} />;
+
+  if (isError) {
+    dispatch(logoutUser());
+    return <Error error={error} />;
+  }
 
   return (
     <td className="table-status">

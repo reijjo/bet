@@ -1,7 +1,6 @@
 import {
   BasicApiResponse,
-  LoginUserApiResponse,
-  RegisterUserApiResponse,
+  LoginUserApiResponse, // RegisterUserApiResponse,
 } from "../../utils/api-response-types";
 import {
   LoginValues,
@@ -12,13 +11,13 @@ import { baseApi } from "./baseApi";
 
 export const authApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    verify: builder.query<RegisterUserApiResponse, string>({
-      query: (token) => `/auth/register/${token}`,
-      transformErrorResponse: (error) => ({
-        status: error.status,
-        data: error.data,
-      }),
-    }),
+    // verify: builder.query<RegisterUserApiResponse, string>({
+    //   query: (token) => `/auth/register/${token}`,
+    //   transformErrorResponse: (error) => ({
+    //     status: error.status,
+    //     data: error.data,
+    //   }),
+    // }),
     login: builder.mutation<LoginUserApiResponse, LoginValues>({
       query: (credentials) => ({
         url: "/auth/login",
@@ -53,7 +52,7 @@ export const authApiSlice = baseApi.injectEndpoints({
 });
 
 export const {
-  useVerifyQuery,
+  // useVerifyQuery,
   useUpdateTokenMutation,
   useLoginMutation,
   useLogoutMutation,
