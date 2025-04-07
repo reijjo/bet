@@ -32,6 +32,17 @@ export const authCheck = (requiredRole?: string) => {
       console.log("Session extended via authCheck");
     }
 
+    // const sessionMaxAge = req.session.cookie.maxAge || 0;
+    // if (sessionMaxAge && sessionMaxAge < 1000 * 60 * 5) { // If less than 5 minutes left
+    //   const originalMaxAge = req.session.cookie.originalMaxAge || 1000 * 60 * 60; // Default 60 minutes
+    //   req.session.cookie.maxAge = originalMaxAge;
+    //   req.session.save((err) => {
+    //     if (err) {
+    //       console.error("Failed to extend session:", err);
+    //     }
+    //   });
+    // }
+
     // if (req.session.user.role !== requiredRole) {
     //   res.status(403).json({
     //     success: false,

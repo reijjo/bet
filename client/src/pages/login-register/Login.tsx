@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +18,8 @@ import {
   useLoginMutation,
 } from "../../features/api/authApi";
 import { loginUser } from "../../features/authSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";
 import { getErrorMessage } from "../../utils/helperFunctions";
 import { LoginValues, User } from "../../utils/types";
@@ -30,6 +33,9 @@ const ForgotPassword = () => (
 export const Login = () => {
   const [login, { isLoading, isError, error }] = useLoginMutation();
   const { refetch } = useGetSessionUserQuery();
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -37,23 +43,27 @@ export const Login = () => {
     formState: { errors },
   } = useForm<LoginValues>({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dash");
+    }
+  }, [isAuthenticated, navigate]);
 
   const onSubmit: SubmitHandler<LoginValues> = async (data) => {
     try {
-      const response = await login({
+      await login({
         ...data,
         login: data.login.trim().toLowerCase(),
       }).unwrap();
 
-      console.log("LOGIN RESPONSE", response);
-
       const sessionResult = await refetch().unwrap();
-      dispatch(loginUser(sessionResult.data as User));
-      navigate("/dash");
-    } catch (error) {
-      console.log("ERROR", error);
+
+      if (sessionResult?.success && sessionResult?.data) {
+        dispatch(loginUser(sessionResult.data as User));
+        navigate("/dash");
+      }
+    } catch (err) {
+      console.log("ERROR", err);
     }
   };
 
@@ -86,6 +96,7 @@ export const Login = () => {
             label="Password"
             id="loginPasswd"
             placeholder="Password..."
+            autoComplete="off"
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && <InputErrorContainer errors={errors.password} />}

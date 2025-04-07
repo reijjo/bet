@@ -4,6 +4,7 @@
   padding: 0.5rem 1rem;
   background-color: inherit;
   color: var(--text);
+  font-size: 0.95rem;
 
   font-family: "Montserrat", serif;
   font-optical-sizing: auto;
@@ -48,34 +49,10 @@
   }
 }
 
-.underline-hover {
-  display: inline-block;
-  position: relative;
-}
-
-.underline-hover:after {
-  content: ""; /* Add content after the element */
-  position: absolute; /* Position absolute for pseudo-element */
-  width: 100%; /* Full width */
-  transform: scaleX(0); /* Initial scale of 0 for underline effect */
-  height: 1px; /* Height of the underline */
-  bottom: -6px; /* Align to bottom */
-  left: 0; /* Align to left */
-  background-color: white; /* Background color of the underline */
-  transform-origin: bottom right; /* Set transform origin */
-  transition: transform 0.3s ease-out; /* Transition effect for the underline */
-}
-
-.underline-hover:hover:after {
-  transform: scaleX(1); /* Scale the underline on hover */
-  transform-origin: bottom left; /* Set transform origin */
-}
-
 .btn-outline {
   border: 1px solid var(--accent);
   border-radius: 0.5rem;
-  /* box-shadow: 0 2px 4px hsla(47, 100%, 87%, 0.2); */
-  /* transition: box-shadow 0.2s ease-out; */
+  padding: 0.5rem 1.5rem;
 
   text-transform: capitalize;
   font-weight: 400;
@@ -309,4 +286,27 @@
 
 .login-p {
   font-size: var(--font-smaller);
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+}
+
+.underline-hover:after {
+  content: ""; /* Add content after the element */
+  position: absolute; /* Position absolute for pseudo-element */
+  width: 100%; /* Full width */
+  transform: scaleX(0); /* Initial scale of 0 for underline effect */
+  height: 1px; /* Height of the underline */
+  bottom: -6px; /* Align to bottom */
+  left: 0; /* Align to left */
+  background-color: white; /* Background color of the underline */
+  transform-origin: bottom right; /* Set transform origin */
+  transition: transform 0.3s ease-out; /* Transition effect for the underline */
+}
+
+.underline-hover:hover:after {
+  transform: scaleX(1); /* Scale the underline on hover */
+  transform-origin: bottom left; /* Set transform origin */
 }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Error, Loading } from "../../components";
 import { useGetBetsQuery } from "../../features/api/betsApiSlice";
+import { logoutUser } from "../../features/authSlice";
 import { isModifyBetModalOpen } from "../../features/modalSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
@@ -30,7 +31,14 @@ import {
 } from "./bets-table";
 
 export const Bets = () => {
-  const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
+  const {
+    data: allBets = [],
+    isLoading,
+    isError,
+    error,
+  } = useGetBetsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const [currentSort, setCurrentSort] = useState<SortOption>({
     field: "date",
@@ -51,7 +59,10 @@ export const Bets = () => {
 
   // TODO: Own component wrapper for isLoading ??
   if (isLoading) return <Loading />;
-  if (isError) return <Error error={error} />;
+  if (isError && !isLoading) {
+    dispatch(logoutUser());
+    return <Error error={error} />;
+  }
 
   return (
     <div className="wrapper navbar-padding">

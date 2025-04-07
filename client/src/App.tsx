@@ -14,20 +14,19 @@ import { useAppDispatch } from "./store/hooks";
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
 function App() {
-  const { data, isSuccess, isError, error } = useGetSessionUserQuery();
+  const { data, isLoading, isSuccess, isError, error } =
+    useGetSessionUserQuery();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isSuccess && data?.success && data?.data) {
       dispatch(loginUser(data.data));
-    } else {
+    } else if (!isLoading && (isError || !data?.success)) {
       dispatch(logoutUser());
     }
+  }, [isSuccess, data, isError, isLoading, dispatch]);
 
-    if (isError && error && "status" in error && error.status !== 401) {
-      console.error("Unexpected error:", error);
-    }
-  }, [isSuccess, data, dispatch, error, isError]);
+  console.log("isError", error);
 
   return (
     <Router

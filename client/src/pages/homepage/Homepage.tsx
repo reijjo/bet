@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
-import bets from "../../assets/images/homepage/bets.png";
 import dash from "../../assets/images/homepage/dash.png";
 import { Button, Divider } from "../../components/";
 import { useScreenWidth } from "../../hooks/useScreenWidth";
 import { FeatureCard } from "./FeatureCard";
+import { PageFeatureCard } from "./PageFeatureCard";
 
 export const Homepage = () => {
   const { isMobile } = useScreenWidth();
@@ -119,13 +119,24 @@ export const Homepage = () => {
       </section>
       <section className="home-features-section-dark">
         <div className="home-features">
-          <FeatureCard
-            highlighted="Bets"
-            text="section shows all your bets in one place."
-            image={bets}
-            imageWidth="80%"
-            extraClass="span2"
-          />
+          <div className="page-features">
+            <PageFeatureCard
+              header="bets page"
+              text="Shows all your bets in one place with couple of filters and sorting options"
+            />
+            <PageFeatureCard
+              header="Analytics page"
+              text="Has a lot of different filters and sorting features and charts to learn from your bets"
+            />
+            <PageFeatureCard
+              header="transactions page"
+              text="Keeps track on your deposits and withdrawals"
+            />
+            <PageFeatureCard
+              header="profile page"
+              text="Here you can find different settings for your profile"
+            />
+          </div>
         </div>
       </section>
     </div>
