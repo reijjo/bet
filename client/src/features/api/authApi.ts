@@ -76,4 +76,5 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useGetSessionUserQuery,
+  useLazyGetSessionUserQuery,
 } = authApiSlice;

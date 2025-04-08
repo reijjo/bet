@@ -98,7 +98,7 @@ export const Sidebar = () => {
       </div>
 
       <div className="sidebar-links bottom-links">
-        <Divider color="var(--primary-800)" />
+        <Divider />
         <LinkWithIcon
           link="/profile"
           icon={faUser}
@@ -113,7 +113,7 @@ export const Sidebar = () => {
           linkText="Settings"
           onClick={handleCloseSidebar}
         />
-        <Divider color="var(--primary-800)" />
+        <Divider />
         <LinkWithIcon
           link="/"
           className="logout-button"

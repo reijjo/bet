@@ -7,7 +7,7 @@ interface DividerProps {
 }
 
 export const Divider = ({
-  color = "var(--primary-600)",
+  color = "var(--primary-500)",
   thickness = 1,
   width = 100,
 }: DividerProps) => {

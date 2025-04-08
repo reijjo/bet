@@ -62,76 +62,86 @@ export const Register = () => {
   console.log("fetchData", fetchData);
 
   return (
-    <Container
-      width="min(400px, 95%)"
-      border="0.5px solid"
-      borderColor="rgba(255, 255, 255, 0.2)"
-      padding="24px 16px"
-      margin="2rem auto"
-      alignSelf="center"
-      boxShadow="var(--box-shadow)"
-      gap="1rem"
-    >
-      <div className="form-headers">
-        <h3>Sign up</h3>
-        <h6>Start tracking your bets at Tärpit</h6>
-      </div>
-      <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
-        <Container border="none" boxShadow="none" gap="0.5rem" margin="0">
-          <TextInput
-            className="form-input-text"
-            type="text"
-            label="Email"
-            id="email"
-            placeholder="user@tarpit.com"
-            errorStyle={!!errors.email}
-            {...register("email", {
-              ...isValidEmail,
-              onBlur: () => clearErrors("email"),
-            })}
-            aria-invalid={errors.email?.types ? "true" : "false"}
-          />
-          {errors.email && (
-            <InputErrorContainer errors={errors.email?.types || {}} />
+    <div className="login-page">
+      <Container
+        width="min(400px, 95%)"
+        border="0.5px solid"
+        borderColor="var(--primary-600)"
+        padding="24px 16px"
+        margin="2rem auto"
+        alignSelf="center"
+        boxShadow="var(--box-shadow)"
+        backgroundColor="var(--primary)"
+        gap="1rem"
+      >
+        <div className="form-headers">
+          <h3>Create your account</h3>
+          <h6>Start tracking your bets at Tärpit</h6>
+        </div>
+        <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
+          <Container border="none" boxShadow="none" gap="0.5rem" margin="0">
+            <TextInput
+              className="form-input-text"
+              type="text"
+              label="Email"
+              id="email"
+              placeholder="user@tarpit.com"
+              errorStyle={!!errors.email}
+              {...register("email", {
+                ...isValidEmail,
+                onBlur: () => clearErrors("email"),
+              })}
+              aria-invalid={errors.email?.types ? "true" : "false"}
+            />
+            {errors.email && (
+              <InputErrorContainer errors={errors.email?.types || {}} />
+            )}
+          </Container>
+          {isLoading && (
+            <Message
+              message="Checking email..."
+              type={MessageTypes.Info}
+              width="75%"
+            />
           )}
-        </Container>
-        {isLoading && (
-          <Message
-            message="Checking email..."
-            type={MessageTypes.Info}
+          {isError && (
+            <Message
+              message={getErrorMessage(error)}
+              type={MessageTypes.Error}
+              width="75%"
+            />
+          )}
+          <Button
+            type="submit"
+            className="btn btn-filled"
+            children="sign up"
             width="75%"
+            margin="0.75rem 0 0"
           />
-        )}
-        {isError && (
-          <Message
-            message={getErrorMessage(error)}
-            type={MessageTypes.Error}
-            width="75%"
+        </form>
+        <DividerWithText text="or login with" />
+        <div className="oauth-buttons">
+          <OauthButton
+            provider="Google"
+            icon={faGoogle}
+            action="login"
+            disabled
           />
-        )}
-        <Button
-          type="submit"
-          className="btn btn-filled"
-          children="sign up"
-          width="75%"
-          margin="0.75rem 0 0"
-        />
-      </form>
-      <DividerWithText text="or login with" />
-      <OauthButton provider="Google" icon={faGoogle} action="login" disabled />
-      <OauthButton
-        provider="Facebook"
-        icon={faFacebook}
-        action="login"
-        disabled
-      />
+          <OauthButton
+            provider="Facebook"
+            icon={faFacebook}
+            action="login"
+            disabled
+          />
+        </div>
 
-      <p className="login-p">
-        Already have an account?{" "}
-        <Link to="/login" className="btn-text">
-          Log in!
-        </Link>
-      </p>
-    </Container>
+        <p className="login-p">
+          Already have an account?{" "}
+          <Link to="/login" className="btn-text">
+            Log in!
+          </Link>
+        </p>
+      </Container>
+    </div>
   );
 };

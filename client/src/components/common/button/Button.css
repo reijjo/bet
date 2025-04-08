@@ -58,6 +58,7 @@
   font-weight: 400;
   /* font-size: 0.925rem; */
   letter-spacing: 0.3px;
+  background-color: transparent;
 
   &:hover {
     border: 1px solid var(--accent);
@@ -252,13 +253,13 @@
 }
 
 .btn-text {
-  border-bottom: thin solid var(--secondary-100);
+  border-bottom: thin solid var(--accent-100);
   margin: 0 0.25rem;
-  color: var(--secondary-100);
+  color: var(--accent-200);
 
   &:hover {
-    color: var(--secondary-200);
-    border-color: var(--secondary-200);
+    color: var(--accent-300);
+    border-color: var(--accent-200);
   }
 }
 
@@ -266,7 +267,7 @@
   border: thin solid var(--primary-500);
   border-radius: 8px;
   box-shadow: var(--shadow-s);
-  width: 75%;
+  width: 100%;
   height: 2.5rem;
 
   display: flex;
@@ -281,7 +282,13 @@
 
 .oauth-logo-absolute {
   position: absolute;
-  left: 16px;
+  left: 1rem;
+
+  @media only screen and (max-width: 581px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .login-p {

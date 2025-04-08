@@ -1,9 +1,12 @@
 import "./Homepage.css";
 
 import {
+  faBank,
   faChartLine,
   faCheck,
   faDumbbell,
+  faList,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -112,7 +115,7 @@ export const Homepage = () => {
                 size={isMobile ? "2x" : "3x"}
                 data-testid="why-icon"
               />
-              <p>You learn your betting strenghts</p>
+              <p>You learn your betting strengths</p>
             </div>
           </div>
         </div>
@@ -121,19 +124,23 @@ export const Homepage = () => {
         <div className="home-features">
           <div className="page-features">
             <PageFeatureCard
-              header="bets page"
+              icon={faList}
+              header="bets"
               text="Shows all your bets in one place with couple of filters and sorting options"
             />
             <PageFeatureCard
-              header="Analytics page"
+              icon={faChartLine}
+              header="Analytics"
               text="Has a lot of different filters and sorting features and charts to learn from your bets"
             />
             <PageFeatureCard
-              header="transactions page"
+              icon={faBank}
+              header="transactions"
               text="Keeps track on your deposits and withdrawals"
             />
             <PageFeatureCard
-              header="profile page"
+              icon={faUser}
+              header="profile"
               text="Here you can find different settings for your profile"
             />
           </div>

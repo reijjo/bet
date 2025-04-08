@@ -4,6 +4,7 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import logo from "../../assets/fishing.png";
 import {
   Button,
   Container,
@@ -14,7 +15,7 @@ import {
 import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
 import { Message } from "../../components/common/message/Message";
 import {
-  useGetSessionUserQuery,
+  useLazyGetSessionUserQuery,
   useLoginMutation,
 } from "../../features/api/authApi";
 import { loginUser } from "../../features/authSlice";
@@ -32,7 +33,7 @@ const ForgotPassword = () => (
 
 export const Login = () => {
   const [login, { isLoading, isError, error }] = useLoginMutation();
-  const { refetch } = useGetSessionUserQuery();
+  const [fetchSession] = useLazyGetSessionUserQuery();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -59,7 +60,8 @@ export const Login = () => {
         login: data.login.trim().toLowerCase(),
       }).unwrap();
 
-      const sessionResult = await refetch().unwrap();
+      // const sessionResult = await refetch().unwrap();
+      const sessionResult = await fetchSession().unwrap();
 
       if (sessionResult?.success && sessionResult?.data) {
         dispatch(loginUser(sessionResult.data as User));
@@ -79,11 +81,18 @@ export const Login = () => {
         padding="24px 16px"
         margin="0 auto"
         alignSelf="center"
-        boxShadow="var(--shadow-test)"
+        boxShadow="var(--box-shadow)"
         gap="1rem"
+        backgroundColor="var(--primary)"
       >
+        <div className="form-headers">
+          <div className="logo-headers">
+            <h3>Login</h3>
+            <img src={logo} alt="logo" height={32} width={32} />
+          </div>
+          <h6>welcome back</h6>
+        </div>
         <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
-          <p className="form-header">Login to track your bets.</p>
           <TextInput
             className="form-input-text"
             type="text"
@@ -120,18 +129,20 @@ export const Login = () => {
           />
         </form>
         <DividerWithText text="or" />
-        <OauthButton
-          provider="Google"
-          icon={faGoogle}
-          action="login"
-          disabled
-        />
-        <OauthButton
-          provider="Facebook"
-          icon={faFacebook}
-          action="login"
-          disabled
-        />
+        <div className="oauth-buttons">
+          <OauthButton
+            provider="Google"
+            icon={faGoogle}
+            action="login"
+            disabled
+          />
+          <OauthButton
+            provider="Facebook"
+            icon={faFacebook}
+            action="login"
+            disabled
+          />
+        </div>
 
         <p className="login-p">
           Need an account?{" "}

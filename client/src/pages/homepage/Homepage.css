@@ -8,7 +8,7 @@
   width: 100%;
   min-height: 80dvh;
   background-image:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    linear-gradient(to bottom, rgba(7, 37, 74, 0.85), rgba(7, 37, 74, 0.85)),
     url("../../assets/images/homepage/bb-crop.jpeg");
   background-position: center;
   background-repeat: no-repeat;
@@ -105,16 +105,36 @@
   flex-direction: inherit;
   width: 100%;
   min-width: 100%;
+  background-color: var(--primary-50);
+  background: radial-gradient(
+    ellipse at top right,
+    var(--primary-400) 30%,
+    var(--primary-50) 50%
+  );
+}
+
+.home-features-section-dark {
+  background-color: var(--primary);
+  background: radial-gradient(
+    circle at top left,
+    var(--primary-600) 20%,
+    transparent 40%
+  );
 }
 
 .home-features-section:before {
   content: "";
   position: absolute;
-  top: 20%;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: var(--primary-50);
+  height: 30%;
+  background: radial-gradient(
+    circle at top left,
+    var(--primary-600) 20%,
+    transparent 40%
+  );
+  background-color: var(--primary);
   z-index: 0;
 }
 
@@ -281,8 +301,8 @@
 
 .page-features {
   height: 100%;
-  width: 100%;
-  width: max-content;
+  width: 80%;
+  /* width: max-content; */
   display: grid;
   grid-auto-rows: auto;
   grid-template-columns: repeat(2, 1fr);

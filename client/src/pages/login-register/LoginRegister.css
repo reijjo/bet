@@ -21,9 +21,15 @@
   }
 
   & h6 {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: var(--neutral-100);
   }
+}
+
+.logo-headers {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .form-input-text {
@@ -37,11 +43,27 @@
   }
 }
 
+.oauth-buttons {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  width: 75%;
+  gap: 1rem;
+
+  @media only screen and (max-width: 581px) {
+    grid-template-columns: repeat(2, 1fr);
+    & p {
+      display: none;
+    }
+  }
+}
+
 .btn-oauth {
   border: thin solid var(--primary-500);
   border-radius: 8px;
   box-shadow: var(--shadow-s);
-  width: 75%;
+  width: 100%;
   height: 2.5rem;
 
   display: flex;
@@ -54,13 +76,10 @@
   }
 }
 
-.oauth-logo-absolute {
-  position: absolute;
-  left: 16px;
-}
-
 .login-p {
   font-size: var(--font-smaller);
+  text-wrap: balance;
+  text-align: center;
 }
 
 .login-page {
@@ -68,6 +87,7 @@
   display: grid;
   place-items: center;
   padding: 32px 0;
+  background: radial-gradient(var(--primary-500), transparent);
 }
 
 .login-password-container {
