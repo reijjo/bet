@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import { useEffect } from "react";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -5,28 +6,36 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AppLayout } from "./components/layout/AppLayout";
-import { useGetSessionUserQuery } from "./features/api/authApi";
-import { loginUser, logoutUser } from "./features/authSlice";
+// import { useGetSessionUserQuery } from "./features/api/authApi";
+// import { loginUser, logoutUser } from "./features/authSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
-import { useAppDispatch } from "./store/hooks";
+import { useAppSelector } from "./store/hooks";
+import { RootState } from "./store/store";
+
+// import { useAppDispatch } from "./store/hooks";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
 function App() {
-  const { data, isLoading, isSuccess, isError, error } =
-    useGetSessionUserQuery();
-  const dispatch = useAppDispatch();
+  const rootstate = useAppSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (isSuccess && data?.success && data?.data) {
-      dispatch(loginUser(data.data));
-    } else if (!isLoading && (isError || !data?.success)) {
-      dispatch(logoutUser());
-    }
-  }, [isSuccess, data, isError, isLoading, dispatch]);
+    console.log("App - authstate", rootstate);
+  }, [rootstate]);
+  // const { data, isLoading, isSuccess, isError, error } =
+  //   useGetSessionUserQuery();
+  // const dispatch = useAppDispatch();
 
-  console.log("isError", error);
+  // useEffect(() => {
+  //   if (isSuccess && data?.success && data?.data) {
+  //     dispatch(loginUser(data.data));
+  //   } else if (!isLoading && (isError || !data?.success)) {
+  //     dispatch(logoutUser());
+  //   }
+  // }, [isSuccess, data, isError, isLoading, dispatch]);
+
+  // console.log("isError", error);
 
   return (
     <Router

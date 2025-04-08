@@ -12,6 +12,6 @@ export const betRouter = express.Router({ mergeParams: true });
 
 betRouter.post("/", authCheck(), createBet);
 betRouter.get("/", authCheck(), getBets);
-betRouter.get("/:id", getBetById);
 betRouter.patch("/:id", authCheck(), updateBet);
+betRouter.patch("/:id", updateBet);
 betRouter.delete("/:id", deleteBet);

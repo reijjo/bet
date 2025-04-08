@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -36,6 +36,9 @@ export const Login = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/dash";
 
   const {
     register,
@@ -45,9 +48,9 @@ export const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dash");
+      navigate(from, { replace: true });
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, from]);
 
   const onSubmit: SubmitHandler<LoginValues> = async (data) => {
     try {
@@ -60,7 +63,7 @@ export const Login = () => {
 
       if (sessionResult?.success && sessionResult?.data) {
         dispatch(loginUser(sessionResult.data as User));
-        navigate("/dash");
+        navigate(from, { replace: true });
       }
     } catch (err) {
       console.log("ERROR", err);

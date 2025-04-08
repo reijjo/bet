@@ -1,62 +1,55 @@
 import { useEffect } from "react";
 
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
-import {
-  useGetSessionUserQuery,
-  useLogoutMutation,
-} from "../features/api/authApi";
-import { logoutUser } from "../features/authSlice";
-import { useAppSelector } from "../store/hooks";
-import { useAppDispatch } from "../store/hooks";
+import { useGetSessionUserQuery } from "../features/api/authApi";
+import { loginUser, logoutUser } from "../features/authSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
+import { getErrorStatus } from "../utils/helperFunctions";
 import { Loading } from "./common/fallback/Loading";
 import { AppLayout } from "./layout/AppLayout";
 
-// import { UserLayout } from "./layout/UserLayout";
-
 export const ProtectedRoute = () => {
-  const { data, isLoading, isError, error } = useGetSessionUserQuery();
-  const [logout] = useLogoutMutation();
-  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (!isLoading && isError) {
-      console.log("session validation error", error);
-      handleLogout();
-    }
+  const {
+    data: sessionData,
+    isLoading,
+    isError,
+    error,
+  } = useGetSessionUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
   });
 
-  const handleLogout = async () => {
-    try {
-      await logout().unwrap();
-    } catch (err) {
-      console.error("Logout error:", err);
-    } finally {
-      dispatch(logoutUser());
-    }
-  };
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
 
-  // const rootstate = useAppSelector((state: RootState) => state);
-  console.log(
-    "ProtectedRoute - isLoading:",
-    isLoading,
-    "isAuthenticated",
-    isAuthenticated,
-    "data",
-    data,
-  );
+  const errorStatus = getErrorStatus(error);
+
+  useEffect(() => {
+    if (!isLoading) {
+      // Check for error first
+      if (isError || errorStatus === 401) {
+        console.log("Logging out due to error or 401");
+        dispatch(logoutUser());
+      } else if (sessionData?.success && sessionData?.data) {
+        console.log("Logging in with session data");
+        dispatch(loginUser(sessionData.data));
+      }
+    }
+  }, [sessionData, isLoading, isError, errorStatus, dispatch]);
+
+  console.log("ProtectedRoute - data", sessionData);
+  console.log("ProtectedRoute - isLoading", isLoading);
+  console.log("ProtectedRoute - isError", isError);
+  console.log("ProtectedRoute - error", error);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  const isSessionValid = data?.success && data?.data;
-  if (!isSessionValid && !isAuthenticated) {
-    console.log("isSessionValid", isSessionValid);
-    return <Navigate to="/login" replace />;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return <AppLayout />;

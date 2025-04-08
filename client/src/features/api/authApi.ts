@@ -24,12 +24,14 @@ export const authApiSlice = baseApi.injectEndpoints({
         method: "POST",
         body: credentials,
       }),
+      invalidatesTags: [{ type: "Session", id: "CURRENT" }],
     }),
     logout: builder.mutation<BasicApiResponse, void>({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
       }),
+      invalidatesTags: [{ type: "Session", id: "CURRENT" }],
     }),
     updateToken: builder.mutation<BasicApiResponse, TokenUpdate>({
       query: (patch) => {
@@ -47,8 +49,25 @@ export const authApiSlice = baseApi.injectEndpoints({
         url: "/auth/me",
         method: "GET",
       }),
+      providesTags: [{ type: "Session", id: "CURRENT" }],
+      transformErrorResponse: (response) => {
+        if (response.status === 401) {
+          return {
+            status: response.status,
+            data: {
+              success: false,
+              message: "Your session has expired. Please login again.",
+            },
+          };
+        }
+        return {
+          status: response.status,
+          data: response.data,
+        };
+      },
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {

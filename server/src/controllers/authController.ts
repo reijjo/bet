@@ -131,18 +131,28 @@ export const login = async (
       return next(new HttpError("Invalid password", 400));
     }
 
-    req.session.user = {
-      id: user.id,
-      email: user.email,
-      username: user.username as string,
-      role: user.role,
-    };
+    req.session.regenerate((err) => {
+      if (err) {
+        return next(new HttpError("Failed to regenerate session", 500));
+      }
 
-    // console.log("User session:", req.session);
+      req.session.user = {
+        id: user.id,
+        email: user.email,
+        username: user.username as string,
+        role: user.role,
+      };
 
-    res.status(200).json({
-      success: true,
-      message: "User logged in successfully",
+      req.session.save((err) => {
+        if (err) {
+          return next(new HttpError("Failed to save session", 500));
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "User logged in successfully",
+        });
+      });
     });
   } catch (error) {
     console.error("Login error:", error);
@@ -150,8 +160,24 @@ export const login = async (
   }
 };
 
-export const logout = async (req: Request, res: Response) => {
-  req.session.destroy(() => {
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (!req.session.user) {
+    res.status(200).json({
+      success: true,
+      message: "User already logged out",
+    });
+    return;
+  }
+
+  req.session.destroy((err) => {
+    if (err) {
+      return next(new HttpError("Failed to destroy session", 500));
+    }
+
     res.clearCookie("connect.sid");
     res.status(200).json({
       success: true,
@@ -164,7 +190,7 @@ export const getSessionUser = (req: Request, res: Response) => {
   if (req.session.user) {
     res.status(200).json({ success: true, data: req.session.user });
   } else {
-    res.status(200).json({
+    res.status(401).json({
       success: false,
       message: "No user session found",
       data: null,
