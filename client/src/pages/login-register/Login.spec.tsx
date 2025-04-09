@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as authApi from "../../features/api/authApi";
+// import { loginUser } from "../../features/authSlice";
 import { store } from "../../store/store";
 import { Login } from "./Login";
 
@@ -14,21 +15,24 @@ vi.mock("react-router-dom", async () => {
   return {
     ...actual,
     useNavigate: () => mockNavigate,
+    useLocation: () => ({ state: { from: { pathname: "dash" } } }),
   };
 });
 
 // Mock Redux dispatch
 vi.mock("../../store/hooks", () => ({
   useAppDispatch: () => mockDispatch,
+  useAppSelector: () => mockUseSelector,
 }));
 const mockDispatch = vi.fn();
+const mockUseSelector = vi.fn().mockReturnValue({ isAuthenticated: false });
 
 const user = userEvent.setup();
 
-describe("Login.tsx", () => {
+describe.only("Login.tsx", () => {
   const mockLogin = vi.fn();
-  const mockRefetch = vi.fn();
-  const mockDispatch = vi.fn();
+  const mockFetchSession = vi.fn();
+  const fetchSessionFn = vi.fn();
 
   beforeEach(() => {
     vi.spyOn(authApi, "useLoginMutation").mockReturnValue([
@@ -42,12 +46,36 @@ describe("Login.tsx", () => {
       },
     ]);
 
-    vi.spyOn(authApi, "useGetSessionUserQuery").mockReturnValue({
-      refetch: mockRefetch,
+    fetchSessionFn.mockReturnValue({
+      unwrap: () =>
+        Promise.resolve({
+          success: true,
+          data: {
+            id: 123,
+            username: "testuser",
+            email: "testi@ukko.com",
+            role: "Guest",
+          },
+        }),
     });
 
+    vi.spyOn(authApi, "useLazyGetSessionUserQuery").mockReturnValue([
+      fetchSessionFn as unknown as ReturnType<
+        typeof authApi.useLazyGetSessionUserQuery
+      >[0],
+      {
+        isLoading: false,
+        data: null,
+        reset: vi.fn(),
+        isSuccess: false,
+        isError: false,
+        error: null,
+      },
+      { lastArg: undefined },
+    ]);
+
     mockLogin.mockReset();
-    mockRefetch.mockReset();
+    mockFetchSession.mockReset();
     mockDispatch.mockReset();
   });
 
@@ -67,7 +95,7 @@ describe("Login.tsx", () => {
 
   it("renders component", () => {
     renderComponent();
-    expect(screen.getByText(/login to track your bets/i)).toBeInTheDocument();
+    expect(screen.getByText(/nice to have you here/i)).toBeInTheDocument();
   });
 
   it("empty login fields", async () => {
@@ -83,13 +111,6 @@ describe("Login.tsx", () => {
 
   it("successful login", async () => {
     mockLogin.mockResolvedValue({ success: true });
-    mockRefetch.mockReturnValue({
-      unwrap: () =>
-        Promise.resolve({
-          success: true,
-          data: { id: 123, username: "testuser" },
-        }),
-    });
 
     renderComponent();
 
@@ -109,11 +130,5 @@ describe("Login.tsx", () => {
         password: "password123",
       });
     });
-
-    // await waitFor(() => {
-    //   expect(mockRefetch).toHaveBeenCalled();
-    //   expect(mockDispatch).toHaveBeenCalled();
-    //   expect(mockNavigate).toHaveBeenCalledWith("/dash");
-    // });
   });
 });

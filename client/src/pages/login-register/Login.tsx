@@ -61,7 +61,6 @@ export const Login = () => {
         login: data.login.trim().toLowerCase(),
       }).unwrap();
 
-      // const sessionResult = await refetch().unwrap();
       const sessionResult = await fetchSession().unwrap();
 
       if (sessionResult?.success && sessionResult?.data) {
