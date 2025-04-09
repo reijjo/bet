@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/fishing.png";
+import tennis from "../../assets/images/login-register/tennis-opti.jpg";
 import {
   Button,
   Container,
@@ -75,22 +76,24 @@ export const Login = () => {
   return (
     <div className="login-page">
       <Container
-        width="min(400px, 95%)"
+        width="min(600px, 95%)"
         border="0.5px solid"
-        borderColor="var(--primary-700)"
+        borderColor="transparent"
         padding="24px 16px"
-        margin="0 auto"
+        margin="2rem auto"
+        height="100%"
         alignSelf="center"
-        boxShadow="var(--box-shadow)"
+        justifyContent="center"
+        boxShadow="none"
+        // backgroundColor="var(--primary)"
         gap="1rem"
-        backgroundColor="var(--primary)"
       >
         <div className="form-headers">
           <div className="logo-headers">
             <h3>Login</h3>
             <img src={logo} alt="logo" height={32} width={32} />
           </div>
-          <h6>welcome back</h6>
+          <h6>nice to have you here!</h6>
         </div>
         <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
           <TextInput
@@ -151,6 +154,7 @@ export const Login = () => {
           </Link>
         </p>
       </Container>
+      <img src={tennis} alt="logo" loading="eager" />
     </div>
   );
 };

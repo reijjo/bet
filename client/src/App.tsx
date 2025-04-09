@@ -23,19 +23,6 @@ function App() {
   useEffect(() => {
     console.log("App - authstate", rootstate);
   }, [rootstate]);
-  // const { data, isLoading, isSuccess, isError, error } =
-  //   useGetSessionUserQuery();
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   if (isSuccess && data?.success && data?.data) {
-  //     dispatch(loginUser(data.data));
-  //   } else if (!isLoading && (isError || !data?.success)) {
-  //     dispatch(logoutUser());
-  //   }
-  // }, [isSuccess, data, isError, isLoading, dispatch]);
-
-  // console.log("isError", error);
 
   return (
     <Router

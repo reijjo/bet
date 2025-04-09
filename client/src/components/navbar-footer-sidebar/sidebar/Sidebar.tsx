@@ -1,10 +1,11 @@
 import "./Sidebar.css";
 
+import { useEffect } from "react";
+
 import {
   faArrowRightFromBracket,
   faBank,
   faChartLine,
-  faGear,
   faList,
   faPenToSquare,
   faTableColumns,
@@ -18,14 +19,20 @@ import logo from "../../../assets/fishing.png";
 import { useLogoutMutation } from "../../../features/api/authApi";
 import { logoutUser } from "../../../features/authSlice";
 import { closeSidebar } from "../../../features/sidebarSlice";
+import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Divider, LinkWithIcon } from "../../index";
 
 export const Sidebar = () => {
   const [logout, { isLoading }] = useLogoutMutation();
+  const { isSidebarOpen } = useScreenWidth();
   const sideBarOpen = useAppSelector((state) => state.sidebar.sidebar);
   const modalOpen = useAppSelector((state) => state.modal.isModalOpen);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(closeSidebar());
+  }, [isSidebarOpen, dispatch]);
 
   const handleCloseSidebar = () => {
     dispatch(closeSidebar());
@@ -51,7 +58,7 @@ export const Sidebar = () => {
     >
       <div className="sidebar-close">
         <a className="hamburger" onClick={handleCloseSidebar}>
-          <FontAwesomeIcon icon={faXmark} />
+          <FontAwesomeIcon icon={faXmark} size="1x" />
         </a>
       </div>
 
@@ -104,13 +111,6 @@ export const Sidebar = () => {
           icon={faUser}
           iconSize="xs"
           linkText="Profile"
-          onClick={handleCloseSidebar}
-        />
-        <LinkWithIcon
-          link="/settings"
-          icon={faGear}
-          iconSize="xs"
-          linkText="Settings"
           onClick={handleCloseSidebar}
         />
         <Divider />

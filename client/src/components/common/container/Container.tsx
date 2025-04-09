@@ -32,7 +32,7 @@ export const Container = ({
   boxShadow = "var(--shadow-s)",
   display = "flex",
   flexDirection = "column",
-  justifyContent = "space-between",
+  justifyContent,
   alignItems = "center",
   alignSelf,
   padding,

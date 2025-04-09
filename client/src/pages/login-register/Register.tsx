@@ -5,6 +5,7 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
+import penkit from "../../assets/images/login-register/penkit-opti.jpg";
 import {
   Button,
   Container,
@@ -64,14 +65,16 @@ export const Register = () => {
   return (
     <div className="login-page">
       <Container
-        width="min(400px, 95%)"
+        width="min(600px, 95%)"
         border="0.5px solid"
-        borderColor="var(--primary-600)"
+        borderColor="transparent"
         padding="24px 16px"
         margin="2rem auto"
+        height="100%"
         alignSelf="center"
-        boxShadow="var(--box-shadow)"
-        backgroundColor="var(--primary)"
+        justifyContent="center"
+        boxShadow="none"
+        // backgroundColor="var(--primary)"
         gap="1rem"
       >
         <div className="form-headers">
@@ -142,6 +145,7 @@ export const Register = () => {
           </Link>
         </p>
       </Container>
+      <img src={penkit} alt="tennis" loading="eager" />
     </div>
   );
 };

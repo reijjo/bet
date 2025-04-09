@@ -9,7 +9,6 @@ import {
   faCaretDown,
   faCaretUp,
   faChartLine,
-  faGear,
   faList,
   faPenToSquare,
   faTableColumns,
@@ -72,7 +71,7 @@ export const NavbarUser = () => {
   };
 
   return (
-    <nav>
+    <nav className="nav-user">
       <div className={`wrapper ${!isSidebarOpen ? "nav-user-wrapper" : ""}`}>
         <div className="nav-links">
           <div className="nav-menu" data-testid="nav-menu">
@@ -137,10 +136,6 @@ export const NavbarUser = () => {
                   <li className="user-menu-item">
                     <Link to="/">Profile</Link>
                     <FontAwesomeIcon icon={faUser} />
-                  </li>
-                  <li className="user-menu-item">
-                    <Link to="/">Settings</Link>
-                    <FontAwesomeIcon icon={faGear} />
                   </li>
                   <Divider />
                   <li className="user-menu-logout">

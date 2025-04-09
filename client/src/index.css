@@ -151,7 +151,7 @@ a {
   --primary-900: #0a3b70;
   --primary-950: rgb(7, 37, 74);
 
-  --primary: rgb(5, 71, 135);
+  --primary: #054787;
 
   --accent-50: #fefde8;
   --accent-100: #fefdc3;
@@ -264,5 +264,5 @@ a {
 
   --shadow-l-primary: 0px 4px 64px rgba(62, 59, 240, 0.5);
 
-  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 8px 36px rgba(0, 0, 0, 0.2);
 }

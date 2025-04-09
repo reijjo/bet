@@ -155,7 +155,7 @@
 
 /* ADD BET */
 .home-feature-addbet {
-  width: 100%;
+  width: 80%;
   padding: 12px 24px;
   display: flex;
   font-size: var(--font-larger);
@@ -165,6 +165,10 @@
   & span {
     color: var(--secondary);
     font-weight: bold;
+  }
+
+  @media (width < 1000px) {
+    width: 100%;
   }
 
   @media (width < 800px) {
