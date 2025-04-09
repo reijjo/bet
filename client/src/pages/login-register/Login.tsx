@@ -76,7 +76,7 @@ export const Login = () => {
   return (
     <div className="login-page">
       <Container
-        width="min(600px, 95%)"
+        width="min(600px, 100%)"
         border="0.5px solid"
         borderColor="transparent"
         padding="24px 16px"

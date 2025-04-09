@@ -1,12 +1,12 @@
 .main-normal {
   display: grid;
-  /* grid-template-rows: 1fr 8vh; */
   min-height: 100vh;
+  grid-template-rows: 1fr;
   height: 100%;
 
   @media only screen and (max-width: 581px) {
     /* 4 grids */
-    grid-template-rows: 1fr 6vh;
+    grid-template-rows: 1fr;
   }
 }
 

@@ -1,8 +1,7 @@
 nav {
   z-index: 5;
   width: 100%;
-  height: min(8vh, 5rem);
-
+  /* height: min(8vh, 5rem); */
   /* backdrop-filter: blur(5rem); */
   /* background-color: var(--primary); */
   /* background-color: rgba(0, 0, 0, 0.3); */

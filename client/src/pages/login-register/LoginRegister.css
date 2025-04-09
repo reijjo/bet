@@ -83,16 +83,13 @@
 }
 
 .login-page {
-  /* height: auto; */
-  /* height: 100svh; */
-
   display: grid;
   grid-template-columns: minmax(300px, 1fr) 1fr;
   grid-template-rows: 1fr;
-  /* place-items: center; */
-  /* padding: 32px 0; */
+
   background: radial-gradient(var(--primary-500), transparent);
-  /* overflow: hidden; */
+
+  border: 1px solid red;
 
   & > img {
     grid-column: 2;
@@ -103,6 +100,7 @@
 
   @media only screen and (max-width: 800px) {
     grid-template-columns: 1fr;
+
     & > img {
       display: none;
     }
