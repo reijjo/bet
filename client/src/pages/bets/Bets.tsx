@@ -65,7 +65,7 @@ export const Bets = () => {
   }
 
   return (
-    <div className="wrapper navbar-padding">
+    <div className="wrapper bets-page">
       <h1>Bets</h1>
       <div className="bets-filters">
         <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />

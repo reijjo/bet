@@ -1,6 +1,6 @@
 .main-normal {
   display: grid;
-  grid-template-rows: 1fr 8vh;
+  /* grid-template-rows: 1fr 8vh; */
   min-height: 100vh;
   height: 100%;
 
@@ -24,8 +24,13 @@
 }
 
 .main-dashboard {
+  grid-column: 2;
   display: grid;
-  grid-template-rows: 10vh 1fr 8vh;
-  grid-template-rows: 1fr 8vh;
+  grid-template-rows: 10vh minmax(90vh, 1fr) 8vh;
   height: auto;
+
+  @media (width < 1180px) {
+    grid-template-columns: 1fr;
+    grid-column: 1;
+  }
 }

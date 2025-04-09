@@ -1,5 +1,7 @@
 import "./Homepage.css";
 
+import { useEffect } from "react";
+
 import {
   faBank,
   faChartLine,
@@ -9,19 +11,30 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
 import dash from "../../assets/images/homepage/dash.png";
 import { Button, Divider } from "../../components/";
 import { useScreenWidth } from "../../hooks/useScreenWidth";
+import { useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
 import { FeatureCard } from "./FeatureCard";
 import { PageFeatureCard } from "./PageFeatureCard";
 
 export const Homepage = () => {
   const { isMobile } = useScreenWidth();
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dash";
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
 
   return (
     <div className="flex-wrapper">

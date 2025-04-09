@@ -3,49 +3,27 @@ import "./NavbarUser.css";
 import { useEffect, useRef, useState } from "react";
 
 import {
-  faArrowRightFromBracket,
-  faBank,
   faBars,
   faCaretDown,
   faCaretUp,
-  faChartLine,
-  faList,
-  faPenToSquare,
-  faTableColumns,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useNavigate } from "react-router-dom";
 
-import { Divider } from "../../";
+// import { Link } from "react-router-dom";
 import logo from "../../../assets/fishing.png";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
-import { useLogoutMutation } from "../../../features/api/authApi";
-import { logoutUser } from "../../../features/authSlice";
 import { openSidebar } from "../../../features/sidebarSlice";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { NavUserMenu } from "./NavUserMenu";
 
 export const NavbarUser = () => {
-  const [logout, { isLoading }] = useLogoutMutation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { isMobile, isSidebarOpen } = useScreenWidth();
 
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await logout().unwrap();
-      dispatch(logoutUser());
-      navigate("/");
-      console.log("logout");
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   // Closes dropdown when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
@@ -58,7 +36,6 @@ export const NavbarUser = () => {
     }
   };
 
-  //
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -84,6 +61,7 @@ export const NavbarUser = () => {
             <h3>Tärpit</h3>
             <img src={logo} alt="logo" height={32} width={32} />
           </div>
+          {/* <Link to="/addbet">Add Bet</Link> */}
           <div
             className={`nav-profile ${isSidebarOpen ? "nav-user-wrapper" : ""}`}
           >
@@ -104,49 +82,7 @@ export const NavbarUser = () => {
                 )}
               </a>
             </div>
-            {isUserMenuOpen && (
-              <div
-                className="user-menu"
-                data-testid="user-menu"
-                ref={dropdownRef}
-              >
-                <ul>
-                  <li className="user-menu-item">
-                    <Link to="/dash">Dashboard</Link>
-                    <FontAwesomeIcon icon={faTableColumns} />
-                  </li>
-                  <li className="user-menu-item">
-                    <Link to="/analytics">Analytics</Link>
-                    <FontAwesomeIcon icon={faChartLine} />
-                  </li>
-                  <li className="user-menu-item">
-                    <Link to="/bank">Transactions</Link>
-                    <FontAwesomeIcon icon={faBank} />
-                  </li>
-                  <Divider />
-                  <li className="user-menu-item">
-                    <Link to="/add-bet">Add bet</Link>
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </li>
-                  <li className="user-menu-item">
-                    <Link to="/bets">Bets</Link>
-                    <FontAwesomeIcon icon={faList} />
-                  </li>
-                  <Divider />
-                  <li className="user-menu-item">
-                    <Link to="/">Profile</Link>
-                    <FontAwesomeIcon icon={faUser} />
-                  </li>
-                  <Divider />
-                  <li className="user-menu-logout">
-                    <a onClick={handleLogout}>
-                      {isLoading ? "Logging out..." : "Logout"}
-                    </a>
-                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                  </li>
-                </ul>
-              </div>
-            )}
+            {isUserMenuOpen && <NavUserMenu dropdownRef={dropdownRef} />}
           </div>
         </div>
       </div>

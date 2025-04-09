@@ -1,9 +1,11 @@
 import "./LoginRegister.css";
 
+import { useEffect } from "react";
+
 // import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import penkit from "../../assets/images/login-register/penkit-opti.jpg";
 import {
@@ -17,7 +19,8 @@ import { InputErrorContainer } from "../../components/common/inputs/input-errors
 import { Message } from "../../components/common/message/Message";
 import { useLazyGetUserByEmailQuery } from "../../features/api/userApi";
 import { setRegister } from "../../features/registerSlice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";
 import { getErrorMessage } from "../../utils/helperFunctions";
 import { isValidEmail } from "../../utils/input-validators/registerValid";
@@ -26,6 +29,10 @@ import { RegisterValues } from "../../utils/types";
 export const Register = () => {
   const [checkDuplicateEmail, { data: fetchData, isLoading, isError, error }] =
     useLazyGetUserByEmailQuery();
+
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dash";
 
   const {
     register,
@@ -40,6 +47,12 @@ export const Register = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
 
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     const sanitazedEmail = data.email.trim().toLowerCase();

@@ -8,6 +8,7 @@ import { useScreenWidth } from "../../../hooks/useScreenWidth";
 
 export const Navbar = () => {
   const { isMobile } = useScreenWidth();
+
   return (
     <nav>
       <div className={`wrapper ${isMobile && "nav-wrapper"}`}>

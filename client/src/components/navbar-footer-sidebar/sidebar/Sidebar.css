@@ -1,5 +1,6 @@
 .sidebar {
   position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
 
@@ -54,6 +55,7 @@
   height: 10vh;
   /* border: 1px solid red; */
   border-bottom: 2px solid var(--primary-500);
+  background: linear-gradient(to left, var(--primary-600), var(--primary));
 
   & h3:hover {
     color: var(--accent-100);

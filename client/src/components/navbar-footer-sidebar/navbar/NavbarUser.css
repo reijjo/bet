@@ -1,12 +1,23 @@
+.nav-user {
+  grid-row: 1;
+  border-bottom: 2px solid var(--primary-500);
+  height: 10vh;
+  background: linear-gradient(
+    to right,
+    var(--primary-700),
+    rgba(5, 71, 135, 0.8)
+  );
+  backdrop-filter: blur(0.5rem);
+}
+
 .nav-user-wrapper {
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(1rem);
+  /* background-color: rgba(0, 0, 0, 0.3); */
 
   /* width: 90%; */
-  width: max-content;
+  /* width: max-content; */
 
-  border-radius: 2rem;
-  margin-top: 1vh;
+  /* border-radius: 2rem; */
+  /* margin-top: 1vh; */
 
   padding: 0.5rem 2rem;
 
@@ -20,18 +31,18 @@
 
   @media (width < 1180px) {
     display: block;
-    border: 1px solid var(--primary-600);
     border-radius: 4px;
     overflow: hidden;
     width: 40px;
     aspect-ratio: 1/1;
 
-    box-shadow: 0 0 8px hsla(228, 100%, 81%, 0.2);
-    transition: box-shadow 0.1s ease-out;
+    background-color: transparent;
+    transition: background-color 0.3s ease-out;
 
     &:hover {
+      background-color: var(--primary);
+
       cursor: pointer;
-      box-shadow: 0 0 16px hsla(228, 100%, 81%, 0.4);
     }
   }
 }
@@ -51,6 +62,7 @@
 
   background-color: transparent;
   cursor: pointer;
+  scale: 1.25;
 }
 
 .nav-logo {
@@ -87,7 +99,7 @@
 
 .nav-profile:has(:hover) .nav-profile-username,
 .nav-profile:has(:hover) .caret-icon {
-  color: var(--secondary-300);
+  color: var(--accent-200);
   cursor: pointer;
 }
 
@@ -97,7 +109,7 @@
 }
 
 .nav-profile-img {
-  width: 40px;
+  width: 48px;
   aspect-ratio: 1/1;
 
   border: 1px solid var(--background);
@@ -113,71 +125,5 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-}
-
-.user-menu-shadow {
-  box-shadow:
-    2px 2px 2px hsla(228, 100%, 81%, 0.1),
-    -2px 2px 2px hsla(228, 100%, 81%, 0.1);
-}
-
-.user-menu {
-  position: absolute;
-  top: 60px;
-  min-width: 10rem;
-  width: 100%;
-  background-color: var(--primary-700);
-  backdrop-filter: blur(24px);
-
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  overflow: hidden;
-  font-size: var(--font-small);
-
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 1);
-
-  /* border: none;
-  border-bottom: 1px solid hsla(228, 100%, 81%, 0.5); */
-
-  /* Add gradient borders on the sides */
-  /* background-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      hsla(228, 100%, 81%, 0.5) 100%
-    ),
-    linear-gradient(to bottom, transparent 0%, hsla(228, 100%, 81%, 0.5) 100%);
-  background-position:
-    0 0,
-    100% 0;
-  background-repeat: no-repeat;
-  background-size: 1px 100%; */
-
-  & li {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 12px 16px;
-
-    & a {
-      width: 100%;
-      height: 100%;
-      display: flex;
-    }
-  }
-}
-
-.user-menu-item:hover {
-  background-color: var(--primary-500);
-}
-
-.user-menu-logout {
-  color: var(--error-xlight);
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--error-xlight);
-    color: var(--error-dark);
   }
 }
