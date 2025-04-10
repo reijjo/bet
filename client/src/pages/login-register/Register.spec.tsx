@@ -6,26 +6,38 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as userApi from "../../features/api/userApi";
 import * as registerSlice from "../../features/registerSlice";
+import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store/store";
 import { Register } from "./Register";
 
 const mockNavigate = vi.fn();
 const user = userEvent.setup();
+let mockLocationState: { from: { pathname: string } } | undefined = {
+  from: { pathname: "/dash" },
+};
 
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
     ...actual,
-    useNavigate: vi.fn(),
+    useNavigate: () => mockNavigate,
+    useLocation: () => ({ state: mockLocationState }),
   };
 });
+
+let mockIsAuthenticated = false;
+vi.mock("../../store/hooks", () => ({
+  useAppDispatch: () => vi.fn(),
+  useAppSelector: () => ({ isAuthenticated: mockIsAuthenticated }),
+}));
 
 describe("Register", () => {
   const mockSetRegister = vi.fn();
   const mockCheckDuplicateEmail = vi.fn();
 
   beforeEach(() => {
-    (useNavigate as any).mockReturnValue(mockNavigate);
+    mockIsAuthenticated = false;
+    mockLocationState = { from: { pathname: "/dash" } };
 
     vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
       mockCheckDuplicateEmail,
@@ -34,8 +46,10 @@ describe("Register", () => {
         isLoading: false,
         isError: false,
         error: null,
+        reset: vi.fn(),
       },
-    ] as any);
+      { lastArg: undefined },
+    ]);
 
     vi.spyOn(registerSlice, "setRegister").mockImplementation(mockSetRegister);
   });
@@ -93,8 +107,15 @@ describe("Register", () => {
   it("shows loading state while checking email", async () => {
     vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
       mockCheckDuplicateEmail,
-      { data: null, isLoading: true, isError: false, error: null },
-    ] as any);
+      {
+        data: null,
+        isLoading: true,
+        isError: false,
+        error: null,
+        reset: vi.fn(),
+      },
+      { lastArg: undefined },
+    ]);
 
     renderComponent();
 
@@ -111,8 +132,10 @@ describe("Register", () => {
         isLoading: false,
         isError: true,
         error: { status: 409, data: { message: "Email already in use" } },
+        reset: vi.fn(),
       },
-    ] as any);
+      { lastArg: undefined },
+    ]);
 
     renderComponent();
 
@@ -142,5 +165,22 @@ describe("Register", () => {
         email: "test@example.com",
       });
     });
+  });
+
+  it("redirects if user is already authenticated", async () => {
+    mockIsAuthenticated = true;
+    renderComponent();
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+    });
+  });
+
+  it("onSubmit random error", () => {
+    mockCheckDuplicateEmail.mockRejectedValue(
+      new Error("Something went wrong"),
+    );
+
+    renderComponent();
   });
 });

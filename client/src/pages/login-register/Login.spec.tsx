@@ -26,6 +26,7 @@ vi.mock("react-router-dom", async () => {
 
 const mockDispatch = vi.fn();
 let mockIsAuthenticated = false;
+
 vi.mock("../../store/hooks", () => ({
   useAppDispatch: () => mockDispatch,
   useAppSelector: () => ({ isAuthenticated: mockIsAuthenticated }),
