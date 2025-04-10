@@ -6,23 +6,41 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AppLayout } from "./components/layout/AppLayout";
-// import { useGetSessionUserQuery } from "./features/api/authApi";
-// import { loginUser, logoutUser } from "./features/authSlice";
+import { useLazyGetSessionUserQuery } from "./features/api/authApi";
+import { loginUser, logoutUser } from "./features/authSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppSelector } from "./store/hooks";
+import { useAppDispatch } from "./store/hooks";
 import { RootState } from "./store/store";
-
-// import { useAppDispatch } from "./store/hooks";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
 function App() {
   const rootstate = useAppSelector((state: RootState) => state.auth);
+  const dispatch = useAppDispatch();
+  const [fetchSession] = useLazyGetSessionUserQuery();
 
   useEffect(() => {
     console.log("App - authstate", rootstate);
   }, [rootstate]);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const result = await fetchSession().unwrap();
+        if (result?.success && result?.data) {
+          dispatch(loginUser(result.data));
+        } else {
+          dispatch(logoutUser());
+        }
+      } catch (err) {
+        dispatch(logoutUser());
+      }
+    };
+
+    checkSession();
+  }, [dispatch, fetchSession]);
 
   return (
     <Router

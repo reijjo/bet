@@ -5,36 +5,42 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as authApi from "../../features/api/authApi";
-// import { loginUser } from "../../features/authSlice";
+import { loginUser } from "../../features/authSlice";
 import { store } from "../../store/store";
+import { UserRoles } from "../../utils/enums";
 import { Login } from "./Login";
 
 const mockNavigate = vi.fn();
+let mockLocationState: { from: { pathname: string } } | undefined = {
+  from: { pathname: "/dash" },
+};
+
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
     ...actual,
     useNavigate: () => mockNavigate,
-    useLocation: () => ({ state: { from: { pathname: "dash" } } }),
+    useLocation: () => ({ state: mockLocationState }),
   };
 });
 
-// Mock Redux dispatch
+const mockDispatch = vi.fn();
+let mockIsAuthenticated = false;
 vi.mock("../../store/hooks", () => ({
   useAppDispatch: () => mockDispatch,
-  useAppSelector: () => mockUseSelector,
+  useAppSelector: () => ({ isAuthenticated: mockIsAuthenticated }),
 }));
-const mockDispatch = vi.fn();
-const mockUseSelector = vi.fn().mockReturnValue({ isAuthenticated: false });
 
 const user = userEvent.setup();
 
 describe.only("Login.tsx", () => {
   const mockLogin = vi.fn();
   const mockFetchSession = vi.fn();
-  const fetchSessionFn = vi.fn();
 
   beforeEach(() => {
+    mockIsAuthenticated = false;
+    mockLocationState = { from: { pathname: "/dash" } };
+
     vi.spyOn(authApi, "useLoginMutation").mockReturnValue([
       mockLogin,
       {
@@ -45,42 +51,19 @@ describe.only("Login.tsx", () => {
         reset: vi.fn(),
       },
     ]);
-
-    fetchSessionFn.mockReturnValue({
-      unwrap: () =>
-        Promise.resolve({
-          success: true,
-          data: {
-            id: 123,
-            username: "testuser",
-            email: "testi@ukko.com",
-            role: "Guest",
-          },
-        }),
-    });
-
     vi.spyOn(authApi, "useLazyGetSessionUserQuery").mockReturnValue([
-      fetchSessionFn as unknown as ReturnType<
-        typeof authApi.useLazyGetSessionUserQuery
-      >[0],
-      {
-        isLoading: false,
-        data: null,
-        reset: vi.fn(),
-        isSuccess: false,
-        isError: false,
-        error: null,
-      },
+      mockFetchSession,
+      { isLoading: false, reset: vi.fn() },
       { lastArg: undefined },
     ]);
-
-    mockLogin.mockReset();
-    mockFetchSession.mockReset();
-    mockDispatch.mockReset();
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    mockLogin.mockReset();
+    mockFetchSession.mockReset();
+    mockDispatch.mockReset();
+    mockNavigate.mockReset();
   });
 
   const renderComponent = () => {
@@ -110,13 +93,104 @@ describe.only("Login.tsx", () => {
   });
 
   it("successful login", async () => {
-    mockLogin.mockResolvedValue({ success: true });
+    mockLogin.mockResolvedValue({
+      unwrap: () => Promise.resolve({ success: true }),
+    });
+    mockFetchSession.mockReturnValue({
+      unwrap: () => Promise.resolve({ success: false }),
+    });
 
     renderComponent();
 
-    const usernameInput = screen.getByRole("textbox", {
-      name: /username \/ email/i,
+    const usernameInput = screen.getByLabelText(/username \/ email/i);
+    const passwordInput = screen.getByLabelText("Password");
+    const submitButton = screen.getByRole("button", { name: "Login" });
+
+    await user.type(usernameInput, "  TestUser  ");
+    await user.type(passwordInput, "password123");
+    await user.click(submitButton);
+
+    await waitFor(() => {
+      expect(mockLogin).toHaveBeenCalledWith({
+        login: "testuser", // Should be trimmed and lowercased
+        password: "password123",
+      });
     });
+  });
+
+  it("dispatches loginUser and navigates on successful session fetch", async () => {
+    // Test lines 68-70
+    const mockUserData = {
+      id: 1,
+      username: "testuser",
+      email: "test@ukko.com",
+      role: UserRoles.Guest,
+    };
+    mockLogin.mockImplementation(() => ({
+      unwrap: () => Promise.resolve({ success: true }),
+    }));
+    mockFetchSession.mockReturnValue({
+      unwrap: () =>
+        Promise.resolve({
+          success: true,
+          data: mockUserData,
+        }),
+    });
+
+    renderComponent();
+
+    const usernameInput = screen.getByLabelText(/username \/ email/i);
+    const passwordInput = screen.getByLabelText("Password");
+    const submitButton = screen.getByRole("button", { name: "Login" });
+
+    await user.type(usernameInput, "testuser");
+    await user.type(passwordInput, "password123");
+    await user.click(submitButton);
+
+    await waitFor(
+      () => {
+        expect(mockDispatch).toHaveBeenCalledWith(loginUser(mockUserData));
+        expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+      },
+      { timeout: 2000 },
+    );
+  });
+
+  it("redirects if user is already authenticated", async () => {
+    mockIsAuthenticated = true;
+    renderComponent();
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+    });
+  });
+
+  it("navigates to default '/dash' when location state is undefined", async () => {
+    // Set location state to undefined to test fallback
+    mockLocationState = undefined;
+
+    const mockUserData = {
+      id: 1,
+      username: "testuser",
+      email: "test@ukko.com",
+      role: UserRoles.Guest,
+    };
+
+    mockLogin.mockImplementation(() => ({
+      unwrap: () => Promise.resolve({ success: true }),
+    }));
+
+    mockFetchSession.mockReturnValue({
+      unwrap: () =>
+        Promise.resolve({
+          success: true,
+          data: mockUserData,
+        }),
+    });
+
+    renderComponent();
+
+    const usernameInput = screen.getByLabelText(/username \/ email/i);
     const passwordInput = screen.getByLabelText("Password");
     const submitButton = screen.getByRole("button", { name: "Login" });
 
@@ -125,10 +199,8 @@ describe.only("Login.tsx", () => {
     await user.click(submitButton);
 
     await waitFor(() => {
-      expect(mockLogin).toHaveBeenCalledWith({
-        login: "testuser",
-        password: "password123",
-      });
+      // Should navigate to default /dash when location state is undefined
+      expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
     });
   });
 });

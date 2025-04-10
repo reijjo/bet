@@ -118,6 +118,7 @@ export const getBetById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
+    const userId = req.session.user?.id;
 
     if (!Number(id)) {
       throw new HttpError(
@@ -138,6 +139,10 @@ export const getBetById = async (
 
     if (!bet) {
       throw new HttpError("Bet not found88.", 404);
+    }
+
+    if (bet.user_id !== userId) {
+      throw new HttpError("You are not authorized to access this bet.", 403);
     }
 
     res.status(200).json({ data: bet });

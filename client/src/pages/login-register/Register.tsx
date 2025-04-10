@@ -78,7 +78,7 @@ export const Register = () => {
   return (
     <div className="login-page">
       <Container
-        width="min(600px, 95%)"
+        width="min(500px, 95%)"
         border="0.5px solid"
         borderColor="transparent"
         padding="24px 16px"

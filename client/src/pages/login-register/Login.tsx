@@ -62,6 +62,7 @@ export const Login = () => {
       }).unwrap();
 
       const sessionResult = await fetchSession().unwrap();
+      console.log("sessionresult", sessionResult);
 
       if (sessionResult?.success && sessionResult?.data) {
         dispatch(loginUser(sessionResult.data as User));
@@ -75,7 +76,7 @@ export const Login = () => {
   return (
     <div className="login-page">
       <Container
-        width="min(600px, 100%)"
+        width="min(500px, 100%)"
         border="0.5px solid"
         borderColor="transparent"
         padding="24px 16px"

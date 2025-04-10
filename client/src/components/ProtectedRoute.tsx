@@ -39,10 +39,10 @@ export const ProtectedRoute = () => {
     }
   }, [sessionData, isLoading, isError, errorStatus, dispatch]);
 
-  console.log("ProtectedRoute - data", sessionData);
-  console.log("ProtectedRoute - isLoading", isLoading);
-  console.log("ProtectedRoute - isError", isError);
-  console.log("ProtectedRoute - error", error);
+  // console.log("ProtectedRoute - data", sessionData);
+  // console.log("ProtectedRoute - isLoading", isLoading);
+  // console.log("ProtectedRoute - isError", isError);
+  // console.log("ProtectedRoute - error", error);
 
   if (isLoading) {
     return <Loading />;

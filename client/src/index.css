@@ -68,6 +68,10 @@ body {
   padding-top: 10vh;
 }
 
+.grid-row-2 {
+  grid-row: 2;
+}
+
 /* Headers */
 :is(h1, h2, h3) {
   font-family: "Bebas Neue", sans-serif;

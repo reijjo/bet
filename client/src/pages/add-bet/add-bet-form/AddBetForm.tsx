@@ -164,7 +164,7 @@ export const AddBetForm = ({
             disabled={disabled}
           />
           <Button
-            children="Clear fields"
+            children="Cancel"
             type="button"
             className="btn btn-outline"
             onClick={handleCancel}
