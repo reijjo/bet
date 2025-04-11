@@ -12,13 +12,14 @@ import {
   useLazyGetSessionUserQuery,
   useLogoutMutation,
 } from "./features/api/authApi";
-import { loginUser, logoutUser } from "./features/authSlice";
+import { logoutUser } from "./features/authSlice";
 import { resetModal } from "./features/modalSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppSelector } from "./store/hooks";
 import { useAppDispatch } from "./store/hooks";
 import { RootState } from "./store/store";
+import { verifySession } from "./utils/helperFunctions";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
@@ -31,37 +32,27 @@ function App() {
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
 
-  useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const result = await fetchSession().unwrap();
-        if (result?.success && result?.data) {
-          dispatch(loginUser(result.data));
-        } else {
-          dispatch(logoutUser());
-        }
-      } catch (err) {
-        dispatch(logoutUser());
-      }
-    };
+  // const verifySession = useCallback(async () => {
+  //   try {
+  //     const result = await fetchSession().unwrap();
+  //     if (result?.success && result?.data) {
+  //       dispatch(loginUser(result.data));
+  //     } else {
+  //       dispatch(logoutUser());
+  //     }
+  //   } catch (err) {
+  //     console.error("Session check error:", err);
+  //     dispatch(logoutUser());
+  //   }
+  // }, [dispatch, fetchSession]);
 
-    checkSession();
+  useEffect(() => {
+    verifySession(fetchSession, dispatch);
   }, [dispatch, fetchSession]);
 
   const handleRefresh = async () => {
-    try {
-      const result = await fetchSession().unwrap();
-      if (result?.success && result?.data) {
-        dispatch(loginUser(result.data));
-      } else {
-        dispatch(logoutUser());
-      }
-    } catch (err) {
-      console.error("Session refresh error:", err);
-      dispatch(logoutUser());
-    } finally {
-      dispatch(resetModal());
-    }
+    verifySession(fetchSession, dispatch);
+    dispatch(resetModal());
   };
 
   const handleLogout = async () => {
@@ -88,8 +79,8 @@ function App() {
         <ModalConfirm
           header="Are you still there?"
           text="Do you want to stay logged in?"
-          cancelButton={isLoading ? "Logging out..." : "Logout"}
-          theButton="I'm here!"
+          cancelButton={isLoading ? "..." : "Logout"}
+          theButton="Yes!"
           handleCancel={handleLogout}
           handleConfirm={handleRefresh}
         />

@@ -12,12 +12,20 @@ import type { NextFunction, Request, Response } from "express";
 // GET
 // Get all bets
 export const getBets = async (
-  _req: Request,
+  req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+  const userId = req.session.user?.id;
+
+  if (!userId) {
+    res.status(401).json({ success: false, message: "Not authenticated." });
+    return;
+  }
+
   try {
     const bets = await BetModel.findAll({
+      where: { user_id: userId },
       include: [
         {
           model: BetDetailsModel,

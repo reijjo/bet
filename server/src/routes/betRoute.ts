@@ -14,5 +14,5 @@ betRouter.post("/", authCheck(), createBet);
 betRouter.get("/", authCheck(), getBets);
 // betRouter.patch("/:id", authCheck(), updateBet);
 betRouter.get("/:id", authCheck(), getBetById);
-betRouter.patch("/:id", updateBet);
-betRouter.delete("/:id", deleteBet);
+betRouter.patch("/:id", authCheck(), updateBet);
+betRouter.delete("/:id", authCheck(), deleteBet);

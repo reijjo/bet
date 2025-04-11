@@ -1,4 +1,5 @@
-import { logoutUser } from "../features/authSlice";
+import { useLazyGetSessionUserQuery } from "../features/api/authApi";
+import { loginUser, logoutUser } from "../features/authSlice";
 import { AppDispatch } from "../store/store";
 import { BasicApiResponse } from "./api-response-types";
 import { isErrorWithData } from "./input-validators/typeGuards";
@@ -67,4 +68,22 @@ export const handleLogout = async (
     console.log("Error logging out", error);
   }
   dispatch(logoutUser());
+};
+
+// utils/authUtils.ts
+export const verifySession = async (
+  fetchSession: ReturnType<typeof useLazyGetSessionUserQuery>[0],
+  dispatch: AppDispatch,
+) => {
+  try {
+    const result = await fetchSession().unwrap();
+    if (result?.success && result?.data) {
+      dispatch(loginUser(result.data));
+    } else {
+      dispatch(logoutUser());
+    }
+  } catch (err) {
+    console.error("Session check error:", err);
+    dispatch(logoutUser());
+  }
 };

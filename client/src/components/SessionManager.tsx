@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 
+import { useLogoutMutation } from "../features/api/authApi";
 import { logoutUser } from "../features/authSlice";
 import {
   confirmModalOpen,
@@ -10,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
 
 export const SessionManager = () => {
+  const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
   const isModalOpen = useAppSelector(
     (state: RootState) => state.modal.isRefreshModalOpen,
@@ -22,20 +24,36 @@ export const SessionManager = () => {
   const sessionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const logoutTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const handleLogout = useCallback(async () => {
+    try {
+      await logout().unwrap();
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      dispatch(logoutUser());
+      dispatch(resetModal());
+    }
+  }, [logout, dispatch]);
+
   const startSessionTimer = useCallback(() => {
     if (sessionTimeoutRef.current) clearTimeout(sessionTimeoutRef.current);
     if (logoutTimeoutRef.current) clearTimeout(logoutTimeoutRef.current);
 
-    sessionTimeoutRef.current = setTimeout(() => {
-      dispatch(confirmModalOpen(true));
-      dispatch(refreshModalOpen(true));
+    sessionTimeoutRef.current = setTimeout(
+      () => {
+        dispatch(confirmModalOpen(true));
+        dispatch(refreshModalOpen(true));
 
-      logoutTimeoutRef.current = setTimeout(() => {
-        dispatch(logoutUser());
-        dispatch(resetModal());
-      }, 50 * 1000);
-    }, 60 * 1000);
-  }, [dispatch]);
+        logoutTimeoutRef.current = setTimeout(
+          () => {
+            handleLogout();
+          },
+          10 * 60 * 1000,
+        );
+      },
+      50 * 60 * 1000,
+    );
+  }, [dispatch, handleLogout]);
 
   // Only start the timer if user is authenticated
   useEffect(() => {
