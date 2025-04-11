@@ -19,7 +19,6 @@ export const sessionConfig = {
     httpOnly: true,
     secure: Bun.env.NODE_ENV === "production",
     sameSite: "lax",
-    // maxAge: 1000 * 5,
-    maxAge: 1000 * 60 * 60,
+    maxAge: 1000 * 60 * 70,
   },
 };

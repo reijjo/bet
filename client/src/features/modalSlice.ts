@@ -18,6 +18,7 @@ const initialState: ModalState = {
   isModalOpen: false,
   isModifyBetModalOpen: { id: undefined, isOpen: false },
   isConfirmModalOpen: false,
+  // isRefreshModalOpen: true,
   isRefreshModalOpen: false,
 };
 
@@ -41,8 +42,12 @@ const modalSlice = createSlice({
 
 export default modalSlice.reducer;
 
-export const { isModifyBetModalOpen, confirmModalOpen, resetModal } =
-  modalSlice.actions;
+export const {
+  isModifyBetModalOpen,
+  confirmModalOpen,
+  refreshModalOpen,
+  resetModal,
+} = modalSlice.actions;
 
 export const openConfirmModal = () => {
   return async (dispatch: AppDispatch) => {

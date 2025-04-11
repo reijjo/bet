@@ -16,25 +16,11 @@ export const authCheck = (requiredRole?: string) => {
     }
 
     // Extend session if close to expiration
-    // const cookie = req.session.cookie;
-    // const timeLeft = (cookie.expires?.getTime() ?? 0) - Date.now();
-
-    // if (timeLeft && timeLeft < 10 * 60 * 1000) {
-    //   const maxAge = req.session.cookie.originalMaxAge ?? 60 * 60 * 1000;
-    //   req.session.cookie.expires = new Date(Date.now() + maxAge);
-    //   req.session.save((err) => {
-    //     if (err) {
-    //       console.error("Failed to extend session:", err);
-    //     } else {
-    //       console.log("Session extended properly");
-    //     }
-    //   });
-    //   console.log("Session extended via authCheck");
-    // }
 
     const sessionExpiresAt = req.session.cookie.expires?.getTime() ?? 0;
     const timeLeftMs = sessionExpiresAt - Date.now();
     const fifteenMinutesMs = 15 * 60 * 1000;
+    // const fifteenMinutesMs = 15 * 1000;
 
     if (timeLeftMs > 0 && timeLeftMs < fifteenMinutesMs) {
       const originalMaxAge =

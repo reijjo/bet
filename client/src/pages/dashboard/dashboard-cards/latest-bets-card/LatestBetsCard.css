@@ -7,13 +7,14 @@
   min-height: 1fr;
   height: auto;
 
-  border: 1px solid rgb(255, 255, 255, 0.5);
+  border: 1px solid rgb(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 6px 12px;
   padding: 6px 0;
 
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-s);
+  background: var(--primary-700);
 
   &:hover {
     box-shadow: var(--shadow-l);

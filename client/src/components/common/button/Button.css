@@ -159,13 +159,13 @@
 
 .btn-delete {
   color: white;
+  color: var(--error-xxlight);
   border-radius: 8px;
-  border: 0.5px solid var(--button-danger-normal);
-  background-color: var(--button-danger-bgColor-hover);
+  border: 0.5px solid var(--error-xxlight);
 
   &:hover {
-    background-color: var(--button-danger-bgColor-active);
-    color: white;
+    background-color: var(--error-xxlight);
+    color: var(--error-dark);
     /* background-image: linear-gradient(
       var(--error-base) 0%,
       var(--error-dark) 100%

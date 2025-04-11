@@ -4,10 +4,16 @@ import { useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { SessionManager } from "./components/SessionManager";
 import { UnderCons } from "./components/common/fallback/UnderCons";
 import { AppLayout } from "./components/layout/AppLayout";
-import { useLazyGetSessionUserQuery } from "./features/api/authApi";
+import { ModalConfirm } from "./components/modals/confirm/ModalConfirm";
+import {
+  useLazyGetSessionUserQuery,
+  useLogoutMutation,
+} from "./features/api/authApi";
 import { loginUser, logoutUser } from "./features/authSlice";
+import { resetModal } from "./features/modalSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppSelector } from "./store/hooks";
@@ -17,13 +23,13 @@ import { RootState } from "./store/store";
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
 function App() {
-  const rootstate = useAppSelector((state: RootState) => state.auth);
+  const { isRefreshModalOpen } = useAppSelector(
+    (state: RootState) => state.modal,
+  );
+  const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
-
-  useEffect(() => {
-    console.log("App - authstate", rootstate);
-  }, [rootstate]);
+  const [logout, { isLoading }] = useLogoutMutation();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -42,6 +48,33 @@ function App() {
     checkSession();
   }, [dispatch, fetchSession]);
 
+  const handleRefresh = async () => {
+    try {
+      const result = await fetchSession().unwrap();
+      if (result?.success && result?.data) {
+        dispatch(loginUser(result.data));
+      } else {
+        dispatch(logoutUser());
+      }
+    } catch (err) {
+      console.error("Session refresh error:", err);
+      dispatch(logoutUser());
+    } finally {
+      dispatch(resetModal());
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      dispatch(logoutUser());
+      dispatch(resetModal());
+    }
+  };
+
   return (
     <Router
       future={{
@@ -49,6 +82,18 @@ function App() {
         v7_startTransition: true,
       }}
     >
+      {isAuthenticated && <SessionManager />}
+
+      {isRefreshModalOpen && isAuthenticated && (
+        <ModalConfirm
+          header="Are you still there?"
+          text="Do you want to stay logged in?"
+          cancelButton={isLoading ? "Logging out..." : "Logout"}
+          theButton="I'm here!"
+          handleCancel={handleLogout}
+          handleConfirm={handleRefresh}
+        />
+      )}
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Homepage />} />

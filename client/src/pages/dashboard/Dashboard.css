@@ -1,5 +1,9 @@
-.dashboard-grid {
+.dashboard-page {
   grid-row: 2;
+  background: radial-gradient(var(--primary-500), transparent);
+}
+
+.dashboard-grid {
   display: grid;
   grid-template-rows: 0.5fr 1fr minmax(1fr, auto);
 
@@ -10,7 +14,6 @@
 
   margin: auto;
   padding: 1rem 2rem;
-  /* padding-top: 12vh; */
 
   @media only screen and (max-width: 800px) {
     /* 8 grids */

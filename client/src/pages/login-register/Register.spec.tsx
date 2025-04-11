@@ -1,12 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { MemoryRouter, useNavigate } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as userApi from "../../features/api/userApi";
 import * as registerSlice from "../../features/registerSlice";
-import { useAppSelector } from "../../store/hooks";
+// import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store/store";
 import { Register } from "./Register";
 

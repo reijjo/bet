@@ -1,6 +1,6 @@
 import "./Bets.css";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -53,67 +53,72 @@ export const Bets = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  // Handle authentication errors in an effect instead of during render
+  useEffect(() => {
+    if (isError && !isLoading) {
+      dispatch(logoutUser());
+    }
+  }, [isError, isLoading, dispatch]);
+
   const modifybet = (id: number | string) => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
-  // TODO: Own component wrapper for isLoading ??
   if (isLoading) return <Loading />;
-  if (isError && !isLoading) {
-    dispatch(logoutUser());
-    return <Error error={error} />;
-  }
+  if (isError) return <Error error={error} />;
 
   return (
-    <div className="wrapper bets-page">
-      <h1>Bets</h1>
-      <div className="bets-filters">
-        <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />
-        <BetsFilter
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
-        />
-        <Button
-          children="add bet"
-          type="button"
-          className="btn btn-filled"
-          onClick={() => navigate("/add-bet")}
-          width="max-content"
-          margin="0 0 0 auto"
-          height="max-content"
-        />
-        <SelectedSort
-          currentSort={currentSort}
-          setCurrentSort={setCurrentSort}
-        />
-        <SelectedFilters
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
-        />
-      </div>
-      <div className="bets-table">
-        <table>
-          <HeadersBetsTable />
-          <tbody>
-            {sortedAndFiltered.map((bet) => (
-              <tr
-                key={bet.id}
-                className={getRowColor(bet.status)}
-                onClick={() => modifybet(Number(bet.id))}
-              >
-                <DateBetsTable bet={bet} />
-                <SportBetsTable bet={bet} />
-                <TypeBetsTable bet={bet} />
-                <SelectionBetsTable bet={bet} />
-                <ResultBetsTable bet={bet} />
-                <StakeBetsTable bet={bet} />
-                <OddsBetsTable bet={bet} />
-                <BetStatusChange bet={bet} />
-                <PayoutBetsTable bet={bet} />
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="bets-page">
+      <div className="wrapper">
+        <h1>Bets</h1>
+        <div className="bets-filters">
+          <BetsSort currentSort={currentSort} onSortChange={setCurrentSort} />
+          <BetsFilter
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+          />
+          <Button
+            children="add bet"
+            type="button"
+            className="btn btn-filled"
+            onClick={() => navigate("/add-bet")}
+            width="max-content"
+            margin="0 0 0 auto"
+            height="max-content"
+          />
+          <SelectedSort
+            currentSort={currentSort}
+            setCurrentSort={setCurrentSort}
+          />
+          <SelectedFilters
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+          />
+        </div>
+        <div className="bets-table">
+          <table>
+            <HeadersBetsTable />
+            <tbody>
+              {sortedAndFiltered.map((bet) => (
+                <tr
+                  key={bet.id}
+                  className={getRowColor(bet.status)}
+                  onClick={() => modifybet(Number(bet.id))}
+                >
+                  <DateBetsTable bet={bet} />
+                  <SportBetsTable bet={bet} />
+                  <TypeBetsTable bet={bet} />
+                  <SelectionBetsTable bet={bet} />
+                  <ResultBetsTable bet={bet} />
+                  <StakeBetsTable bet={bet} />
+                  <OddsBetsTable bet={bet} />
+                  <BetStatusChange bet={bet} />
+                  <PayoutBetsTable bet={bet} />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

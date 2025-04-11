@@ -27,6 +27,8 @@ export const ProtectedRoute = () => {
   const errorStatus = getErrorStatus(error);
 
   useEffect(() => {
+    console.log("checking sesion");
+
     if (!isLoading) {
       // Check for error first
       if (isError || errorStatus === 401) {

@@ -1,6 +1,8 @@
 .bets-page {
   grid-row: 2;
   display: grid;
+  background: radial-gradient(var(--primary-500), transparent);
+  padding-bottom: 10rem;
 }
 
 .bets-filters {
@@ -34,8 +36,9 @@
 /* Bets table */
 
 .bets-table {
-  padding-bottom: 240px;
+  /* padding-bottom: 240px; */
   font-size: var(--font-xsmall);
+  background: var(--primary-800);
 }
 
 table {
@@ -50,16 +53,20 @@ table {
 }
 
 tbody tr {
+  &:nth-child(even) {
+    background: rgba(0, 0, 0, 0.025);
+  }
   &:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.05);
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+    background-color: var(--primary-700);
   }
 }
 
 th,
 td {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 8px 8px;
 }
 

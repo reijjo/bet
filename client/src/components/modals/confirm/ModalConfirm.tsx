@@ -11,12 +11,14 @@ type ModalConfirmProps = {
   header?: string;
   text?: string;
   theButton?: string;
+  cancelButton?: string;
 };
 
 export const ModalConfirm = ({
   header = "Delete bet?",
   text = "The bet is gone forever.",
   theButton = "Delete",
+  cancelButton = "Cancel",
   handleCancel,
   handleConfirm,
 }: ModalConfirmProps) => {
@@ -31,21 +33,21 @@ export const ModalConfirm = ({
         </div>
         <Divider color="var(--primary-800)" />
         <div className="text-div">{text}</div>
-        <Divider />
+        {/* <Divider /> */}
         <div className="buttons">
           <button
             className="btn btn-outline"
             type="button"
-            onClick={handleCancel}
+            onClick={handleConfirm}
           >
-            Cancel
+            {theButton}
           </button>
           <button
             className="btn btn-delete"
             type="button"
-            onClick={handleConfirm}
+            onClick={handleCancel}
           >
-            {theButton}
+            {cancelButton}
           </button>
         </div>
       </div>

@@ -19,12 +19,14 @@ export const Dashboard = () => {
   if (isError) return <Error error={error} />;
 
   return (
-    <div className="wrapper dashboard-grid">
-      <MiniSummaryCards allBets={allBets} />
-      <SummaryCard allBets={allBets} />
-      <MonthlyCard allBets={allBets} />
-      <WinPercentCard allBets={allBets} />
-      <LatestBetsCard allBets={allBets} />
+    <div className="dashboard-page">
+      <div className="wrapper dashboard-grid">
+        <MiniSummaryCards allBets={allBets} />
+        <SummaryCard allBets={allBets} />
+        <MonthlyCard allBets={allBets} />
+        <WinPercentCard allBets={allBets} />
+        <LatestBetsCard allBets={allBets} />
+      </div>
     </div>
   );
 };

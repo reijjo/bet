@@ -6,12 +6,13 @@
 
   gap: 8px;
 
-  border: 1px solid rgb(255, 255, 255, 0.5);
+  border: 1px solid rgb(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 8px 12px;
 
   backdrop-filter: blur(4px);
   box-shadow: var(--shadow-s);
+  background: var(--primary-700);
 
   &:hover {
     box-shadow: var(--shadow-l);

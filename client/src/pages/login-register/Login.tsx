@@ -62,7 +62,6 @@ export const Login = () => {
       }).unwrap();
 
       const sessionResult = await fetchSession().unwrap();
-      console.log("sessionresult", sessionResult);
 
       if (sessionResult?.success && sessionResult?.data) {
         dispatch(loginUser(sessionResult.data as User));

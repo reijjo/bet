@@ -158,6 +158,8 @@ a {
 
   --primary: rgb(5, 71, 135);
 
+  --test: #d3eedc;
+
   --accent-50: #fefde8;
   --accent-100: #fefdc3;
   --accent-200: #fff789;
@@ -178,6 +180,8 @@ a {
   /* Text */
   --text: hsl(47, 100%, 98%);
   --text-light: hsla(0, 0%, 100%, 0.8);
+  --text: white;
+  --text-light: white;
   --text-dark: hsl(47, 100%, 5%);
   --text-disabled: #808080;
   --text-primary: hsl(47, 100%, 95%);
@@ -254,9 +258,9 @@ a {
   --warning-xlight: hsla(37, 100%, 92%, 1);
 
   /* Box Shadow */
-  --shadow-s: 0px 2px 8px hsla(228, 100%, 81%, 0.2);
+  --shadow-s: 0 4px 8px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
   --shadow-m: 0px 4px 16px hsla(228, 100%, 81%, 0.4);
-  --shadow-l: 0px 4px 16px hsla(228, 100%, 81%, 0.2);
+  --shadow-l: 0 4px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.25);
 
   --shadow-xl: 0px 8px 64px hsla(228, 100%, 81%, 0.2);
 
