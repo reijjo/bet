@@ -82,7 +82,12 @@ export const NavbarUser = () => {
                 )}
               </a>
             </div>
-            {isUserMenuOpen && <NavUserMenu dropdownRef={dropdownRef} />}
+            {isUserMenuOpen && (
+              <NavUserMenu
+                dropdownRef={dropdownRef}
+                setIsUserMenuOpen={setIsUserMenuOpen}
+              />
+            )}
           </div>
         </div>
       </div>

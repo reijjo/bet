@@ -1,6 +1,6 @@
 import "./WinPercentCard.css";
 
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   PieChartDashboard,
@@ -35,13 +35,11 @@ export const WinPercentCard = ({ allBets }: allBetsProp) => {
     <div className="dash-winpercent">
       <h5>Win %</h5>
       {settledBets.length > 0 ? (
-        <Suspense fallback={<div>Loading...</div>}>
-          <PieChartDashboard
-            myBets={settledBets}
-            hoverText={hoverData}
-            onHover={handleHover}
-          />
-        </Suspense>
+        <PieChartDashboard
+          myBets={settledBets}
+          hoverText={hoverData}
+          onHover={handleHover}
+        />
       ) : (
         <p
           style={{

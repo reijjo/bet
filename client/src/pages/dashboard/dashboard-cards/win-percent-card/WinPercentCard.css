@@ -3,6 +3,7 @@
   grid-template-rows: max-content 1fr;
   grid-row: 2 / 3;
   grid-column: 9 / 13;
+  min-height: 10rem;
 
   border: 1px solid rgb(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -16,7 +17,7 @@
     box-shadow: var(--shadow-l);
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1100px) {
     /* 8 grids */
     grid-column: 1 / 5;
     grid-row: 3 / 4;

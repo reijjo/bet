@@ -12,14 +12,15 @@ import {
   useLazyGetSessionUserQuery,
   useLogoutMutation,
 } from "./features/api/authApi";
-import { logoutUser } from "./features/authSlice";
+import { loginUser, logoutUser } from "./features/authSlice";
 import { resetModal } from "./features/modalSlice";
 import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
 import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppSelector } from "./store/hooks";
 import { useAppDispatch } from "./store/hooks";
 import { RootState } from "./store/store";
-import { verifySession } from "./utils/helperFunctions";
+
+// import { verifySession } from "./utils/helperFunctions";
 
 // import { Verify } from "./pages/login-register/verify-account/Verify";
 
@@ -32,7 +33,7 @@ function App() {
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
 
-  // const verifySession = useCallback(async () => {
+  // const verifySession = async () => {
   //   try {
   //     const result = await fetchSession().unwrap();
   //     if (result?.success && result?.data) {
@@ -44,15 +45,42 @@ function App() {
   //     console.error("Session check error:", err);
   //     dispatch(logoutUser());
   //   }
-  // }, [dispatch, fetchSession]);
+  // }
 
   useEffect(() => {
-    verifySession(fetchSession, dispatch);
+    // verifySession(fetchSession, dispatch);
+    const verifySession = async () => {
+      try {
+        const result = await fetchSession().unwrap();
+        if (result?.success && result?.data) {
+          dispatch(loginUser(result.data));
+        } else {
+          dispatch(logoutUser());
+        }
+      } catch (err) {
+        console.error("Session check error:", err);
+        dispatch(logoutUser());
+      }
+    };
+    verifySession();
   }, [dispatch, fetchSession]);
 
   const handleRefresh = async () => {
-    verifySession(fetchSession, dispatch);
-    dispatch(resetModal());
+    // verifySession(fetchSession, dispatch);
+    // const verifySession = async () => {
+    try {
+      const result = await fetchSession().unwrap();
+      if (result?.success && result?.data) {
+        dispatch(loginUser(result.data));
+      } else {
+        dispatch(logoutUser());
+        dispatch(resetModal());
+      }
+    } catch (err) {
+      console.error("Session check error:", err);
+      dispatch(logoutUser());
+    }
+    // }
   };
 
   const handleLogout = async () => {

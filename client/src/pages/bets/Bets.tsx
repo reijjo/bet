@@ -130,14 +130,14 @@ export const Bets = () => {
               type="button"
               className="btn btn-outline"
               children="Show 10 more"
-              width="min(20rem, 100%)"
+              width="min(15rem, 100%)"
               onClick={() => setVisibleCount((prev) => prev + 10)}
             />
             <Button
               type="button"
               className="btn btn-special"
               children="Show all"
-              width="min(20rem, 100%)"
+              width="min(15rem, 100%)"
               onClick={() => setVisibleCount(sortedAndFiltered.length)}
             />
           </div>

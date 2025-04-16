@@ -81,7 +81,7 @@ const LatestBets = ({ allBets }: allBetsProp) => {
               <div className="parlay-div">
                 {bet.betDetails.map((parlay, index) => (
                   <p
-                    className="bet-home-team"
+                    className="bet-away-team"
                     key={index}
                     title={parlay.away_team}
                   >

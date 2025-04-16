@@ -24,7 +24,7 @@
     padding-left: 12px;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1100px) {
     /* 8 grids */
     grid-column: 1 / -1;
     grid-row: 4 / 5;
@@ -42,7 +42,7 @@
 .latest-headers,
 .latest-bets {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 1.25fr 0.5fr 0.5fr 0.75fr;
+  grid-template-columns: 0.5fr 2fr 1fr 0.5fr 0.5fr 0.75fr;
   gap: 8px;
 
   border-bottom: 1px solid var(--primary-600);
@@ -115,6 +115,14 @@
   max-width: 10ch;
 }
 
+.parlay-div .bet-home-team {
+  margin-left: auto;
+}
+
+.parlay-div .bet-away-team {
+  margin-right: auto;
+}
+
 .bet-selection {
   border-radius: 4px;
 
@@ -160,7 +168,7 @@
   }
 }
 
-@media only screen and (max-width: 581px) {
+@media only screen and (max-width: 800px) {
   .latest-bet-header-selection {
     text-align: start;
   }
