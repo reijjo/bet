@@ -73,8 +73,8 @@ function App() {
       if (result?.success && result?.data) {
         dispatch(loginUser(result.data));
       } else {
-        dispatch(logoutUser());
         dispatch(resetModal());
+        dispatch(logoutUser());
       }
     } catch (err) {
       console.error("Session check error:", err);
@@ -89,8 +89,8 @@ function App() {
     } catch (err) {
       console.error("Logout error:", err);
     } finally {
-      dispatch(logoutUser());
       dispatch(resetModal());
+      dispatch(logoutUser());
     }
   };
 
