@@ -111,7 +111,6 @@ export const Homepage = () => {
                 size={isMobile ? "2x" : "3x"}
                 data-testid="why-icon"
               />
-              {/* <p>Keep track of your bets and stay organized</p> */}
               <p>Keep track of your bets</p>
             </div>
             <div className="why-to-register-box">
