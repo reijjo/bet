@@ -57,3 +57,5 @@ jobs:
         run: cd server && bun install
       - name: Run backend tests
         run: cd server && bun run test
+        env:
+          PORT: 3000
