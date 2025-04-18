@@ -32,8 +32,6 @@ export const getBets = async (
           as: "betDetails",
         },
       ],
-      // limit: 10,
-      // order: [["createdAt", "DESC"]],
     });
     res.status(200).json({ data: bets } as GetBetsApiResponse);
   } catch (error: unknown) {
