@@ -41,7 +41,8 @@ export const Homepage = () => {
       <section className="hero-section">
         <div className="hero-wrapper wrapper">
           <div className="hero-text">
-            <h4>Discover the Bet Tracking Platform 10+ Users Love</h4>
+            {/* <h4>Discover the Bet Tracking Platform 10+ Users Love</h4> */}
+            <h4>Discover the Bet Tracking Platform that everyone Loves</h4>
             <div className="hero-slogan">
               <h1>Track your bets online without annoying excel sheets!</h1>
               <p>
@@ -77,7 +78,6 @@ export const Homepage = () => {
             imageWidth="80%"
             extraClass="span2"
           />
-          {isMobile && <Divider />}
           <div className="home-feature-addbet">
             <figure className="addbet-feature">
               <p>

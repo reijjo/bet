@@ -45,8 +45,6 @@
   color: var(--secondary-xlight);
   align-items: center;
 
-  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
-
   @media screen and (max-width: 800px) {
     grid-template-columns:
       minmax(150px, 1.5fr) minmax(80px, 1fr) minmax(40px, 0.5fr)
@@ -57,6 +55,11 @@
 .finish-mybet-slip {
   background-color: rgba(0, 0, 0, 0.1);
   font-size: var(--font-small);
+  border-bottom: 1px solid rgba(43, 43, 145, 0.5);
+}
+
+.finish-mybet-slip:last-of-type {
+  border-bottom: none;
 }
 
 .mybet-match,

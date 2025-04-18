@@ -39,7 +39,7 @@ export const Bets = () => {
   } = useGetBetsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(5);
 
   const [currentSort, setCurrentSort] = useState<SortOption>({
     field: "date",
@@ -129,9 +129,9 @@ export const Bets = () => {
             <Button
               type="button"
               className="btn btn-outline"
-              children="Show 10 more"
+              children="Show 5 more"
               width="min(15rem, 100%)"
-              onClick={() => setVisibleCount((prev) => prev + 10)}
+              onClick={() => setVisibleCount((prev) => prev + 5)}
             />
             <Button
               type="button"

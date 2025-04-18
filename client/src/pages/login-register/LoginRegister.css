@@ -59,7 +59,7 @@
   }
 }
 
-.btn-oauth {
+/* .btn-oauth {
   border: thin solid var(--primary-500);
   border-radius: 8px;
   box-shadow: var(--shadow-s);
@@ -74,7 +74,7 @@
   &:hover {
     background-color: var(--primary-900);
   }
-}
+} */
 
 .login-p {
   font-size: var(--font-smaller);

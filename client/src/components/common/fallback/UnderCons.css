@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  grid-row: 2;
 
   & iframe {
     pointer-events: none;

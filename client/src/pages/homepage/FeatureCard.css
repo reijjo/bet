@@ -24,8 +24,8 @@
   & img {
     /* aspect-ratio: 16 / 9; */
     overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px hsla(232, 100%, 74%, 0.2);
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
   }
 }
 

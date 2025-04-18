@@ -1,3 +1,5 @@
+import "./AddBet.css";
+
 import { useAddBetForm } from "../../hooks/useAddBetForm";
 import { AddBetForm } from "./add-bet-form/AddBetForm";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
@@ -7,7 +9,7 @@ export const AddBet = () => {
     useAddBetForm();
 
   return (
-    <div className="wrapper grid-row-2">
+    <div className="wrapper grid-row-2 addbet-page">
       <AddBetForm
         myBet={myBet}
         setMyBet={setMyBet}

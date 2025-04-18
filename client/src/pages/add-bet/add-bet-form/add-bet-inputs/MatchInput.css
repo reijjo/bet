@@ -8,6 +8,7 @@
 
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
+  box-shadow: var(--shadow-xs);
 
   &:hover {
     box-shadow: var(--shadow-s);

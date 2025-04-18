@@ -1,5 +1,4 @@
 .finish-mybet-slip-headers {
-  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
   text-transform: uppercase;
   font-size: var(--font-smaller);
   font-weight: 500;
@@ -14,8 +13,6 @@
   padding: 8px 0;
   color: var(--secondary-xlight);
   align-items: center;
-
-  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
 
   @media screen and (max-width: 800px) {
     grid-template-columns:

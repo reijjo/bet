@@ -1,6 +1,6 @@
 import "./UnderCons.css";
 
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,14 @@ import { Button } from "../button/Button";
 export const UnderCons = () => {
   const navigate = useNavigate();
 
+  const navigateBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <div className="under-cons-component">
       <h2>Nothing here yet</h2>
@@ -18,13 +26,13 @@ export const UnderCons = () => {
       <p>Check back later...</p>
       <Button
         className="btn btn-outline under-cons-component-button"
-        onClick={() => navigate("/")}
+        onClick={navigateBack}
         type="button"
         width="max-content"
         margin="1rem 0 0"
       >
-        <p>Back to Homepage</p>
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={faArrowLeft} />
+        <p>Go Back</p>
       </Button>
     </div>
   );

@@ -258,6 +258,7 @@ a {
   --warning-xlight: hsla(37, 100%, 92%, 1);
 
   /* Box Shadow */
+  --shadow-xs: 0 4px 8px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.1);
   --shadow-s: 0 4px 8px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
   --shadow-m: 0px 4px 16px hsla(228, 100%, 81%, 0.4);
   --shadow-l: 0 4px 8px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.25);

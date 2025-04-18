@@ -8,6 +8,7 @@
   box-shadow: var(--shadow-xl);
   padding: 8px 16px 16px;
   backdrop-filter: blur(8px);
+  background: var(--primary-700);
 
   display: grid;
   grid-template-rows: max-content 1fr;
