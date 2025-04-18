@@ -34,7 +34,7 @@ vi.mock("../../store/hooks", () => ({
 
 const user = userEvent.setup();
 
-describe.only("Login.tsx", () => {
+describe("Login.tsx", () => {
   const mockLogin = vi.fn();
   const mockFetchSession = vi.fn();
 
