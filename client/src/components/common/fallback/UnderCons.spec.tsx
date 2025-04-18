@@ -37,7 +37,7 @@ describe("UnderCons", () => {
       screen.getByRole("img", { name: "under-construction" }),
     ).toBeInTheDocument();
 
-    const button = screen.getByRole("button", { name: "Back to Homepage" });
+    const button = screen.getByRole("button", { name: "Go Back" });
     expect(button).toBeInTheDocument();
 
     await user.click(button);

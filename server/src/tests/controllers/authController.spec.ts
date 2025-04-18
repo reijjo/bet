@@ -125,7 +125,7 @@ describe.only("AUTH CONTROLLER", () => {
       const res = await api.post("/api/auth/logout");
 
       expect(res.status).toBe(200);
-      expect(res.body.message).toBe("User logged out successfully");
+      expect(res.body.message).toBe("User already logged out");
     });
   });
 
@@ -144,7 +144,7 @@ describe.only("AUTH CONTROLLER", () => {
     test("not logged in", async () => {
       const res = await api.get("/api/auth/me");
 
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(401);
       expect(res.body.success).toBe(false);
     });
   });
