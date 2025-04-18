@@ -10,7 +10,7 @@ on:
 
 jobs:
   frontend-tests:
-    name: Run Frontend Tests
+    name: Frontend Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +27,33 @@ jobs:
 
       - name: Run frontend tests
         run: cd client && bun run test
+
+  backend-tests:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DB_TEST_NAME }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install backend dependencies
+        run: cd server && bun install
+      - name: Run backend tests
+        run: cd server && bun run test
