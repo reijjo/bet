@@ -185,16 +185,16 @@ const isLast30days = (date: string) =>
 
 export const periodParser = (myBets: Bet[]) => {
   const todayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isToday(detail.date)),
+    bet.betDetails.some((detail) => isToday(detail.date.toISOString())),
   );
   const yesterdayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isYesterday(detail.date)),
+    bet.betDetails.some((detail) => isYesterday(detail.date.toISOString())),
   );
   const last7DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast7Days(detail.date)),
+    bet.betDetails.some((detail) => isLast7Days(detail.date.toISOString())),
   );
   const last30DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast30days(detail.date)),
+    bet.betDetails.some((detail) => isLast30days(detail.date.toISOString())),
   );
 
   return {
