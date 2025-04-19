@@ -1,4 +1,3 @@
-// import { useEffect } from "react";
 import { useEffect } from "react";
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -32,6 +31,8 @@ function App() {
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
+
+  console.log("ENVIRONTMENT:", process.env.NODE_ENV);
 
   // const verifySession = async () => {
   //   try {

@@ -4,7 +4,7 @@ import { pgStore } from "../utils/db/db";
 const { SESSION_SECRET } = config;
 
 export const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173", "http://localhost:4173"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
   optionsSuccessStatus: 200,
