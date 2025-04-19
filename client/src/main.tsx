@@ -8,6 +8,7 @@ import { store } from "./store/store.tsx";
 
 if (process.env.MODE === "production") {
   console.log = () => {};
+  console.debug = () => {};
   console.info = () => {};
   console.warn = () => {};
 }
