@@ -11,7 +11,6 @@ import {
 } from "bun:test";
 
 import app from "../../app";
-import { initializeDatabase } from "../../models";
 import { UserModel } from "../../models/userModel";
 import { closeDBconnection, connectToDB } from "../../utils/db/db";
 import * as emailService from "../../utils/emailService";

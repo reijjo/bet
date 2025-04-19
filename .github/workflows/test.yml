@@ -57,3 +57,22 @@ jobs:
         run: cd server && bun install
       - name: Run backend tests
         run: cd server && bun run test
+        env:
+          PORT: 3000
+          DB_NAME: ${{ secrets.DB_TEST_NAME }}
+          DB_PORT: 5432
+          DB_LOCAL: localhost
+          DB_HOST: postgres
+          DB_MAINTENANCE: postgres
+          DB_TEST_NAME: ${{ secrets.DB_TEST_NAME }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          PGADMIN_DEFAULT_EMAIL: ${{ secrets.PGADMIN_DEFAULT_EMAIL }}
+          PGADMIN_DEFAULT_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          PG_PORT: 5050
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.POSTGRES_PASSWORD }}
+          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
