@@ -29,6 +29,7 @@ describe("ModifyBetModal", () => {
           isModifyBetModalOpen: { id: mockBet.id, isOpen: true },
           isModalOpen: true,
           isConfirmModalOpen: false,
+          isRefreshModalOpen: false,
         },
         sidebar: {
           sidebar: false,
