@@ -17,6 +17,7 @@ const envVars = [
   "EMAIL_FROM",
   "GMAIL_APP_PASSWORD",
   "DB_TEST_NAME",
+  "DB_LOCAL_AZURE",
 ] as const;
 
 // Validates that env variables exists
