@@ -15,12 +15,20 @@ This project is done with `React`, `TypeScript`, `Expressjs` and basic `CSS`
 - `RTK query` for queries
 - `Redux` for state managment
 - `PostgreSQL` and `Sequelize` for database
+- `Sessions` for user managment
+
+## How to use?
+Try it live <a href='https://blue-mud-099cac403.6.azurestaticapps.net/'>here</a>
+- Frontend is deployed with `Azure Static Web App`
+- Database is deployed in a Docker container with `Azure Virtual machine`
+- Backend is deployed with `Render`
+
 
 ## Testing
 - Frontend `vitest`
 - Backend `bun:test`
 - E2E `Playwright` (coming later...)
-- 
+
 ### Frontend
 Go to frontend folder (client)
 - `bun run test` to run unit tests
