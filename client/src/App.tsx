@@ -36,6 +36,8 @@ function App() {
 
   console.log("ENVIRONTMENT:", process.env.NODE_ENV);
   console.log("BACKEND_URL:", BACKEND_URL);
+  console.log("VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
+  console.log("VITE_DEPLOYMENT_URL:", import.meta.env.VITE_DEPLOYMENT_URL);
 
   // const verifySession = async () => {
   //   try {
