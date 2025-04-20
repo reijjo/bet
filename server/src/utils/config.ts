@@ -17,6 +17,7 @@ const envVars = [
   "EMAIL_FROM",
   "GMAIL_APP_PASSWORD",
   "DB_TEST_NAME",
+  "DB_LOCAL_AZURE",
 ] as const;
 
 // Validates that env variables exists
@@ -45,11 +46,15 @@ const {
   EMAIL_FROM,
   GMAIL_APP_PASSWORD,
   DB_TEST_NAME,
+  DB_LOCAL_AZURE,
 } = Bun.env;
 const DB_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_NAME}`;
 const DB_TEST_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_TEST_NAME}`;
 
-const DATABASE_URL = Bun.env.NODE_ENV === "test" ? DB_TEST_URL : DB_URL;
+let DATABASE_URL = Bun.env.NODE_ENV === "test" ? DB_TEST_URL : DB_URL;
+if (Bun.env.NODE_ENV === "production") {
+  DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL_AZURE}:${DB_PORT}/${DB_NAME}`;
+}
 
 export const config = {
   PORT,
@@ -70,4 +75,5 @@ export const config = {
   FRONTEND_URL,
   EMAIL_FROM,
   GMAIL_APP_PASSWORD,
+  DB_LOCAL_AZURE,
 };
