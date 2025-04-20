@@ -4,8 +4,7 @@
 
 Place where you can track your bets
 - You can finally ditch the annoying Excel Sheets that are impossible to update with your phone.
-
-<img width="1412" alt="Screenshot 2025-01-03 at 13 07 26" src="https://github.com/user-attachments/assets/39580df0-124e-411f-8755-99c534a776a4" width='640' height='480' />
+<img alt="Screenshot 2025-04-20 at 20 52 33" src="https://github.com/user-attachments/assets/b6250091-7780-448f-a185-9ee59491a8aa" width="1412" height='480' />
 
 ## Tech stuff
 
