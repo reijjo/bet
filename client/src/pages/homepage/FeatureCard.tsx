@@ -22,7 +22,7 @@ export const FeatureCard = ({
       <figcaption>
         <span>{highlighted}</span> {text}
       </figcaption>
-      <img src={image} alt={highlighted} width={imageWidth} />
+      <img src={image} alt={highlighted} width={imageWidth} loading="eager" />
     </figure>
   );
 };
