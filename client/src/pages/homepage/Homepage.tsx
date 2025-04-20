@@ -80,12 +80,12 @@ export const Homepage = () => {
           />
           <div className="home-feature-addbet">
             <figure className="addbet-feature">
-              <p>
+              <p style={isMobile ? { paddingTop: "2rem" } : {}}>
                 <span>Add Bet</span> has many different bet types to choose
                 from. <span>Single</span>, <span>Over</span>, <span>Under</span>
                 , <span>Bet Builder</span> and more!
               </p>
-              <img src={add1} alt="Add Bet" width="60%" />
+              <img src={add1} alt="Add Bet" />
             </figure>
           </div>
           {isMobile && <Divider />}
@@ -96,7 +96,7 @@ export const Homepage = () => {
                 <span>Parlay</span> and your favorite <span>Tipper</span> and{" "}
                 <span>Sport/League</span> that helps analyze the bets.
               </p>
-              <img src={add2} alt="Add Bet" width="60%" />
+              <img src={add2} alt="Add Bet" />
             </figure>
           </div>
         </div>

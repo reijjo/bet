@@ -170,6 +170,7 @@
   & img {
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
+    width: 60%;
   }
 
   @media (width < 1000px) {
@@ -187,9 +188,21 @@
   gap: 2rem;
   text-wrap: balance;
 
+  & p {
+    width: 40%;
+  }
+
   @media (width < 581px) {
     flex-direction: column;
     text-align: center;
+
+    & p {
+      width: 100%;
+    }
+
+    & img {
+      width: 100%;
+    }
   }
 }
 
@@ -299,11 +312,8 @@
   }
 
   @media only screen and (max-width: 581px) {
-    /* flex-direction: column;
-    height: 10rem;
-    width: 10rem;
-    padding: 1rem 2rem; */
     gap: 1rem;
+    width: 15rem;
     font-size: 0.925rem;
   }
 }

@@ -1,12 +1,26 @@
 # bet
 
-Track your bets
+## What is this?
+
+Place where you can track your bets
+- You can finally ditch the annoying Excel Sheets that are impossible to update with your phone.
 
 <img width="1412" alt="Screenshot 2025-01-03 at 13 07 26" src="https://github.com/user-attachments/assets/39580df0-124e-411f-8755-99c534a776a4" width='640' height='480' />
 
-TÄÄ VERSIO
+## Tech stuff
+
+### With what?
+
+This project is done with `React`, `TypeScript`, `Expressjs` and basic `CSS`
+- `RTK query` for queries
+- `Redux` for state managment
+- `PostgreSQL` and `Sequelize` for database
 
 ## Testing
+- Frontend `vitest`
+- Backend `bun:test`
+- E2E `Playwright` (coming later...)
+- 
 ### Frontend
 Go to frontend folder (client)
 - `bun run test` to run unit tests

@@ -1,6 +1,6 @@
 import "./ModifyBet.css";
 
-import { BetDetails } from "../../../../../utils/types";
+import { BetDetails } from "../../../../utils/types";
 
 type ModifyBetOddsProps = {
   details: BetDetails;
