@@ -1,5 +1,8 @@
-const { VITE_BACKEND_URL } = import.meta.env;
+const { VITE_BACKEND_URL, VITE_DEPLOYMENT_URL } = import.meta.env;
 
 export const config = {
-  BACKEND_URL: VITE_BACKEND_URL,
+  BACKEND_URL:
+    process.env.NODE_ENV === "production"
+      ? VITE_DEPLOYMENT_URL
+      : VITE_BACKEND_URL,
 };
