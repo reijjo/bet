@@ -138,3 +138,9 @@
 .margin-top {
   margin-top: 1rem;
 }
+
+.finish-register-background {
+  background: radial-gradient(var(--primary-500), transparent);
+  display: grid;
+  place-items: center;
+}
