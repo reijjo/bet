@@ -175,26 +175,26 @@ export const betCalculations = (bets: Bet[]) => {
 };
 
 // By period
-const isToday = (date: string) => dayjs(date).isSame(dayjs(), "day");
-const isYesterday = (date: string) =>
+const isToday = (date: string | Date) => dayjs(date).isSame(dayjs(), "day");
+const isYesterday = (date: string | Date) =>
   dayjs(date).isSame(dayjs().subtract(1, "day"), "day");
-const isLast7Days = (date: string) =>
+const isLast7Days = (date: string | Date) =>
   dayjs(date).isAfter(dayjs().subtract(7, "day"));
-const isLast30days = (date: string) =>
+const isLast30days = (date: string | Date) =>
   dayjs(date).isAfter(dayjs().subtract(30, "day"));
 
 export const periodParser = (myBets: Bet[]) => {
   const todayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isToday(detail.date.toISOString())),
+    bet.betDetails.some((detail) => isToday(detail.date)),
   );
   const yesterdayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isYesterday(detail.date.toISOString())),
+    bet.betDetails.some((detail) => isYesterday(detail.date)),
   );
   const last7DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast7Days(detail.date.toISOString())),
+    bet.betDetails.some((detail) => isLast7Days(detail.date)),
   );
   const last30DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast30days(detail.date.toISOString())),
+    bet.betDetails.some((detail) => isLast30days(detail.date)),
   );
 
   return {

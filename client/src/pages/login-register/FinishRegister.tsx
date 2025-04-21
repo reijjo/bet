@@ -79,71 +79,78 @@ export const FinishRegister = () => {
   };
 
   return (
-    <Container
-      width="min(400px, 95%)"
-      border="0.5px solid"
-      borderColor="rgba(255, 255, 255, 0.2)"
-      padding="24px 16px"
-      margin="2rem auto"
-      alignSelf="center"
-      boxShadow="var(--box-shadow)"
-      gap="1rem"
-    >
-      <div className="form-headers">
-        <h3>Finish your account</h3>
-        <h6>this is the last step</h6>
-      </div>
-      <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          className="form-input-text"
-          type="text"
-          label="Username"
-          id="username"
-          placeholder="Username"
-          {...register("username", isValidUsername)}
-        />
-        {errors.username && (
-          <InputErrorContainer errors={errors.username?.types || {}} />
-        )}
-        <TextInput
-          className="form-input-text"
-          type="password"
-          label="Password"
-          id="password"
-          placeholder="Password"
-          {...register("password", isValidPassword)}
-        />
-        {errors.password && (
-          <InputErrorContainer
-            errors={errors.password?.types || {}}
-            field="Password"
+    <section className="finish-register-background">
+      <Container
+        width="min(400px, 95%)"
+        border="0.5px solid"
+        borderColor="rgba(255, 255, 255, 0.2)"
+        padding="24px 16px"
+        margin="2rem auto"
+        alignSelf="center"
+        boxShadow="var(--box-shadow)"
+        gap="1rem"
+        backgroundColor="rgba(0, 0, 0, 0.25)"
+      >
+        <div className="form-headers">
+          <h3>Finish your account</h3>
+          <h6>this is the last step</h6>
+        </div>
+        <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
+          <TextInput
+            className="form-input-text"
+            type="text"
+            label="Username"
+            id="username"
+            placeholder="Username"
+            {...register("username", isValidUsername)}
           />
-        )}
-        <TextInput
-          className="form-input-text"
-          type="password"
-          label="Confirm password"
-          id="password2"
-          placeholder="Confirm Password"
-          {...register("password2", {
-            validate: (value) =>
-              value === passwordMatcher || "Passwords don't match",
-          })}
-        />
-        {errors.password2 && (
-          <InputErrorContainer errors={errors.password2?.types || {}} />
-        )}
-        {message.message !== "" && (
-          <Message message={message.message} type={message.type} width="75%" />
-        )}
-        <Button
-          type="submit"
-          className="btn btn-filled"
-          children="create account"
-          width="75%"
-          margin="1rem 0 0"
-        />
-      </form>
-    </Container>
+          {errors.username && (
+            <InputErrorContainer errors={errors.username?.types || {}} />
+          )}
+          <TextInput
+            className="form-input-text"
+            type="password"
+            label="Password"
+            id="password"
+            placeholder="Password"
+            {...register("password", isValidPassword)}
+          />
+          {errors.password && (
+            <InputErrorContainer
+              errors={errors.password?.types || {}}
+              field="Password"
+            />
+          )}
+          <TextInput
+            className="form-input-text"
+            type="password"
+            label="Confirm password"
+            id="password2"
+            placeholder="Confirm Password"
+            {...register("password2", {
+              validate: (value) =>
+                value === passwordMatcher || "Passwords don't match",
+            })}
+          />
+          {errors.password2 && (
+            <InputErrorContainer errors={errors.password2?.types || {}} />
+          )}
+          {message.message !== "" && (
+            <Message
+              message={message.message}
+              type={message.type}
+              width="75%"
+            />
+          )}
+          <Button
+            type="submit"
+            className="btn btn-filled"
+            children="create account"
+            width="75%"
+            margin="1rem 0 0"
+          />
+        </form>
+      </Container>
+    </section>
   );
 };
