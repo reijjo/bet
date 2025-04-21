@@ -14,6 +14,8 @@ export const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
+const isSamesite =
+  Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
 export const sessionConfig = {
   store: pgStore,
   secret: SESSION_SECRET as string,
@@ -21,8 +23,8 @@ export const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: Bun.env.NODE_ENV === "production",
-    sameSite: "lax" as const,
+    secure: isSamesite,
+    sameSite: isSamesite ? ("none" as const) : ("lax" as const),
     maxAge: 1000 * 60 * 70,
   },
 };
