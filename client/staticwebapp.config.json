@@ -1,0 +1,12 @@
+{
+  "mimeTypes": {
+    ".json": "application/json",
+    ".html": "text/html"
+  },
+  "routes": [
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
+    }
+  ]
+}
