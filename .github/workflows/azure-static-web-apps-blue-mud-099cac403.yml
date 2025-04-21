@@ -19,21 +19,14 @@ jobs:
         with:
           submodules: true
           lfs: false
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies
-        run: cd ./client && bun install
-
-      - name: Build with Bun
-        run: cd ./client && bun run build
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
         env:
           VITE_BACKEND_URL: http://localhost:3000
           VITE_DEPLOYMENT_URL: https://bet-gnfr.onrender.com
-
-      - name: Deploy
-        id: builddeploy
-        uses: Azure/static-web-apps-deploy@v1
+          REACT_APP_VITE_BACKEND_URL: http://localhost:3000
+          REACT_APP_VITE_DEPLOYMENT_URL: https://bet-gnfr.onrender.com
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_MUD_099CAC403 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
@@ -43,7 +36,6 @@ jobs:
           app_location: "./client" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
-          skip_app_build: true
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
