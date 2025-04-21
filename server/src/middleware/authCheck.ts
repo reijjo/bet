@@ -9,7 +9,7 @@ export const authCheck = (requiredRole?: string) => {
         res.clearCookie("connect.sid"); // or whatever your cookie name is
         res.status(401).json({
           success: false,
-          message: "Session expired or user not logged in",
+          message: `"Session expired or user not logged in" ENVIRONMENT: ${Bun.env.NODE_ENV} ENVIRONMENT2: ${process.env.NODE_ENV}`,
         });
       });
       return;
