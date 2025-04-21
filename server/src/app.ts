@@ -25,6 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(session(sessionConfig));
+app.set("trust proxy", true);
 
 app.get("/", (_req, res) => {
   res.send("hello todo");
