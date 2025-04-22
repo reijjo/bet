@@ -51,7 +51,7 @@ export const TextInputWithButton = ({
             backgroundColor: backgroundColor,
           }}
         />
-        <button className="btn btn-primary-color" onClick={onClick}>
+        <button className="btn btn-special" onClick={onClick}>
           {buttonText}
         </button>
       </div>

@@ -4,20 +4,26 @@
   grid-template-columns:
     minmax(150px, 1fr) minmax(100px, 1fr) minmax(120px, 1fr)
     40px;
-  gap: 8px;
+  gap: 1rem;
 
   padding: 8px 0;
   color: var(--secondary-xlight);
   /* font-size: 0.925em; */
   align-items: center;
 
-  border-bottom: 1px solid rgba(43, 43, 145, 0.8);
+  border-bottom: 1px solid var(--primary-700);
   text-transform: capitalize;
 
   @media screen and (max-width: 581px) {
     grid-template-columns:
-      minmax(80px, 1fr) minmax(80px, 1fr) minmax(80px, 0.5fr)
+      minmax(5rem, 1fr) minmax(80px, 1fr) minmax(80px, 1fr)
       40px;
+  }
+}
+
+.finish-modifybet-slip-headers .modifybet-selection {
+  @media screen and (max-width: 581px) {
+    text-align: center;
   }
 }
 
@@ -70,9 +76,14 @@
 .modifybet-slip-selection .bet-selection {
   text-transform: none;
   position: relative;
+  width: 100%;
 
   & a:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 581px) {
+    text-align: center;
   }
 }
 

@@ -25,5 +25,6 @@
   border-radius: 8px;
   padding: 8px 16px;
   background: url("../../assets/images/circle-bg.svg") no-repeat center / cover;
+  background: radial-gradient(var(--primary-700), var(--primary-800));
   box-shadow: var(--shadow-s);
 }

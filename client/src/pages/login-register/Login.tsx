@@ -10,6 +10,7 @@ import {
   Button,
   Container,
   DividerWithText,
+  Loading,
   OauthButton,
   TextInput,
 } from "../../components";
@@ -117,7 +118,13 @@ export const Login = () => {
           <ForgotPassword />
           {(isError || isLoading) && (
             <Message
-              message={isLoading ? "Logging in..." : getErrorMessage(error)}
+              message={
+                isLoading ? (
+                  <Loading text="Logging in..." />
+                ) : (
+                  getErrorMessage(error)
+                )
+              }
               type={isLoading ? MessageTypes.Info : MessageTypes.Error}
               width="75%"
             />

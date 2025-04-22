@@ -82,10 +82,11 @@ td {
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  padding-top: 2rem;
 }
 .show-more-buttons {
   width: 100%;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   display: flex;
   gap: 1rem;
   justify-content: center;
