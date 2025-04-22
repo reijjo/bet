@@ -18,7 +18,6 @@ import { FinishRegister } from "./pages/login-register/FinishRegister";
 import { useAppSelector } from "./store/hooks";
 import { useAppDispatch } from "./store/hooks";
 import { RootState } from "./store/store";
-import { config } from "./utils/config";
 
 // import { verifySession } from "./utils/helperFunctions";
 
@@ -32,12 +31,6 @@ function App() {
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
-  const { BACKEND_URL } = config;
-
-  console.log("ENVIRONTMENT:", process.env.NODE_ENV);
-  console.log("BACKEND_URL:", BACKEND_URL);
-  console.log("VITE_BACKEND_URL:", import.meta.env.VITE_BACKEND_URL);
-  console.log("VITE_DEPLOYMENT_URL:", import.meta.env.VITE_DEPLOYMENT_URL);
 
   // const verifySession = async () => {
   //   try {

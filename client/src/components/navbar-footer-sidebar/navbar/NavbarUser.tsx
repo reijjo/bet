@@ -71,6 +71,7 @@ export const NavbarUser = () => {
                   src={profilepic}
                   alt="profilePicture"
                   title="Profile Picture"
+                  onClick={toggleUserMenu}
                 />
               </div>
               <a className="nav-profile" onClick={toggleUserMenu}>
