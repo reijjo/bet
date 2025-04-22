@@ -80,7 +80,7 @@
 }
 
 .btn-special {
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.125);
   border-radius: 0.5rem;
   border-radius: 2.5rem;
   padding: 0.5rem 1.5rem;
@@ -90,6 +90,7 @@
   /* font-size: 0.925rem; */
   letter-spacing: 0.3px;
   background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.025);
 
   &:hover {
     border: 1px solid var(--primary-500);
@@ -108,7 +109,7 @@
   box-shadow: 0 2px 8px hsla(47, 100%, 87%, 0.2);
 
   color: var(--text-dark);
-  background-color: var(--accent-light);
+  background-color: var(--accent-300);
   border: 1px solid transparent;
   text-transform: uppercase;
   font-weight: 600;
@@ -116,6 +117,14 @@
 }
 
 .btn-filled {
+  text-transform: capitalize;
+  @media only screen and (max-width: 581px) {
+    /* 4 grids */
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    /* padding: 6px 12px; */
+  }
+
   /* background-image: linear-gradient(
     var(--secondary-100) 0%,
     var(--secondary-200) 100%
@@ -184,12 +193,13 @@
 .btn-delete {
   color: white;
   color: var(--error-xxlight);
-  border-radius: 8px;
+  border-radius: 2.5rem;
   border: 0.5px solid var(--error-xxlight);
 
   &:hover {
     background-color: var(--error-xxlight);
     color: var(--error-dark);
+    font-weight: 600;
     /* background-image: linear-gradient(
       var(--error-base) 0%,
       var(--error-dark) 100%

@@ -3,7 +3,7 @@ import "./Message.css";
 import { MessageType, MessageTypes } from "../../../utils/enums";
 
 export interface MessageProps {
-  message: string;
+  message: string | JSX.Element;
   type: MessageType;
   width?: string;
 }

@@ -69,6 +69,8 @@ export const Bets = () => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
+  const allLoaded = visibleCount >= allBets.length;
+
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
 
@@ -125,22 +127,24 @@ export const Bets = () => {
           </table>
         </div>
         <div className="show-more-wrapper">
-          <div className="show-more-buttons">
-            <Button
-              type="button"
-              className="btn btn-outline"
-              children="Show 5 more"
-              width="min(15rem, 100%)"
-              onClick={() => setVisibleCount((prev) => prev + 5)}
-            />
-            <Button
-              type="button"
-              className="btn btn-special"
-              children="Show all"
-              width="min(15rem, 100%)"
-              onClick={() => setVisibleCount(sortedAndFiltered.length)}
-            />
-          </div>
+          {!allLoaded && (
+            <div className="show-more-buttons">
+              <Button
+                type="button"
+                className="btn btn-outline"
+                children="Show 5 more"
+                width="min(15rem, 100%)"
+                onClick={() => setVisibleCount((prev) => prev + 5)}
+              />
+              <Button
+                type="button"
+                className="btn btn-special"
+                children="Show all"
+                width="min(15rem, 100%)"
+                onClick={() => setVisibleCount(sortedAndFiltered.length)}
+              />
+            </div>
+          )}
           <p>
             Showing{" "}
             {visibleCount >= sortedAndFiltered.length

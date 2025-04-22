@@ -157,7 +157,7 @@ export const ModifyBetDetailsForm = ({
             handleBlur={handleBlur}
             handleFocus={handleFocus}
             gridColumn={isTablet || isMobile ? "1 / -1" : "1 / 3"}
-            gridRow={isTablet || isMobile ? "3 / 4" : "2 / 4"}
+            gridRow={isTablet || isMobile ? "4 / 5" : "2 / 4"}
           />
         )}
         <OddsInput
