@@ -61,7 +61,11 @@ export const Sidebar = () => {
         <h3>Tärpit</h3>
       </Link>
       <div className="sidebar-close">
-        <a className="hamburger" onClick={handleCloseSidebar}>
+        <a
+          className="hamburger"
+          onClick={handleCloseSidebar}
+          data-testid="close-sidebar"
+        >
           <FontAwesomeIcon icon={faXmark} size="1x" />
         </a>
       </div>

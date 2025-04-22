@@ -12,7 +12,7 @@
 
   z-index: 15;
 
-  height: 100vh;
+  height: 100dvh;
   width: clamp(250px, calc(2 * 8.33%), 300px);
 
   border-right: 2px solid var(--primary-500);
