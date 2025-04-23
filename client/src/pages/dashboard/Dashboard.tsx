@@ -15,7 +15,12 @@ export const Dashboard = () => {
 
   console.log("BETS", allBets[0]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <div style={{ display: "grid", placeItems: "center", height: "100dvh" }}>
+        <Loading text="Loading dashboard..." />
+      </div>
+    );
   if (isError) return <Error error={error} />;
 
   return (

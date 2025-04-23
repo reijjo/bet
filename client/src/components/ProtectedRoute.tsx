@@ -47,7 +47,11 @@ export const ProtectedRoute = () => {
   // console.log("ProtectedRoute - error", error);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <div style={{ display: "grid", placeItems: "center", height: "100dvh" }}>
+        <Loading text="Loading user..." />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
