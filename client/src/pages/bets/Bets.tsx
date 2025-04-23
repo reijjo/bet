@@ -70,6 +70,7 @@ export const Bets = () => {
   };
 
   const allLoaded = visibleCount >= allBets.length;
+  const showMoreButton = Math.min(5, sortedAndFiltered.length - visibleCount);
 
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
@@ -132,7 +133,7 @@ export const Bets = () => {
               <Button
                 type="button"
                 className="btn btn-outline"
-                children="Show 5 more"
+                children={`Show ${showMoreButton} More`}
                 width="min(15rem, 100%)"
                 onClick={() => setVisibleCount((prev) => prev + 5)}
               />
