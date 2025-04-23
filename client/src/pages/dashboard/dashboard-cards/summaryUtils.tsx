@@ -159,8 +159,10 @@ export const betCalculations = (bets: Bet[]) => {
   const realProfit = totalProfit - totalLosses;
 
   const settledTotalStake = calculateTotalStake(settledBets);
+  // const returnPercentage =
+  //   settledTotalStake > 0 ? (realProfit / settledTotalStake) * 100 : 0;
   const returnPercentage =
-    settledTotalStake > 0 ? (realProfit / settledTotalStake) * 100 : 0;
+    settledTotalStake > 0 ? (totalPayout / settledTotalStake) * 100 : 0;
   const totalBets = bets.length;
 
   return {
