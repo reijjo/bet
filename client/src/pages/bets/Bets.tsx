@@ -69,8 +69,8 @@ export const Bets = () => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
   };
 
-  const allLoaded = visibleCount >= allBets.length;
-  const showMoreButton = Math.min(5, sortedAndFiltered.length - visibleCount);
+  const allLoaded = visibleBets.length === allBets.length;
+  const showMoreButton = 5;
 
   if (isLoading) return <Loading />;
   if (isError) return <Error error={error} />;
