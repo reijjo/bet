@@ -10,7 +10,7 @@ Place where you can track your bets
 
 ### With what?
 
-This project is done with `React`, `TypeScript`, `Expressjs` and basic `CSS`
+This project is done with `React`, `TypeScript`, `Expressjs` and `CSS`
 - `RTK query` for queries
 - `Redux` for state managment
 - `PostgreSQL` and `Sequelize` for database
@@ -21,6 +21,26 @@ Try it live <a href='https://blue-mud-099cac403.6.azurestaticapps.net/'>here</a>
 - Frontend is deployed with `Azure Static Web App`
 - Database is deployed in a Docker container with `Azure Virtual machine`
 - Backend is deployed with `Render`
+
+### Locally
+Install `Docker` and `Bun`
+#### Frontend
+- Go to `bet/client` folder
+- Rename `env` file to `.env`
+- Run `bun install`
+- Start frontend with `bun run dev` and go to http://localhost:5173/
+#### Backend
+- Go to `bet/server` folder
+- Rename `.env.local` file to `.env` and fill in the blanks
+- Run `bun install`
+- Start backend with `bun run dev`
+- Backend is running at http://localhost:3000/
+#### Database
+Make sure you have `Docker` running
+- Go to `bet/server` folder
+- Start database with `docker compose up`
+- `pgAdmin` is running at http://localhost:5050/
+
 
 
 ## Testing
