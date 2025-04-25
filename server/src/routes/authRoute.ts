@@ -15,4 +15,4 @@ export const authRouter = express.Router({ mergeParams: true });
 
 authRouter.post("/login", login);
 authRouter.post("/logout", logout);
-authRouter.get("/me", authCheck(), getSessionUser);
+authRouter.get("/me", getSessionUser);
