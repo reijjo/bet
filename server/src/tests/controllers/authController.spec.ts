@@ -35,15 +35,6 @@ export const loginTestiukko = async () => {
   return res;
 };
 
-// beforeAll(async () => {
-//   await connectToDB();
-//   await initializeDatabase();
-// });
-
-// afterAll(async () => {
-//   await closeDBconnection();
-// });
-
 describe.only("AUTH CONTROLLER", () => {
   describe("login route", () => {
     test("login successfully with email", async () => {
@@ -114,17 +105,96 @@ describe.only("AUTH CONTROLLER", () => {
 
       loginSpy.mockRestore();
     });
+
+    test("req.session.regenerate error", async () => {
+      await createTestiukko();
+
+      const regenerateSpy = spyOn(
+        require("express-session").Session.prototype,
+        "regenerate",
+      ).mockImplementation(function (cb: (err?: Error) => void) {
+        cb(new Error("Unexpected session error"));
+      });
+
+      const res = await api.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: testiukko.password,
+      });
+
+      expect(res.status).toBe(500);
+      expect(res.body.message).toBe("Failed to regenerate session");
+
+      regenerateSpy.mockRestore();
+    });
+
+    test("req.session.save error", async () => {
+      await createTestiukko();
+
+      const regenerateSpy = spyOn(
+        require("express-session").Session.prototype,
+        "save",
+      ).mockImplementation(function (cb: (err?: Error) => void) {
+        cb(new Error("Unexpected session error"));
+      });
+
+      const res = await api.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: testiukko.password,
+      });
+
+      expect(res.status).toBe(500);
+      expect(res.body.message).toBe("Failed to save session");
+
+      regenerateSpy.mockRestore();
+    });
   });
 
   describe("logout route", () => {
-    test("logout successfully", async () => {
-      await createTestiukko();
-      await loginTestiukko();
-
-      const res = await api.post("/api/auth/logout");
+    test("returns message if already logged out", async () => {
+      const agent = supertest.agent(app);
+      const res = await agent.post("/api/auth/logout");
 
       expect(res.status).toBe(200);
       expect(res.body.message).toBe("User already logged out");
+    });
+
+    test("logs out successfully if logged in", async () => {
+      const agent = supertest.agent(app);
+
+      await createTestiukko();
+      await agent.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: testiukko.password,
+      });
+
+      const res = await agent.post("/api/auth/logout");
+
+      expect(res.status).toBe(200);
+      expect(res.body.message).toBe("User logged out successfully");
+    });
+
+    test("handles session destroy error", async () => {
+      const agent = supertest.agent(app);
+
+      await createTestiukko();
+      await agent.post("/api/auth/login").send({
+        login: testiukko.username,
+        password: testiukko.password,
+      });
+
+      const destroySpy = spyOn(
+        require("express-session").Session.prototype,
+        "destroy",
+      ).mockImplementation(function (cb: (err?: Error) => void) {
+        cb(new Error("Failed to destroy session"));
+      });
+
+      const res = await agent.post("/api/auth/logout");
+
+      expect(res.status).toBe(500);
+      expect(res.body.message).toBe("Failed to destroy session");
+
+      destroySpy.mockRestore();
     });
   });
 
@@ -141,10 +211,12 @@ describe.only("AUTH CONTROLLER", () => {
     });
 
     test("not logged in", async () => {
-      const res = await api.get("/api/auth/me");
+      const res = await api.get("/api/auth/me").set("Cookie", "");
 
       expect(res.status).toBe(401);
       expect(res.body.success).toBe(false);
+      expect(res.body.message).toBe("No user session found");
+      expect(res.body.data).toBe(null);
     });
   });
 });
