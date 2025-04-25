@@ -23,7 +23,7 @@ export const Message = ({ message, type, width }: MessageProps) => {
       className={`message-container ${checkType(type)}`}
       style={{ minWidth: width, maxWidth: width }}
     >
-      <p>{message}</p>
+      <div>{message}</div>
     </div>
   );
 };
