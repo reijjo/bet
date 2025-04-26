@@ -31,7 +31,7 @@ Install `Docker` and `Bun`
 - Start frontend with `bun run dev` and go to http://localhost:5173/
 #### Backend
 - Go to `bet/server` folder
-- Rename `.env.local` file to `.env` and fill in the blanks
+- Rename `.envEXAMPLE` file to `.env` and fill in the blanks
 - Run `bun install`
 - Start backend with `bun run dev`
 - Backend is running at http://localhost:3000/
