@@ -20,3 +20,9 @@
       minmax(24px, 0.25fr);
   }
 }
+
+.finish-mybet-slip {
+	@media screen and (max-width: 581px) {
+		font-size: var(--font-smaller);
+	}
+}
