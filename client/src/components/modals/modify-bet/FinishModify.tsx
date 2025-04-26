@@ -115,6 +115,7 @@ export const FinishModify = ({
       console.error("Error deleting bet", error);
     }
   };
+  console.log("MYBET", myBet);
 
   // Returns
   if (editError) return <Error error={editErrorDetails} />;

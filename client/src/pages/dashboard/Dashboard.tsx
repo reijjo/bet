@@ -13,7 +13,10 @@ import {
 export const Dashboard = () => {
   const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
 
-  console.log("BETS", allBets[0]);
+  console.log("BETS1", allBets[0]);
+  console.log("BETS2", allBets[1]);
+  console.log("BETS3", allBets[2]);
+  console.log("BETS", allBets);
 
   if (isLoading)
     return (

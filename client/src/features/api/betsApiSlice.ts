@@ -15,7 +15,7 @@ export const betApiSlice = baseApi.injectEndpoints({
     getBets: builder.query<Bet[], void>({
       query: () => "/bets",
       transformResponse: (response: GetBetsApiResponse) => {
-        return response.data.reverse();
+        return response.data.sort((a, b) => Number(b.id) - Number(a.id));
       },
       providesTags: (result = []) => [
         "Bet",

@@ -21,6 +21,7 @@ type FinishBetButtonsProps = {
   setAddStake: Dispatch<SetStateAction<boolean>>;
   modifyIndex: number | null;
   setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
+  isLoading?: boolean;
 };
 
 export const FinishBetButtons = ({
@@ -30,6 +31,7 @@ export const FinishBetButtons = ({
   setAddStake,
   modifyIndex,
   setModifyIndex,
+  isLoading,
 }: FinishBetButtonsProps) => {
   const [potentialWin, setPotentialWin] = useState<string>("0.00");
   // const allOdds = myBet.betDetails
@@ -61,6 +63,8 @@ export const FinishBetButtons = ({
     setModifyIndex(myBet.betDetails.length);
     scrollToTop();
   };
+
+  console.log("MyBET IN FINISH BET BUTTONS", myBet.tipper);
 
   return (
     <>
@@ -107,7 +111,7 @@ export const FinishBetButtons = ({
             <Button
               type="submit"
               className="btn btn-filled"
-              children="Add Bet"
+              children={isLoading ? "Adding..." : "Add Bet"}
             />
             <Button
               type="button"

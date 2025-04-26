@@ -5,7 +5,6 @@ import {
   // refreshToken,
   // verifyAccount,
 } from "../controllers/authController";
-import { authCheck } from "../middleware/authCheck";
 import express from "express";
 
 export const authRouter = express.Router({ mergeParams: true });
