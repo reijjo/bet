@@ -5,6 +5,7 @@ import {
   Dispatch,
   SetStateAction,
   SyntheticEvent,
+  useEffect,
   useState,
 } from "react";
 
@@ -42,6 +43,12 @@ export const FinishBetForm = ({
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.auth.user);
 
+  useEffect(() => {
+    if (!myBet.tipper && user?.username) {
+      setMyBet((prev) => ({ ...prev, tipper: user.username as string }));
+    }
+  }, [myBet.tipper, user, setMyBet]);
+
   // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
   const handleTextInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -63,11 +70,7 @@ export const FinishBetForm = ({
       return;
     }
 
-    console.log("handleSelectChange triggered");
     const value = e.target.value;
-    console.log("event target:", e.target);
-    console.log("name:", e.target.name);
-    console.log("value:", value);
 
     setMyBet((prevBet) => {
       console.log("Previous bet:", prevBet);
@@ -79,6 +82,8 @@ export const FinishBetForm = ({
       return newBet;
     });
   };
+
+  console.log("user", user);
 
   // Adds new bet to the list of bets
   const addBet = async (e: SyntheticEvent) => {
@@ -120,7 +125,7 @@ export const FinishBetForm = ({
       />
       <TipperInput
         onChange={handleTextInput}
-        value={user?.username ?? myBet.tipper}
+        value={myBet.tipper ?? user?.username}
         disabled={addStake || modifyIndex !== null || isLoading}
       />
       <NotesInput
@@ -135,6 +140,7 @@ export const FinishBetForm = ({
         setAddStake={setAddStake}
         modifyIndex={modifyIndex}
         setModifyIndex={setModifyIndex}
+        isLoading={isLoading}
       />
     </form>
   );
