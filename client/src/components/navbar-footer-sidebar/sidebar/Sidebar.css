@@ -15,7 +15,7 @@
   height: 100dvh;
   width: clamp(250px, calc(2 * 8.33%), 300px);
 
-  border-right: 2px solid var(--primary-500);
+  border-right: 1px solid var(--primary-500);
 
   background-color: var(--primary-700);
   background: linear-gradient(
@@ -54,7 +54,7 @@
   gap: 0.5rem;
   height: 10vh;
   /* border: 1px solid red; */
-  border-bottom: 2px solid var(--primary-500);
+  border-bottom: 1px solid var(--primary-500);
   background: linear-gradient(to left, var(--primary-600), var(--primary));
 
   & h3:hover {
