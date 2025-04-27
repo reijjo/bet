@@ -47,6 +47,7 @@
 }
 
 .modal-confirm .buttons {
+  border: 1px solid red;
   padding: 16px;
   gap: 16px;
   display: flex;
