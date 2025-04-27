@@ -36,14 +36,14 @@ export const ModalConfirm = ({
         {/* <Divider /> */}
         <div className="buttons">
           <button
-            className="btn btn-delete"
+            className="btn btn-outline"
             type="button"
             onClick={handleConfirm}
           >
             {theButton}
           </button>
           <button
-            className="btn btn-outline"
+            className="btn btn-delete"
             type="button"
             onClick={handleCancel}
           >
