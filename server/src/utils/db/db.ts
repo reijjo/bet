@@ -8,8 +8,6 @@ import { ConnectionRefusedError, Sequelize } from "sequelize";
 
 const { DATABASE_URL } = config;
 
-console.log("DATABASE URL", DATABASE_URL);
-
 export const sequelize = new Sequelize(DATABASE_URL, {
   retry: {
     max: 3,

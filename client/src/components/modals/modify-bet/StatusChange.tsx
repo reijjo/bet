@@ -1,3 +1,5 @@
+import "./FinishModify.css";
+
 import { useEffect, useRef, useState } from "react";
 
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
@@ -82,7 +84,7 @@ export const StatusChange = ({ bet, setMyBet }: StatusChangeProps) => {
           {options.map((op) => (
             <a
               key={op}
-              className="bet-status-options-list-modify status-with-ball"
+              className="bet-status-options-list-modify status-with-ball-modify"
               onClick={() => changeStatus(op)}
             >
               <div className={`bet-status-ball ${endedBetBallColor(op)}`}></div>
