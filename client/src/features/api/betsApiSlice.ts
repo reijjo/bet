@@ -2,13 +2,8 @@ import {
   GetBetByIdApiResponse,
   GetBetsApiResponse,
 } from "../../utils/api-response-types";
-import { config } from "../../utils/config";
 import { Bet } from "../../utils/types";
 import { baseApi } from "./baseApi";
-
-const { BACKEND_URL } = config;
-
-console.log("BACKEND_URL", BACKEND_URL);
 
 export const betApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
