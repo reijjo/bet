@@ -1,5 +1,6 @@
 import { config } from "../utils/config";
 import { pgStore } from "../utils/db/db";
+import { SESSION_LENGTH } from "./defaults";
 
 const { SESSION_SECRET } = config;
 
@@ -16,6 +17,7 @@ export const corsOptions = {
 
 const isSamesite =
   Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
+
 export const sessionConfig = {
   store: pgStore,
   secret: SESSION_SECRET as string,
@@ -25,6 +27,6 @@ export const sessionConfig = {
     httpOnly: true,
     secure: isSamesite,
     sameSite: isSamesite ? ("none" as const) : ("lax" as const),
-    maxAge: 1000 * 60 * 70,
+    maxAge: SESSION_LENGTH,
   },
 };

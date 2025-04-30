@@ -180,8 +180,6 @@ export const updateBet = async (
       betDetails,
     } = req.body;
 
-    console.log("USER ID", user_id);
-
     if (!Number(id)) {
       throw new HttpError(
         "Bet ID must be a number.",
@@ -206,9 +204,6 @@ export const updateBet = async (
     if (user_id !== bet.user_id) {
       throw new HttpError("You are not authorized to update this bet.", 403);
     }
-
-    console.log("betdetails", betDetails);
-    console.log("bet", JSON.stringify(bet, null, 2));
 
     // Update the bet with transaction
     await bet.update(
