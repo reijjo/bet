@@ -32,22 +32,7 @@ function App() {
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
 
-  // const verifySession = async () => {
-  //   try {
-  //     const result = await fetchSession().unwrap();
-  //     if (result?.success && result?.data) {
-  //       dispatch(loginUser(result.data));
-  //     } else {
-  //       dispatch(logoutUser());
-  //     }
-  //   } catch (err) {
-  //     console.error("Session check error:", err);
-  //     dispatch(logoutUser());
-  //   }
-  // }
-
   useEffect(() => {
-    // verifySession(fetchSession, dispatch);
     const verifySession = async () => {
       try {
         const result = await fetchSession().unwrap();
@@ -65,8 +50,6 @@ function App() {
   }, [dispatch, fetchSession]);
 
   const handleRefresh = async () => {
-    // verifySession(fetchSession, dispatch);
-    // const verifySession = async () => {
     try {
       const result = await fetchSession().unwrap();
       if (result?.success && result?.data) {
@@ -79,7 +62,6 @@ function App() {
       console.error("Session check error:", err);
       dispatch(logoutUser());
     }
-    // }
   };
 
   const handleLogout = async () => {
