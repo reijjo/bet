@@ -10,6 +10,7 @@ import { ModalConfirm } from "./components/modals/confirm/ModalConfirm";
 import {
   useLazyGetSessionUserQuery,
   useLogoutMutation,
+  useRefreshSessionMutation,
 } from "./features/api/authApi";
 import { loginUser, logoutUser } from "./features/authSlice";
 import { resetModal } from "./features/modalSlice";
@@ -31,23 +32,10 @@ function App() {
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
-
-  // const verifySession = async () => {
-  //   try {
-  //     const result = await fetchSession().unwrap();
-  //     if (result?.success && result?.data) {
-  //       dispatch(loginUser(result.data));
-  //     } else {
-  //       dispatch(logoutUser());
-  //     }
-  //   } catch (err) {
-  //     console.error("Session check error:", err);
-  //     dispatch(logoutUser());
-  //   }
-  // }
+  const [refreshSession, { isLoading: isRefreshing }] =
+    useRefreshSessionMutation();
 
   useEffect(() => {
-    // verifySession(fetchSession, dispatch);
     const verifySession = async () => {
       try {
         const result = await fetchSession().unwrap();
@@ -65,21 +53,21 @@ function App() {
   }, [dispatch, fetchSession]);
 
   const handleRefresh = async () => {
-    // verifySession(fetchSession, dispatch);
-    // const verifySession = async () => {
     try {
       const result = await fetchSession().unwrap();
       if (result?.success && result?.data) {
         dispatch(loginUser(result.data));
+        await refreshSession().unwrap();
+        dispatch(resetModal());
       } else {
         dispatch(resetModal());
+        await logout().unwrap();
         dispatch(logoutUser());
       }
     } catch (err) {
       console.error("Session check error:", err);
       dispatch(logoutUser());
     }
-    // }
   };
 
   const handleLogout = async () => {
@@ -110,6 +98,8 @@ function App() {
           theButton="Yes!"
           handleCancel={handleLogout}
           handleConfirm={handleRefresh}
+          showTimer
+          disabled={isRefreshing || isLoading}
         />
       )}
       <Routes>

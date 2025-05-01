@@ -34,3 +34,6 @@ export const initialRegisterValues = {
   password: "",
   password2: "",
 };
+
+export const SHOW_LOGOUT_MODAL = 60 * 50 * 1000;
+// export const SHOW_LOGOUT_MODAL = 5 * 1000;

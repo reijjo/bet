@@ -1,3 +1,4 @@
+import { SESSION_LENGTH } from "../utils/defaults";
 import type { NextFunction, Request, Response } from "express";
 
 export const authCheck = (requiredRole?: string) => {
@@ -20,11 +21,12 @@ export const authCheck = (requiredRole?: string) => {
     const sessionExpiresAt = req.session.cookie.expires?.getTime() ?? 0;
     const timeLeftMs = sessionExpiresAt - Date.now();
     const fifteenMinutesMs = 15 * 60 * 1000;
-    // const fifteenMinutesMs = 15 * 1000;
+
+    console.log("time left", timeLeftMs);
 
     if (timeLeftMs > 0 && timeLeftMs < fifteenMinutesMs) {
       const originalMaxAge =
-        req.session.cookie.originalMaxAge ?? 60 * 60 * 1000;
+        req.session.cookie.originalMaxAge ?? SESSION_LENGTH;
       req.session.cookie.expires = new Date(Date.now() + originalMaxAge);
 
       req.session.save((err) => {
