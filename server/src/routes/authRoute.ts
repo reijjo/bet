@@ -2,9 +2,11 @@ import {
   getSessionUser,
   login,
   logout,
+  refreshSession,
   // refreshToken,
   // verifyAccount,
 } from "../controllers/authController";
+import { authCheck } from "../middleware/authCheck";
 import express from "express";
 
 export const authRouter = express.Router({ mergeParams: true });
@@ -15,3 +17,4 @@ export const authRouter = express.Router({ mergeParams: true });
 authRouter.post("/login", login);
 authRouter.post("/logout", logout);
 authRouter.get("/me", getSessionUser);
+authRouter.post("/refresh-session", authCheck(), refreshSession);

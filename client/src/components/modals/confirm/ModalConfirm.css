@@ -47,9 +47,14 @@
 }
 
 .modal-confirm .buttons {
-  border: 1px solid red;
   padding: 16px;
   gap: 16px;
   display: flex;
   justify-content: flex-end;
+}
+
+.timer {
+  margin-top: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.825rem;
 }

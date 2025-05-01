@@ -44,6 +44,13 @@ export const authApiSlice = baseApi.injectEndpoints({
         };
       },
     }),
+    refreshSession: builder.mutation<BasicApiResponse, void>({
+      query: () => ({
+        url: "/auth/refresh-session",
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
     getSessionUser: builder.query<SessionApiResponse, void>({
       query: () => ({
         url: "/auth/me",
@@ -77,4 +84,5 @@ export const {
   useLogoutMutation,
   useGetSessionUserQuery,
   useLazyGetSessionUserQuery,
+  useRefreshSessionMutation,
 } = authApiSlice;

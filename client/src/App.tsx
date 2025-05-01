@@ -10,6 +10,7 @@ import { ModalConfirm } from "./components/modals/confirm/ModalConfirm";
 import {
   useLazyGetSessionUserQuery,
   useLogoutMutation,
+  useRefreshSessionMutation,
 } from "./features/api/authApi";
 import { loginUser, logoutUser } from "./features/authSlice";
 import { resetModal } from "./features/modalSlice";
@@ -31,6 +32,8 @@ function App() {
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
+  const [refreshSession, { isLoading: isRefreshing }] =
+    useRefreshSessionMutation();
 
   useEffect(() => {
     const verifySession = async () => {
@@ -54,8 +57,11 @@ function App() {
       const result = await fetchSession().unwrap();
       if (result?.success && result?.data) {
         dispatch(loginUser(result.data));
+        await refreshSession().unwrap();
+        dispatch(resetModal());
       } else {
         dispatch(resetModal());
+        await logout().unwrap();
         dispatch(logoutUser());
       }
     } catch (err) {
@@ -92,6 +98,8 @@ function App() {
           theButton="Yes!"
           handleCancel={handleLogout}
           handleConfirm={handleRefresh}
+          showTimer
+          disabled={isRefreshing || isLoading}
         />
       )}
       <Routes>

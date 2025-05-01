@@ -197,3 +197,46 @@ export const getSessionUser = (req: Request, res: Response) => {
     });
   }
 };
+
+export const refreshSession = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (!req.session.user) {
+    return next(new HttpError("No active session to refresh", 401));
+  }
+
+  try {
+    // Regenerate the session ID to enhance security
+    req.session.regenerate((err) => {
+      if (err) {
+        return next(new HttpError("Failed to regenerate session", 500));
+      }
+
+      // Make sure we maintain the user data
+      const userData = req.session.user;
+
+      // Set the user data back in the new session
+      req.session.user = userData;
+
+      // Save the session
+      req.session.save((err) => {
+        if (err) {
+          return next(new HttpError("Failed to save refreshed session", 500));
+        }
+
+        res.status(200).json({
+          success: true,
+          message: "Session refreshed successfully",
+          data: req.session.user,
+        });
+      });
+    });
+  } catch (error) {
+    console.error("Session refresh error:", error);
+    return next(
+      new HttpError("Failed to refresh session. Please try again later.", 500),
+    );
+  }
+};
