@@ -219,6 +219,60 @@ describe.only("AUTH CONTROLLER", () => {
       expect(res.body.data).toBe(null);
     });
   });
+
+  describe("Session refresh route", () => {
+    test("successful refresh", async () => {
+      await createTestiukko();
+      const loginres = await loginTestiukko();
+      const cookie = loginres.headers["set-cookie"];
+
+      const res = await api
+        .post("/api/auth/refresh-session")
+        .set("Cookie", cookie);
+
+      expect(res.status).toBe(200);
+    });
+
+    test("session.regenerate error", async () => {
+      await createTestiukko();
+      const loginres = await loginTestiukko();
+      const cookie = loginres.headers["set-cookie"];
+
+      const regenerateSpy = spyOn(
+        require("express-session").Session.prototype,
+        "regenerate",
+      ).mockImplementation(function (cb: (err?: Error) => void) {
+        cb(new Error("Unexpected session error"));
+      });
+
+      const res = await api
+        .post("/api/auth/refresh-session")
+        .set("Cookie", cookie);
+      expect(res.status).toBe(500);
+
+      regenerateSpy.mockRestore();
+    });
+
+    test("session.save error", async () => {
+      await createTestiukko();
+      const loginres = await loginTestiukko();
+      const cookie = loginres.headers["set-cookie"];
+
+      const regenerateSpy = spyOn(
+        require("express-session").Session.prototype,
+        "save",
+      ).mockImplementation(function (cb: (err?: Error) => void) {
+        cb(new Error("Unexpected session error"));
+      });
+
+      const res = await api
+        .post("/api/auth/refresh-session")
+        .set("Cookie", cookie);
+      expect(res.status).toBe(500);
+
+      regenerateSpy.mockRestore();
+    });
+  });
 });
 
 describe.skip("verifyAccount route", () => {
