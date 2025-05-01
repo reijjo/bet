@@ -7,8 +7,9 @@
     "dev": "NODE_ENV=development bun --watch run src/index.ts",
     "clean": "rm -rf node_modules .bun bun.lockb **/dist",
     "clean:db": "rm -rf data",
-    "test": "NODE_ENV=test bun test --preload ./src/tests/setup.ts",
-    "test:cover": "NODE_ENV=test bun test --preload ./src/tests/setup.ts --coverage"
+    "clean:dist": "find ./src -type d -name dist -exec rm -rf {} +",
+    "test": "NODE_ENV=test bun run clean:dist && bun test --preload ./src/tests/setup.ts",
+    "test:cover": "NODE_ENV=test bun run clean:dist && bun test --preload ./src/tests/setup.ts --coverage"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
