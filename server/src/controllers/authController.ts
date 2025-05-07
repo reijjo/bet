@@ -208,6 +208,8 @@ export const refreshSession = (
   }
 
   try {
+    const userData = req.session.user;
+
     // Regenerate the session ID to enhance security
     req.session.regenerate((err) => {
       if (err) {
@@ -215,7 +217,6 @@ export const refreshSession = (
       }
 
       // Make sure we maintain the user data
-      const userData = req.session.user;
 
       // Set the user data back in the new session
       req.session.user = userData;

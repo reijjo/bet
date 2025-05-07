@@ -123,15 +123,15 @@
 .text-btn-styles {
   all: unset;
   cursor: pointer;
-  color: var(--secondary-100);
+  color: var(--primary-100);
   border-bottom: thin solid transparent;
   font-size: var(--font-smaller);
   align-self: flex-start;
   background-color: transparent;
 
   &:hover {
-    color: var(--secondary-200);
-    border-bottom: thin solid var(--secondary-200);
+    color: var(--accent-100);
+    border-bottom: thin solid var(--accent-100);
   }
 }
 

@@ -85,7 +85,6 @@ export const Login = () => {
         alignSelf="center"
         justifyContent="center"
         boxShadow="none"
-        // backgroundColor="var(--primary)"
         gap="1rem"
       >
         <div className="form-headers">
@@ -120,7 +119,7 @@ export const Login = () => {
             <Message
               message={
                 isLoading ? (
-                  <Loading text="Logging in..." />
+                  <Loading color="message-info" text="Logging in..." />
                 ) : (
                   getErrorMessage(error)
                 )

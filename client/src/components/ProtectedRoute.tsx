@@ -2,7 +2,10 @@ import { useEffect } from "react";
 
 import { Navigate, useLocation } from "react-router-dom";
 
-import { useGetSessionUserQuery } from "../features/api/authApi";
+import {
+  useGetSessionUserQuery,
+  useLogoutMutation,
+} from "../features/api/authApi";
 import { loginUser, logoutUser } from "../features/authSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
@@ -23,33 +26,33 @@ export const ProtectedRoute = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
+  const [logout] = useLogoutMutation();
 
   const errorStatus = getErrorStatus(error);
 
   useEffect(() => {
     console.log("checking sesion");
+    const loggingOut = async () => {
+      await logout().unwrap();
+      dispatch(logoutUser());
+    };
 
     if (!isLoading) {
       // Check for error first
       if (isError || errorStatus === 401) {
         console.log("Logging out due to error or 401");
-        dispatch(logoutUser());
+        loggingOut();
       } else if (sessionData?.success && sessionData?.data) {
         console.log("Logging in with session data");
         dispatch(loginUser(sessionData.data));
       }
     }
-  }, [sessionData, isLoading, isError, errorStatus, dispatch]);
-
-  // console.log("ProtectedRoute - data", sessionData);
-  // console.log("ProtectedRoute - isLoading", isLoading);
-  // console.log("ProtectedRoute - isError", isError);
-  // console.log("ProtectedRoute - error", error);
+  }, [sessionData, isLoading, isError, errorStatus, dispatch, logout]);
 
   if (isLoading) {
     return (
       <div style={{ display: "grid", placeItems: "center", height: "100dvh" }}>
-        <Loading text="Loading user..." />
+        <Loading text="Loading user..." color="white" />
       </div>
     );
   }
