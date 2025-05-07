@@ -32,7 +32,7 @@ function App() {
   const dispatch = useAppDispatch();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const [logout, { isLoading }] = useLogoutMutation();
-  const [refreshSession, { isLoading: isRefreshing }] =
+  const [refreshSession, { isLoading: isRefreshing, isError: isRefreshError }] =
     useRefreshSessionMutation();
 
   useEffect(() => {
@@ -80,6 +80,8 @@ function App() {
       dispatch(logoutUser());
     }
   };
+
+  console.log("isRefreshError", isRefreshError);
 
   return (
     <Router
