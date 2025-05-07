@@ -1,14 +1,14 @@
 import "./LatestBetsCard.css";
 
 import dayjs from "dayjs";
-import { Fragment } from "react/jsx-runtime";
 
 import { isModifyBetModalOpen } from "../../../../features/modalSlice";
-import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
 import { useAppDispatch } from "../../../../store/hooks";
 import { allBetsProp } from "../../../../utils/types";
 import { calculateCombinedOdds } from "../summaryUtils";
 import { BetStatus } from "./BetStatus";
+import { LatestMatch } from "./LatestMatch";
+import { LatestSelections } from "./LatestSelections";
 
 const LatestHeaders = () => (
   <div className="latest-headers">
@@ -24,9 +24,6 @@ const LatestHeaders = () => (
 const LatestBets = ({ allBets }: allBetsProp) => {
   const latestBets = allBets.slice(0, 3);
   const dispatch = useAppDispatch();
-
-  // console.log("allBets", allBets);
-  // console.log("latgestBets", latestBets);
 
   const modifybet = (id: number | string) => {
     dispatch(isModifyBetModalOpen({ id, isOpen: true }));
@@ -59,56 +56,8 @@ const LatestBets = ({ allBets }: allBetsProp) => {
             <p className="latest-bet-data-date">
               {dayjs(bet.betDetails[0].date).format("D MMM")}
             </p>
-            <div className="bets-match">
-              <div className="parlay-div">
-                {bet.betDetails.map((parlay, index) => (
-                  <p
-                    className="bet-home-team"
-                    key={index}
-                    title={parlay.home_team}
-                  >
-                    {parlay.home_team}
-                  </p>
-                ))}
-              </div>
-              <div className="parlay-div">
-                {bet.betDetails.map((_parlay, index) => (
-                  <p className="bet-vs" key={index}>
-                    -
-                  </p>
-                ))}
-              </div>
-              <div className="parlay-div">
-                {bet.betDetails.map((parlay, index) => (
-                  <p
-                    className="bet-away-team"
-                    key={index}
-                    title={parlay.away_team}
-                  >
-                    {parlay.away_team}
-                  </p>
-                ))}
-              </div>
-            </div>
-            <div className="parlay-div">
-              {bet.betDetails.map((parlay, index) => (
-                <Fragment key={index}>
-                  {isBetBuilderType(parlay.bet_type) ? (
-                    <div className="parlay-div">
-                      {parlay.betbuilder_selection?.map((s, index) => (
-                        <p key={index} title={s}>
-                          {s}
-                        </p>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="bet-selection" title={parlay.selection}>
-                      {parlay.selection}
-                    </p>
-                  )}
-                </Fragment>
-              ))}
-            </div>
+            <LatestMatch details={bet.betDetails} />
+            <LatestSelections details={bet.betDetails} />
             <p className="bet-stake">{Number(bet.stake).toFixed(2)} &euro;</p>
             <p className="bet-odds">
               {calculateCombinedOdds(bet.betDetails).toFixed(2)}

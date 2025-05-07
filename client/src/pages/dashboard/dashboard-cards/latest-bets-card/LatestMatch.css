@@ -1,0 +1,31 @@
+.bets-match {
+  display: grid;
+  grid-column: 2 / 3;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 8px;
+  text-align: center;
+
+  @media only screen and (max-width: 990px) {
+    grid-column: 1 / 2;
+  }
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.parlay-div > p:is(:not(.bet-selection)) {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10ch;
+}
+
+.parlay-div .bet-home-team {
+  margin-left: auto;
+}
+
+.parlay-div .bet-away-team {
+  margin-right: auto;
+}
