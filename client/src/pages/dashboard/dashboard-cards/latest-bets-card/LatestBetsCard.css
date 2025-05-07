@@ -95,46 +95,6 @@
   }
 }
 
-.bets-match {
-  display: grid;
-  grid-column: 2 / 3;
-  grid-template-columns: 1fr max-content 1fr;
-  gap: 8px;
-  text-align: center;
-
-  @media only screen and (max-width: 990px) {
-    grid-column: 1 / 2;
-  }
-}
-
-.parlay-div > p:is(:not(.bet-selection)) {
-  padding: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 10ch;
-}
-
-.parlay-div .bet-home-team {
-  margin-left: auto;
-}
-
-.parlay-div .bet-away-team {
-  margin-right: auto;
-}
-
-.bet-selection {
-  border-radius: 4px;
-
-  background-color: var(--info);
-  padding: 4px;
-  width: 15ch;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @media only screen and (max-width: 990px) {
   .latest-headers,
   .latest-bets {
@@ -153,26 +113,11 @@
     grid-template-columns: 1.25fr 0.5fr 0.5fr 0.75fr;
   }
 
-  .latest-bet-header-match,
-  .bets-match {
+  .latest-bet-header-match {
     display: none;
   }
 
   .latest-bet-header-selection {
-    text-align: center;
-  }
-
-  .bet-selection {
-    width: 20ch;
-    overflow: hidden;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .latest-bet-header-selection {
     text-align: start;
-  }
-  .bet-selection {
-    width: 15ch;
   }
 }
