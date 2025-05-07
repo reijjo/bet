@@ -2,7 +2,7 @@ import "./Loading.css";
 
 interface LoadingProps {
   text?: string;
-  color: string;
+  color?: string;
 }
 export const Loading = ({
   text = "Loading...",
