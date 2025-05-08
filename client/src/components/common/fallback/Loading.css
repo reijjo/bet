@@ -11,6 +11,7 @@
   border-radius: 50%;
   background: conic-gradient(#0000 10%, #474bff);
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 2px), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 2px), #000 0);
   animation: spinner-zp9dbg 1s infinite linear;
 }
 
