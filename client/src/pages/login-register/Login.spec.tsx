@@ -8,7 +8,7 @@ import * as authApi from "../../features/api/authApi";
 import { loginUser } from "../../features/authSlice";
 import { store } from "../../store/store";
 import { UserRoles } from "../../utils/enums";
-import { Login } from "./Login";
+import Login from "./Login";
 
 const mockNavigate = vi.fn();
 let mockLocationState: { from: { pathname: string } } | undefined = {

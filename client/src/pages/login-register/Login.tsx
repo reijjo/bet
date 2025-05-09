@@ -1,3 +1,5 @@
+import "./LoginRegister.css";
+
 import { useEffect } from "react";
 
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
@@ -33,7 +35,7 @@ const ForgotPassword = () => (
   </Link>
 );
 
-export const Login = () => {
+const Login = () => {
   const [login, { isLoading, isError, error }] = useLoginMutation();
   const [fetchSession] = useLazyGetSessionUserQuery();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
@@ -159,7 +161,15 @@ export const Login = () => {
           </Link>
         </p>
       </Container>
-      <img src={tennis} alt="logo" loading="eager" />
+      <img
+        src={tennis}
+        alt="tennis"
+        loading="lazy"
+        width="100%"
+        height="100%"
+      />
     </div>
   );
 };
+
+export default Login;

@@ -30,7 +30,7 @@ import {
   TypeBetsTable,
 } from "./bets-table";
 
-export const Bets = () => {
+const Bets = () => {
   const {
     data: allBets = [],
     isLoading,
@@ -158,3 +158,5 @@ export const Bets = () => {
     </div>
   );
 };
+
+export default Bets;

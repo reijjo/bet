@@ -2,7 +2,6 @@ import "./LoginRegister.css";
 
 import { useEffect } from "react";
 
-// import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -26,7 +25,7 @@ import { getErrorMessage } from "../../utils/helperFunctions";
 import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
-export const Register = () => {
+const Register = () => {
   const [checkDuplicateEmail, { data: fetchData, isLoading, isError, error }] =
     useLazyGetUserByEmailQuery();
 
@@ -87,7 +86,6 @@ export const Register = () => {
         alignSelf="center"
         justifyContent="center"
         boxShadow="none"
-        // backgroundColor="var(--primary)"
         gap="1rem"
       >
         <div className="form-headers">
@@ -158,7 +156,9 @@ export const Register = () => {
           </Link>
         </p>
       </Container>
-      <img src={penkit} alt="tennis" loading="eager" />
+      <img src={penkit} alt="penkit" loading="eager" />
     </div>
   );
 };
+
+export default Register;

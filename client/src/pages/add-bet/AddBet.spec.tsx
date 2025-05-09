@@ -7,7 +7,7 @@ import { useAddBetForm } from "../../hooks/useAddBetForm";
 import { store } from "../../store/store";
 import { mockBet } from "../../tests/mocks/betMock";
 import { mockUseAddBetForm } from "../../tests/mocks/hooks/useAddBetFormMock";
-import { AddBet } from "./AddBet";
+import AddBet from "./AddBet";
 
 vi.mock("../../hooks/useAddBetForm", () => ({
   useAddBetForm: vi.fn(() => mockUseAddBetForm),
