@@ -18,10 +18,10 @@ describe("App", () => {
     vi.clearAllMocks();
   });
 
-  it("renders homepage by default", () => {
+  it("renders homepage by default", async () => {
     renderWithRouter();
     expect(
-      screen.getByRole("heading", {
+      await screen.findByRole("heading", {
         name: /Track your bets online without annoying excel sheets/i,
       }),
     ).toBeInTheDocument();

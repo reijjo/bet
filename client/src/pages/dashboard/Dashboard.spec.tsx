@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { store } from "../../store/store";
-import { Dashboard } from "./Dashboard";
+import Dashboard from "./Dashboard";
 
 beforeEach(() => {
   render(

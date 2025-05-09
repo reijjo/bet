@@ -4,7 +4,7 @@ import { useAddBetForm } from "../../hooks/useAddBetForm";
 import { AddBetForm } from "./add-bet-form/AddBetForm";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
 
-export const AddBet = () => {
+const AddBet = () => {
   const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();
 
@@ -29,3 +29,5 @@ export const AddBet = () => {
     </div>
   );
 };
+
+export default AddBet;

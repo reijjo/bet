@@ -23,7 +23,7 @@ import { RootState } from "../../store/store";
 import { FeatureCard } from "./FeatureCard";
 import { PageFeatureCard } from "./PageFeatureCard";
 
-export const Homepage = () => {
+const Homepage = () => {
   const { isMobile } = useScreenWidth();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const location = useLocation();
@@ -163,3 +163,5 @@ export const Homepage = () => {
     </div>
   );
 };
+
+export default Homepage;

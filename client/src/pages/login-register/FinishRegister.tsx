@@ -17,7 +17,7 @@ import {
 } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
-export const FinishRegister = () => {
+const FinishRegister = () => {
   const [message, setMessage] = useState<MessageProps>({
     message: "",
     type: MessageTypes.Info,
@@ -154,3 +154,5 @@ export const FinishRegister = () => {
     </section>
   );
 };
+
+export default FinishRegister;

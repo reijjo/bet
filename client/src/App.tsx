@@ -1,87 +1,30 @@
 import { useEffect } from "react";
 
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Routing } from "./components/Routes";
 import { SessionManager } from "./components/SessionManager";
-import { UnderCons } from "./components/common/fallback/UnderCons";
-import { AppLayout } from "./components/layout/AppLayout";
 import { ModalConfirm } from "./components/modals/confirm/ModalConfirm";
-import {
-  useLazyGetSessionUserQuery,
-  useLogoutMutation,
-  useRefreshSessionMutation,
-} from "./features/api/authApi";
-import { loginUser, logoutUser } from "./features/authSlice";
-import { resetModal } from "./features/modalSlice";
-import { AddBet, Bets, Dashboard, Homepage, Login, Register } from "./pages";
-import { FinishRegister } from "./pages/login-register/FinishRegister";
+import { useAuthSession } from "./hooks/useAuthSession";
 import { useAppSelector } from "./store/hooks";
-import { useAppDispatch } from "./store/hooks";
 import { RootState } from "./store/store";
-
-// import { verifySession } from "./utils/helperFunctions";
-
-// import { Verify } from "./pages/login-register/verify-account/Verify";
 
 function App() {
   const { isRefreshModalOpen } = useAppSelector(
     (state: RootState) => state.modal,
   );
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
-  const dispatch = useAppDispatch();
-  const [fetchSession] = useLazyGetSessionUserQuery();
-  const [logout, { isLoading }] = useLogoutMutation();
-  const [refreshSession, { isLoading: isRefreshing, isError: isRefreshError }] =
-    useRefreshSessionMutation();
+  const {
+    isRefreshing,
+    isLoading,
+    verifySession,
+    handleLogout,
+    handleRefresh,
+  } = useAuthSession();
 
   useEffect(() => {
-    const verifySession = async () => {
-      try {
-        const result = await fetchSession().unwrap();
-        if (result?.success && result?.data) {
-          dispatch(loginUser(result.data));
-        } else {
-          dispatch(logoutUser());
-        }
-      } catch (err) {
-        console.error("Session check error:", err);
-        dispatch(logoutUser());
-      }
-    };
     verifySession();
-  }, [dispatch, fetchSession]);
-
-  const handleRefresh = async () => {
-    try {
-      const result = await fetchSession().unwrap();
-      if (result?.success && result?.data) {
-        dispatch(loginUser(result.data));
-        await refreshSession().unwrap();
-        dispatch(resetModal());
-      } else {
-        dispatch(resetModal());
-        await logout().unwrap();
-        dispatch(logoutUser());
-      }
-    } catch (err) {
-      console.error("Session check error:", err);
-      dispatch(logoutUser());
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout().unwrap();
-    } catch (err) {
-      console.error("Logout error:", err);
-    } finally {
-      dispatch(resetModal());
-      dispatch(logoutUser());
-    }
-  };
-
-  console.log("isRefreshError", isRefreshError);
+  }, [verifySession]);
 
   return (
     <Router
@@ -104,24 +47,7 @@ function App() {
           disabled={isRefreshing || isLoading}
         />
       )}
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/register/finish" element={<FinishRegister />} />
-          {/* <Route path="/register/:token" element={<Verify />} /> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/bank" element={<UnderCons />} />
-          <Route path="/analytics" element={<UnderCons />} />
-          <Route path="/about" element={<UnderCons />} />
-        </Route>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dash" element={<Dashboard />} />
-          <Route path="/bets" element={<Bets />} />
-          <Route path="/add-bet" element={<AddBet />} />
-        </Route>
-        <Route path="*" element={<UnderCons />} />
-      </Routes>
+      <Routing />
     </Router>
   );
 }

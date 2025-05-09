@@ -10,7 +10,7 @@ import {
   WinPercentCard,
 } from "./dashboard-cards";
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const { data: allBets = [], isLoading, isError, error } = useGetBetsQuery();
 
   console.log("BETS1", allBets[0]);
@@ -38,3 +38,5 @@ export const Dashboard = () => {
     </div>
   );
 };
+
+export default Dashboard;

@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as userApi from "../../features/api/userApi";
 import { store } from "../../store/store";
-import { FinishRegister } from "./FinishRegister";
+import FinishRegister from "./FinishRegister";
 
 const user = userEvent.setup();
 

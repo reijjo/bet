@@ -8,7 +8,7 @@ import * as userApi from "../../features/api/userApi";
 import * as registerSlice from "../../features/registerSlice";
 // import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store/store";
-import { Register } from "./Register";
+import Register from "./Register";
 
 const mockNavigate = vi.fn();
 const user = userEvent.setup();
