@@ -10,7 +10,7 @@ import {
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "..";
+} from "../";
 import { Button } from "../../../components/common/button/Button";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { initialBetDetailValues } from "../../../utils/defaults/defaults";
