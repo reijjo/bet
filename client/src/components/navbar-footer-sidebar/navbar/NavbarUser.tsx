@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// import { Link } from "react-router-dom";
 import logo from "../../../assets/fishing.png";
 import profilepic from "../../../assets/images/stockprofilepic.jpg";
 import { openSidebar } from "../../../features/sidebarSlice";

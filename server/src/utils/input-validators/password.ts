@@ -1,4 +1,4 @@
-import { hasMinMaxLength, sanitazeValue } from "./inputValidators";
+import { hasMinMaxLength } from "./inputValidators";
 
 export const hasUppercase = (value: string): boolean => {
   const regex = /[A-Z]/;
