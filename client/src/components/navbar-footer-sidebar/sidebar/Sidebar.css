@@ -52,7 +52,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
-  height: 10vh;
+  height: 8vh;
   /* border: 1px solid red; */
   border-bottom: 1px solid var(--primary-500);
   background: linear-gradient(to left, var(--primary-600), var(--primary));

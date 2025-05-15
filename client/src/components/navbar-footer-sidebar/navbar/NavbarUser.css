@@ -1,7 +1,7 @@
 .nav-user {
   grid-row: 1;
   border-bottom: 1px solid var(--primary-500);
-  height: 10vh;
+  height: 8vh;
   background: linear-gradient(
     to right,
     var(--primary-700),
@@ -20,10 +20,6 @@
   /* margin-top: 1vh; */
 
   padding: 0.5rem 1rem;
-
-  @media (width < 1180px) {
-    width: 95%;
-  }
 }
 
 .nav-menu {

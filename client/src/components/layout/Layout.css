@@ -26,7 +26,7 @@
 .main-dashboard {
   grid-column: 2;
   display: grid;
-  grid-template-rows: 10vh minmax(90vh, 1fr) 8vh;
+  grid-template-rows: 8vh minmax(92vh, 1fr) 8vh;
   height: auto;
 
   @media (width < 1180px) {

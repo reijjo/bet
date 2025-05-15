@@ -42,7 +42,7 @@ export const FinishBetButtons = ({
   useEffect(() => {
     const potentialWin = () => {
       setPotentialWin(
-        (finalOdds(myBet.betDetails) * Number(myBet.stake)).toFixed(2),
+        (finalOdds(myBet.betDetails) * Number(myBet.stake)).toFixed(2)
       );
     };
     potentialWin();
@@ -100,7 +100,7 @@ export const FinishBetButtons = ({
               onChange={handleStakeChange}
             />
             <div className="mybet-slip-potential">
-              <p>x {finalOdds(myBet.betDetails)}</p>
+              <p>x {finalOdds(myBet.betDetails).toFixed(2)}</p>
               <p>Potential Win:</p>
               <p>
                 <b>{potentialWin} &euro;</b>
