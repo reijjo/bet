@@ -1,3 +1,5 @@
+import "./ModifyBetModal.css";
+
 import { useEffect, useState } from "react";
 
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
