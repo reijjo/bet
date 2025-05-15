@@ -32,6 +32,15 @@
   }
 }
 
+.bet-status-change {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+}
+
 .bet-status-change-value-modify {
   display: flex;
   justify-content: space-between;
@@ -80,4 +89,18 @@
   align-items: center;
   width: 100%;
   padding: 1rem 8px;
+}
+
+.status-with-ball {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 8px;
+}
+
+.bet-status-ball {
+  height: 1.5cap;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin-right: 8px;
 }
