@@ -80,4 +80,5 @@ export const config = {
   EMAIL_FROM,
   GMAIL_APP_PASSWORD,
   DB_LOCAL_AZURE,
+  POSTGRES_DEPLOY_PASSWORD,
 };
