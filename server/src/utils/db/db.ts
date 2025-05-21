@@ -19,9 +19,18 @@ export const sequelize = new Sequelize(DATABASE_URL, {
     acquire: 30000,
     idle: 10000,
   },
-  dialectOptions: {
-    connectTimeout: 10000,
-  },
+  dialectOptions:
+    Bun.env.NODE_ENV === "production"
+      ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+          connectTimeout: 10000,
+        }
+      : {
+          connectTimeout: 10000,
+        },
 
   logging: false,
 });
