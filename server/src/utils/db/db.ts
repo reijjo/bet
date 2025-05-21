@@ -20,7 +20,7 @@ export const sequelize = new Sequelize(DATABASE_URL, {
     idle: 10000,
   },
   dialectOptions:
-    Bun.env.NODE_ENV === "production"
+    Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production"
       ? {
           ssl: {
             require: true,
