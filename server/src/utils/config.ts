@@ -58,8 +58,6 @@ if (Bun.env.NODE_ENV === "production") {
   DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_DEPLOY_PASSWORD}@${DB_LOCAL_AZURE}:${DB_PORT}/${DB_NAME}`;
 }
 
-console.log("DATABASE_URL", DATABASE_URL);
-
 export const config = {
   PORT,
   DB_NAME,
