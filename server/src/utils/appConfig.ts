@@ -9,6 +9,7 @@ export const corsOptions = {
     "http://localhost:5173",
     "http://localhost:4173",
     "https://blue-mud-099cac403.6.azurestaticapps.net",
+    "https://tarpit.pages.dev",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
