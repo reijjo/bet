@@ -78,3 +78,4 @@ jobs:
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           DB_LOCAL_AZURE: ${{ secrets.DB_LOCAL_AZURE }}
+          POSTGRES_DEPLOY_PASSWORD: ${{ secrets.POSTGRES_DEPLOY_PASSWORD }}
