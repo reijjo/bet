@@ -7,6 +7,8 @@ import pg from "pg";
 import { ConnectionRefusedError, Sequelize } from "sequelize";
 
 const { DATABASE_URL } = config;
+const isProduction =
+  Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
 
 export const sequelize = new Sequelize(DATABASE_URL, {
   retry: {
@@ -19,18 +21,17 @@ export const sequelize = new Sequelize(DATABASE_URL, {
     acquire: 30000,
     idle: 10000,
   },
-  dialectOptions:
-    Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production"
-      ? {
-          ssl: {
-            require: true,
-            rejectUnauthorized: false,
-          },
-          connectTimeout: 10000,
-        }
-      : {
-          connectTimeout: 10000,
+  dialectOptions: isProduction
+    ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
         },
+        connectTimeout: 10000,
+      }
+    : {
+        connectTimeout: 10000,
+      },
 
   logging: false,
 });
@@ -60,7 +61,14 @@ export const closeDBconnection = async () => {
 };
 
 export const pgStore = new (PgSession(session))({
-  pool: new pg.Pool({ connectionString: DATABASE_URL }),
+  pool: new pg.Pool({
+    connectionString: DATABASE_URL,
+    ssl: isProduction
+      ? {
+          rejectUnauthorized: false,
+        }
+      : false,
+  }),
   tableName: "sessions",
   createTableIfMissing: true,
 });
