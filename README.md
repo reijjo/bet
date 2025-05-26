@@ -6,22 +6,11 @@ Place where you can track your bets
 - You can finally ditch the annoying Excel Sheets that are impossible to update with your phone.
 <img alt="Screenshot 2025-04-20 at 20 52 33" src="https://github.com/user-attachments/assets/b6250091-7780-448f-a185-9ee59491a8aa" width="1412" height='480' />
 
-## Tech stuff
-
-### With what?
-
-This project is done with `React`, `TypeScript`, `Expressjs` and `CSS`
-- `RTK query` for queries
-- `Redux` for state managment
-- `PostgreSQL` and `Sequelize` for database
-- `Sessions` for user managment
-
 ## How to use?
 
-<!-- Try it live <a href='https://blue-mud-099cac403.6.azurestaticapps.net/'>here</a> -->
-Actually not live anywhere right now. Free credits used in Azure so gotta figure something out.
-- Frontend is deployed with `Azure Static Web App`
-- Database is deployed in a Docker container with `Azure Virtual machine`
+Try it live <a href='https://tarpit.pages.dev/'>here</a>
+- Frontend is deployed with `Cloudfare pages`
+- Database is deployed in `AWS RDS`
 - Backend is deployed with `Render`
 
 ### Locally
@@ -33,7 +22,7 @@ Install `Docker` and `Bun`
 - Start frontend with `bun run dev` and go to http://localhost:5173/
 #### Backend
 - Go to `bet/server` folder
-- Rename `.envEXAMPLE` file to `.env` and fill in the blanks
+- Rename `env` file to `.env` and fill in the blanks
 - Run `bun install`
 - Start backend with `bun run dev`
 - Backend is running at http://localhost:3000/
@@ -43,7 +32,15 @@ Make sure you have `Docker` running
 - Start database with `docker compose up`
 - `pgAdmin` is running at http://localhost:5050/
 
+## Tech stuff
 
+### With what?
+
+This project is done with `React`, `TypeScript`, `Expressjs` and `CSS`
+- `RTK query` for queries
+- `Redux` for state managment
+- `PostgreSQL` and `Sequelize` for database
+- `Sessions` for user managment
 
 ## Testing
 - Frontend `vitest`
