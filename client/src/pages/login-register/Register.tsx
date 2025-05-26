@@ -11,6 +11,7 @@ import {
   Button,
   Container,
   DividerWithText,
+  Loading,
   OauthButton,
   TextInput,
 } from "../../components";
@@ -26,7 +27,7 @@ import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
 const Register = () => {
-  const [checkDuplicateEmail, { data: fetchData, isLoading, isError, error }] =
+  const [checkDuplicateEmail, { isLoading, isError, error }] =
     useLazyGetUserByEmailQuery();
 
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
@@ -69,11 +70,6 @@ const Register = () => {
     }
   };
 
-  console.log("error", error);
-  console.log("isError", isError);
-  console.log("isLoading", isLoading);
-  console.log("fetchData", fetchData);
-
   return (
     <div className="login-page">
       <Container
@@ -111,20 +107,20 @@ const Register = () => {
               <InputErrorContainer errors={errors.email?.types || {}} />
             )}
           </Container>
-          {isLoading && (
+          {(isLoading || isError) && (
             <Message
-              message="Checking email..."
-              type={MessageTypes.Info}
+              message={
+                isLoading ? (
+                  <Loading color="message-info" text="Checking email..." />
+                ) : (
+                  getErrorMessage(error)
+                )
+              }
+              type={isLoading ? MessageTypes.Info : MessageTypes.Error}
               width="75%"
             />
           )}
-          {isError && (
-            <Message
-              message={getErrorMessage(error)}
-              type={MessageTypes.Error}
-              width="75%"
-            />
-          )}
+
           <Button
             type="submit"
             className="btn btn-filled"

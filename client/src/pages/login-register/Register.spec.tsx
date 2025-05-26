@@ -6,16 +6,23 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as userApi from "../../features/api/userApi";
 import * as registerSlice from "../../features/registerSlice";
-// import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store/store";
 import Register from "./Register";
 
-const mockNavigate = vi.fn();
+if (process.env.NODE_ENV === "test") {
+  console.log = function () {};
+  console.error = function () {};
+}
+
 const user = userEvent.setup();
+const mockNavigate = vi.fn();
+
 let mockLocationState: { from: { pathname: string } } | undefined = {
   from: { pathname: "/dash" },
 };
+let mockIsAuthenticated = false;
 
+// Mocking react-router-dom's useNavigate and useLocation
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");
   return {
@@ -25,15 +32,25 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-let mockIsAuthenticated = false;
+// Mocking the useAppDispatch and useAppSelector hooks
 vi.mock("../../store/hooks", () => ({
   useAppDispatch: () => vi.fn(),
   useAppSelector: () => ({ isAuthenticated: mockIsAuthenticated }),
 }));
 
-describe("Register", () => {
-  const mockSetRegister = vi.fn();
+const renderComponent = () => {
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    </Provider>
+  );
+};
+
+describe("Register Component", () => {
   const mockCheckDuplicateEmail = vi.fn();
+  const mockSetRegister = vi.fn();
 
   beforeEach(() => {
     mockIsAuthenticated = false;
@@ -56,131 +73,156 @@ describe("Register", () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
-    mockNavigate.mockReset();
-    mockSetRegister.mockReset();
     mockCheckDuplicateEmail.mockReset();
+    mockSetRegister.mockReset();
+    mockNavigate.mockReset();
   });
 
-  const renderComponent = () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Register />
-        </MemoryRouter>
-      </Provider>,
-    );
-  };
-
-  it("renders component", () => {
-    renderComponent();
-
-    expect(
-      screen.getByText("Start tracking your bets at Tärpit"),
-    ).toBeInTheDocument();
-  });
-
-  it("handles email input", async () => {
-    renderComponent();
-
-    const emailInput = screen.getByLabelText("Email");
-    expect(emailInput).toBeInTheDocument();
-
-    await user.type(emailInput, "repe@repe.com");
-    expect(emailInput).toHaveValue("repe@repe.com");
-  });
-
-  it("shows invalid email error", async () => {
-    renderComponent();
-    const emailInput = screen.getByLabelText("Email");
-    const registerButton = screen.getByText("sign up");
-
-    await user.type(emailInput, "repe@repe");
-    await user.click(registerButton);
-
-    await waitFor(() => {
-      const errorElement = screen.getByRole("alert");
-      expect(errorElement).toBeInTheDocument();
-      expect(errorElement).toHaveTextContent("Invalid email");
+  // SUCCESSFUL STUFF
+  describe("successful stuff", () => {
+    it("renders component", () => {
+      renderComponent();
+      expect(
+        screen.getByText("Start tracking your bets at Tärpit")
+      ).toBeInTheDocument();
     });
-  });
 
-  it("shows loading state while checking email", async () => {
-    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
-      mockCheckDuplicateEmail,
-      {
+    it("handles successful submission", async () => {
+      mockCheckDuplicateEmail.mockResolvedValue({
+        isSuccess: true,
         data: null,
-        isLoading: true,
-        isError: false,
-        error: null,
-        reset: vi.fn(),
-      },
-      { lastArg: undefined },
-    ]);
+      });
 
-    renderComponent();
+      renderComponent();
 
-    await waitFor(() => {
-      expect(screen.getByText("Checking email...")).toBeInTheDocument();
-    });
-  });
+      const emailInput = screen.getByLabelText("Email");
+      const registerButton = screen.getByText("sign up");
 
-  it("shows error when email is already in use", async () => {
-    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
-      mockCheckDuplicateEmail,
-      {
-        data: null,
-        isLoading: false,
-        isError: true,
-        error: { status: 409, data: { message: "Email already in use" } },
-        reset: vi.fn(),
-      },
-      { lastArg: undefined },
-    ]);
+      await user.type(emailInput, "test@example.com");
+      await user.click(registerButton);
 
-    renderComponent();
+      await waitFor(() => {
+        expect(mockCheckDuplicateEmail).toHaveBeenCalledWith(
+          "test@example.com"
+        );
 
-    await waitFor(() => {
-      expect(screen.getByText("Email already in use")).toBeInTheDocument();
-    });
-  });
-
-  it("handles successful submission and navigates to next step", async () => {
-    mockCheckDuplicateEmail.mockResolvedValue({
-      isSuccess: true,
-      data: null,
+        expect(mockSetRegister).toHaveBeenCalledWith({
+          email: "test@example.com",
+        });
+      });
     });
 
-    renderComponent();
+    it("redirects if user is already authenticated", async () => {
+      mockIsAuthenticated = true;
+      renderComponent();
 
-    const emailInput = screen.getByLabelText("Email");
-    const registerButton = screen.getByText("sign up");
+      await waitFor(() => {
+        expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+      });
+    });
 
-    await user.type(emailInput, "test@example.com");
-    await user.click(registerButton);
+    it("shows loading state while checking email", async () => {
+      vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+        mockCheckDuplicateEmail,
+        {
+          data: null,
+          isLoading: true,
+          isError: false,
+          error: null,
+          reset: vi.fn(),
+        },
+        { lastArg: undefined },
+      ]);
 
-    await waitFor(() => {
-      expect(mockCheckDuplicateEmail).toHaveBeenCalledWith("test@example.com");
+      renderComponent();
 
-      expect(mockSetRegister).toHaveBeenCalledWith({
-        email: "test@example.com",
+      await waitFor(() => {
+        expect(screen.getByText("Checking email...")).toBeInTheDocument();
       });
     });
   });
 
-  it("redirects if user is already authenticated", async () => {
-    mockIsAuthenticated = true;
-    renderComponent();
+  // ERROR HANDLING
+  describe("error handling", () => {
+    it("onSubmit random error", async () => {
+      const consoleSpy = vi
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
 
-    await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+      // Make checkDuplicateEmail throw an error
+      const testError = new Error("Network error");
+      mockCheckDuplicateEmail.mockRejectedValue(testError);
+
+      renderComponent();
+
+      const emailInput = screen.getByLabelText("Email");
+      const registerButton = screen.getByText("sign up");
+
+      await user.type(emailInput, "test@example.com");
+      await user.click(registerButton);
+
+      await waitFor(() => {
+        expect(mockCheckDuplicateEmail).toHaveBeenCalledWith(
+          "test@example.com"
+        );
+        expect(consoleSpy).toHaveBeenCalledWith(
+          "Verification error:",
+          testError
+        );
+      });
+
+      consoleSpy.mockRestore();
+    });
+
+    it("shows invalid email error", async () => {
+      renderComponent();
+      const emailInput = screen.getByLabelText("Email");
+      const registerButton = screen.getByText("sign up");
+
+      await user.type(emailInput, "repe@repe");
+      await user.click(registerButton);
+
+      await waitFor(() => {
+        const errorElement = screen.getByRole("alert");
+        expect(errorElement).toBeInTheDocument();
+        expect(errorElement).toHaveTextContent("Invalid email");
+      });
+    });
+
+    it("shows error when email is already in use", async () => {
+      vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+        mockCheckDuplicateEmail,
+        {
+          data: null,
+          isLoading: false,
+          isError: true,
+          error: { status: 409, data: { message: "Email already in use" } },
+          reset: vi.fn(),
+        },
+        { lastArg: undefined },
+      ]);
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText("Email already in use")).toBeInTheDocument();
+      });
     });
   });
 
-  it("onSubmit random error", () => {
-    mockCheckDuplicateEmail.mockRejectedValue(
-      new Error("Something went wrong"),
-    );
+  // EDGE CASES
+  describe("edge cases for coverage", () => {
+    it("uses default redirect path when location.state is undefined", async () => {
+      // Set mockLocationState to undefined to trigger the fallback
+      mockLocationState = undefined;
+      mockIsAuthenticated = true;
 
-    renderComponent();
+      renderComponent();
+
+      await waitFor(() => {
+        // This will test the || "/dash" fallback on line 35
+        expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
+      });
+    });
   });
 });
