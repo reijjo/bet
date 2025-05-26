@@ -1,13 +1,13 @@
 import {
-  findUserQuery,
+  getUserQuery,
   getAllUsers,
-  registration,
+  createUser,
 } from "../controllers/userController";
 import express from "express";
 
 export const userRouter = express.Router();
 
 userRouter.get("/", getAllUsers);
-userRouter.post("/", registration);
+userRouter.post("/", createUser);
 
-userRouter.get("/find", findUserQuery);
+userRouter.get("/find", getUserQuery);

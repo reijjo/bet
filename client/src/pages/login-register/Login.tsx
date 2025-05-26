@@ -25,8 +25,8 @@ import {
 import { loginUser } from "../../features/authSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
-import { MessageTypes } from "../../utils/enums";
-import { getErrorMessage } from "../../utils/helperFunctions";
+import { MessageType, MessageTypes } from "../../utils/enums";
+import { getErrorMessage, getErrorStatus } from "../../utils/helperFunctions";
 import { LoginValues, User } from "../../utils/types";
 
 const ForgotPassword = () => (
@@ -74,6 +74,17 @@ const Login = () => {
       console.log("ERROR", err);
     }
   };
+
+  const errorTypeMessage = (error: unknown): MessageType => {
+    const errorType = getErrorStatus(error);
+    if (errorType === 403) {
+      return MessageTypes.Warning;
+    }
+
+    return MessageTypes.Error;
+  };
+  const errorType = getErrorStatus(error);
+  console.log("errorType", errorType);
 
   return (
     <div className="login-page">
@@ -126,7 +137,7 @@ const Login = () => {
                   getErrorMessage(error)
                 )
               }
-              type={isLoading ? MessageTypes.Info : MessageTypes.Error}
+              type={isLoading ? MessageTypes.Info : errorTypeMessage(error)}
               width="75%"
             />
           )}

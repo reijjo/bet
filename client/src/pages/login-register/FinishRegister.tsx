@@ -31,7 +31,6 @@ const FinishRegister = () => {
     watch,
     handleSubmit,
   } = useForm<RegisterValues>({
-    // mode: "onChange", criteriaMode: "all"
     mode: "onSubmit",
     reValidateMode: "onChange",
     criteriaMode: "all",
@@ -40,7 +39,7 @@ const FinishRegister = () => {
   const passwordMatcher = watch("password");
 
   const registerState = useAppSelector(
-    (state: RootState) => state.register.email,
+    (state: RootState) => state.register.email
   );
   const dispatch = useAppDispatch();
   console.log("REGISTER STATE", registerState);
@@ -53,6 +52,8 @@ const FinishRegister = () => {
       username: sanitizedUsername,
       email: registerState,
     };
+
+    console.log("USER TO CREATE", userToCreate);
 
     setMessage({
       message: "Creating your account...",

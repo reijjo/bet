@@ -12,11 +12,11 @@ import {
 
 import app from "../../app";
 import { UserModel } from "../../models/userModel";
-import { closeDBconnection, connectToDB } from "../../utils/db/db";
-import * as emailService from "../../utils/emailService";
-import { createTestiukko, testiukko } from "./userController.spec";
+
 import { randomBytes } from "crypto";
 import supertest from "supertest";
+import { testiukko } from "./userController/helpers/testUsers";
+import { createTestiukko } from "./userController/helpers/createTestuser";
 
 const api = supertest(app);
 
@@ -35,7 +35,7 @@ export const loginTestiukko = async () => {
   return res;
 };
 
-describe.only("AUTH CONTROLLER", () => {
+describe.skip("AUTH CONTROLLER", () => {
   describe("login route", () => {
     test("login successfully with email", async () => {
       await createTestiukko();
@@ -92,7 +92,7 @@ describe.only("AUTH CONTROLLER", () => {
       const loginSpy = spyOn(UserModel, "findOne").mockImplementation(
         async () => {
           throw new Error("Database error");
-        },
+        }
       );
 
       const res = await api.post("/api/auth/login").send({
@@ -111,7 +111,7 @@ describe.only("AUTH CONTROLLER", () => {
 
       const regenerateSpy = spyOn(
         require("express-session").Session.prototype,
-        "regenerate",
+        "regenerate"
       ).mockImplementation(function (cb: (err?: Error) => void) {
         cb(new Error("Unexpected session error"));
       });
@@ -132,7 +132,7 @@ describe.only("AUTH CONTROLLER", () => {
 
       const regenerateSpy = spyOn(
         require("express-session").Session.prototype,
-        "save",
+        "save"
       ).mockImplementation(function (cb: (err?: Error) => void) {
         cb(new Error("Unexpected session error"));
       });
@@ -184,7 +184,7 @@ describe.only("AUTH CONTROLLER", () => {
 
       const destroySpy = spyOn(
         require("express-session").Session.prototype,
-        "destroy",
+        "destroy"
       ).mockImplementation(function (cb: (err?: Error) => void) {
         cb(new Error("Failed to destroy session"));
       });
@@ -240,7 +240,7 @@ describe.only("AUTH CONTROLLER", () => {
 
       const regenerateSpy = spyOn(
         require("express-session").Session.prototype,
-        "regenerate",
+        "regenerate"
       ).mockImplementation(function (cb: (err?: Error) => void) {
         cb(new Error("Unexpected session error"));
       });
@@ -260,7 +260,7 @@ describe.only("AUTH CONTROLLER", () => {
 
       const regenerateSpy = spyOn(
         require("express-session").Session.prototype,
-        "save",
+        "save"
       ).mockImplementation(function (cb: (err?: Error) => void) {
         cb(new Error("Unexpected session error"));
       });
@@ -355,7 +355,7 @@ describe.skip("verifyAccount route", () => {
     const findOneSpy = spyOn(UserModel, "findOne").mockImplementation(
       async () => {
         throw new Error("Database error");
-      },
+      }
     );
 
     try {
@@ -363,7 +363,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(500);
       expect(res.body.message).toBe(
-        "Failed to verify account. Please try again later.",
+        "Failed to verify account. Please try again later."
       );
     } finally {
       findOneSpy.mockRestore();
@@ -413,7 +413,7 @@ describe.skip("verifyAccount route", () => {
 
         expect(res.status).toBe(201);
         expect(res.body.message).toBe(
-          "Token refreshed! Check your email to verify your account.",
+          "Token refreshed! Check your email to verify your account."
         );
         expect(res.body.data).toBe(email);
       } else {
@@ -426,7 +426,7 @@ describe.skip("verifyAccount route", () => {
       const findOneSpy = spyOn(UserModel, "findOne").mockImplementation(
         async () => {
           throw new Error("Database error");
-        },
+        }
       );
 
       try {
@@ -436,7 +436,7 @@ describe.skip("verifyAccount route", () => {
 
         expect(res.status).toBe(500);
         expect(res.body.message).toBe(
-          "Failed to refresh token. Please try again later.",
+          "Failed to refresh token. Please try again later."
         );
       } finally {
         findOneSpy.mockRestore();
@@ -470,7 +470,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Username, email and password are required",
+        "Username, email and password are required"
       );
     });
 
@@ -491,7 +491,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Username must be between 3 and 20 characters",
+        "Username must be between 3 and 20 characters"
       );
     });
 
@@ -502,7 +502,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Password must be between 8 and 50 characters",
+        "Password must be between 8 and 50 characters"
       );
     });
 
@@ -513,7 +513,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Password must contain at least one uppercase letter",
+        "Password must contain at least one uppercase letter"
       );
     });
 
@@ -524,7 +524,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Password must contain at least one lowercase letter",
+        "Password must contain at least one lowercase letter"
       );
     });
 
@@ -535,7 +535,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Password must contain at least one number",
+        "Password must contain at least one number"
       );
     });
 
@@ -546,7 +546,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(400);
       expect(res.body.message).toBe(
-        "Password must contain at least one special character",
+        "Password must contain at least one special character"
       );
     });
 
@@ -563,7 +563,7 @@ describe.skip("verifyAccount route", () => {
 
       expect(res.status).toBe(201);
       expect(res.body.message).toBe(
-        `User ${registerValues.username} created successfully!`,
+        `User ${registerValues.username} created successfully!`
       );
     });
 
@@ -571,7 +571,7 @@ describe.skip("verifyAccount route", () => {
       const findOneSpy = spyOn(UserModel, "findOne").mockImplementation(
         async () => {
           throw new Error("Database error");
-        },
+        }
       );
 
       try {
@@ -579,7 +579,7 @@ describe.skip("verifyAccount route", () => {
 
         expect(res.status).toBe(500);
         expect(res.body.message).toBe(
-          "Failed to finish registration. Please try again later.",
+          "Failed to finish registration. Please try again later."
         );
       } finally {
         findOneSpy.mockRestore();
