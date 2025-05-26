@@ -18,10 +18,9 @@ This project is done with `React`, `TypeScript`, `Expressjs` and `CSS`
 
 ## How to use?
 
-<!-- Try it live <a href='https://blue-mud-099cac403.6.azurestaticapps.net/'>here</a> -->
-Actually not live anywhere right now. Free credits used in Azure so gotta figure something out.
-- Frontend is deployed with `Azure Static Web App`
-- Database is deployed in a Docker container with `Azure Virtual machine`
+Try it live <a href='https://tarpit.pages.dev/'>here</a>
+- Frontend is deployed with `Cloudfare pages`
+- Database is deployed in `AWS RDS`
 - Backend is deployed with `Render`
 
 ### Locally
