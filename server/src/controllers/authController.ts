@@ -2,7 +2,6 @@ import bcryptjs from "bcryptjs";
 
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
-import { sendVerificationEmail } from "../utils/emailService";
 import { UserRoles } from "../utils/enums";
 import { isPasswordValid } from "../utils/input-validators/password";
 import { isUsernameValid } from "../utils/input-validators/username";
@@ -105,7 +104,7 @@ import type { NextFunction, Request, Response } from "express";
 export const login = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { login, password } = req.body as LoginValues;
 
@@ -124,11 +123,20 @@ export const login = async (
 
     const validPassword = await bcryptjs.compare(
       password,
-      user.password as string,
+      user.password as string
     );
 
     if (!validPassword) {
       return next(new HttpError("Invalid password", 400));
+    }
+
+    if (user.role === UserRoles.Registered) {
+      return next(
+        new HttpError(
+          `Check your email '${user.email}' to verify your account before logging in.`,
+          403
+        )
+      );
     }
 
     req.session.regenerate((err) => {
@@ -163,7 +171,7 @@ export const login = async (
 export const logout = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   if (!req.session.user) {
     res.status(200).json({
@@ -201,7 +209,7 @@ export const getSessionUser = (req: Request, res: Response) => {
 export const refreshSession = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   if (!req.session.user) {
     return next(new HttpError("No active session to refresh", 401));
@@ -237,7 +245,7 @@ export const refreshSession = (
   } catch (error) {
     console.error("Session refresh error:", error);
     return next(
-      new HttpError("Failed to refresh session. Please try again later.", 500),
+      new HttpError("Failed to refresh session. Please try again later.", 500)
     );
   }
 };

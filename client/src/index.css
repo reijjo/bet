@@ -251,7 +251,7 @@ a {
   --button-danger-bgColor-active: hsl(2, 55%, 49%);
 
   /* Warning */
-  --warning-dark: hsla(37, 86%, 38%, 1);
+  --warning-dark: hsla(37, 86%, 20%, 1);
   --warning-base: hsla(44, 82%, 52%, 1);
   --warning-medium: hsla(46, 87%, 76%, 1);
   --warning-light: hsla(37, 100%, 89%, 1);

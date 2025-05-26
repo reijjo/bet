@@ -10,6 +10,12 @@
   border-color: var(--error-dark);
 }
 
+.message-warning {
+  color: var(--warning-dark);
+  background-color: var(--warning-xlight);
+  border-color: var(--warning-dark);
+}
+
 .message-info {
   color: var(--info-dark);
   background-color: var(--info-xxlight);
