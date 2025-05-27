@@ -48,7 +48,7 @@ const renderComponent = () => {
   );
 };
 
-describe("Register Component", () => {
+describe("Register.tsx", () => {
   const mockCheckDuplicateEmail = vi.fn();
   const mockSetRegister = vi.fn();
 

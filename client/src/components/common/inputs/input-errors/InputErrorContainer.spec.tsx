@@ -26,4 +26,21 @@ describe("InputErrorContainer.tsx", () => {
     expect(errorElements).toHaveLength(1);
     expect(errorElements[0]).toHaveTextContent("This is an error");
   });
+
+  it("handles errors object with falsy message property", () => {
+    const errors = {
+      message: "", // falsy message property
+      required: "This field is required",
+      minLength: "Minimum length is 5 characters",
+    };
+
+    render(<InputErrorContainer errors={errors} />);
+
+    const errorElements = screen.getAllByRole("alert");
+    expect(errorElements).toHaveLength(2);
+    expect(errorElements[0]).toHaveTextContent("This field is required");
+    expect(errorElements[1]).toHaveTextContent(
+      "Minimum length is 5 characters"
+    );
+  });
 });

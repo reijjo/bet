@@ -8,7 +8,30 @@ import * as userApi from "../../features/api/userApi";
 import { store } from "../../store/store";
 import FinishRegister from "./FinishRegister";
 
+if (process.env.NODE_ENV === "test") {
+  console.log = function () {};
+  console.error = function () {};
+}
+
 const user = userEvent.setup();
+
+const renderComponent = () => {
+  const customStore = {
+    ...store,
+    getState: () => ({
+      ...store.getState(),
+      register: { email: "testi@ukko.com" },
+    }),
+  };
+
+  render(
+    <Provider store={customStore}>
+      <MemoryRouter>
+        <FinishRegister />
+      </MemoryRouter>
+    </Provider>
+  );
+};
 
 describe("FinishRegister.tsx", () => {
   const mockRegisterUser = vi.fn();
@@ -25,156 +48,167 @@ describe("FinishRegister.tsx", () => {
     mockRegisterUser.mockReset();
   });
 
-  const renderComponent = () => {
-    const customStore = {
-      ...store,
-      getState: () => ({
-        ...store.getState(),
-        register: { email: "testi@ukko.com" },
-      }),
-    };
+  describe("successful stuff", () => {
+    it("renders component", () => {
+      renderComponent();
 
-    render(
-      <Provider store={customStore}>
-        <MemoryRouter>
-          <FinishRegister />
-        </MemoryRouter>
-      </Provider>,
-    );
-  };
+      expect(
+        screen.getByRole("heading", { name: /finish your account/i })
+      ).toBeInTheDocument();
+    });
 
-  it("renders component", () => {
-    renderComponent();
+    it("calls registerUser on submit", async () => {
+      const mockRegisterUserResult = {
+        unwrap: () =>
+          Promise.resolve({ message: "Account created successfully" }),
+      };
+      mockRegisterUser.mockReturnValue(mockRegisterUserResult);
 
-    expect(
-      screen.getByRole("heading", { name: /finish your account/i }),
-    ).toBeInTheDocument();
+      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+        mockRegisterUser,
+        { isLoading: false, isError: false, error: null, reset: vi.fn() },
+      ]);
+
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "Password123!");
+      await user.type(confirmPasswordInput, "Password123!");
+      await user.click(submitButton);
+
+      expect(mockRegisterUser).toHaveBeenCalledWith({
+        username: "testuser",
+        password: "Password123!",
+        password2: "Password123!",
+        email: "testi@ukko.com",
+      });
+
+      expect(
+        await screen.findByText("Account created successfully")
+      ).toBeInTheDocument();
+    });
   });
 
-  it("shows error when passwords not matching", async () => {
-    renderComponent();
+  describe("error cases", () => {
+    it("shows error message when registration fails", async () => {
+      const mockRegisterUserResult = {
+        unwrap: () =>
+          Promise.reject({ data: { message: "Registration failed" } }),
+      };
+      mockRegisterUser.mockReturnValue(mockRegisterUserResult);
 
-    const usernameInput = screen.getByRole("textbox", { name: /username/i });
-    const passwordInput = screen.getByLabelText("Password");
-    const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
-    const submitButton = screen.getByRole("button", {
-      name: /create account/i,
+      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+        mockRegisterUser,
+        {
+          isLoading: false,
+          isError: true,
+          error: { data: { message: "Registration failed" } },
+          reset: vi.fn(),
+        },
+      ]);
+
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "Password123!");
+      await user.type(confirmPasswordInput, "Password123!");
+      await user.click(submitButton);
+
+      expect(
+        await screen.findByText("Registration failed")
+      ).toBeInTheDocument();
     });
 
-    await user.type(usernameInput, "testuser");
-    await user.type(passwordInput, "password123");
-    await user.type(confirmPasswordInput, "password1234");
-    await user.click(submitButton);
+    it("shows error when passwords not matching", async () => {
+      renderComponent();
 
-    expect(
-      await screen.findByText(/passwords don't match/i),
-    ).toBeInTheDocument();
-  });
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
 
-  it("calls registerUser on submit", async () => {
-    const mockRegisterUserResult = {
-      unwrap: () =>
-        Promise.resolve({ message: "Account created successfully" }),
-    };
-    mockRegisterUser.mockReturnValue(mockRegisterUserResult);
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "password123");
+      await user.type(confirmPasswordInput, "password1234");
+      await user.click(submitButton);
 
-    vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
-      mockRegisterUser,
-      { isLoading: false, isError: false, error: null, reset: vi.fn() },
-    ]);
-
-    renderComponent();
-
-    const usernameInput = screen.getByRole("textbox", { name: /username/i });
-    const passwordInput = screen.getByLabelText("Password");
-    const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
-    const submitButton = screen.getByRole("button", {
-      name: /create account/i,
+      expect(
+        await screen.findByText(/passwords don't match/i)
+      ).toBeInTheDocument();
     });
 
-    await user.type(usernameInput, "testuser");
-    await user.type(passwordInput, "Password123!");
-    await user.type(confirmPasswordInput, "Password123!");
-    await user.click(submitButton);
+    it("shows error when passwords not matching", async () => {
+      renderComponent();
 
-    expect(mockRegisterUser).toHaveBeenCalledWith({
-      username: "testuser",
-      password: "Password123!",
-      password2: "Password123!",
-      email: "testi@ukko.com",
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "password123");
+      await user.type(confirmPasswordInput, "password1234");
+      await user.click(submitButton);
+
+      expect(
+        await screen.findByText(/passwords don't match/i)
+      ).toBeInTheDocument();
     });
 
-    expect(
-      await screen.findByText("Account created successfully"),
-    ).toBeInTheDocument();
-  });
+    it("weird username", async () => {
+      renderComponent();
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
 
-  it("invalid username", async () => {
-    renderComponent();
+      await user.type(usernameInput, "weird@username");
+      await user.click(submitButton);
 
-    const usernameInput = screen.getByRole("textbox", { name: /username/i });
-    const submitButton = screen.getByRole("button", {
-      name: /create account/i,
+      expect(
+        await screen.findByText(/only numbers, letters, and ._-/i)
+      ).toBeInTheDocument();
     });
 
-    await user.type(usernameInput, "testuser!");
-    await user.click(submitButton);
+    it("too short/long username", async () => {
+      renderComponent();
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
 
-    expect(
-      await screen.findByText(/only numbers, letters, and ._-/i),
-    ).toBeInTheDocument();
+      await user.type(usernameInput, "ab");
+      await user.click(submitButton);
 
-    await user.clear(usernameInput);
-    await user.type(usernameInput, "aa");
-    await user.click(submitButton);
+      expect(
+        await screen.findByText(/min 3 characters on username/i)
+      ).toBeInTheDocument();
 
-    expect(
-      await screen.findByText(/Min 3 characters on username/i),
-    ).toBeInTheDocument();
+      await user.clear(usernameInput);
+      await user.type(usernameInput, "a".repeat(21));
+      await user.click(submitButton);
 
-    await user.clear(usernameInput);
-    await user.type(
-      usernameInput,
-      "aaasddaljsdklasdklasjdlkajdlkasdjlkasdjlaksdjlkasdjladjsalslkdljk",
-    );
-    await user.click(submitButton);
-
-    expect(
-      await screen.findByText(/Max 20 characters on username/i),
-    ).toBeInTheDocument();
-  });
-
-  it("shows error message when registration fails", async () => {
-    const mockRegisterUserResult = {
-      unwrap: () =>
-        Promise.reject({ data: { message: "Registration failed" } }),
-    };
-    mockRegisterUser.mockReturnValue(mockRegisterUserResult);
-
-    vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
-      mockRegisterUser,
-      {
-        isLoading: false,
-        isError: true,
-        error: { data: { message: "Registration failed" } },
-        reset: vi.fn(),
-      },
-    ]);
-
-    renderComponent();
-
-    const usernameInput = screen.getByRole("textbox", { name: /username/i });
-    const passwordInput = screen.getByLabelText("Password");
-    const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
-    const submitButton = screen.getByRole("button", {
-      name: /create account/i,
+      expect(
+        await screen.findByText(/max 20 characters on username/i)
+      ).toBeInTheDocument();
     });
-
-    await user.type(usernameInput, "testuser");
-    await user.type(passwordInput, "Password123!");
-    await user.type(confirmPasswordInput, "Password123!");
-    await user.click(submitButton);
-
-    expect(await screen.findByText("Registration failed")).toBeInTheDocument();
   });
 });
