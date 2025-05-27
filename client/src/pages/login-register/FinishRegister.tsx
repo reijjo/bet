@@ -1,4 +1,5 @@
 import "./LoginRegister.css";
+import penkit from "../../assets/images/login-register/penkit-opti.jpg";
 
 import { useState } from "react";
 
@@ -44,7 +45,6 @@ const FinishRegister = () => {
     (state: RootState) => state.register.email
   );
   const dispatch = useAppDispatch();
-  console.log("REGISTER STATE", registerState);
 
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     const sanitizedUsername = data.username?.trim().toLowerCase();
@@ -54,8 +54,6 @@ const FinishRegister = () => {
       username: sanitizedUsername,
       email: registerState,
     };
-
-    console.log("USER TO CREATE", userToCreate);
 
     setMessage({
       message: "Creating your account...",
@@ -81,17 +79,19 @@ const FinishRegister = () => {
   };
 
   return (
-    <section className="finish-register-background">
+    <section className="login-page">
       <Container
-        width="min(400px, 95%)"
+        width="min(500px, 95%)"
         border="0.5px solid"
-        borderColor="rgba(255, 255, 255, 0.2)"
+        borderColor="transparent"
         padding="24px 16px"
         margin="2rem auto"
+        height="100%"
         alignSelf="center"
-        boxShadow="var(--box-shadow)"
+        justifyContent="center"
+        boxShadow="none"
         gap="1rem"
-        backgroundColor="rgba(0, 0, 0, 0.25)"
+        extraClass="animate-fade-in"
       >
         <div className="form-headers">
           <h3>Finish your account</h3>
@@ -153,6 +153,7 @@ const FinishRegister = () => {
           />
         </form>
       </Container>
+      <img src={penkit} alt="penkit" loading="eager" />
     </section>
   );
 };

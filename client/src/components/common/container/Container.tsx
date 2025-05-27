@@ -19,6 +19,8 @@ type ContainerProps = {
   padding?: string;
   margin?: string;
   gap?: string;
+  extraClass?: string;
+  transform?: string;
 };
 
 export const Container = ({
@@ -38,9 +40,10 @@ export const Container = ({
   padding,
   margin,
   gap = "8px",
+  extraClass = "",
 }: ContainerProps) => (
   <div
-    className="container-base-styles"
+    className={`container-base-styles ${extraClass}`}
     style={{
       width,
       height,

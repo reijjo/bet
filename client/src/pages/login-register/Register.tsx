@@ -1,6 +1,6 @@
 import "./LoginRegister.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -27,6 +27,7 @@ import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
 
 const Register = () => {
+  const [fade, setFade] = useState(false);
   const [checkDuplicateEmail, { isLoading, isError, error }] =
     useLazyGetUserByEmailQuery();
 
@@ -62,8 +63,11 @@ const Register = () => {
       const result = await checkDuplicateEmail(sanitazedEmail);
 
       if (result.isSuccess) {
+        setFade(true);
         dispatch(setRegister({ ...data, email: sanitazedEmail }));
-        navigate("/register/finish");
+        setTimeout(() => {
+          navigate("/register/finish");
+        }, 1000);
       }
     } catch (error) {
       console.error("Verification error:", error);
@@ -83,6 +87,7 @@ const Register = () => {
         justifyContent="center"
         boxShadow="none"
         gap="1rem"
+        extraClass={`${fade ? "fade-out-to-bottom" : ""}`}
       >
         <div className="form-headers">
           <h3>Create your account</h3>
