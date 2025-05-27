@@ -1,3 +1,5 @@
+import "./LoginRegister.css";
+
 import { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -71,7 +73,6 @@ const FinishRegister = () => {
       reset();
       dispatch(resetRegister());
     } catch (error) {
-      console.log("ERROR", error);
       setMessage({
         message: getErrorMessage(error),
         type: MessageTypes.Error,

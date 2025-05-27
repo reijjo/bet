@@ -20,9 +20,9 @@ export const hasBuilderSelections = (selections: string[]) => {
   return Array.isArray(selections) && selections.length > 0;
 };
 
-export const hasMinLength = (value: string, minLength: number) => {
-  return value.trim().length >= minLength;
-};
+// export const hasMinLength = (value: string, minLength: number) => {
+//   return value.trim().length >= minLength;
+// };
 
 export const hasMaxLength = (value: string, maxLength: number) => {
   return value.trim().length <= maxLength;
@@ -55,7 +55,7 @@ export const validOdds = (odds: string | number) => {
 
 export const validBetBuilderSelection = (
   selections: string[],
-  betType: BetType,
+  betType: BetType
 ) => {
   if (
     selections &&
@@ -94,7 +94,7 @@ export const validateBetDetailsInputs = (details: BetDetails) => {
   // Check betbuilder selections
   const builderSelectionError = validBetBuilderSelection(
     details.betbuilder_selection as string[],
-    details.bet_type,
+    details.bet_type
   );
   if (builderSelectionError) {
     errors.betbuilder_selection = inputErrors.buildSelections;

@@ -42,14 +42,13 @@ export const Routing = () => (
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
         <Route path="/about" element={<UnderCons />} />
-        <Route path="*" element={<UnderCons />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/dash" element={<Dashboard />} />
         <Route path="/bets" element={<Bets />} />
         <Route path="/add-bet" element={<AddBet />} />
-        <Route path="*" element={<UnderCons />} />
       </Route>
+      <Route path="*" element={<UnderCons />} />
     </Routes>
   </Suspense>
 );
