@@ -88,6 +88,7 @@
   grid-template-rows: 1fr;
 
   background: radial-gradient(var(--primary-500), transparent);
+  overflow-y: hidden;
 
   & > img {
     grid-column: 2;

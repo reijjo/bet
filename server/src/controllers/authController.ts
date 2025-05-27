@@ -224,8 +224,6 @@ export const refreshSession = (
         return next(new HttpError("Failed to regenerate session", 500));
       }
 
-      // Make sure we maintain the user data
-
       // Set the user data back in the new session
       req.session.user = userData;
 
