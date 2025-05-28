@@ -1,7 +1,7 @@
 import { describe, test, expect, jest, afterEach, spyOn } from "bun:test";
 import supertest from "supertest";
 import app from "../../../app";
-import { createTestiukko } from "./helpers/createTestuser";
+import { createTestiukko } from "../helpers/createTestuser";
 import { UserModel } from "../../../models/userModel";
 
 const api = supertest(app);

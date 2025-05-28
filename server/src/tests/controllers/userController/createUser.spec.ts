@@ -2,8 +2,8 @@ import { describe, test, expect, afterEach, jest, spyOn } from "bun:test";
 import { UserModel } from "../../../models/userModel";
 import supertest from "supertest";
 import app from "../../../app";
-import { testiukko } from "./helpers/testUsers";
-import { createTestiukko } from "./helpers/createTestuser";
+import { testiukko } from "../helpers/testUsers";
+import { createTestiukko } from "../helpers/createTestuser";
 import * as emailModule from "../../../controllers/utils/createUserUtils";
 
 if (process.env.NODE_ENV === "test") {
