@@ -9,51 +9,51 @@ import type { LoginValues } from "../utils/types";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 
-// export const verifyAccount = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   const { token } = req.params;
-//   const now = new Date().getTime();
+export const verifyAccount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { token } = req.params;
+  const now = new Date().getTime();
 
-//   if (token.length < 5) {
-//     return next(new HttpError("Invalid token", 400));
-//   }
+  if (token.length < 5) {
+    return next(new HttpError("Invalid token", 400));
+  }
 
-//   try {
-//     const accountToFinish = await UserModel.findOne({
-//       where: { resetToken: token },
-//     });
+  try {
+    const accountToFinish = await UserModel.findOne({
+      where: { resetToken: token },
+    });
 
-//     if (!accountToFinish) {
-//       return next(
-//         new HttpError("No account found Please register", 404, "test comment"),
-//       );
-//     }
+    if (!accountToFinish) {
+      return next(
+        new HttpError("No account found Please register", 404, "test comment")
+      );
+    }
 
-//     if (
-//       !accountToFinish.resetTokenExpiration ||
-//       new Date(accountToFinish.resetTokenExpiration).getTime() < now
-//     ) {
-//       return next(
-//         new HttpError(`${accountToFinish.email}`, 400, "Token expired"),
-//       );
-//     }
+    if (
+      !accountToFinish.resetTokenExpiration ||
+      new Date(accountToFinish.resetTokenExpiration).getTime() < now
+    ) {
+      return next(
+        new HttpError(`${accountToFinish.email}`, 400, "Token expired")
+      );
+    }
 
-//     res.status(200).json({
-//       success: true,
-//       message:
-//         "Account found. Please set your password to finish registration.",
-//       data: accountToFinish.email,
-//     });
-//   } catch (error) {
-//     console.error("Verification error:", error);
-//     return next(
-//       new HttpError("Failed to verify account. Please try again later.", 500),
-//     );
-//   }
-// };
+    res.status(200).json({
+      success: true,
+      message:
+        "Account found. Please set your password to finish registration.",
+      data: accountToFinish.email,
+    });
+  } catch (error) {
+    console.error("Verification error:", error);
+    return next(
+      new HttpError("Failed to verify account. Please try again later.", 500)
+    );
+  }
+};
 
 // export const refreshToken = async (
 //   req: Request,
