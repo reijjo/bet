@@ -11,14 +11,10 @@ import { RegisterUserApiResponse } from "../../../utils/api-response-types";
 
 const Verify = () => {
   const { token } = useParams();
-  console.log("Verify token:", token);
 
   const { data, isLoading, isError, error } = useVerifyQuery(token as string, {
     skip: !token,
   });
-
-  console.log("Verify data:", data);
-  console.log("Verify error:", error);
 
   const renderComponent = () => {
     if (isLoading) return <Loading />;
