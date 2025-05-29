@@ -3,6 +3,7 @@ import supertest from "supertest";
 import app from "../../../app";
 import { createTestiukko } from "../helpers/createTestuser";
 import { UserModel } from "../../../models/userModel";
+import { testiukko } from "../helpers/testUsers";
 
 const api = supertest(app);
 
@@ -36,7 +37,7 @@ describe("USER CONTROLLER - getUserQuery", () => {
   });
 
   test("email already registered", async () => {
-    await createTestiukko();
+    await createTestiukko(testiukko);
 
     const res = await api.get("/api/users/find?email=testi@ukko.com");
 
@@ -45,7 +46,7 @@ describe("USER CONTROLLER - getUserQuery", () => {
   });
 
   test("username already registered", async () => {
-    await createTestiukko();
+    await createTestiukko(testiukko);
 
     const res = await api.get("/api/users/find?username=testiukko");
 

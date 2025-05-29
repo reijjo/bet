@@ -32,8 +32,7 @@ export const TokenExpired = ({ token }: TokenExpiredProps) => {
         }}
       >
         <h4>Verify token expired</h4>
-        <p>Get new token for</p>
-        <h6>{getErrorMessage(updateError)}</h6>
+        <p>Get new token</p>
       </div>
       {(isUpdateError || isUpdating) && (
         <Message
@@ -57,11 +56,10 @@ export const TokenExpired = ({ token }: TokenExpiredProps) => {
           className="btn btn-filled"
           children={"Refresh token"}
           width="75%"
-          margin="1rem 0 0"
+          margin="0.5rem 0 0"
           onClick={() =>
             updateToken({
               token: token as string,
-              email: getErrorMessage(updateError),
             })
           }
         />

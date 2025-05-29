@@ -30,7 +30,7 @@ export type GetDetailByIdApiResponse = {
 };
 
 export type RegisterUserApiResponse = {
-  data?: string;
+  data?: User;
   success: boolean;
   message: string;
 };
@@ -43,6 +43,12 @@ export type BasicApiResponse = {
 
 export interface FinishUserResponse {
   data: User;
+  success: boolean;
+  message: string;
+}
+
+export interface MinimalUserResponse {
+  data: Omit<User, "password" | "resetToken" | "resetTokenExpiration">;
   success: boolean;
   message: string;
 }

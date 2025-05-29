@@ -8,6 +8,7 @@ import { isUsernameValid } from "../utils/input-validators/username";
 import type { LoginValues } from "../utils/types";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
+import { sendVerificationEmail } from "./utils/createUserUtils";
 
 export const verifyAccount = async (
   req: Request,
@@ -18,7 +19,7 @@ export const verifyAccount = async (
   const now = new Date().getTime();
 
   if (token.length < 5) {
-    return next(new HttpError("Invalid token", 400));
+    return next(new HttpError("Invalid token", 401));
   }
 
   try {
@@ -28,12 +29,12 @@ export const verifyAccount = async (
 
     if (!accountToFinish) {
       return next(
-        new HttpError("No account found Please register", 404, "test comment")
+        new HttpError("No account found. Please register", 404, "test comment")
       );
     }
 
     if (
-      !accountToFinish.resetTokenExpiration ||
+      accountToFinish.resetTokenExpiration &&
       new Date(accountToFinish.resetTokenExpiration).getTime() < now
     ) {
       return next(
@@ -43,9 +44,8 @@ export const verifyAccount = async (
 
     res.status(200).json({
       success: true,
-      message:
-        "Account found. Please set your password to finish registration.",
-      data: accountToFinish.email,
+      message: "Account verified! You can now log in with your credentials.",
+      data: accountToFinish,
     });
   } catch (error) {
     console.error("Verification error:", error);
@@ -55,51 +55,48 @@ export const verifyAccount = async (
   }
 };
 
-// export const refreshToken = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   const { email } = req.body;
+export const refreshToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { token } = req.body;
 
-//   if (!email) {
-//     return next(new HttpError("Email is required", 400));
-//   }
+  if (!token || token.length < 5) {
+    return next(new HttpError("Invalid token", 400));
+  }
 
-//   try {
-//     const user = await UserModel.findOne({
-//       where: { email },
-//     });
+  try {
+    const user = await UserModel.findOne({
+      where: { resetToken: token },
+    });
 
-//     if (!user) {
-//       return next(new HttpError("User not found", 404));
-//     }
+    if (!user) {
+      return next(new HttpError("User not found", 404));
+    }
 
-//     const verifyToken = randomBytes(32).toString("hex");
+    // Set token expiration (1 hour from now)
+    const tokenExpiration = new Date();
+    tokenExpiration.setHours(tokenExpiration.getHours() + 1);
 
-//     // Set token expiration (1 hour from now)
-//     const tokenExpiration = new Date();
-//     tokenExpiration.setHours(tokenExpiration.getHours() + 1);
+    await user.update({
+      resetTokenExpiration: tokenExpiration,
+    });
 
-//     await user.update({
-//       resetToken: verifyToken,
-//       resetTokenExpiration: tokenExpiration,
-//     });
+    await sendVerificationEmail(user.email, token);
 
-//     await sendVerificationEmail(email, verifyToken);
-
-//     res.status(201).json({
-//       success: true,
-//       message: `Token refreshed! Check your email to verify your account.`,
-//       data: email,
-//     });
-//   } catch (error) {
-//     console.error("Refresh token error:", error);
-//     return next(
-//       new HttpError("Failed to refresh token. Please try again later.", 500),
-//     );
-//   }
-// };
+    res.status(200).json({
+      success: true,
+      message: `Token refreshed! Check your email ${user.email} to verify your account.`,
+      data: user.email,
+    });
+  } catch (error) {
+    console.error("Refresh token error:", error);
+    return next(
+      new HttpError("Failed to refresh token. Please try again later.", 500)
+    );
+  }
+};
 
 export const login = async (
   req: Request,

@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs";
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
 import { UserRoles } from "../utils/enums";
-import type { RegisterValues } from "../utils/types";
+import type { RegisterValues, User } from "../utils/types";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 import {
@@ -75,7 +75,6 @@ export const createUser = async (
   }
 
   try {
-    // Check for duplicate email and username
     let user = await UserModel.findOne({
       where: { email },
     });
@@ -123,5 +122,36 @@ export const createUser = async (
         500
       )
     );
+  }
+};
+
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const updates = req.body as Partial<User>;
+
+  if (!updates || Object.keys(updates).length === 0) {
+    return next(new HttpError("No update fields provided", 400));
+  }
+
+  try {
+    const userToUpdate = await UserModel.findByPk(id);
+
+    if (!userToUpdate) {
+      return next(new HttpError("User not found", 404));
+    }
+
+    const updatedUser: User = await userToUpdate.update(updates);
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.error("Update user error:", error);
+    return next(new HttpError("Failed to update user", 500));
   }
 };

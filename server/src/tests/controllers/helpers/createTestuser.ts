@@ -1,14 +1,11 @@
 import supertest from "supertest";
 import app from "../../../app";
+import type { User } from "../../../utils/types";
 
 const api = supertest(app);
 
-export const createTestiukko = async () => {
-  const res = await api.post("/api/users").send({
-    username: "testiukko",
-    password: "Testi_123",
-    email: "testi@ukko.com",
-  });
+export const createTestiukko = async (testiukko: Partial<User>) => {
+  const res = await api.post("/api/users").send(testiukko);
 
   expect(res.status).toBe(201);
   return res;
