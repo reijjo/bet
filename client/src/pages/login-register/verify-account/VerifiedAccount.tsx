@@ -20,8 +20,6 @@ export const VerifiedAccount = ({ data }: VerifiedAccountProps) => {
     }
   }, [data?.data?.id, updateUser]);
 
-  console.log("data", data);
-
   if (isLoading) return <Loading text="Updating user role..." />;
   if (isError) return <Error error={error} />;
 
