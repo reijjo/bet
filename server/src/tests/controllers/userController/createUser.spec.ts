@@ -20,7 +20,7 @@ describe("USER CONTROLLER - createUser", () => {
   });
 
   test("valid registration", async () => {
-    const res = await createTestiukko();
+    const res = await createTestiukko(testiukko);
     expect(res.status).toBe(201);
   });
 
@@ -76,7 +76,7 @@ describe("USER CONTROLLER - createUser", () => {
   });
 
   test("email in use", async () => {
-    await createTestiukko();
+    await createTestiukko(testiukko);
 
     const res = await api
       .post("/api/users")
@@ -87,7 +87,7 @@ describe("USER CONTROLLER - createUser", () => {
   });
 
   test("username in use", async () => {
-    await createTestiukko();
+    await createTestiukko(testiukko);
 
     const res = await api
       .post("/api/users")
@@ -120,7 +120,7 @@ describe("USER CONTROLLER - createUser", () => {
       throw new Error("Network error");
     });
 
-    await expect(
+    expect(
       emailModule.sendVerificationEmail("test@example.com", "test-token")
     ).rejects.toThrow("Network error");
 

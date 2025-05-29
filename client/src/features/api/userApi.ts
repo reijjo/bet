@@ -1,5 +1,8 @@
-import { RegisterUserApiResponse } from "../../utils/api-response-types";
-import { RegisterValues } from "../../utils/types";
+import {
+  MinimalUserResponse,
+  RegisterUserApiResponse,
+} from "../../utils/api-response-types";
+import { RegisterValues, User } from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const userApiSlice = baseApi.injectEndpoints({
@@ -20,6 +23,16 @@ export const userApiSlice = baseApi.injectEndpoints({
         body: user,
       }),
     }),
+    updateUser: builder.mutation<
+      MinimalUserResponse,
+      Partial<User> & Pick<User, "id">
+    >({
+      query: ({ id, ...patch }) => ({
+        url: `/users/${id}`,
+        method: "PATCH",
+        body: patch,
+      }),
+    }),
   }),
 });
 
@@ -29,4 +42,5 @@ export const {
   useLazyGetUserByEmailQuery,
   useGetUserByUsernameQuery,
   useRegisterUserMutation,
+  useUpdateUserMutation,
 } = userApiSlice;

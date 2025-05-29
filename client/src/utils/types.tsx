@@ -36,7 +36,7 @@ export type BetDetails = {
 
 export type BetInputProps = {
   handleBetInput: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
   myBet?: Bet;
   setMyBet?: Dispatch<SetStateAction<Bet>>;
@@ -88,7 +88,6 @@ export interface ApiErrorResponse {
 
 export interface TokenUpdate {
   token: string;
-  email: string;
 }
 
 export interface ErrorWithData {

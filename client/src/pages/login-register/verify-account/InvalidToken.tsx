@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-
 import { Button } from "../../../components";
 
-export const NoAccount = () => {
+export const InvalidToken = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -16,7 +15,7 @@ export const NoAccount = () => {
           flexDirection: "column",
         }}
       >
-        <h4>No account found</h4>
+        <h4>Invalid token</h4>
         <p>Please register</p>
       </div>
       <Button

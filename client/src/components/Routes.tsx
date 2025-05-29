@@ -16,6 +16,9 @@ const FinishRegister = lazy(
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));
+const Verify = lazy(
+  () => import("../pages/login-register/verify-account/Verify")
+);
 
 const LoadingWrapper = () => (
   <div
@@ -37,7 +40,7 @@ export const Routing = () => (
         <Route path="/" element={<Homepage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register/finish" element={<FinishRegister />} />
-        {/* <Route path="/register/:token" element={<Verify />} /> */}
+        <Route path="/register/:token" element={<Verify />} />
         <Route path="/login" element={<Login />} />
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
