@@ -1,11 +1,13 @@
 import { describe, expect, test, vi, afterEach } from "vitest";
 import * as authApi from "../../../features/api/authApi";
+import * as userApi from "../../../features/api/userApi";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../../../store/store";
 import { MemoryRouter } from "react-router-dom";
 import Verify from "./Verify";
 import { verifyQueryResponse } from "../../../tests/mocks/api-responses/useVerifyQuery";
+import { UserRoles } from "../../../utils/enums";
 
 const renderComponent = () => {
   render(
@@ -64,7 +66,7 @@ describe("Verify.tsx", () => {
     expect(screen.getByText(/invalid token/i)).toBeInTheDocument();
   });
 
-  test("renders InvalidToken", () => {
+  test("renders TokenExpired", () => {
     vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
       data: null,
       isLoading: false,
@@ -78,16 +80,60 @@ describe("Verify.tsx", () => {
     expect(screen.getByText(/verify token expired/i)).toBeInTheDocument();
   });
 
-  test("renders VerifiedAccount", () => {
-    vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
-      data: verifyQueryResponse,
-      isLoading: false,
-      isError: false,
-      error: null,
-      refetch: vi.fn(),
+  describe("VerifiedAccount", () => {
+    test("renders VerifiedAccount", () => {
+      vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+        data: verifyQueryResponse,
+        isLoading: false,
+        isError: false,
+        error: null,
+        refetch: vi.fn(),
+      });
+
+      renderComponent();
+      expect(screen.getByText(/thanks for registering/i)).toBeInTheDocument();
     });
 
-    renderComponent();
-    expect(screen.getByText(/thanks for registering/i)).toBeInTheDocument();
+    test("calls updateUser with correct parameters when VerifiedAccount renders", () => {
+      const mockUpdateUser = vi.fn();
+
+      // Create mock data with id property
+      const mockVerifyResponse = {
+        ...verifyQueryResponse,
+        data: {
+          ...verifyQueryResponse.data,
+          id: "test-user-id-123",
+        },
+      };
+
+      // Mock useUpdateUserMutation
+      vi.spyOn(userApi, "useUpdateUserMutation").mockReturnValue([
+        mockUpdateUser,
+        {
+          isLoading: false,
+          isError: false,
+          error: null,
+          reset: vi.fn(),
+        },
+      ]);
+
+      // Mock useVerifyQuery to return successful data
+      vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+        data: mockVerifyResponse,
+        isLoading: false,
+        isError: false,
+        error: null,
+        refetch: vi.fn(),
+      });
+
+      renderComponent();
+
+      // Verify that updateUser was called with the correct parameters
+      expect(mockUpdateUser).toHaveBeenCalledWith({
+        id: "test-user-id-123",
+        role: UserRoles.User,
+      });
+      expect(mockUpdateUser).toHaveBeenCalledTimes(1);
+    });
   });
 });

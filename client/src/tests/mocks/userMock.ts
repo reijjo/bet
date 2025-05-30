@@ -8,3 +8,9 @@ export const mockUser = {
   resetToken: "testtoken12345",
   resetTokenExpiration: new Date().toISOString(),
 };
+
+export const mockUserWithId = {
+  ...mockUser,
+  id: 1,
+  role: UserRoles.User,
+};
