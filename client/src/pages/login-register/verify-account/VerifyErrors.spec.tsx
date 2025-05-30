@@ -79,24 +79,24 @@ describe("Verify Error Components", () => {
       ).toBeInTheDocument();
     });
 
-    // it("calls updateToken with correct token when refresh button is clicked", async () => {
-    //   render(
-    //     <Provider store={store}>
-    //       <MemoryRouter>
-    //         <TokenExpired token="expired-token" />
-    //       </MemoryRouter>
-    //     </Provider>
-    //   );
+    it("calls updateToken with correct token when refresh button is clicked", async () => {
+      render(
+        <Provider store={store}>
+          <MemoryRouter>
+            <TokenExpired token="expired-token" />
+          </MemoryRouter>
+        </Provider>
+      );
 
-    //   const refreshButton = screen.getByRole("button", {
-    //     name: /refresh token/i,
-    //   });
-    //   await user.click(refreshButton);
+      const refreshButton = screen.getByRole("button", {
+        name: /refresh token/i,
+      });
+      await user.click(refreshButton);
 
-    //   expect(mockUpdateToken).toHaveBeenCalledWith({
-    //     token: "expired-token",
-    //   });
-    // });
+      expect(mockUpdateToken).toHaveBeenCalledWith({
+        token: "expired-token",
+      });
+    });
   });
 
   // InvalidToken Component Tests

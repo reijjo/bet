@@ -5,3 +5,9 @@ export const verifyQueryResponse = {
   success: true,
   message: "Account verified successfully.",
 };
+
+export const updateUserMutationResponse = {
+  data: mockUser,
+  success: true,
+  message: "User updated",
+};
