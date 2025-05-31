@@ -34,9 +34,11 @@ const transporter = nodemailer.createTransport({
 export const sendVerificationEmail = async (to: string, token: string) => {
   const URL =
     process.env.NODE_ENV === "production" || Bun.env.NODE_ENV === "production"
-      ? FRONTEND_URL
-      : "https://tarpit.pages.dev/";
+      ? "https://tarpit.pages.dev"
+      : FRONTEND_URL;
   const verifyUrl = `${URL}/register/${token}`;
+
+  console.log("VERIFY URL:", verifyUrl);
 
   const mailOptions = {
     from: `"Tärpit" <${EMAIL_FROM}>`,
