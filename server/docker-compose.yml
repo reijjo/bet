@@ -35,3 +35,15 @@ services:
       - ./src/utils/db/config/servers.template.json:/tmp/servers.template.json
       - ./data/pgadmin:/var/lib/pgadmin
     restart: unless-stopped
+
+  aws-pgadmin:
+    container_name: aws-pgadmin
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5051:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - ./aws/aws-pgadmin:/var/lib/pgadmin
+    restart: unless-stopped

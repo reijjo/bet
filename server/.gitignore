@@ -176,6 +176,7 @@ dist
 # Database stuff
 /data
 **/servers.json
+/aws
 
 # Other
 .prettierrc
