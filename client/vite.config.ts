@@ -5,6 +5,11 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   base: "./",
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+  },
+  publicDir: "public",
   test: {
     globals: true,
     environment: "jsdom",
