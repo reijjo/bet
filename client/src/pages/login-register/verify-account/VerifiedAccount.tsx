@@ -14,6 +14,7 @@ export const VerifiedAccount = ({ data }: VerifiedAccountProps) => {
   const [updateUser, { isLoading, isError, error }] = useUpdateUserMutation();
   const navigate = useNavigate();
 
+  // Do this a bit better than this, but for now this is fine
   useEffect(() => {
     if (data?.data?.id) {
       updateUser({ id: data.data.id, role: UserRoles.Guest });
