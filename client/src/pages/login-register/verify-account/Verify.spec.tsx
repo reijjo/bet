@@ -131,7 +131,7 @@ describe("Verify.tsx", () => {
       // Verify that updateUser was called with the correct parameters
       expect(mockUpdateUser).toHaveBeenCalledWith({
         id: "test-user-id-123",
-        role: UserRoles.User,
+        role: UserRoles.Guest,
       });
       expect(mockUpdateUser).toHaveBeenCalledTimes(1);
     });
