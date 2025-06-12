@@ -16,7 +16,7 @@ export const VerifiedAccount = ({ data }: VerifiedAccountProps) => {
 
   useEffect(() => {
     if (data?.data?.id) {
-      updateUser({ id: data.data.id, role: UserRoles.User });
+      updateUser({ id: data.data.id, role: UserRoles.Guest });
     }
   }, [data?.data?.id, updateUser]);
 
