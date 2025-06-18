@@ -26,7 +26,7 @@ describe("Error component", () => {
     expect(screen.getByText(/fetchbase error/i)).toBeInTheDocument();
   });
 
-  it("should handle other than PARSING_ERROR", () => {
+  it("should handle FETCH_ERROR", () => {
     const mockError: FetchBaseQueryError = {
       status: "FETCH_ERROR",
       data: undefined,
