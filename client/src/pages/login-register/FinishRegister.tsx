@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button, Container, TextInput } from "../../components";
+import { Button, Container, Loading, TextInput } from "../../components";
 import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
 import { Message, MessageProps } from "../../components/common/message/Message";
 import { useRegisterUserMutation } from "../../features/api/userApi";
@@ -25,7 +25,7 @@ const FinishRegister = () => {
     message: "",
     type: MessageTypes.Info,
   });
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
 
   const {
     register,
@@ -139,7 +139,13 @@ const FinishRegister = () => {
           )}
           {message.message !== "" && (
             <Message
-              message={message.message}
+              message={
+                isLoading ? (
+                  <Loading color="message-info" text={message.message} />
+                ) : (
+                  message.message
+                )
+              }
               type={message.type}
               width="75%"
             />
