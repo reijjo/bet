@@ -9,7 +9,6 @@
 
   border: 1px solid rgb(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 6px 12px;
   padding: 6px 0;
 
   backdrop-filter: blur(4px);
@@ -36,6 +35,10 @@
     padding: 4px 8px;
     grid-row: 5 / 6;
     font-size: 0.925rem;
+
+    & h5 {
+      padding-left: 0;
+    }
   }
 }
 
