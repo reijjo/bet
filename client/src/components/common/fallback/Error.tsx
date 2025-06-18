@@ -6,8 +6,6 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useNavigate } from "react-router-dom";
 
-// import { logoutUser } from "../../../features/authSlice";
-// import { useAppDispatch } from "../../../store/hooks";
 import { Button } from "../button/Button";
 
 export type ErrorProps = {
@@ -16,24 +14,20 @@ export type ErrorProps = {
 
 export const Error = ({ error }: ErrorProps) => {
   const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
-  console.log("error", error);
 
   const getErrorMessage = () => {
     if ("status" in error) {
       // Handle FetchBaseQueryError
       const fetchError = error as FetchBaseQueryError;
       if (fetchError.status === "PARSING_ERROR") {
-        return `Error ${fetchError.originalStatus}: ${fetchError.data || "Unknown error occurred"}`;
-        // } else if (fetchError.status === 401) {
-        //   dispatch(logoutUser());
-        //   return "user not logged in";
+        return `Error ${fetchError.originalStatus}: ${fetchError.data}`;
       } else {
         return `Error: ${fetchError.status}`;
       }
     } else {
-      // Handle SerializedError
-      return error.message || "An unexpected error occurred";
+      return (
+        error.message || "An unexpected error occurred. Please try again later."
+      );
     }
   };
 
