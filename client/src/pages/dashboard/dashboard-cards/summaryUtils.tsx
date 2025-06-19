@@ -9,12 +9,12 @@ const calculateTotalStake = (bets: Bet[]): number => {
 
 // Calculate combined odds for parlays
 export const calculateCombinedOdds = (
-  betDetails: { odds: string | number }[],
+  betDetails: { odds: string | number }[]
 ): number => {
   return parseFloat(
     betDetails
       .reduce((acc, detail) => acc * parseFloat(detail.odds.toString()), 1)
-      .toFixed(2),
+      .toFixed(2)
   );
 };
 
@@ -26,7 +26,7 @@ const calculateProfit = (bets: Bet[]): number => {
     // If the bet is "Won" or "Half Won", calculate profit
     if (bet.status === "Won") {
       const combinedOdds = calculateCombinedOdds(
-        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
+        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
       );
       profit = combinedOdds * Number(bet.stake) - Number(bet.stake);
     } else if (bet.status === "Half Won") {
@@ -48,11 +48,13 @@ export const calculateTotalLosses = (bets: Bet[]): number => {
   return bets.reduce((acc, bet) => {
     let loss = 0;
 
+    const isFreeBet = bet.betDetails.some((detail) => detail.freebet === true);
+
     // If the bet is "Lost" or "Half Lost", calculate the loss
     if (bet.status === "Lost") {
-      loss = Number(bet.stake);
+      loss = isFreeBet ? 0 : Number(bet.stake);
     } else if (bet.status === "Half Lost") {
-      loss = Number(bet.stake) / 2;
+      loss = isFreeBet ? 0 : Number(bet.stake) / 2;
     }
 
     // Treat "Pending", "Void", and other non-loss cases as 0 loss
@@ -71,7 +73,7 @@ export const calculateTotalPayout = (bets: Bet[]): number => {
     // Calculate payout based on the bet status
     if (bet.status === "Won" || bet.status === "Pending") {
       const combinedOdds = calculateCombinedOdds(
-        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
+        bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
       );
       payout =
         Number(bet.stake) +
@@ -97,30 +99,28 @@ export const last4months = (bets: Bet[]) => {
 
   // Filter bets for current month
   const currentMonthBets = bets.filter((bet) =>
-    bet.betDetails.some((detail) =>
-      dayjs(detail.date).isSame(dayjs(), "month"),
-    ),
+    bet.betDetails.some((detail) => dayjs(detail.date).isSame(dayjs(), "month"))
   );
 
   // Filter bets for previous month
   const previousMonthBets = bets.filter((bet) =>
     bet.betDetails.some((detail) =>
-      dayjs(detail.date).isSame(dayjs().subtract(1, "month"), "month"),
-    ),
+      dayjs(detail.date).isSame(dayjs().subtract(1, "month"), "month")
+    )
   );
 
   // Filter bets for previous month
   const previous2MonthBets = bets.filter((bet) =>
     bet.betDetails.some((detail) =>
-      dayjs(detail.date).isSame(dayjs().subtract(2, "month"), "month"),
-    ),
+      dayjs(detail.date).isSame(dayjs().subtract(2, "month"), "month")
+    )
   );
 
   // Filter bets for previous month
   const previous3MonthBets = bets.filter((bet) =>
     bet.betDetails.some((detail) =>
-      dayjs(detail.date).isSame(dayjs().subtract(3, "month"), "month"),
-    ),
+      dayjs(detail.date).isSame(dayjs().subtract(3, "month"), "month")
+    )
   );
 
   // Calculate summaries
@@ -187,16 +187,16 @@ const isLast30days = (date: string | Date) =>
 
 export const periodParser = (myBets: Bet[]) => {
   const todayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isToday(detail.date)),
+    bet.betDetails.some((detail) => isToday(detail.date))
   );
   const yesterdayBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isYesterday(detail.date)),
+    bet.betDetails.some((detail) => isYesterday(detail.date))
   );
   const last7DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast7Days(detail.date)),
+    bet.betDetails.some((detail) => isLast7Days(detail.date))
   );
   const last30DaysBets = myBets.filter((bet) =>
-    bet.betDetails.some((detail) => isLast30days(detail.date)),
+    bet.betDetails.some((detail) => isLast30days(detail.date))
   );
 
   return {
