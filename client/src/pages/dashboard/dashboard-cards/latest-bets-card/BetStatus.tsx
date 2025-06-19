@@ -7,12 +7,12 @@ type BetStatusProps = {
 };
 
 const calculateCombinedOdds = (
-  betDetails: { odds: string | number }[],
+  betDetails: { odds: string | number }[]
 ): number => {
   return parseFloat(
     betDetails
       .reduce((acc, detail) => acc * parseFloat(detail.odds.toString()), 1)
-      .toFixed(2),
+      .toFixed(2)
   );
 };
 
@@ -51,13 +51,15 @@ export const BetStatus = ({ bet }: BetStatusProps) => {
 
   const endedBetProfit = (bet: Bet) => {
     const combinedOdds = calculateCombinedOdds(
-      bet.betDetails.map((detail) => ({ odds: detail.odds.toString() })),
+      bet.betDetails.map((detail) => ({ odds: detail.odds.toString() }))
     );
+
+    const isFreeBet = bet.betDetails.some((detail) => detail.freebet === true);
 
     if (bet.status === "Won" || bet.status === "Half Won") {
       return (combinedOdds * Number(bet.stake) - Number(bet.stake)).toFixed(2);
     } else if (bet.status === "Lost" || bet.status === "Half Lost") {
-      return Number(bet.stake).toFixed(2);
+      return isFreeBet ? Number(0).toFixed(2) : Number(bet.stake).toFixed(2);
     } else if (bet.status === "Void") {
       return "0";
     } else {
