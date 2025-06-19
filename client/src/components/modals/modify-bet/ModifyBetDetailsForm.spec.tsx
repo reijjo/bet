@@ -6,7 +6,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { modalReducer, sidebarReducer } from "../../../features";
+import modalReducer from "../../../features/modalSlice";
+import sidebarReducer from "../../../features/sidebarSlice";
 import { baseApi } from "../../../features/api/baseApi";
 import { mockBetDetail } from "../../../tests/mocks/betDetailMock";
 import { mockBet } from "../../../tests/mocks/betMock";
@@ -81,7 +82,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     expect(screen.getByTestId("modify-bet-form")).toBeInTheDocument();
@@ -96,7 +97,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     const cancelButton = screen.getByRole("button", { name: /cancel/i });
@@ -123,7 +124,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     const submitButton = screen.getByRole("button", { name: /save/i });
@@ -150,7 +151,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     const submitButton = screen.getByRole("button", { name: /save/i });
@@ -176,7 +177,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     const submitButton = screen.getByRole("button", { name: /save/i });
@@ -184,7 +185,7 @@ describe("ModifyBetDetailsForm", () => {
 
     expect(consoleSpy).toHaveBeenCalledWith(
       "Error updating bet",
-      expect.any(Error),
+      expect.any(Error)
     );
     expect(mockSetModifyIndex).not.toHaveBeenCalled();
   });
@@ -204,7 +205,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
     expect(screen.getByLabelText("Selection")).toBeInTheDocument();
     expect(screen.queryByLabelText(/your selection/i)).not.toBeInTheDocument();
@@ -234,7 +235,7 @@ describe("ModifyBetDetailsForm", () => {
           setModifyIndex={mockSetModifyIndex}
           disabled={mockDisabled}
         />
-      </Provider>,
+      </Provider>
     );
 
     expect(screen.getByTestId("loading-component")).toBeInTheDocument();
@@ -258,7 +259,7 @@ describe("ModifyBetDetailsForm", () => {
             disabled={mockDisabled}
           />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     expect(screen.getByTestId("error-component")).toBeInTheDocument();

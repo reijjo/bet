@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, test, vi } from "vitest";
 
-import { authReducer } from "../../../features";
+import authReducer from "../../../features/authSlice";
 import * as authApi from "../../../features/api/authApi";
 import * as screenWidthHook from "../../../hooks/useScreenWidth";
 import * as reduxHooks from "../../../store/hooks";
@@ -28,7 +28,7 @@ const renderComponent = () => {
       <MemoryRouter>
         <NavbarUser />
       </MemoryRouter>
-    </Provider>,
+    </Provider>
   );
 };
 
