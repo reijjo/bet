@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { modalReducer, sidebarReducer } from "../../../features";
+import modalReducer from "../../../features/modalSlice";
+import sidebarReducer from "../../../features/sidebarSlice";
 import { baseApi } from "../../../features/api/baseApi";
 import { mockBet } from "../../../tests/mocks/betMock";
 import { ModifyBetModal } from "./ModifyBetModal";
@@ -59,7 +60,7 @@ describe("ModifyBetModal", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetModal />
-      </Provider>,
+      </Provider>
     );
 
     expect(screen.getByText("Modify Bet")).toBeInTheDocument();
@@ -82,7 +83,7 @@ describe("ModifyBetModal", () => {
         <MemoryRouter>
           <ModifyBetModal />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     expect(screen.getByText("Something shady happened")).toBeInTheDocument();

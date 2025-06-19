@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import {
-  authReducer,
-  modalReducer,
-  registerReducer,
-  sidebarReducer,
-} from "../features";
+import modalReducer from "../features/modalSlice";
+import sidebarReducer from "../features/sidebarSlice";
+import registerReducer from "../features/registerSlice";
+import authReducer from "../features/authSlice";
 import { baseApi } from "../features/api/baseApi";
 
 export const store = configureStore({
