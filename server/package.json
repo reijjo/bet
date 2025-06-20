@@ -15,12 +15,12 @@
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/bun": "latest",
     "@types/connect-pg-simple": "^7.0.3",
-    "@types/cors": "^2.8.18",
-    "@types/express": "^5.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
-    "@types/morgan": "^1.9.9",
+    "@types/morgan": "^1.9.10",
     "@types/nodemailer": "^6.4.17",
-    "@types/pg": "^8.15.2",
+    "@types/pg": "^8.15.4",
     "@types/supertest": "^6.0.3",
     "morgan": "^1.10.0",
     "supertest": "^7.1.1"
@@ -38,7 +38,7 @@
     "express-session": "^1.18.1",
     "helmet": "^8.1.0",
     "nodemailer": "^6.10.1",
-    "pg": "^8.16.0",
+    "pg": "^8.16.2",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7"
   }

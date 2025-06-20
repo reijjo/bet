@@ -36,8 +36,6 @@ const Homepage = () => {
     }
   }, [isAuthenticated, navigate, from]);
 
-  console.log("isAuthenticated", isAuthenticated);
-
   return (
     <div className="flex-wrapper">
       <section className="hero-section">
