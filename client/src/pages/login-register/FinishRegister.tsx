@@ -55,16 +55,11 @@ const FinishRegister = () => {
       email: registerState,
     };
 
-    setMessage({
-      message: "Creating your account...",
-      type: MessageTypes.Info,
-    });
-
     try {
       const res = await registerUser(userToCreate).unwrap();
 
       setMessage({
-        message: res.message,
+        message: res.message as string,
         type: MessageTypes.Success,
       });
 
@@ -137,16 +132,20 @@ const FinishRegister = () => {
           {errors.password2 && (
             <InputErrorContainer errors={errors.password2?.types || {}} />
           )}
-          {message.message !== "" && (
+
+          {(message.message !== "" || isLoading) && (
             <Message
               message={
                 isLoading ? (
-                  <Loading color="message-info" text={message.message} />
+                  <Loading
+                    color="message-info"
+                    text="Creating your account..."
+                  />
                 ) : (
-                  message.message
+                  (message.message as string)
                 )
               }
-              type={message.type}
+              type={isLoading ? MessageTypes.Info : message.type}
               width="75%"
             />
           )}

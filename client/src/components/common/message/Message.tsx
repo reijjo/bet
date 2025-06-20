@@ -1,14 +1,20 @@
 import "./Message.css";
 
 import { MessageType, MessageTypes } from "../../../utils/enums";
+import { ReactNode } from "react";
 
 export interface MessageProps {
-  message: string | JSX.Element;
+  message: string | ReactNode;
   type: MessageType;
   width?: string;
 }
 
 export const Message = ({ message, type, width }: MessageProps) => {
+  console.log("CORRECT Message component called with:", {
+    message,
+    type,
+    width,
+  });
   const checkType = (type: MessageType) => {
     if (type === MessageTypes.Error) return "message-error";
     if (type === MessageTypes.Success) return "message-success";

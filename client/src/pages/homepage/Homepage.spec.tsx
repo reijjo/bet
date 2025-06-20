@@ -53,7 +53,7 @@ describe("Homepage", () => {
         <MemoryRouter>
           <Homepage />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     const icons = screen.getAllByTestId("why-icon");
@@ -77,7 +77,7 @@ describe("Homepage", () => {
         <MemoryRouter>
           <Homepage />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     const icons = screen.getAllByTestId("why-icon");
