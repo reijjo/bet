@@ -26,6 +26,7 @@ export default defineConfig({
         "**/*.d.ts",
         "**/index.{ts,tsx}",
         "**/tests/**",
+        "**/src/main.tsx",
       ],
     },
   },

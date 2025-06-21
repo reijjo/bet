@@ -73,7 +73,7 @@ describe("Login.tsx", () => {
         <MemoryRouter>
           <Login />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
   };
 
@@ -153,7 +153,7 @@ describe("Login.tsx", () => {
         expect(mockDispatch).toHaveBeenCalledWith(loginUser(mockUserData));
         expect(mockNavigate).toHaveBeenCalledWith("/dash", { replace: true });
       },
-      { timeout: 2000 },
+      { timeout: 2000 }
     );
   });
 
