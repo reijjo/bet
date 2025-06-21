@@ -57,7 +57,6 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
     const sanitazedEmail = data.email.trim().toLowerCase();
-    console.log(data);
 
     try {
       const result = await checkDuplicateEmail(sanitazedEmail);
@@ -66,7 +65,7 @@ const Register = () => {
         setFade(true);
         dispatch(setRegister({ ...data, email: sanitazedEmail }));
         setTimeout(() => {
-          navigate("/register/finish");
+          navigate("/register/finish", { replace: true });
         }, 1000);
       }
     } catch (error) {

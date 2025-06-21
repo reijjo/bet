@@ -140,6 +140,26 @@ describe("Register.tsx", () => {
         expect(screen.getByText("Checking email...")).toBeInTheDocument();
       });
     });
+
+    it("navigates to /register/finish after successful email check", async () => {
+      mockCheckDuplicateEmail.mockResolvedValue({
+        isSuccess: true,
+        data: null,
+      });
+
+      renderComponent();
+
+      const emailInput = screen.getByLabelText("Email");
+      const registerButton = screen.getByText("sign up");
+
+      await user.type(emailInput, "test@example.com");
+      await user.click(registerButton);
+      await waitFor(() => {
+        expect(mockNavigate).toHaveBeenCalledWith("/register/finish", {
+          replace: true,
+        });
+      });
+    });
   });
 
   // ERROR HANDLING

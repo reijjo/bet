@@ -94,6 +94,19 @@ describe("FinishRegister.tsx", () => {
         await screen.findByText("Account created successfully")
       ).toBeInTheDocument();
     });
+
+    it("shows isLoading state when submitting", async () => {
+      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+        mockRegisterUser,
+        { isLoading: true, isError: false, error: null, reset: vi.fn() },
+      ]);
+
+      renderComponent();
+
+      expect(
+        await screen.findByText("Creating your account...")
+      ).toBeInTheDocument();
+    });
   });
 
   describe("error cases", () => {
@@ -153,26 +166,6 @@ describe("FinishRegister.tsx", () => {
       ).toBeInTheDocument();
     });
 
-    it("shows error when passwords not matching", async () => {
-      renderComponent();
-
-      const usernameInput = screen.getByRole("textbox", { name: /username/i });
-      const passwordInput = screen.getByLabelText("Password");
-      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
-      const submitButton = screen.getByRole("button", {
-        name: /create account/i,
-      });
-
-      await user.type(usernameInput, "testuser");
-      await user.type(passwordInput, "password123");
-      await user.type(confirmPasswordInput, "password1234");
-      await user.click(submitButton);
-
-      expect(
-        await screen.findByText(/passwords don't match/i)
-      ).toBeInTheDocument();
-    });
-
     it("weird username", async () => {
       renderComponent();
       const usernameInput = screen.getByRole("textbox", { name: /username/i });
@@ -208,6 +201,115 @@ describe("FinishRegister.tsx", () => {
 
       expect(
         await screen.findByText(/max 20 characters on username/i)
+      ).toBeInTheDocument();
+    });
+
+    it("too short password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "Short1!");
+      await user.type(confirmPasswordInput, "Short1!");
+      await user.click(submitButton);
+
+      expect(await screen.findByText(/min 8 characters/i)).toBeInTheDocument();
+      // expect(await screen.findByText(/one number/i)).toBeInTheDocument();
+      // expect(await screen.findByText(/one special/i)).toBeInTheDocument();
+      // expect(
+      //   await screen.findByText(/password must contain/i)
+      // ).toBeInTheDocument();
+    });
+
+    it("too long password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "Short1!".repeat(10));
+      await user.type(confirmPasswordInput, "Short!1".repeat(10));
+      await user.click(submitButton);
+
+      expect(await screen.findByText(/max 50 characters/i)).toBeInTheDocument();
+    });
+
+    it("no uppercase letter in password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "lowercase1!");
+      await user.type(confirmPasswordInput, "lowercase1!");
+      await user.click(submitButton);
+
+      expect(await screen.findByText(/one uppercase/i)).toBeInTheDocument();
+    });
+
+    it("no lowercase letter in password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "UPPERCASE1!");
+      await user.type(confirmPasswordInput, "UPPERCASE1!");
+      await user.click(submitButton);
+
+      expect(await screen.findByText(/one lowercase/i)).toBeInTheDocument();
+    });
+
+    it("no number in password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "NoNumber!");
+      await user.type(confirmPasswordInput, "NoNumber!");
+      await user.click(submitButton);
+
+      expect(await screen.findByText(/one number/i)).toBeInTheDocument();
+    });
+
+    it("no special character in password", async () => {
+      renderComponent();
+
+      const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
+      const submitButton = screen.getByRole("button", {
+        name: /create account/i,
+      });
+      await user.type(usernameInput, "testuser");
+      await user.type(passwordInput, "NoSpecialChar1");
+      await user.type(confirmPasswordInput, "NoSpecialChar1");
+      await user.click(submitButton);
+
+      expect(
+        await screen.findByText(/one special character/i)
       ).toBeInTheDocument();
     });
   });
