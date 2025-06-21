@@ -2,6 +2,7 @@ import { useLazyGetSessionUserQuery } from "../features/api/authApi";
 import { loginUser, logoutUser } from "../features/authSlice";
 import { AppDispatch } from "../store/store";
 import { BasicApiResponse } from "./api-response-types";
+import { MessageType, MessageTypes } from "./enums";
 import { isErrorWithData } from "./input-validators/typeGuards";
 import { ApiErrorResponse } from "./types";
 
@@ -58,9 +59,17 @@ export const getErrorStatus = (error: unknown): number => {
   return 500;
 };
 
+export const errorTypeMessage = (error: unknown): MessageType => {
+  const errorType = getErrorStatus(error);
+  if (errorType === 403) {
+    return MessageTypes.Warning;
+  }
+  return MessageTypes.Error;
+};
+
 export const handleLogout = async (
   logout: () => Promise<BasicApiResponse>,
-  dispatch: AppDispatch,
+  dispatch: AppDispatch
 ) => {
   try {
     await logout();
@@ -73,7 +82,7 @@ export const handleLogout = async (
 // utils/authUtils.ts
 export const verifySession = async (
   fetchSession: ReturnType<typeof useLazyGetSessionUserQuery>[0],
-  dispatch: AppDispatch,
+  dispatch: AppDispatch
 ) => {
   try {
     const result = await fetchSession().unwrap();
