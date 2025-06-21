@@ -10,11 +10,6 @@ export interface MessageProps {
 }
 
 export const Message = ({ message, type, width }: MessageProps) => {
-  console.log("CORRECT Message component called with:", {
-    message,
-    type,
-    width,
-  });
   const checkType = (type: MessageType) => {
     if (type === MessageTypes.Error) return "message-error";
     if (type === MessageTypes.Success) return "message-success";
