@@ -99,6 +99,7 @@
 
   @media only screen and (max-width: 800px) {
     grid-template-columns: 1fr;
+    min-height: 100dvh;
 
     & > img {
       display: none;

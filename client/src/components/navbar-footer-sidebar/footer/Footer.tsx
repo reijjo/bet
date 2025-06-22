@@ -29,7 +29,10 @@ export const Footer = () => {
           </div>
         </div>
         <div className="under-footer">
-          <p>{copyright} 2024 Reijjo. All rights reserved.</p>
+          <div className="copyright">
+            <p>{copyright} 2024 Reijjo.</p>
+            <p>All rights reserved.</p>
+          </div>
           <div className="footer-links">
             <a href="https://github.com/reijjo/bet" target="_blank">
               <FontAwesomeIcon icon={faGithub} size="xl" />
