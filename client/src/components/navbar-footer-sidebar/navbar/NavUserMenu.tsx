@@ -18,7 +18,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import { Divider } from "../../common/divider/Divider";
 
 interface NavUserMenuProps {
-  dropdownRef: React.RefObject<HTMLDivElement>;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
   setIsUserMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -36,7 +36,6 @@ export const NavUserMenu = ({
       await logout().unwrap();
       dispatch(logoutUser());
       navigate("/");
-      console.log("logout");
       setIsUserMenuOpen(false);
     } catch (error) {
       console.error(error);
