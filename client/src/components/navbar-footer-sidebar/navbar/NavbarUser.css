@@ -8,17 +8,10 @@
     rgba(5, 71, 135, 0.8)
   );
   backdrop-filter: blur(0.5rem);
+  min-height: 3.5rem;
 }
 
 .nav-user-wrapper {
-  /* background-color: rgba(0, 0, 0, 0.3); */
-
-  /* width: 90%; */
-  /* width: max-content; */
-
-  /* border-radius: 2rem; */
-  /* margin-top: 1vh; */
-
   padding: 0.5rem 1rem;
 }
 
@@ -106,7 +99,7 @@
 
 .nav-profile-img {
   cursor: pointer;
-  width: 48px;
+  width: 40px;
   aspect-ratio: 1/1;
 
   border: 1px solid var(--background);

@@ -51,15 +51,15 @@ const SummarySection = ({
   return (
     <div className="summary-section">
       <p className="summary-section-period">{period}</p>
-      <p>{totalStake} &euro;</p>
+      <p>{totalStake} €</p>
       <p
         style={
           isTablet || isMobile ? { display: "none" } : { display: "block" }
         }
       >
-        {payout} &euro;
+        {payout} €
       </p>
-      <p>{realProfit} &euro;</p>
+      <p>{realProfit} €</p>
       <p>{totalBets}</p>
     </div>
   );
