@@ -8,10 +8,12 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: var(--primary-900);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .extra-wrapper {
-  padding: 1rem 4rem;
+  padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -63,10 +65,22 @@ footer {
 .under-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   padding: 1rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.875rem;
+}
+
+.copyright {
+  display: flex;
+  gap: 0.5rem;
+
+  @media only screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .footer-links {
