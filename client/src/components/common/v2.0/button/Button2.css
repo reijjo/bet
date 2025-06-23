@@ -36,7 +36,6 @@
 .btn2-cta {
   border: 1px solid var(--accent-300);
 
-  /* background-color: #fdc365; */
   background: linear-gradient(
     to bottom,
     var(--accent-100) 0%,
