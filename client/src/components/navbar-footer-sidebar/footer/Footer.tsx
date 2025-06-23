@@ -17,14 +17,14 @@ export const Footer = () => {
           <div className="top-footer-links">
             <div className="footer-link-group">
               <h4>Support</h4>
-              <Link to="/contact">Contact / Feedback</Link>
-              <Link to="/faq">FAQ</Link>
-              <Link to="/monyplz">Buy Me a Coffee</Link>
+              <Link to="/gibberish/feedback">Contact / Feedback</Link>
+              <Link to="/gibberish/faq">FAQ</Link>
+              <Link to="/gibberish/coffee">Buy Me a Coffee</Link>
             </div>
             <div className="footer-link-group">
               <h4>Legal</h4>
-              <Link to="">Terms</Link>
-              <Link to="">Privacy</Link>
+              <Link to="/gibberish/terms">Terms</Link>
+              <Link to="/gibberish/privacy">Privacy</Link>
             </div>
           </div>
         </div>

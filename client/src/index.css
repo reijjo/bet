@@ -25,7 +25,7 @@ body {
     var(--primary-900),
     var(--accent-500)
   ); */
-  font-family: "Montserrat", serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -36,7 +36,7 @@ body {
 
 /* Fonts */
 .montserrat-font {
-  font-family: "Montserrat", serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -213,6 +213,19 @@ a {
   --neutral-800: #262626;
   --neutral-900: #171717;
   --neutral-950: #0a0a0a;
+
+  /* Accent2 */
+  --accent2-50: #fff9ed;
+  --accent2-100: #fff2d5;
+  --accent2-200: #fee0aa;
+  --accent2-300: #fdc365;
+  --accent2-400: #fba73c;
+  --accent2-500: #f98b16;
+  --accent2-600: #ea700c;
+  --accent2-700: #c2550c;
+  --accent2-800: #9a4312;
+  --accent2-900: #7c3812;
+  --accent2-950: #431a07;
 
   /* Success */
   --ok-dark: hsla(139, 54%, 29%, 1);

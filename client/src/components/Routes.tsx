@@ -19,6 +19,9 @@ const Bets = lazy(() => import("../pages/bets/Bets"));
 const Verify = lazy(
   () => import("../pages/login-register/verify-account/Verify")
 );
+const Terms = lazy(() => import("../pages/gibberish/Terms"));
+const Privacy = lazy(() => import("../pages/gibberish/Privacy"));
+const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
 
 const LoadingWrapper = () => (
   <div
@@ -45,6 +48,9 @@ export const Routing = () => (
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
         <Route path="/about" element={<UnderCons />} />
+        <Route path="/gibberish/terms" element={<Terms />} />
+        <Route path="/gibberish/privacy" element={<Privacy />} />
+        <Route path="/gibberish/feedback" element={<Feedback />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/dash" element={<Dashboard />} />

@@ -1,0 +1,72 @@
+.gibberish-page {
+  width: 100%;
+  min-height: 100dvh;
+  padding: 5rem 2rem;
+  background: linear-gradient(
+    to top,
+    var(--primary-500) 0%,
+    var(--primary-600) 30%,
+    transparent 70%
+  );
+}
+
+.gibberish-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1rem;
+
+  text-wrap: balance;
+  text-align: center;
+  max-width: 600px;
+}
+
+.link-text {
+  color: var(--accent-100);
+
+  &:hover {
+    color: var(--accent-200);
+  }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-feedback {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: 1rem;
+  padding: 1rem;
+  width: min(100%, 400px);
+  gap: 1rem;
+  /* background-color: rgba(0, 0, 0, 0.025); */
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.125),
+    transparent,
+    rgba(0, 0, 0, 0.125)
+  );
+
+  box-shadow:
+    0 0.5rem 1rem rgba(0, 0, 0, 0.125),
+    0 1rem 2rem rgba(0, 0, 0, 0.075),
+    0 2rem 4rem rgba(0, 0, 0, 0.025);
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+
+  & > button {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 400px) {
+    flex-direction: column;
+  }
+}

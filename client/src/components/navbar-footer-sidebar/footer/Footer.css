@@ -2,7 +2,6 @@ footer {
   z-index: 5;
   grid-row: 3;
   width: 100%;
-  height: min(8vh, auto);
   margin-top: auto;
   backdrop-filter: blur(8px);
   display: flex;

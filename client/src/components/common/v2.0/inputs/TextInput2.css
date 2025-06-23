@@ -1,0 +1,27 @@
+.text-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"] {
+  height: 2.5rem;
+  border: 1px solid var(--primary-400);
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+label,
+.optional {
+  font-size: 0.825rem;
+}
+
+.optional {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+}
