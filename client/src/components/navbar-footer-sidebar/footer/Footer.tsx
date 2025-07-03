@@ -1,11 +1,19 @@
 import "./Footer.css";
 import logo from "../../../assets/fishing.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { scrollToTop } from "../../../utils/helperFunctions";
 
 export const Footer = () => {
   const copyright = String.fromCodePoint(169);
+  const navigate = useNavigate();
+
+  const toSomewhere = (path: string) => {
+    navigate(path);
+    scrollToTop();
+  };
+
   return (
     <footer>
       <div className="wrapper extra-wrapper">
@@ -17,14 +25,18 @@ export const Footer = () => {
           <div className="top-footer-links">
             <div className="footer-link-group">
               <h4>Support</h4>
-              <Link to="/gibberish/feedback">Contact / Feedback</Link>
-              <Link to="/gibberish/faq">FAQ</Link>
-              <Link to="/gibberish/coffee">Buy Me a Coffee</Link>
+              <a onClick={() => toSomewhere("/gibberish/feedback")}>
+                Contact / Feedback
+              </a>
+              <a onClick={() => toSomewhere("/gibberish/faq")}>FAQ</a>
+              <a onClick={() => toSomewhere("/gibberish/coffee")}>
+                Buy Me a Coffee
+              </a>
             </div>
             <div className="footer-link-group">
               <h4>Legal</h4>
-              <Link to="/gibberish/terms">Terms</Link>
-              <Link to="/gibberish/privacy">Privacy</Link>
+              <a onClick={() => toSomewhere("/gibberish/terms")}>Terms</a>
+              <a onClick={() => toSomewhere("/gibberish/privacy")}>Privacy</a>
             </div>
           </div>
         </div>

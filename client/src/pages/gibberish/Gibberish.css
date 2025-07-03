@@ -18,8 +18,16 @@
   gap: 1rem;
 
   text-wrap: balance;
-  text-align: center;
+  /* text-align: center; */
   max-width: 600px;
+}
+
+.gibberish-text {
+  line-height: 1.5rem;
+}
+
+.centered-text {
+  text-align: center;
 }
 
 .link-text {
@@ -28,11 +36,6 @@
   &:hover {
     color: var(--accent-200);
   }
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
 }
 
 .form-feedback {
