@@ -14,10 +14,12 @@ const Feedback = () => {
     <div className="gibberish-page">
       <div className="gibberish-content">
         <h2>Feedback / Suggestions</h2>
-        <p>
-          I really appreciate your feedback and suggestions. This is a personal
-          project, and I want to make it better for you.
-        </p>
+        <div className="gibberish-text centered-text">
+          <p>I really appreciate your feedback and suggestions.</p>
+          <p>
+            This is a personal project, and I want to make it better for you.
+          </p>
+        </div>
         <form className="form-feedback" onSubmit={handleSubmit}>
           <TextInput2 id="yourname" label="Your Name" placeholder="Name" />
           <TextInput2
