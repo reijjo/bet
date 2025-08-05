@@ -1,0 +1,20 @@
+.container2 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: 1rem;
+  padding: 1rem;
+  gap: 1rem;
+
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.125),
+    transparent,
+    rgba(0, 0, 0, 0.125)
+  );
+
+  box-shadow:
+    0 0.5rem 1rem rgba(0, 0, 0, 0.125),
+    0 1rem 2rem rgba(0, 0, 0, 0.075),
+    0 2rem 4rem rgba(0, 0, 0, 0.025);
+}
