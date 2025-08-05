@@ -101,3 +101,16 @@ export interface SessionApiResponse {
   success: boolean;
   data: User | null;
 }
+
+export interface FeedbackMessage {
+  name: string;
+  email?: string;
+  message: string;
+}
+
+export interface FeedbackMessageAdmin extends FeedbackMessage {
+  id?: number;
+  readByAdmin: boolean;
+  responded: boolean;
+  responseText?: string;
+}
