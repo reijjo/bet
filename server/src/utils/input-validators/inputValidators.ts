@@ -5,8 +5,12 @@ export const sanitazeValue = (value: string): string => {
 export const hasMinMaxLength = (
   value: string,
   min: number,
-  max: number,
+  max: number
 ): boolean => {
   const length = value.trim().length;
   return length >= min && length <= max;
 };
+
+// export const isString = (value: any): boolean => {
+//   return typeof value === "string" || value instanceof String;
+// };

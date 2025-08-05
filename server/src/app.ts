@@ -13,6 +13,7 @@ import express from "express";
 import session from "express-session";
 // import rateLimit from "express-rate-limit";
 import morgan from "morgan";
+import { feedbackRouter } from "./routes/feedbackRoute";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.get("/", (_req, res) => {
   res.send("hello todo");
 });
 
+app.use("/api/feedback", feedbackRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/bets", betRouter);
 app.use("/api/sports", sportRouter);
