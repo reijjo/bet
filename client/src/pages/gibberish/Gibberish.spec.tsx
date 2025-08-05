@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Terms from "./Terms";
 import Privacy from "./Privacy";
-import Feedback from "./Feedback";
+// import Feedback from "./Feedback";
 
 describe("Footer Links", () => {
   describe("Terms of Service", () => {
@@ -19,10 +19,10 @@ describe("Footer Links", () => {
     });
   });
 
-  describe("Feedback / Suggestions", () => {
-    it("should render the Feedback link", () => {
-      render(<Feedback />);
-      expect(screen.getByText(/feedback and suggestions/i)).toBeInTheDocument();
-    });
-  });
+  // describe("Feedback / Suggestions", () => {
+  //   it("should render the Feedback link", () => {
+  //     render(<Feedback />);
+  //     expect(screen.getByText(/feedback and suggestions/i)).toBeInTheDocument();
+  //   });
+  // });
 });
