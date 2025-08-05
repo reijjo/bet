@@ -1,5 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import { FeedbackModel } from "../models/feedbackModel";
+import type { FeedbackMessage } from "../utils/types";
+import { HttpError } from "../middleware/errorHandler";
+import { isFeedbackValid } from "./utils/feedbackUtils";
 
 //
 // GET
@@ -22,4 +25,44 @@ export const getAllFeedback = async (
   } catch (err: unknown) {
     next(err);
   }
+};
+
+//
+// POST
+// Create new feedback
+export const createFeedback = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  // Check the request body for required fields
+  const { name, email, message } = req.body as FeedbackMessage;
+
+  if (!name.trim() || !message.trim()) {
+    return next(new HttpError("Name and message are required fields.", 400));
+  }
+
+  // Validate the feedback content
+  const validationError = isFeedbackValid(name, message, email);
+  if (validationError) {
+    return next(new HttpError(validationError, 400));
+  }
+
+  // Create a new feedback entry
+  try {
+    const feedback = await FeedbackModel.create({
+      name: name.trim(),
+      email: email.trim() || "",
+      message: message.trim(),
+    });
+
+    res.status(201).json({
+      data: feedback,
+      success: true,
+      message: "Thanks for the feedback!",
+    });
+  } catch (error) {
+    return next(new HttpError("Failed to create feedback", 500));
+  }
+  // Catch any errors and pass them to the
 };
