@@ -3,7 +3,6 @@ import { config } from "../config";
 import { blueBright, redBright } from "colorette";
 import PgSession from "connect-pg-simple";
 import session from "express-session";
-import pg from "pg";
 import { ConnectionRefusedError, Sequelize } from "sequelize";
 
 const { DATABASE_URL } = config;
@@ -60,15 +59,9 @@ export const closeDBconnection = async () => {
   }
 };
 
+// Use connection string instead of pool to avoid type conflicts
 export const pgStore = new (PgSession(session))({
-  pool: new pg.Pool({
-    connectionString: DATABASE_URL,
-    ssl: isProduction
-      ? {
-          rejectUnauthorized: false,
-        }
-      : false,
-  }),
+  conString: DATABASE_URL,
   tableName: "sessions",
   createTableIfMissing: true,
 });
