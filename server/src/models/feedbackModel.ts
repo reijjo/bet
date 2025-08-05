@@ -14,7 +14,7 @@ class FeedbackModel
 {
   declare id?: number;
   declare name: string;
-  declare email?: string;
+  declare email: string;
   declare message: string;
   declare readByAdmin: boolean;
   declare responded: boolean;
@@ -39,9 +39,6 @@ FeedbackModel.init(
     email: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        isEmail: true,
-      },
     },
     message: {
       type: DataTypes.TEXT,
