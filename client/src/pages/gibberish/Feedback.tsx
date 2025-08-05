@@ -14,7 +14,8 @@ const Feedback = () => {
   };
 
   const [feedback, setFeedback] = useState<FeedbackMessage>(initialFeedback);
-  const [addFeedback, { isLoading, isError }] = useAddFeedbackMutation();
+  const [addFeedback, { data, isLoading, isError, error }] =
+    useAddFeedbackMutation();
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,6 +42,9 @@ const Feedback = () => {
   const handleReset = () => {
     setFeedback(initialFeedback);
   };
+
+  console.log("Feedback data:", data);
+  console.error("Feedback error:", isError, error);
 
   return (
     <div className="gibberish-page">
