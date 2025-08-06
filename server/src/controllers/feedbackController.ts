@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { FeedbackModel } from "../models/feedbackModel";
-import type { FeedbackMessage } from "../utils/types";
+import type { FeedbackMessage, FeedbackMessageAdmin } from "../utils/types";
 import { HttpError } from "../middleware/errorHandler";
 import { isFeedbackValid } from "./utils/feedbackUtils";
 
@@ -65,4 +65,43 @@ export const createFeedback = async (
     return next(new HttpError("Failed to create feedback", 500));
   }
   // Catch any errors and pass them to the
+};
+
+//
+// PATCH
+// Edit existing feedback (Admin only)
+export const editFeedback = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { id } = req.params;
+  const { readByAdmin, responseText } = req.body as FeedbackMessageAdmin;
+
+  if (!id) {
+    return next(new HttpError("Feedback ID is required", 400));
+  }
+
+  try {
+    const feedback = await FeedbackModel.findByPk(id);
+
+    if (!feedback) {
+      return next(new HttpError("Feedback not found", 404));
+    }
+
+    await feedback.update({
+      readByAdmin,
+      responded: responseText ? true : false,
+      responseText,
+    });
+
+    const updatedFeedback = await FeedbackModel.findByPk(id);
+    res.status(200).json({
+      data: updatedFeedback,
+      success: true,
+      message: "Feedback updated successfully",
+    });
+  } catch (error: unknown) {
+    return next(new HttpError("Failed to edit feedback", 500));
+  }
 };

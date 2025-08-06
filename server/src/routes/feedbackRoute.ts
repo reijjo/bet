@@ -1,5 +1,6 @@
 import {
   createFeedback,
+  editFeedback,
   getAllFeedback,
 } from "../controllers/feedbackController";
 import { authCheck } from "../middleware/authCheck";
@@ -9,3 +10,4 @@ export const feedbackRouter = express.Router({ mergeParams: true });
 
 feedbackRouter.get("/", authCheck("Admin"), getAllFeedback);
 feedbackRouter.post("/", createFeedback);
+feedbackRouter.patch("/:id", authCheck("Admin"), editFeedback);
