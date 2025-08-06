@@ -107,7 +107,9 @@ export const createUser = async (
       resetTokenExpiration: tokenExpiration,
     });
 
-    await sendVerificationEmail(email, verifyToken);
+    if (process.env.NODE_ENV !== "test") {
+      await sendVerificationEmail(email, verifyToken);
+    }
 
     res.status(201).json({
       success: true,
