@@ -7,7 +7,7 @@ export const authCheck = (requiredRole?: string) => {
 
     if (!user) {
       req.session.destroy(() => {
-        res.clearCookie("connect.sid"); // or whatever your cookie name is
+        res.clearCookie("connect.sid");
         res.status(401).json({
           success: false,
           message: `Session expired or user not logged in`,

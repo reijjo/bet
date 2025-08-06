@@ -3,6 +3,7 @@ import app from "../../../app";
 import type { User } from "../../../utils/types";
 import { UserModel } from "../../../models/userModel";
 import bcrypt from "bcryptjs";
+import { UserRoles } from "../../../utils/enums";
 
 const api = supertest(app);
 
@@ -23,6 +24,18 @@ export const createAdminukko = async (adminUkko: Partial<User>) => {
   });
 
   return admin?.dataValues;
+};
+
+export const createGuestUser = async (guestUkko: Partial<User>) => {
+  const hashpw = await bcrypt.hash("Testi_123", 10);
+
+  const guest = await UserModel.create({
+    ...guestUkko,
+    password: hashpw,
+    email: guestUkko.email as string,
+  });
+
+  return guest?.dataValues;
 };
 
 export const loginTestiukko = async (testiukko: Partial<User>) => {
