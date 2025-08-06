@@ -30,7 +30,23 @@ describe("FEEDBACK CONTROLLER - getAllFeedback", () => {
     await FeedbackModel.destroy({ where: {}, truncate: true, cascade: true });
     await UserModel.destroy({ where: {}, truncate: true, cascade: true });
   });
-  // describe("success cases", () => {});
+  describe("success cases", () => {
+    test("get all feedback as admin", async () => {
+      const agent = supertest.agent(app); // Keeps session cookies
+
+      const admin = await createAdminukko(adminUkko);
+
+      const test = await agent.post("/api/auth/login").send({
+        login: admin.username,
+        password: adminUkko.password,
+      });
+
+      expect(test.body.success).toBe(true);
+
+      const res = await agent.get("/api/feedback");
+      expect(res.status).toBe(200);
+    });
+  });
 
   describe("error cases", () => {
     test("server error", async () => {
