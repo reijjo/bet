@@ -17,3 +17,12 @@ export const adminUkko = {
   resetToken: "validtoken123",
   resetTokenExpiration: new Date(Date.now() + 1000 * 60 * 60),
 };
+
+export const guestUkko = {
+  username: "guestukko",
+  password: "Testi_123",
+  email: "testi@ukko.com",
+  role: UserRoles.Guest,
+  resetToken: "validtoken123",
+  resetTokenExpiration: new Date(Date.now() + 1000 * 60 * 60),
+};
