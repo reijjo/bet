@@ -36,13 +36,13 @@ export const authCheck = (requiredRole?: string) => {
       });
     }
 
-    // if (req.session.user.role !== requiredRole) {
-    //   res.status(403).json({
-    //     success: false,
-    //     message: "User does not have the required role",
-    //   });
-    //   return;
-    // }
+    if (requiredRole && req.session.user?.role !== requiredRole) {
+      res.status(403).json({
+        success: false,
+        message: "User does not have the required role",
+      });
+      return;
+    }
 
     next();
   };
