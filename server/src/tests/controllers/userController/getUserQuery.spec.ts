@@ -7,11 +7,6 @@ import { testiukko } from "../helpers/testUsers";
 
 const api = supertest(app);
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
-
 describe("USER CONTROLLER - getUserQuery", () => {
   afterEach(async () => {
     await UserModel.destroy({ where: {}, truncate: true, cascade: true });

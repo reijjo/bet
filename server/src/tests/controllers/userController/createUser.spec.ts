@@ -1,4 +1,12 @@
-import { describe, test, expect, afterEach, jest, spyOn } from "bun:test";
+import {
+  describe,
+  test,
+  expect,
+  beforeEach,
+  afterEach,
+  jest,
+  spyOn,
+} from "bun:test";
 import { UserModel } from "../../../models/userModel";
 import supertest from "supertest";
 import app from "../../../app";
@@ -6,14 +14,13 @@ import { testiukko } from "../helpers/testUsers";
 import { createTestiukko } from "../helpers/createTestuser";
 import * as emailModule from "../../../controllers/utils/createUserUtils";
 
-if (process.env.NODE_ENV === "test") {
-  console.log = function () {};
-  console.error = function () {};
-}
-
 const api = supertest(app);
 
 describe("USER CONTROLLER - createUser", () => {
+  beforeEach(async () => {
+    await UserModel.destroy({ where: {}, truncate: true, cascade: true });
+  });
+
   afterEach(async () => {
     await UserModel.destroy({ where: {}, truncate: true, cascade: true });
     jest.restoreAllMocks();
