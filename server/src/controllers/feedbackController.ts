@@ -78,8 +78,8 @@ export const editFeedback = async (
   const { id } = req.params;
   const { readByAdmin, responseText } = req.body as FeedbackMessageAdmin;
 
-  if (!id) {
-    return next(new HttpError("Feedback ID is required", 400));
+  if (!Number(id) || isNaN(Number(id))) {
+    return next(new HttpError("Invalid feedback ID", 400));
   }
 
   try {
