@@ -3,15 +3,8 @@ import supertest from "supertest";
 import app from "../../../app";
 import { FeedbackModel } from "../../../models/feedbackModel";
 import { UserModel } from "../../../models/userModel";
-import {
-  createAdminukko,
-  createGuestUser,
-  createTestiukko,
-  loginTestiukko,
-} from "../helpers/createTestuser";
-import { adminUkko, guestUkko, testiukko } from "../helpers/testUsers";
-import type { User } from "../../../utils/types";
-import exp from "constants";
+import { createAdminukko, createGuestUser } from "../helpers/createTestuser";
+import { adminUkko, guestUkko } from "../helpers/testUsers";
 
 const api = supertest(app);
 
