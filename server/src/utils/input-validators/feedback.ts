@@ -12,8 +12,8 @@ export const isNameValid = (name: string) => {
 };
 
 export const isFeedbackMessageValid = (message: string) => {
-  if (!hasMinMaxLength(message, 5, 500)) {
-    return "Message must be between 5 and 500 characters";
+  if (!hasMinMaxLength(message, 5, 1000)) {
+    return "Message must be between 5 and 1000 characters";
   }
 
   return "";
