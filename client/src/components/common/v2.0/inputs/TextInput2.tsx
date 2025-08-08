@@ -7,6 +7,7 @@ interface TextInput2Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   id: string;
   optional?: boolean;
+  inputError?: string;
 }
 
 export const TextInput2 = ({
@@ -15,6 +16,7 @@ export const TextInput2 = ({
   value,
   label,
   optional = false,
+  inputError,
   ...rest
 }: TextInput2Props) => {
   return (
@@ -25,7 +27,18 @@ export const TextInput2 = ({
           {optional && <span className="optional">(optional)</span>}
         </div>
       )}
-      <input type={type} value={value} id={id} {...rest} />
+      <input
+        type={type}
+        value={value}
+        id={id}
+        className={inputError ? "input-error-border" : ""}
+        {...rest}
+      />
+      {inputError && (
+        <div className="input-error">
+          <p className="input-error-message">{inputError}</p>
+        </div>
+      )}
     </div>
   );
 };

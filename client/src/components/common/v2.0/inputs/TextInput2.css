@@ -12,6 +12,18 @@ input[type="email"] {
   padding: 0.25rem 0.5rem;
 }
 
+input[type="text"].input-error-border,
+input[type="email"].input-error-border {
+  border: 1px solid var(--error-base);
+  outline: 2px solid rgba(255, 0, 0, 0.1);
+}
+
+input[type="text"].input-error-border:focus,
+input[type="email"].input-error-border:focus {
+  border: 1px solid var(--error-base);
+  outline: 2px solid rgba(255, 0, 0, 0.2);
+}
+
 label,
 .optional {
   font-size: 0.825rem;
@@ -24,4 +36,20 @@ label,
 .label-row {
   display: flex;
   justify-content: space-between;
+}
+
+.input-error {
+  border: 1px solid var(--error-base);
+  margin-top: 0.5rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  background-color: var(--error-xxlight);
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.input-error-message {
+  color: var(--error-base);
+  text-align: center;
 }

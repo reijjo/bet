@@ -9,3 +9,13 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
   resize: vertical;
 }
+
+textarea.input-error-border {
+  border: 1px solid var(--error-base);
+  outline: 2px solid rgba(255, 0, 0, 0.1);
+}
+
+textarea.input-error-border:focus {
+  border: 1px solid var(--error-base);
+  outline: 2px solid rgba(255, 0, 0, 0.2);
+}

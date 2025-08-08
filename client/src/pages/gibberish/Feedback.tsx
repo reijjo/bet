@@ -5,6 +5,9 @@ import { TextInput2 } from "../../components/common/v2.0/inputs/TextInput2";
 import "./Gibberish.css";
 import { FeedbackMessage } from "../../utils/types";
 import { useAddFeedbackMutation } from "../../features/api/feedbackApi";
+import { getErrorMessage } from "../../utils/helperFunctions";
+import { validateAllFeedbackFields } from "../../utils/input-validators/feedbackValidators";
+import { parseServerErrorToFieldErrors } from "../../utils/input-validators/feedbackErrorParsers";
 
 const Feedback = () => {
   const initialFeedback: FeedbackMessage = {
@@ -14,8 +17,9 @@ const Feedback = () => {
   };
 
   const [feedback, setFeedback] = useState<FeedbackMessage>(initialFeedback);
-  const [addFeedback, { data, isLoading, isError, error }] =
-    useAddFeedbackMutation();
+  const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+  const [okFeedback, setOkFeedback] = useState<string>("");
+  const [addFeedback, { isLoading }] = useAddFeedbackMutation();
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,26 +29,53 @@ const Feedback = () => {
       ...prev,
       [name]: value,
     }));
+
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle form submission logic here
+
+    // Validate all fields first
+    const validationErrors = validateAllFeedbackFields(feedback);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      return;
+    }
+
+    setFieldErrors({});
+
     try {
-      await addFeedback(feedback).unwrap();
+      const result = await addFeedback(feedback).unwrap();
       setFeedback(initialFeedback);
+      setOkFeedback(result?.message || "Feedback submitted successfully!");
+
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setOkFeedback("");
+      }, 5000);
     } catch (err) {
       console.error("Error submitting feedback:", err);
+
+      const errorMessage: string = getErrorMessage(err);
+      const serverFieldErrors = parseServerErrorToFieldErrors(errorMessage);
+      setFieldErrors(serverFieldErrors);
     }
-    console.log("Feedback submitted", feedback);
   };
 
   const handleReset = () => {
     setFeedback(initialFeedback);
+    setFieldErrors({});
+    setOkFeedback("");
   };
-
-  console.log("Feedback data:", data);
-  console.error("Feedback error:", isError, error);
 
   return (
     <div className="gibberish-page">
@@ -65,6 +96,7 @@ const Feedback = () => {
             required
             onChange={handleInputChange}
             value={feedback.name}
+            inputError={fieldErrors.name}
           />
           <TextInput2
             type="email"
@@ -75,6 +107,7 @@ const Feedback = () => {
             optional
             onChange={handleInputChange}
             value={feedback.email}
+            inputError={fieldErrors.email}
           />
           <TextArea2
             id="message"
@@ -85,7 +118,21 @@ const Feedback = () => {
             required
             onChange={handleInputChange}
             value={feedback.message}
+            inputError={fieldErrors.message}
           />
+          {(okFeedback || fieldErrors.server) && (
+            <div className={okFeedback ? "feedback-success" : "feedback-error"}>
+              <p
+                className={
+                  okFeedback
+                    ? "feedback-success-message"
+                    : "feedback-error-message"
+                }
+              >
+                {okFeedback ? okFeedback : fieldErrors.server}
+              </p>
+            </div>
+          )}
           <div className="btn-group">
             <Button2 type="submit" className="btn2-cta" disabled={isLoading}>
               {isLoading ? "Sending..." : "Submit Feedback"}
