@@ -228,11 +228,11 @@ a {
   --accent2-950: #431a07;
 
   /* Success */
-  --ok-dark: hsla(139, 54%, 29%, 1);
+  --ok-dark: hsla(139, 54%, 25%, 1);
   --ok-base: hsla(142, 99%, 33%, 1);
   --ok-light: #b3e6c5;
   --ok-xlight: hsla(141, 46%, 88%, 1);
-  --ok-xxlight: hsla(141, 44%, 94%, 1);
+  --ok-xxlight: hsla(141, 44%, 98%, 1);
 
   /* Info */
   --info-dark: hsla(238, 69%, 44%, 1);
