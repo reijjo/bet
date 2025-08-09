@@ -19,3 +19,14 @@ textarea.input-error-border:focus {
   border: 1px solid var(--error-base);
   outline: 2px solid rgba(255, 0, 0, 0.2);
 }
+
+.char-counter {
+  font-size: 0.75rem;
+  margin-left: auto;
+  display: flex;
+  margin-top: 0.25rem;
+}
+
+.char-counter-error {
+  color: var(--error-xlight);
+}
