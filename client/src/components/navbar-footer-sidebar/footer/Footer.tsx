@@ -29,7 +29,9 @@ export const Footer = () => {
                 Contact / Feedback
               </a>
               <a onClick={() => toSomewhere("/gibberish/faq")}>FAQ</a>
-              <a onClick={() => toSomewhere("/gibberish/coffee")}>Support Me</a>
+              <a onClick={() => toSomewhere("/gibberish/support")}>
+                Support Me
+              </a>
             </div>
             <div className="footer-link-group">
               <h4>Legal</h4>
