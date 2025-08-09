@@ -1,7 +1,11 @@
 import "./Container2.css";
 
-export const Container2 = () => (
-  <div className="container2">
-    <div className="container-inner">{/* Content goes here */}</div>
-  </div>
+interface Container2Props extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode;
+  width?: string;
+  height?: string;
+}
+
+export const Container2 = ({ children }: Container2Props) => (
+  <div className="container2">{children}</div>
 );

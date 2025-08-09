@@ -20,6 +20,10 @@
   text-wrap: balance;
   /* text-align: center; */
   max-width: 600px;
+
+  & h2 {
+    text-align: center;
+  }
 }
 
 .gibberish-text {
