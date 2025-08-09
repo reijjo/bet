@@ -1,0 +1,28 @@
+.toggle-faq {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+  &:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  & h4 {
+    font-weight: 600;
+  }
+}
+
+.faq-answer {
+  padding-left: 0.5rem;
+  font-size: 0.925rem;
+
+  & p {
+    text-wrap: balance;
+  }
+}
