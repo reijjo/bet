@@ -48,15 +48,6 @@ const SupportCard = ({
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy text: ", err);
-      // Fallback for older browsers
-      const textArea = document.createElement("textarea");
-      textArea.value = crypto;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -89,7 +80,11 @@ const SupportCard = ({
         </div>
         <p className="or-block">or</p>
 
-        <div className="qr-way" onClick={() => onToggleQr(id)}>
+        <div
+          className="qr-way"
+          onClick={() => onToggleQr(id)}
+          data-testid={`qr-toggle-${id}`}
+        >
           <p className="show-qr">Show QR Code</p>
           <div className={`qr ${showQr ? "flipped" : ""}`}>
             <div className="qr-inner">

@@ -1,6 +1,6 @@
 import "./Questions.css";
 import { Container2 } from "../../components/common/v2.0/container/Container2";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
@@ -29,12 +29,8 @@ export const Questions = () => {
   return (
     <Container2>
       {faqs.map((faq) => (
-        <>
-          <a
-            className="toggle-faq"
-            onClick={() => toggleFaq(faq.id)}
-            key={faq.id}
-          >
+        <Fragment key={faq.id}>
+          <a className="toggle-faq" onClick={() => toggleFaq(faq.id)}>
             <h4>{faq.question}</h4>
             <FontAwesomeIcon icon={openFaq === faq.id ? faMinus : faPlus} />
           </a>
@@ -43,7 +39,7 @@ export const Questions = () => {
               <p>{faq.answer}</p>
             </div>
           )}
-        </>
+        </Fragment>
       ))}
     </Container2>
   );
