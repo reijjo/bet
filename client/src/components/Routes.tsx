@@ -22,6 +22,8 @@ const Verify = lazy(
 const Terms = lazy(() => import("../pages/gibberish/Terms"));
 const Privacy = lazy(() => import("../pages/gibberish/Privacy"));
 const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
+const Faq = lazy(() => import("../pages/gibberish/Faq"));
+const Support = lazy(() => import("../pages/gibberish/Support"));
 
 const LoadingWrapper = () => (
   <div
@@ -51,6 +53,8 @@ export const Routing = () => (
         <Route path="/gibberish/terms" element={<Terms />} />
         <Route path="/gibberish/privacy" element={<Privacy />} />
         <Route path="/gibberish/feedback" element={<Feedback />} />
+        <Route path="/gibberish/faq" element={<Faq />} />
+        <Route path="/gibberish/support" element={<Support />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/dash" element={<Dashboard />} />

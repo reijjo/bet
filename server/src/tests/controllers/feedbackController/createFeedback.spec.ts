@@ -49,7 +49,7 @@ describe("FEEDBACK CONTROLLER - createFeedback", () => {
         .expect(400);
 
       expect(response.body.message).toBe(
-        "Message must be between 5 and 500 characters"
+        "Message must be between 5 and 1000 characters"
       );
     });
 
