@@ -3,7 +3,6 @@ import { blueBright, redBright } from "colorette";
 import PgSession from "connect-pg-simple";
 import session from "express-session";
 import { ConnectionRefusedError, Sequelize } from "sequelize";
-import pg from "pg";
 
 const { DATABASE_URL } = config;
 const isProduction =
@@ -20,18 +19,18 @@ export const sequelize = new Sequelize(DATABASE_URL, {
     acquire: 30000,
     idle: 10000,
   },
+  dialect: "postgres",
   dialectOptions: isProduction
     ? {
         ssl: {
           require: true,
           rejectUnauthorized: false,
         },
-        connectTimeout: 10000,
+        connectTimeout: 60000, // Increased timeout
       }
     : {
         connectTimeout: 10000,
       },
-
   logging: false,
 });
 
@@ -59,16 +58,9 @@ export const closeDBconnection = async () => {
   }
 };
 
-// Use connection string instead of pool to avoid type conflicts
+// Use connection string approach for sessions
 export const pgStore = new (PgSession(session))({
-  pool: new pg.Pool({
-    connectionString: DATABASE_URL,
-    ssl: isProduction
-      ? {
-          rejectUnauthorized: false,
-        }
-      : false,
-  }) as any,
+  conString: DATABASE_URL,
   tableName: "sessions",
   createTableIfMissing: true,
 });
