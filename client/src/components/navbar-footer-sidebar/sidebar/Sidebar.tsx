@@ -56,18 +56,20 @@ export const Sidebar = () => {
       data-testid="sidebar"
       style={{ zIndex: modalOpen ? 9 : 15 }}
     >
-      <Link to="/dash" className="sidebar-logo" onClick={handleCloseSidebar}>
-        <img src={logo} alt="logo" height={32} width={32} />
-        <h3>Tärpit</h3>
-      </Link>
-      <div className="sidebar-close">
-        <a
-          className="hamburger"
-          onClick={handleCloseSidebar}
-          data-testid="close-sidebar"
-        >
-          <FontAwesomeIcon icon={faXmark} size="1x" />
-        </a>
+      <div className="sidebar-top">
+        <Link to="/dash" className="sidebar-logo" onClick={handleCloseSidebar}>
+          <img src={logo} alt="logo" height={32} width={32} />
+          <h3>Tärpit</h3>
+        </Link>
+        <div className="sidebar-close">
+          <a
+            className="hamburger"
+            onClick={handleCloseSidebar}
+            data-testid="close-sidebar"
+          >
+            <FontAwesomeIcon icon={faXmark} size="1x" />
+          </a>
+        </div>
       </div>
 
       <div className="sidebar-links">
