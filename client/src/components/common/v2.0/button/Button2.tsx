@@ -5,16 +5,23 @@ interface Button2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: "button" | "submit" | "reset";
   className?: string;
   height?: string;
+  width?: string;
 }
 
 export const Button2 = ({
   type = "button",
   className,
   height,
+  width,
   ...rest
 }: Button2Props) => {
   return (
-    <button type={type} {...rest} className={className} style={{ height }}>
+    <button
+      type={type}
+      {...rest}
+      className={className}
+      style={{ height, width }}
+    >
       {rest.children}
     </button>
   );

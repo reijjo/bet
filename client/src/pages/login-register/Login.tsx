@@ -9,7 +9,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/fishing.png";
 import tennis from "../../assets/images/login-register/tennis-opti.jpg";
 import {
-  Button,
   Container,
   DividerWithText,
   Loading,
@@ -28,6 +27,7 @@ import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";
 import { errorTypeMessage, getErrorMessage } from "../../utils/helperFunctions";
 import { LoginValues, User } from "../../utils/types";
+import { Button2 } from "../../components/common/v2.0/button/Button2";
 
 const ForgotPassword = () => (
   <Link to="/forgot" className="none-styles form-input-text">
@@ -132,11 +132,12 @@ const Login = () => {
             />
           )}
 
-          <Button
+          <Button2
             type="submit"
-            className="btn btn-filled"
+            className="btn2-cta"
             children="Login"
             width="75%"
+            disabled={isLoading}
           />
         </form>
         <DividerWithText text="or" />

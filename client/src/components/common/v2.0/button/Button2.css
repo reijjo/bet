@@ -3,7 +3,9 @@
   height: 2.5rem;
   border-radius: 2rem;
   cursor: pointer;
+  font-family: "Montserrat", serif;
   font-weight: 500;
+  /* letter-spacing: 0.5px; */
   outline: none;
   padding: 0.5rem 1rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.125);
@@ -18,18 +20,6 @@
 
   &:active {
     transform: scale(0.975);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    background: lightgrey;
-    color: gray;
-
-    &:hover {
-      border: 1px solid gray;
-      background: lightgrey;
-      color: gray;
-    }
   }
 }
 
@@ -47,6 +37,19 @@
     background: var(--accent-100);
     border: 1px solid rgba(255, 255, 255, 0.25);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: rgba(254, 253, 195, 0.75);
+    color: gray;
+    box-shadow: none;
+
+    &:hover {
+      border: 1px solid gray;
+      background: rgba(254, 253, 195, 0.75);
+      color: gray;
+    }
+  }
 }
 
 .btn2-outline {
@@ -62,6 +65,22 @@
 
   &:hover {
     border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid gray;
+
+    background: rgba(255, 255, 255, 0.55);
+    color: gray;
+    box-shadow: none;
+
+    &:hover {
+      border: 1px solid gray;
+      background: rgba(255, 255, 255, 0.55);
+
+      color: gray;
+    }
   }
 }
 
