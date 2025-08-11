@@ -55,7 +55,7 @@ const DB_TEST_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL
 
 let DATABASE_URL = Bun.env.NODE_ENV === "test" ? DB_TEST_URL : DB_URL;
 if (Bun.env.NODE_ENV === "production") {
-  DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_DEPLOY_PASSWORD}@${DB_LOCAL_AZURE}:${DB_PORT}/${DB_NAME}?`;
+  DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_DEPLOY_PASSWORD}@${DB_LOCAL_AZURE}:${DB_PORT}/${DB_NAME}`;
 }
 
 export const config = {

@@ -37,7 +37,8 @@ const ForgotPassword = () => (
 
 const Login = () => {
   const [login, { isLoading, isError, error }] = useLoginMutation();
-  const [fetchSession] = useLazyGetSessionUserQuery();
+  const [fetchSession, { isError: isFetchError, error: fetchError }] =
+    useLazyGetSessionUserQuery();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -62,7 +63,7 @@ const Login = () => {
       await login({
         ...data,
         login: data.login.trim().toLowerCase(),
-      }).unwrap();
+      });
 
       const sessionResult = await fetchSession().unwrap();
 
@@ -117,13 +118,13 @@ const Login = () => {
           />
           {errors.password && <InputErrorContainer errors={errors.password} />}
           <ForgotPassword />
-          {(isError || isLoading) && (
+          {(isError || isFetchError || isLoading) && (
             <Message
               message={
                 isLoading ? (
                   <Loading color="message-info" text="Logging in..." />
                 ) : (
-                  getErrorMessage(error)
+                  getErrorMessage(error || fetchError)
                 )
               }
               type={isLoading ? MessageTypes.Info : errorTypeMessage(error)}
