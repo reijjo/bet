@@ -5,6 +5,7 @@
   cursor: pointer;
   font-family: "Montserrat", serif;
   font-weight: 500;
+  text-transform: capitalize;
   /* letter-spacing: 0.5px; */
   outline: none;
   padding: 0.5rem 1rem;

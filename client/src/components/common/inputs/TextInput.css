@@ -1,6 +1,7 @@
 input[type="text"],
 input[type="date"],
 input[type="password"],
+input[type="email"],
 select {
   padding: 8px 6px;
   margin-top: 4px;
@@ -25,6 +26,30 @@ select {
 
 input[type="date"] {
   font-size: var(--font-xxsmall);
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  right: 0.5rem;
+  padding: 0.25rem;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  font-size: 1.5cap;
+  display: grid;
+  place-items: center;
+  color: var(--primary-500);
+
+  &:hover {
+    color: var(--primary);
+  }
 }
 
 .text-input {

@@ -117,7 +117,7 @@
   border-radius: 0.5rem;
 }
 
-.input-error-message {
+.input2-error-message {
   color: var(--error-base);
   text-align: center;
 }

@@ -40,7 +40,7 @@ export const TextArea2 = ({
       </div>
       {inputError && (
         <div className="input-error">
-          <p className="input-error-message">{inputError}</p>
+          <p className="input2-error-message">{inputError}</p>
         </div>
       )}
     </div>

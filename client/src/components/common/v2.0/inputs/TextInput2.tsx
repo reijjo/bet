@@ -30,7 +30,7 @@ export const TextInput2 = ({
       <input
         type={type}
         value={value}
-        id={id}
+        autoComplete="off"
         className={inputError ? "input-error-border" : ""}
         {...rest}
       />

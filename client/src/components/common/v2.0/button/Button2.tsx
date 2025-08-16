@@ -6,6 +6,7 @@ interface Button2Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   height?: string;
   width?: string;
+  margin?: string;
 }
 
 export const Button2 = ({
@@ -13,6 +14,7 @@ export const Button2 = ({
   className,
   height,
   width,
+  margin,
   ...rest
 }: Button2Props) => {
   return (
@@ -20,7 +22,7 @@ export const Button2 = ({
       type={type}
       {...rest}
       className={className}
-      style={{ height, width }}
+      style={{ height, width, margin }}
     >
       {rest.children}
     </button>

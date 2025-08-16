@@ -8,7 +8,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import penkit from "../../assets/images/login-register/penkit-opti.jpg";
 import {
-  Button,
   Container,
   DividerWithText,
   Loading,
@@ -25,6 +24,7 @@ import { MessageTypes } from "../../utils/enums";
 import { getErrorMessage } from "../../utils/helperFunctions";
 import { isValidEmail } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
+import { Button2 } from "../../components/common/v2.0/button/Button2";
 
 const Register = () => {
   const [fade, setFade] = useState(false);
@@ -96,10 +96,11 @@ const Register = () => {
           <Container border="none" boxShadow="none" gap="0.5rem" margin="0">
             <TextInput
               className="form-input-text"
-              type="text"
+              type="email"
               label="Email"
               id="email"
               placeholder="user@tarpit.com"
+              required
               errorStyle={!!errors.email}
               {...register("email", {
                 ...isValidEmail,
@@ -125,9 +126,9 @@ const Register = () => {
             />
           )}
 
-          <Button
+          <Button2
             type="submit"
-            className="btn btn-filled"
+            className="btn2-cta"
             children="sign up"
             width="75%"
             margin="0.75rem 0 0"

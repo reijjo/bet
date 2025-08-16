@@ -1,10 +1,12 @@
 .text-input-container {
   display: flex;
   flex-direction: column;
+  /* width: inherit; */
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="password"] {
   height: 2.5rem;
   border: 1px solid var(--primary-400);
   border-radius: 0.5rem;
@@ -13,13 +15,15 @@ input[type="email"] {
 }
 
 input[type="text"].input-error-border,
-input[type="email"].input-error-border {
+input[type="email"].input-error-border,
+input[type="password"].input-error-border {
   border: 1px solid var(--error-base);
   outline: 2px solid rgba(255, 0, 0, 0.1);
 }
 
 input[type="text"].input-error-border:focus,
-input[type="email"].input-error-border:focus {
+input[type="email"].input-error-border:focus,
+input[type="password"].input-error-border {
   border: 1px solid var(--error-base);
   outline: 2px solid rgba(255, 0, 0, 0.2);
 }
@@ -49,7 +53,7 @@ label,
   border-radius: 0.5rem;
 }
 
-.input-error-message {
+.input2-error-message {
   color: var(--error-base);
   text-align: center;
 }

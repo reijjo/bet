@@ -1,6 +1,8 @@
 import "./TextInput.css";
 
-import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import { InputHTMLAttributes, ReactNode, forwardRef, useState } from "react";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -13,6 +15,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   backgroundColor?: string;
   errorStyle?: boolean;
+  isPassword?: boolean;
   handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
@@ -30,12 +33,15 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       width = "100%",
       height = "2.5rem",
       backgroundColor = "white",
+      isPassword = false,
       handleBlur,
       handleFocus,
       ...props
     },
-    ref,
+    ref
   ) => {
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
       <div className={className}>
         {showLabel && (
@@ -44,21 +50,35 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             {optional && <p className="text-input-paragraph">({optional})</p>}
           </label>
         )}
-        <input
-          name={name}
-          id={id}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          {...props}
-          className={`${errorStyle && "input-error"}`}
-          style={{
-            height: height,
-            width: width,
-            backgroundColor: backgroundColor,
-          }}
-          ref={ref}
-        />
+        <div className="input-container">
+          <input
+            name={name}
+            id={id}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            {...props}
+            className={`${errorStyle && "input-error"}`}
+            autoComplete="off"
+            type={isPassword && !showPassword ? "password" : "text"}
+            style={{
+              height: height,
+              width: width,
+              backgroundColor: backgroundColor,
+            }}
+            ref={ref}
+          />
+          {isPassword && (
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+              tabIndex={-1}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
+          )}
+        </div>
       </div>
     );
-  },
+  }
 );

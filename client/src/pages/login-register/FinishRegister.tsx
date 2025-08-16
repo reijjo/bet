@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button, Container, Loading, TextInput } from "../../components";
+import { Container, Loading, TextInput } from "../../components";
 import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
 import { Message, MessageProps } from "../../components/common/message/Message";
 import { useRegisterUserMutation } from "../../features/api/userApi";
@@ -19,6 +19,7 @@ import {
   isValidUsername,
 } from "../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../utils/types";
+import { Button2 } from "../../components/common/v2.0/button/Button2";
 
 const FinishRegister = () => {
   const [message, setMessage] = useState<MessageProps>({
@@ -99,6 +100,7 @@ const FinishRegister = () => {
             label="Username"
             id="username"
             placeholder="Username"
+            required
             {...register("username", isValidUsername)}
           />
           {errors.username && (
@@ -110,6 +112,8 @@ const FinishRegister = () => {
             label="Password"
             id="password"
             placeholder="Password"
+            required
+            isPassword
             {...register("password", isValidPassword)}
           />
           {errors.password && (
@@ -124,6 +128,8 @@ const FinishRegister = () => {
             label="Confirm password"
             id="password2"
             placeholder="Confirm Password"
+            required
+            isPassword
             {...register("password2", {
               validate: (value) =>
                 value === passwordMatcher || "Passwords don't match",
@@ -149,12 +155,13 @@ const FinishRegister = () => {
               width="75%"
             />
           )}
-          <Button
+          <Button2
             type="submit"
-            className="btn btn-filled"
+            className="btn2-cta"
             children="create account"
             width="75%"
             margin="1rem 0 0"
+            disabled={isLoading}
           />
         </form>
       </Container>

@@ -4,7 +4,7 @@
   opacity: 1;
   transform: translateY(0);
 
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .fade-out-to-bottom {
@@ -13,7 +13,7 @@
 }
 
 .animate-fade-in {
-  animation: fadeInFromBottom 0.3s ease forwards;
+  animation: fadeInFromBottom 0.25s ease forwards;
 }
 
 @keyframes fadeInFromBottom {
