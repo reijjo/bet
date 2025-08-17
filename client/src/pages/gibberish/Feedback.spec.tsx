@@ -50,8 +50,8 @@ describe("Feedback.tsx", () => {
     it("renders the feedback form", async () => {
       renderComponent();
       expect(screen.getByText(/feedback and suggestions/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/name/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/message/i)).toBeInTheDocument();
     });
 
@@ -63,8 +63,8 @@ describe("Feedback.tsx", () => {
 
       renderComponent();
 
-      await user.type(screen.getByLabelText(/name/i), "John Doe");
-      await user.type(screen.getByLabelText(/email/i), "john@doe.com");
+      await user.type(screen.getByPlaceholderText(/name/i), "John Doe");
+      await user.type(screen.getByPlaceholderText(/email/i), "john@doe.com");
       await user.type(screen.getByLabelText(/message/i), "Great app!");
 
       await user.click(screen.getByRole("button", { name: /submit/i }));
@@ -76,8 +76,8 @@ describe("Feedback.tsx", () => {
     it("reset button clears the form", async () => {
       renderComponent();
 
-      const nameInput = screen.getByLabelText(/name/i);
-      const emailInput = screen.getByLabelText(/email/i);
+      const nameInput = screen.getByPlaceholderText(/name/i);
+      const emailInput = screen.getByPlaceholderText(/email/i);
       const messageInput = screen.getByLabelText(/message/i);
       const resetButton = screen.getByRole("button", { name: /clear/i });
 
@@ -100,8 +100,8 @@ describe("Feedback.tsx", () => {
 
       renderComponent();
 
-      const nameInput = screen.getByLabelText(/name/i);
-      const emailInput = screen.getByLabelText(/email/i);
+      const nameInput = screen.getByPlaceholderText(/name/i);
+      const emailInput = screen.getByPlaceholderText(/email/i);
       const messageInput = screen.getByLabelText(/message/i);
       const submitButton = screen.getByRole("button", { name: /submit/i });
 
@@ -119,7 +119,7 @@ describe("Feedback.tsx", () => {
       it("shows error when name is too short", async () => {
         renderComponent();
 
-        const nameInput = screen.getByLabelText(/name/i);
+        const nameInput = screen.getByPlaceholderText(/name/i);
         const messageInput = screen.getByLabelText(/message/i);
         const submitButton = screen.getByRole("button", { name: /submit/i });
 
@@ -135,7 +135,7 @@ describe("Feedback.tsx", () => {
       it("shows error when message is too short", async () => {
         renderComponent();
 
-        const nameInput = screen.getByLabelText(/name/i);
+        const nameInput = screen.getByPlaceholderText(/name/i);
         const messageInput = screen.getByLabelText(/message/i);
         const submitButton = screen.getByRole("button", { name: /submit/i });
 

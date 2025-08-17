@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as userApi from "../../features/api/userApi";
-import { store } from "../../store/store";
+import * as userApi from "../../../features/api/userApi";
+import { store } from "../../../store/store";
 import FinishRegister from "./FinishRegister";
 
 if (process.env.NODE_ENV === "test") {
@@ -169,11 +169,15 @@ describe("FinishRegister.tsx", () => {
     it("weird username", async () => {
       renderComponent();
       const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
       const submitButton = screen.getByRole("button", {
         name: /create account/i,
       });
 
       await user.type(usernameInput, "weird@username");
+      await user.type(passwordInput, "Password123!");
+      await user.type(confirmPasswordInput, "Password123!");
       await user.click(submitButton);
 
       expect(
@@ -184,11 +188,15 @@ describe("FinishRegister.tsx", () => {
     it("too short/long username", async () => {
       renderComponent();
       const usernameInput = screen.getByRole("textbox", { name: /username/i });
+      const passwordInput = screen.getByLabelText("Password");
+      const confirmPasswordInput = screen.getByLabelText(/confirm password/i);
       const submitButton = screen.getByRole("button", {
         name: /create account/i,
       });
 
       await user.type(usernameInput, "ab");
+      await user.type(passwordInput, "Password123!");
+      await user.type(confirmPasswordInput, "Password123!");
       await user.click(submitButton);
 
       expect(
