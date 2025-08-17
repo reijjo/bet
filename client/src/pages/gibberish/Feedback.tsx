@@ -58,7 +58,6 @@ const Feedback = () => {
       setFeedback(initialFeedback);
       setOkFeedback(result?.message || "Feedback submitted successfully!");
 
-      // Clear success message after 5 seconds
       setTimeout(() => {
         setOkFeedback("");
       }, 5000);

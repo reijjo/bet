@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/fishing.png";
-import tennis from "../../assets/images/login-register/tennis-opti.jpg";
+import tennis from "../../assets/images/login-register/tennis-opti.webp";
 import {
   Container,
   DividerWithText,
@@ -114,6 +114,7 @@ const Login = () => {
             id="loginPasswd"
             placeholder="Password..."
             autoComplete="off"
+            isPassword
             {...register("password", { required: "Password is required" })}
           />
           {errors.password && <InputErrorContainer errors={errors.password} />}

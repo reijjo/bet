@@ -8,10 +8,12 @@ import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./layout/AppLayout";
 
 const Homepage = lazy(() => import("../pages/homepage/Homepage"));
-const Register = lazy(() => import("../pages/login-register/Register"));
+const Register = lazy(
+  () => import("../pages/login-register/register/Register")
+);
 const Login = lazy(() => import("../pages/login-register/Login"));
 const FinishRegister = lazy(
-  () => import("../pages/login-register/FinishRegister")
+  () => import("../pages/login-register/register/FinishRegister")
 );
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
