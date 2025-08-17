@@ -132,6 +132,7 @@ const Register = () => {
             children="sign up"
             width="75%"
             margin="0.75rem 0 0"
+            disabled={isLoading}
           />
         </form>
         <DividerWithText text="or login with" />

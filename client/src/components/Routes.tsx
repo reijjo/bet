@@ -26,6 +26,7 @@ const Privacy = lazy(() => import("../pages/gibberish/Privacy"));
 const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
 const Faq = lazy(() => import("../pages/gibberish/Faq"));
 const Support = lazy(() => import("../pages/gibberish/Support"));
+const Forgot = lazy(() => import("../pages/login-register/forgot/Forgot"));
 
 const LoadingWrapper = () => (
   <div
@@ -48,6 +49,7 @@ export const Routing = () => (
         <Route path="/register" element={<Register />} />
         <Route path="/register/finish" element={<FinishRegister />} />
         <Route path="/register/:token" element={<Verify />} />
+        <Route path="/forgot" element={<Forgot />} />
         <Route path="/login" element={<Login />} />
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
