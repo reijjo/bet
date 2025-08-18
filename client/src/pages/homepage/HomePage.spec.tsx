@@ -4,8 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { store } from "../../store/store";
-import Homepage from "./Homepage";
-
+import HomePage from "./HomePage";
 // Mock FontAwesomeIcon with a component that renders the size as data attribute
 vi.mock("@fortawesome/react-fontawesome", () => ({
   FontAwesomeIcon: ({
@@ -35,7 +34,7 @@ vi.mock("../../hooks/useScreenWidth", () => ({
   useScreenWidth: () => mockUseScreenWidth(),
 }));
 
-describe("Homepage", () => {
+describe("HomePage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -51,7 +50,7 @@ describe("Homepage", () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Homepage />
+          <HomePage />
         </MemoryRouter>
       </Provider>
     );
@@ -75,7 +74,7 @@ describe("Homepage", () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Homepage />
+          <HomePage />
         </MemoryRouter>
       </Provider>
     );

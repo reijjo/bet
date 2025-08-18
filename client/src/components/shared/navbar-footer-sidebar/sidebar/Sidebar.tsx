@@ -15,13 +15,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-import logo from "../../../assets/fishing.png";
-import { useLogoutMutation } from "../../../features/api/authApi";
-import { logoutUser } from "../../../features/authSlice";
-import { closeSidebar } from "../../../features/sidebarSlice";
-import { useScreenWidth } from "../../../hooks/useScreenWidth";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { Divider, LinkWithIcon } from "../../index";
+import logo from "../../../../assets/fishing.png";
+import { useLogoutMutation } from "../../../../features/api/authApi";
+import { logoutUser } from "../../../../features/authSlice";
+import { closeSidebar } from "../../../../features/sidebarSlice";
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import { Divider, LinkWithIcon } from "../../../index";
 
 export const Sidebar = () => {
   const [logout, { isLoading }] = useLogoutMutation();

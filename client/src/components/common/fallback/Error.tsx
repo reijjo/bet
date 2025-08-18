@@ -6,7 +6,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useNavigate } from "react-router-dom";
 
-import { Button } from "../button/Button";
+import { Button } from "../../ui/button/Button";
 
 export type ErrorProps = {
   error: FetchBaseQueryError | SerializedError;

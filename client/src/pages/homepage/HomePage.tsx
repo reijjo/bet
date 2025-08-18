@@ -1,4 +1,4 @@
-import "./Homepage.css";
+import "./HomePage.css";
 
 import { useEffect } from "react";
 
@@ -16,14 +16,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import add1 from "../../assets/images/homepage/add1.png";
 import add2 from "../../assets/images/homepage/add2.png";
 import dash from "../../assets/images/homepage/dash.png";
-import { Button, Divider } from "../../components/";
+import { Divider } from "../../components";
 import { useScreenWidth } from "../../hooks/useScreenWidth";
 import { useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
 import { FeatureCard } from "./FeatureCard";
 import { PageFeatureCard } from "./PageFeatureCard";
+import { HeroSection } from "./hero/HeroSection";
 
-const Homepage = () => {
+const HomePage = () => {
   const { isMobile } = useScreenWidth();
   const { isAuthenticated } = useAppSelector((state: RootState) => state.auth);
   const location = useLocation();
@@ -38,37 +39,7 @@ const Homepage = () => {
 
   return (
     <div className="flex-wrapper">
-      <section className="hero-section">
-        <div className="hero-wrapper wrapper">
-          <div className="hero-text">
-            {/* <h4>Discover the Bet Tracking Platform 10+ Users Love</h4> */}
-            <h4>Discover the Bet Tracking Platform that everyone Loves</h4>
-            <div className="hero-slogan">
-              <h1>Track your bets online without annoying excel sheets!</h1>
-              <p>
-                But we have all the best features from Excel sheets to analyze
-                and track your bets on the go!{" "}
-              </p>
-            </div>
-            <div className="hero-buttons">
-              <Button
-                type="button"
-                className="btn btn-filled"
-                children="Sign Up here!"
-                onClick={() => navigate("/register")}
-                height="3rem"
-              />
-              {/* <Button
-                type="button"
-                className="btn btn-outline"
-                children="Try Demo"
-                onClick={() => navigate("/dash")}
-                height="3rem"
-              /> */}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection navigate={navigate} />
       <section className="home-features-section">
         <div className="home-features">
           <FeatureCard
@@ -162,4 +133,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default HomePage;

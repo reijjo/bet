@@ -1,9 +1,9 @@
 import "./Footer.css";
-import logo from "../../../assets/fishing.png";
+import logo from "../../../../assets/fishing.png";
 import { useNavigate } from "react-router-dom";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { scrollToTop } from "../../../utils/helperFunctions";
+import { scrollToTop } from "../../../../utils/helperFunctions";
 
 export const Footer = () => {
   const copyright = String.fromCodePoint(169);

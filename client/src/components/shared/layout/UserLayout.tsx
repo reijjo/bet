@@ -3,12 +3,13 @@ import "./Layout.css";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { RootState } from "../../store/store";
-import { Footer, Modal, ModifyBetModal, NavbarUser, Sidebar } from "../index";
+import { RootState } from "../../../store/store";
+import { Footer, NavbarUser, Sidebar } from "../index";
+import { Modal, ModifyBetModal } from "../../modals/index";
 
 export const UserLayout = () => {
   const { isModifyBetModalOpen } = useSelector(
-    (state: RootState) => state.modal,
+    (state: RootState) => state.modal
   );
   const sidebarState = useSelector((state: RootState) => state.sidebar);
 

@@ -1,4 +1,4 @@
-import { Container2 } from "../../components/common/v2.0/container/Container2";
+import { Container2 } from "../../components/ui/v2/container/Container2";
 import "./Gibberish.css";
 import mobileqr from "../../assets/images/support/mobilepay-qr.png";
 import revolutqr from "../../assets/images/support/revolut-qr.png";
@@ -7,7 +7,7 @@ import bitcoinqr from "../../assets/images/support/btc-qr.png";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faQuestion, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { Button2 } from "../../components/common/v2.0/button/Button2";
+import { Button2 } from "../../components/ui/v2/button/Button2";
 
 interface SupportCardProps {
   id: number;

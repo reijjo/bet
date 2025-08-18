@@ -5,9 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Loading } from "./common/fallback/Loading";
 import { UnderCons } from "./common/fallback/UnderCons";
-import { AppLayout } from "./layout/AppLayout";
+import { AppLayout } from "./shared/index";
 
-const Homepage = lazy(() => import("../pages/homepage/Homepage"));
 const Register = lazy(
   () => import("../pages/login-register/register/Register")
 );
@@ -27,6 +26,7 @@ const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
 const Faq = lazy(() => import("../pages/gibberish/Faq"));
 const Support = lazy(() => import("../pages/gibberish/Support"));
 const Forgot = lazy(() => import("../pages/login-register/forgot/Forgot"));
+const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 
 const LoadingWrapper = () => (
   <div
@@ -45,7 +45,7 @@ export const Routing = () => (
   <Suspense fallback={<LoadingWrapper />}>
     <Routes>
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register/finish" element={<FinishRegister />} />
         <Route path="/register/:token" element={<Verify />} />

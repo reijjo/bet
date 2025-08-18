@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button2 } from "../../components/common/v2.0/button/Button2";
-import { TextArea2 } from "../../components/common/v2.0/inputs/TextArea2";
-import { TextInput2 } from "../../components/common/v2.0/inputs/TextInput2";
+import { Button2 } from "../../components/ui/v2/button/Button2";
+import { TextArea2 } from "../../components/ui/v2/inputs/TextArea2";
+import { TextInput2 } from "../../components/ui/v2/inputs/TextInput2";
 import "./Gibberish.css";
 import { FeedbackMessage } from "../../utils/types";
 import { useAddFeedbackMutation } from "../../features/api/feedbackApi";

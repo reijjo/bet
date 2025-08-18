@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
 import { getErrorStatus } from "../utils/helperFunctions";
 import { Loading } from "./common/fallback/Loading";
-import { AppLayout } from "./layout/AppLayout";
+import { AppLayout } from "./shared/index";
 
 export const ProtectedRoute = () => {
   const {

@@ -9,11 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import logo from "../../../assets/fishing.png";
-import profilepic from "../../../assets/images/stockprofilepic.jpg";
-import { openSidebar } from "../../../features/sidebarSlice";
-import { useScreenWidth } from "../../../hooks/useScreenWidth";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import logo from "../../../../assets/fishing.png";
+import profilepic from "../../../../assets/images/stockprofilepic.jpg";
+import { openSidebar } from "../../../../features/sidebarSlice";
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { NavUserMenu } from "./NavUserMenu";
 
 export const NavbarUser = () => {
@@ -24,7 +24,6 @@ export const NavbarUser = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
 
-  // Closes dropdown when clicking outside
   const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -60,7 +59,6 @@ export const NavbarUser = () => {
             <h3>Tärpit</h3>
             <img src={logo} alt="logo" height={32} width={32} />
           </div>
-          {/* <Link to="/addbet">Add Bet</Link> */}
           <div
             className={`nav-profile ${isSidebarOpen ? "nav-user-wrapper" : ""}`}
           >

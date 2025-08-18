@@ -1,4 +1,5 @@
 .btn2-outline,
+.btn2-secondary,
 .btn2-cta {
   height: 2.5rem;
   border-radius: 2rem;
@@ -11,6 +12,8 @@
   outline: none;
   padding: 0.5rem 1rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.125);
+  display: grid;
+  place-items: center;
 
   transition:
     box-shadow 0.25s ease,
@@ -54,6 +57,24 @@
   }
 }
 
+.btn-big {
+  padding: 1.5rem 3rem;
+  font-weight: 600;
+  display: inherit;
+
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);
+  }
+}
+
+.btn2-secondary {
+  border: 1px solid var(--accent-300);
+
+  &:hover {
+    box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);
+  }
+}
+
 .btn2-outline {
   border: 1px solid rgba(255, 255, 255, 0.175);
   background-color: rgba(255, 255, 255, 0.075);
@@ -84,6 +105,44 @@
       color: gray;
     }
   }
+}
+
+.btn-font {
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  font-size: 0.925rem;
+
+  @media only screen and (max-width: 581px) {
+    /* 4 grids */
+    font-size: 0.925rem;
+  }
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+}
+
+.underline-hover:after {
+  content: ""; /* Add content after the element */
+  position: absolute; /* Position absolute for pseudo-element */
+  width: 100%; /* Full width */
+  transform: scaleX(0); /* Initial scale of 0 for underline effect */
+  height: 1px; /* Height of the underline */
+  bottom: -6px; /* Align to bottom */
+  left: 0; /* Align to left */
+  background-color: white; /* Background color of the underline */
+  transform-origin: bottom right; /* Set transform origin */
+  transition: transform 0.3s ease-out; /* Transition effect for the underline */
+}
+
+.underline-hover:hover:after {
+  transform: scaleX(1); /* Scale the underline on hover */
+  transform-origin: bottom left; /* Set transform origin */
 }
 
 .primary2 {

@@ -1,5 +1,5 @@
 import "./Questions.css";
-import { Container2 } from "../../components/common/v2.0/container/Container2";
+import { Container2 } from "../../components/ui/v2/container/Container2";
 import { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";

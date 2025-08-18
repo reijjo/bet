@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, test, vi } from "vitest";
 
-import * as screenWidthHook from "../../../hooks/useScreenWidth";
-import { store } from "../../../store/store";
+import * as screenWidthHook from "../../../../hooks/useScreenWidth";
+import { store } from "../../../../store/store";
 import { Navbar } from "./Navbar";
 
 describe("Navbar", () => {
@@ -22,7 +22,7 @@ describe("Navbar", () => {
           <MemoryRouter>
             <Navbar />
           </MemoryRouter>
-        </Provider>,
+        </Provider>
       );
     });
 
@@ -56,7 +56,7 @@ describe("Navbar", () => {
           <MemoryRouter>
             <Navbar />
           </MemoryRouter>
-        </Provider>,
+        </Provider>
       );
     });
 

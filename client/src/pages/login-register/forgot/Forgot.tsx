@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button2 } from "../../../components/common/v2.0/button/Button2";
-import { TextInput2 } from "../../../components/common/v2.0/inputs/TextInput2";
+import { Button2 } from "../../../components/ui/v2/button/Button2";
+import { TextInput2 } from "../../../components/ui/v2/inputs/TextInput2";
 import "./Forgot.css";
 import { useForgotPasswordMutation } from "../../../features/api/userApi";
 import { Message } from "../../../components/common/message/Message";

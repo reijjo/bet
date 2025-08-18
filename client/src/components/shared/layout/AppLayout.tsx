@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../store/hooks";
-import { RootState } from "../../store/store";
+import { useAppSelector } from "../../../store/hooks";
+import { RootState } from "../../../store/store";
 import { Layout } from "./Layout";
 import { UserLayout } from "./UserLayout";
 
