@@ -6,7 +6,6 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { Loading } from "./common/fallback/Loading";
 import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./shared/index";
-import HomePage from "../pages/homepage/HomePage";
 
 const Register = lazy(
   () => import("../pages/login-register/register/Register")
@@ -27,7 +26,7 @@ const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
 const Faq = lazy(() => import("../pages/gibberish/Faq"));
 const Support = lazy(() => import("../pages/gibberish/Support"));
 const Forgot = lazy(() => import("../pages/login-register/forgot/Forgot"));
-// const HomePage = lazy(() => import("../pages/homepage/HomePage"));
+const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 
 const LoadingWrapper = () => (
   <div
