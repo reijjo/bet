@@ -1,0 +1,70 @@
+.hero-section {
+  width: 100%;
+  min-height: 80dvh;
+  background-image:
+    linear-gradient(to bottom, rgba(7, 37, 74, 0.85), rgba(7, 37, 74, 0.85)),
+    url("../../../assets/images/homepage/bb-crop.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+.hero-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / span 6;
+  grid-column: 4 / 10;
+  align-items: center;
+  text-wrap: balance;
+  text-align: center;
+  justify-content: space-around;
+  padding-top: min(8vh, 5rem);
+
+  @media only screen and (max-width: 1180px) {
+    grid-column: 4 / 10;
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-column: 1 /-1;
+    width: 80%;
+    justify-self: center;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 581px) {
+    width: 100%;
+  }
+}
+
+.hero-slogan {
+  & h1 {
+    background: linear-gradient(
+      to right,
+      var(--primary-100),
+      var(--accent-100) 25%,
+      var(--primary-100) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hero-buttons {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    width: 70%;
+    align-self: center;
+  }
+}

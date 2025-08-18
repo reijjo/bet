@@ -1,13 +1,5 @@
-export { Navbar } from "./navbar-footer-sidebar/navbar/Navbar";
-export { NavbarUser } from "./navbar-footer-sidebar/navbar/NavbarUser";
-export { Sidebar } from "./navbar-footer-sidebar/sidebar/Sidebar";
-export { Footer } from "./navbar-footer-sidebar/footer/Footer";
-
-export { Layout } from "./layout/Layout";
-export { UserLayout } from "./layout/UserLayout";
-
-export { Button } from "./common/button/Button";
-export { OauthButton } from "./common/button/OauthButton";
+export { Button } from "./ui/button/Button";
+export { OauthButton } from "./ui/button/OauthButton";
 
 export { Divider } from "./common/divider/Divider";
 export { DividerWithText } from "./common/divider/DividerWithText";

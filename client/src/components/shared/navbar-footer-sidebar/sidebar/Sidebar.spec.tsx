@@ -3,11 +3,11 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, test, vi } from "vitest";
 
-import * as screenWidthHook from "../../../hooks/useScreenWidth";
-import * as reduxHooks from "../../../store/hooks";
-import { store } from "../../../store/store";
-import { initialRegisterValues } from "../../../utils/defaults/defaults";
-import { UserRoles } from "../../../utils/enums";
+import * as screenWidthHook from "../../../../hooks/useScreenWidth";
+import * as reduxHooks from "../../../../store/hooks";
+import { store } from "../../../../store/store";
+import { initialRegisterValues } from "../../../../utils/defaults/defaults";
+import { UserRoles } from "../../../../utils/enums";
 import { Sidebar } from "./Sidebar";
 import { afterEach } from "node:test";
 
@@ -17,7 +17,7 @@ const renderOnlySidebar = () => {
       <MemoryRouter>
         <Sidebar />
       </MemoryRouter>
-    </Provider>,
+    </Provider>
   );
 };
 

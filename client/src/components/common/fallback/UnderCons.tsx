@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
 import uc from "../../../assets/giphy.webp";
-import { Button } from "../button/Button";
+import { Button } from "../../ui/button/Button";
 
 export const UnderCons = () => {
   const navigate = useNavigate();

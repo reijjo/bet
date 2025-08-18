@@ -11,7 +11,7 @@ import {
   SelectionInput,
   TypeInput,
 } from "../";
-import { Button } from "../../../components/common/button/Button";
+import { Button } from "../../../components/ui/button/Button";
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { initialBetDetailValues } from "../../../utils/defaults/defaults";
 import { scrollDown } from "../../../utils/helperFunctions";

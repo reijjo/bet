@@ -163,7 +163,7 @@ a {
   --accent-50: #fefde8;
   --accent-100: #fefdc3;
   --accent-200: #fff789;
-  --accent-300: #feed46;
+  --accent-300: rgb(254, 237, 70);
   --accent-400: #fbda0c;
   --accent-500: #ebc207;
   --accent-600: #cb9703;

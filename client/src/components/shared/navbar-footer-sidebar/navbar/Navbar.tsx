@@ -1,10 +1,10 @@
-import "../../common/button/Button.css";
+import "../../../ui/v2/button/Button2.css";
 import "./Navbar.css";
 
 import { NavLink } from "react-router-dom";
 
-import logo from "../../../assets/fishing.png";
-import { useScreenWidth } from "../../../hooks/useScreenWidth";
+import logo from "../../../../assets/fishing.png";
+import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 
 export const Navbar = () => {
   const { isMobile } = useScreenWidth();
@@ -25,7 +25,7 @@ export const Navbar = () => {
             <NavLink to="/login" className="btn-font underline-hover">
               Login
             </NavLink>
-            <NavLink to="/register" className="btn btn-outline">
+            <NavLink to="/register" className="btn2-secondary">
               Sign up
             </NavLink>
           </div>

@@ -24,7 +24,7 @@ import { MessageTypes } from "../../../utils/enums";
 import { getErrorMessage } from "../../../utils/helperFunctions";
 import { isValidEmail } from "../../../utils/input-validators/registerValid";
 import { RegisterValues } from "../../../utils/types";
-import { Button2 } from "../../../components/common/v2.0/button/Button2";
+import { Button2 } from "../../../components/ui/v2/button/Button2";
 
 const Register = () => {
   const [fade, setFade] = useState(false);
