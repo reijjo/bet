@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { store } from "../../store/store";
 import HomePage from "./Homepage";
-
 // Mock FontAwesomeIcon with a component that renders the size as data attribute
 vi.mock("@fortawesome/react-fontawesome", () => ({
   FontAwesomeIcon: ({
