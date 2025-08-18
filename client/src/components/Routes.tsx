@@ -7,7 +7,7 @@ import { Loading } from "./common/fallback/Loading";
 import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./shared/index";
 
-const HomePage = lazy(() => import("../pages/homepage/Homepage"));
+const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 const Register = lazy(
   () => import("../pages/login-register/register/Register")
 );
