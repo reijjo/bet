@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 const user = userEvent.setup();
 
-describe("HEROPAGE", () => {
+describe("HOMEPAGE", () => {
   describe("HeroSection", async () => {
     it('navigates to "/register" when "Sign Up here!" button is clicked', async () => {
       const mockNavigate = vi.fn();
