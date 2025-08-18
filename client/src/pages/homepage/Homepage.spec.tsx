@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import HomePage from "./HomePage";
 
 import { store } from "../../store/store";
+import HomePage from "./HomePage";
 // Mock FontAwesomeIcon with a component that renders the size as data attribute
 vi.mock("@fortawesome/react-fontawesome", () => ({
   FontAwesomeIcon: ({
