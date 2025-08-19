@@ -21,7 +21,7 @@ import {
 import { RegisterValues } from "../../utils/types";
 import { Button2 } from "../../components/ui/v2/button/Button2";
 
-const FinishRegister = () => {
+const FinishRegisterPage = () => {
   const [message, setMessage] = useState<MessageProps>({
     message: "",
     type: MessageTypes.Info,
@@ -170,4 +170,4 @@ const FinishRegister = () => {
   );
 };
 
-export default FinishRegister;
+export default FinishRegisterPage;
