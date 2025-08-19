@@ -7,13 +7,9 @@ import { Loading } from "./common/fallback/Loading";
 import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./shared/index";
 
-const Register = lazy(
-  () => import("../pages/login-register/register/Register")
-);
+const Register = lazy(() => import("../pages/register/RegisterPage"));
 const Login = lazy(() => import("../pages/login-register/Login"));
-const FinishRegister = lazy(
-  () => import("../pages/login-register/register/FinishRegister")
-);
+const FinishRegister = lazy(() => import("../pages/register/FinishRegister"));
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));

@@ -1,28 +1,25 @@
-import "../LoginRegister.css";
-import penkit from "../../../assets/images/login-register/penkit-opti.webp";
+import "../login-register/LoginRegister.css";
+import penkit from "../../assets/images/login-register/penkit-opti.webp";
 
 import { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Container, Loading, TextInput } from "../../../components";
-import { InputErrorContainer } from "../../../components/common/inputs/input-errors/InputErrorContainer";
-import {
-  Message,
-  MessageProps,
-} from "../../../components/common/message/Message";
-import { useRegisterUserMutation } from "../../../features/api/userApi";
-import { resetRegister } from "../../../features/registerSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { RootState } from "../../../store/store";
-import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/helperFunctions";
+import { Container, Loading, TextInput } from "../../components";
+import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
+import { Message, MessageProps } from "../../components/common/message/Message";
+import { useRegisterUserMutation } from "../../features/api/userApi";
+import { resetRegister } from "../../features/registerSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
+import { MessageTypes } from "../../utils/enums";
+import { getErrorMessage } from "../../utils/helperFunctions";
 import {
   isValidPassword,
   isValidUsername,
-} from "../../../utils/input-validators/registerValid";
-import { RegisterValues } from "../../../utils/types";
-import { Button2 } from "../../../components/ui/v2/button/Button2";
+} from "../../utils/input-validators/registerValid";
+import { RegisterValues } from "../../utils/types";
+import { Button2 } from "../../components/ui/v2/button/Button2";
 
 const FinishRegister = () => {
   const [message, setMessage] = useState<MessageProps>({
