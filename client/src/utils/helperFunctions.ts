@@ -1,5 +1,5 @@
 import { useLazyGetSessionUserQuery } from "../features/api/authApi";
-import { loginUser, logoutUser } from "../features/authSlice";
+import { loginUser, logoutUser } from "../features/slices/authSlice";
 import { AppDispatch } from "../store/store";
 import { BasicApiResponse } from "./api-response-types";
 import { MessageType, MessageTypes } from "./enums";

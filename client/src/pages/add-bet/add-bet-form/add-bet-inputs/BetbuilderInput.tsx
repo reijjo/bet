@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-import { TextInputWithButton } from "../../../../components/common/inputs/TextInputWithButton";
+import { TextInputWithButton } from "../../../../components/ui/inputs/TextInputWithButton";
 import { BetDetails, BetInputProps } from "../../../../utils/types";
 import { BetSelection } from "../BetSelection";
 import { hasInputError } from "../add-bet-inputs/InputError";
@@ -63,7 +63,7 @@ export const BetbuilderInput = ({
     if (!details.betbuilder_selection) return;
 
     const updatedSelections = details.betbuilder_selection.filter(
-      (_, i) => i !== index,
+      (_, i) => i !== index
     );
 
     setDetails({

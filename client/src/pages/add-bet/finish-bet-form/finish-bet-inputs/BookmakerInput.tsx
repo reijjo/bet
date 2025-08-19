@@ -1,6 +1,6 @@
 import "./BookmakerInput.css";
 
-import { Select } from "../../../../components/common/inputs/Select";
+import { Select } from "../../../../components/ui/inputs/Select";
 import { Bookmaker } from "../../../../utils/enums";
 
 type BookmakerInputProps = {

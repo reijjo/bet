@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bet } from "../../../utils/types";
 import { Error } from "../../common/fallback/Error";
-import { Loading } from "../../common/fallback/Loading";
+import { Loading } from "../../shared/fallback/loading/Loading";
 import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
 import { ModifyBetSlip } from "./modify-betslip/ModifyBetSlip";
 

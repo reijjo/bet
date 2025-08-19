@@ -7,6 +7,8 @@ interface Container2Props extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-export const Container2 = ({ children, className }: Container2Props) => (
-  <div className={`container2 ${className}`}>{children}</div>
+export const Container2 = ({ children, className, width }: Container2Props) => (
+  <div className={`container2 ${className}`} style={{ width }}>
+    {children}
+  </div>
 );

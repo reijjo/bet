@@ -1,6 +1,6 @@
 import "./MatchInput.css";
 
-import { TextInput } from "../../../../components/common/inputs/TextInput";
+import { TextInput } from "../../../../components/ui/inputs/TextInput";
 import { BetInputProps } from "../../../../utils/types";
 import { hasInputError } from "../add-bet-inputs/InputError";
 

@@ -1,0 +1,65 @@
+.register-page {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 1fr;
+  grid-template-rows: 1fr;
+
+  background: radial-gradient(var(--primary-500), transparent);
+  overflow-y: hidden;
+
+  & > img {
+    grid-column: 2;
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    min-height: 100dvh;
+
+    & > img {
+      display: none;
+    }
+  }
+}
+
+.register-page-container {
+  display: flex;
+  flex-direction: column;
+  width: min(500px, 95%);
+  padding: 1.5rem 1rem;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  transform: translateY(0);
+
+  transition: all 0.25s ease;
+}
+
+.fade-out-to-bottom {
+  opacity: 0;
+  transform: translateY(20rem);
+}
+
+.form-headers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  text-wrap: balance;
+  width: 75%;
+
+  & h3 {
+    letter-spacing: 1px;
+  }
+
+  & h6 {
+    font-size: 0.875rem;
+    color: var(--neutral-100);
+  }
+}

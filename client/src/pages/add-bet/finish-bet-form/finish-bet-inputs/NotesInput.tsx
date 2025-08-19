@@ -1,6 +1,6 @@
 import "./NotesInput.css";
 
-import { TextInput } from "../../../../components/common/inputs/TextInput";
+import { TextInput } from "../../../../components/ui/inputs/TextInput";
 
 type NotesInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

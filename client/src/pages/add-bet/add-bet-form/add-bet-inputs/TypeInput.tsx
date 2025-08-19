@@ -2,7 +2,7 @@ import "./TypeInput.css";
 
 import { ChangeEvent } from "react";
 
-import { Select } from "../../../../components/common/inputs/Select";
+import { Select } from "../../../../components/ui/inputs/Select";
 import { LimitedBetType } from "../../../../utils/enums";
 import { BetDetails } from "../../../../utils/types";
 

@@ -5,7 +5,7 @@ import {
   useLogoutMutation,
   useRefreshSessionMutation,
 } from "../features/api/authApi";
-import { loginUser, logoutUser } from "../features/authSlice";
+import { loginUser, logoutUser } from "../features/slices/authSlice";
 import { resetModal } from "../features/modalSlice";
 import { useAppDispatch } from "../store/hooks";
 

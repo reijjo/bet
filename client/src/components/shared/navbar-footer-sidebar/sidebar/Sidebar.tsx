@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 import logo from "../../../../assets/fishing.png";
 import { useLogoutMutation } from "../../../../features/api/authApi";
-import { logoutUser } from "../../../../features/authSlice";
+import { logoutUser } from "../../../../features/slices/authSlice";
 import { closeSidebar } from "../../../../features/sidebarSlice";
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";

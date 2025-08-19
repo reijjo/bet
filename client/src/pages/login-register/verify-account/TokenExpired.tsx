@@ -1,5 +1,5 @@
 import { Button } from "../../../components";
-import { Message } from "../../../components/common/message/Message";
+import { Message } from "../../../components/shared/message/Message";
 import { useUpdateTokenMutation } from "../../../features/api/authApi";
 import { MessageTypes } from "../../../utils/enums";
 import { getErrorMessage } from "../../../utils/helperFunctions";
