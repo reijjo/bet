@@ -9,7 +9,9 @@ import { AppLayout } from "./shared/index";
 
 const RegisterPage = lazy(() => import("../pages/register/RegisterPage"));
 const Login = lazy(() => import("../pages/login-register/Login"));
-const FinishRegister = lazy(() => import("../pages/register/FinishRegister"));
+const FinishRegister = lazy(
+  () => import("../pages/register/FinishRegisterPage")
+);
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));
