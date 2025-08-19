@@ -1,5 +1,5 @@
 import "./HeroSection.css";
-import { Button2 } from "../../../components/ui/v2/button/Button2";
+import { Button2 } from "../../../components";
 
 interface HeroSectionProps {
   navigate: (path: string) => void;

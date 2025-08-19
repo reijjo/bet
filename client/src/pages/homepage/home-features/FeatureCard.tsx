@@ -5,7 +5,6 @@ type FeatureCardProps = {
   text: string;
   image: string;
   imageWidth?: string;
-  extraClass?: string;
   align?: string;
 };
 
@@ -15,10 +14,9 @@ export const FeatureCard = ({
   image,
   imageWidth = "100%",
   align: alignSelf,
-  extraClass,
 }: FeatureCardProps) => {
   return (
-    <figure className={`home-feature-card ${extraClass}`} style={{ alignSelf }}>
+    <figure className="home-feature-card" style={{ alignSelf }}>
       <figcaption>
         <span>{highlighted}</span> {text}
       </figcaption>

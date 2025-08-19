@@ -1,0 +1,41 @@
+.home-features-section-dark {
+  position: relative;
+  gap: 32px;
+  display: flex;
+  flex-direction: inherit;
+  width: 100%;
+  min-width: 100%;
+  background-color: var(--primary-50);
+  background: radial-gradient(
+    ellipse at top right,
+    var(--primary-400) 30%,
+    var(--primary-50) 50%
+  );
+
+  padding-bottom: 5rem;
+}
+
+.home-features-section-dark {
+  background-color: var(--primary);
+  background: radial-gradient(
+    circle at top left,
+    var(--primary-600) 20%,
+    transparent 40%
+  );
+}
+
+.page-features {
+  height: 100%;
+  width: 80%;
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+
+  padding-top: 2rem;
+
+  @media only screen and (max-width: 800px) {
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+  }
+}

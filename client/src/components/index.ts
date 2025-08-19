@@ -1,8 +1,11 @@
 export { Button } from "./ui/button/Button";
 export { OauthButton } from "./ui/button/OauthButton";
+export { Button2 } from "./ui/v2/button/Button2";
 
-export { Divider } from "./common/divider/Divider";
-export { DividerWithText } from "./common/divider/DividerWithText";
+export { Divider } from "./ui/divider/Divider";
+export { DividerWithText } from "./ui/divider/DividerWithText";
+
+export { Container2 } from "./ui/v2/container/Container2";
 
 export { LinkWithIcon } from "./common/LinkWithIcon";
 

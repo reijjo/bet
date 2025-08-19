@@ -1,0 +1,17 @@
+.page-feature-card {
+  height: min(12rem, auto);
+  padding: 1rem 2rem;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 2rem;
+
+  & h4 {
+    font-weight: bold;
+  }
+}
+
+.page-feature-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
