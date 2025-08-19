@@ -3,11 +3,11 @@ import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ProtectedRoute } from "./ProtectedRoute";
-import { Loading } from "./common/fallback/Loading";
+import { Loading } from "./shared/fallback/loading/Loading";
 import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./shared/index";
 
-const Register = lazy(() => import("../pages/register/RegisterPage"));
+const RegisterPage = lazy(() => import("../pages/register/RegisterPage"));
 const Login = lazy(() => import("../pages/login-register/Login"));
 const FinishRegister = lazy(() => import("../pages/register/FinishRegister"));
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
@@ -42,7 +42,7 @@ export const Routing = () => (
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/register/finish" element={<FinishRegister />} />
         <Route path="/register/:token" element={<Verify />} />
         <Route path="/forgot" element={<Forgot />} />

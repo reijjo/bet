@@ -1,0 +1,15 @@
+.register-oauth-buttons {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  width: 75%;
+  gap: 1rem;
+
+  @media only screen and (max-width: 581px) {
+    grid-template-columns: repeat(2, 1fr);
+    & p {
+      display: none;
+    }
+  }
+}

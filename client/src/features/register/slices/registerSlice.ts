@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { initialRegisterValues } from "../utils/defaults/defaults";
-import { RegisterValues } from "../utils/types";
+import { initialRegisterValues } from "../../../utils/defaults/defaults";
+import { RegisterValues } from "../../../utils/types";
 
 const initialState: RegisterValues = initialRegisterValues;
 

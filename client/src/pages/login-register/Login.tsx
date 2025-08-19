@@ -15,13 +15,13 @@ import {
   OauthButton,
   TextInput,
 } from "../../components";
-import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
-import { Message } from "../../components/common/message/Message";
+import { InputErrorContainer } from "../../components/ui/inputs/input-errors/InputErrorContainer";
+import { Message } from "../../components/shared/message/Message";
 import {
   useLazyGetSessionUserQuery,
   useLoginMutation,
 } from "../../features/api/authApi";
-import { loginUser } from "../../features/authSlice";
+import { loginUser } from "../../features/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";

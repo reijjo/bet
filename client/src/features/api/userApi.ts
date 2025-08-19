@@ -10,9 +10,6 @@ export const userApiSlice = baseApi.injectEndpoints({
     getAllUsers: builder.query({
       query: () => "/users",
     }),
-    getUserByEmail: builder.query({
-      query: (email) => `/users/find?email=${email}`,
-    }),
     getUserByUsername: builder.query({
       query: (username) => `/users/find?username=${username}`,
     }),
@@ -45,8 +42,6 @@ export const userApiSlice = baseApi.injectEndpoints({
 
 export const {
   useGetAllUsersQuery,
-  useGetUserByEmailQuery,
-  useLazyGetUserByEmailQuery,
   useGetUserByUsernameQuery,
   useRegisterUserMutation,
   useUpdateUserMutation,

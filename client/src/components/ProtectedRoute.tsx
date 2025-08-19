@@ -6,11 +6,11 @@ import {
   useGetSessionUserQuery,
   useLogoutMutation,
 } from "../features/api/authApi";
-import { loginUser, logoutUser } from "../features/authSlice";
+import { loginUser, logoutUser } from "../features/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { RootState } from "../store/store";
 import { getErrorStatus } from "../utils/helperFunctions";
-import { Loading } from "./common/fallback/Loading";
+import { Loading } from "./shared/fallback/loading/Loading";
 import { AppLayout } from "./shared/index";
 
 export const ProtectedRoute = () => {

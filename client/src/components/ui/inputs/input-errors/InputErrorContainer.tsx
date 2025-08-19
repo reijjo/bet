@@ -12,7 +12,7 @@ interface InputErrorContainerProps {
 
 export const InputErrorContainer = ({
   errors,
-  width = "75%",
+  width = "100%",
   field,
 }: InputErrorContainerProps) => {
   return (
@@ -29,7 +29,7 @@ export const InputErrorContainer = ({
             <li key={key} className="input-error-message" role="alert">
               {String(message)}
             </li>
-          ) : null,
+          ) : null
         )
       )}
     </ul>

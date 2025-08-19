@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Error } from "../../../components";
 import { useEditBetMutation } from "../../../features/api/betsApiSlice";
-import { logoutUser } from "../../../features/authSlice";
+import { logoutUser } from "../../../features/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { BetStatus } from "../../../utils/enums";
 import { Bet } from "../../../utils/types";

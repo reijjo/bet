@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as userApi from "../../features/api/userApi";
-import * as registerSlice from "../../features/registerSlice";
+import * as registerApi from "../../features/register/api/registerApiSlice";
+import * as registerSlice from "../../features/register/slices/registerSlice";
 import { store } from "../../store/store";
 import Register from "./RegisterPage";
 
@@ -48,7 +48,7 @@ const renderComponent = () => {
   );
 };
 
-describe("Register.tsx", () => {
+describe("REGISTERPAGE", () => {
   const mockCheckDuplicateEmail = vi.fn();
   const mockSetRegister = vi.fn();
 
@@ -56,7 +56,7 @@ describe("Register.tsx", () => {
     mockIsAuthenticated = false;
     mockLocationState = { from: { pathname: "/dash" } };
 
-    vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+    vi.spyOn(registerApi, "useLazyGetUserByEmailQuery").mockReturnValue([
       mockCheckDuplicateEmail,
       {
         data: null,
@@ -122,7 +122,7 @@ describe("Register.tsx", () => {
     });
 
     it("shows loading state while checking email", async () => {
-      vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+      vi.spyOn(registerApi, "useLazyGetUserByEmailQuery").mockReturnValue([
         mockCheckDuplicateEmail,
         {
           data: null,
@@ -210,7 +210,7 @@ describe("Register.tsx", () => {
     });
 
     it("shows error when email is already in use", async () => {
-      vi.spyOn(userApi, "useLazyGetUserByEmailQuery").mockReturnValue([
+      vi.spyOn(registerApi, "useLazyGetUserByEmailQuery").mockReturnValue([
         mockCheckDuplicateEmail,
         {
           data: null,

@@ -3,7 +3,7 @@ import { Button2 } from "../../../components/ui/v2/button/Button2";
 import { TextInput2 } from "../../../components/ui/v2/inputs/TextInput2";
 import "./Forgot.css";
 import { useForgotPasswordMutation } from "../../../features/api/userApi";
-import { Message } from "../../../components/common/message/Message";
+import { Message } from "../../../components/shared/message/Message";
 import { MessageTypes } from "../../../utils/enums";
 
 const Forgot = () => {

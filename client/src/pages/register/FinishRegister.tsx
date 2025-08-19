@@ -6,10 +6,10 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Container, Loading, TextInput } from "../../components";
-import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
-import { Message, MessageProps } from "../../components/common/message/Message";
+import { InputErrorContainer } from "../../components/ui/inputs/input-errors/InputErrorContainer";
+import { Message, MessageProps } from "../../components/shared/message/Message";
 import { useRegisterUserMutation } from "../../features/api/userApi";
-import { resetRegister } from "../../features/registerSlice";
+import { resetRegister } from "../../features/register/slices/registerSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";

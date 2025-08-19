@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useLogoutMutation } from "../../../../features/api/authApi";
-import { logoutUser } from "../../../../features/authSlice";
+import { logoutUser } from "../../../../features/slices/authSlice";
 import { useAppDispatch } from "../../../../store/hooks";
 import { Divider } from "../../../ui/divider/Divider";
 
