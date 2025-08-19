@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as userApi from "../../features/api/userApi";
+import * as registerApi from "../../features/register/api/registerApiSlice";
 import { store } from "../../store/store";
 import FinishRegister from "./FinishRegisterPage";
 
@@ -37,7 +37,7 @@ describe("FinishRegister.tsx", () => {
   const mockRegisterUser = vi.fn();
 
   beforeEach(() => {
-    vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+    vi.spyOn(registerApi, "useCreateUserMutation").mockReturnValue([
       mockRegisterUser,
       { isLoading: false, isError: false, error: null, reset: vi.fn() },
     ]);
@@ -64,7 +64,7 @@ describe("FinishRegister.tsx", () => {
       };
       mockRegisterUser.mockReturnValue(mockRegisterUserResult);
 
-      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+      vi.spyOn(registerApi, "useCreateUserMutation").mockReturnValue([
         mockRegisterUser,
         { isLoading: false, isError: false, error: null, reset: vi.fn() },
       ]);
@@ -96,7 +96,7 @@ describe("FinishRegister.tsx", () => {
     });
 
     it("shows isLoading state when submitting", async () => {
-      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+      vi.spyOn(registerApi, "useCreateUserMutation").mockReturnValue([
         mockRegisterUser,
         { isLoading: true, isError: false, error: null, reset: vi.fn() },
       ]);
@@ -117,7 +117,7 @@ describe("FinishRegister.tsx", () => {
       };
       mockRegisterUser.mockReturnValue(mockRegisterUserResult);
 
-      vi.spyOn(userApi, "useRegisterUserMutation").mockReturnValue([
+      vi.spyOn(registerApi, "useCreateUserMutation").mockReturnValue([
         mockRegisterUser,
         {
           isLoading: false,
