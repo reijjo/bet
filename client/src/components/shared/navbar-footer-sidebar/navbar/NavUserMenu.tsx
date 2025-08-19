@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../../../../features/api/authApi";
 import { logoutUser } from "../../../../features/authSlice";
 import { useAppDispatch } from "../../../../store/hooks";
-import { Divider } from "../../../common/divider/Divider";
+import { Divider } from "../../../ui/divider/Divider";
 
 interface NavUserMenuProps {
   dropdownRef: React.RefObject<HTMLDivElement | null>;

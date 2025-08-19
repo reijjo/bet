@@ -11,18 +11,12 @@
 
   padding: 12px 24px;
 
-  /* & figcaption {
-    backdrop-filter: blur(16px);
-    width: max-content;
-  } */
-
   & span {
     color: var(--secondary);
     font-weight: bold;
   }
 
   & img {
-    /* aspect-ratio: 16 / 9; */
     overflow: hidden;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);

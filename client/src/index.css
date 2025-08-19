@@ -7,24 +7,8 @@
 body {
   font-size: 1rem;
   color: var(--text);
-  /* background: url("./assets/images/circle-bg.svg") no-repeat center / cover; */
-  /* background: linear-gradient(to bottom, var(--background), var(--background2)); */
   background-color: var(--primary);
-  /* background: radial-gradient(var(--primary-500), var(--primary)); */
 
-  /* background: radial-gradient(
-    var(--accent-500),
-    var(--primary-800),
-    var(--primary)
-  ); */
-  /* background: linear-gradient(
-    to bottom right,
-    var(--accent-700),
-    var(--primary-800),
-    var(--primary-900),
-    var(--primary-900),
-    var(--accent-500)
-  ); */
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
