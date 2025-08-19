@@ -21,7 +21,7 @@ import {
   useLazyGetSessionUserQuery,
   useLoginMutation,
 } from "../../features/api/authApi";
-import { loginUser } from "../../features/authSlice";
+import { loginUser } from "../../features/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
 import { MessageTypes } from "../../utils/enums";

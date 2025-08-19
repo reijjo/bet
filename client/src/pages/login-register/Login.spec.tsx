@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as authApi from "../../features/api/authApi";
-import { loginUser } from "../../features/authSlice";
+import { loginUser } from "../../features/slices/authSlice";
 import { store } from "../../store/store";
 import { UserRoles } from "../../utils/enums";
 import Login from "./Login";
