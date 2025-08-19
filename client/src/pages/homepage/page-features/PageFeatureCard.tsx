@@ -17,13 +17,11 @@ export const PageFeatureCard = ({
 }: PageFeatureCardProps) => {
   return (
     <Container2 className="page-feature-card">
-      {/* <div className="page-feature-card"> */}
       <FontAwesomeIcon icon={icon} size="2x" />
       <div className="page-feature-card-text">
         <h4>{header}</h4>
         <p>{text}</p>
       </div>
-      {/* </div> */}
     </Container2>
   );
 };

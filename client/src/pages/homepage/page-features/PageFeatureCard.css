@@ -3,7 +3,7 @@
   padding: 1rem 2rem;
   justify-content: space-around;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
 
   & h4 {
     font-weight: bold;
@@ -13,5 +13,6 @@
 .page-feature-card-text {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  text-wrap: balance;
+  gap: 0.25rem;
 }

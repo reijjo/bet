@@ -66,11 +66,7 @@ const SupportCard = ({
               <span>click here</span>
             </a>
           ) : (
-            <Button2
-              className="btn2-outline"
-              height="2rem"
-              onClick={copyToClipboard}
-            >
+            <Button2 className="btn2-outline" onClick={copyToClipboard}>
               <div className="btn2-icon">
                 <FontAwesomeIcon icon={copied ? faCheck : faCopy} size="sm" />
                 <p>{copied ? "Copied!" : "Copy"}</p>
