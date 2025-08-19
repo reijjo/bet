@@ -67,7 +67,7 @@ describe("Feedback.tsx", () => {
       await user.type(screen.getByPlaceholderText(/email/i), "john@doe.com");
       await user.type(screen.getByLabelText(/message/i), "Great app!");
 
-      await user.click(screen.getByRole("button", { name: /submit/i }));
+      await user.click(screen.getByRole("button", { name: /send/i }));
       waitFor(() => {
         expect("All good").toBeInTheDocument();
       });
@@ -103,7 +103,7 @@ describe("Feedback.tsx", () => {
       const nameInput = screen.getByPlaceholderText(/name/i);
       const emailInput = screen.getByPlaceholderText(/email/i);
       const messageInput = screen.getByLabelText(/message/i);
-      const submitButton = screen.getByRole("button", { name: /submit/i });
+      const submitButton = screen.getByRole("button", { name: /send/i });
 
       await user.type(nameInput, "John Doe");
       await user.type(emailInput, "john@doe.com");
@@ -121,7 +121,7 @@ describe("Feedback.tsx", () => {
 
         const nameInput = screen.getByPlaceholderText(/name/i);
         const messageInput = screen.getByLabelText(/message/i);
-        const submitButton = screen.getByRole("button", { name: /submit/i });
+        const submitButton = screen.getByRole("button", { name: /send/i });
 
         await user.type(nameInput, "ab");
         await user.type(messageInput, "This is a test message.");
@@ -137,7 +137,7 @@ describe("Feedback.tsx", () => {
 
         const nameInput = screen.getByPlaceholderText(/name/i);
         const messageInput = screen.getByLabelText(/message/i);
-        const submitButton = screen.getByRole("button", { name: /submit/i });
+        const submitButton = screen.getByRole("button", { name: /send/i });
 
         await user.type(nameInput, "abaaa");
         await user.type(messageInput, "T.");

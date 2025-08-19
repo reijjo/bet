@@ -134,7 +134,7 @@ const Feedback = () => {
           )}
           <div className="btn-group">
             <Button2 type="submit" className="btn2-cta" disabled={isLoading}>
-              {isLoading ? "Sending..." : "Submit Feedback"}
+              {isLoading ? "Sending..." : "Send Message"}
             </Button2>
             <Button2
               type="reset"
