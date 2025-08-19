@@ -1,8 +1,5 @@
-import {
-  MinimalUserResponse,
-  RegisterUserApiResponse,
-} from "../../utils/api-response-types";
-import { RegisterValues, User } from "../../utils/types";
+import { MinimalUserResponse } from "../../utils/api-response-types";
+import { User } from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const userApiSlice = baseApi.injectEndpoints({
@@ -12,13 +9,6 @@ export const userApiSlice = baseApi.injectEndpoints({
     }),
     getUserByUsername: builder.query({
       query: (username) => `/users/find?username=${username}`,
-    }),
-    registerUser: builder.mutation<RegisterUserApiResponse, RegisterValues>({
-      query: (user) => ({
-        url: "/users",
-        method: "POST",
-        body: user,
-      }),
     }),
     updateUser: builder.mutation<
       MinimalUserResponse,
@@ -43,7 +33,6 @@ export const userApiSlice = baseApi.injectEndpoints({
 export const {
   useGetAllUsersQuery,
   useGetUserByUsernameQuery,
-  useRegisterUserMutation,
   useUpdateUserMutation,
   useForgotPasswordMutation,
 } = userApiSlice;
