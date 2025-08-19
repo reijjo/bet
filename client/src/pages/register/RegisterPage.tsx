@@ -1,4 +1,4 @@
-import "../LoginRegister.css";
+import "../login-register/LoginRegister.css";
 
 import { useEffect, useState } from "react";
 
@@ -6,25 +6,25 @@ import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import penkit from "../../../assets/images/login-register/penkit-opti.webp";
+import penkit from "../../assets/images/login-register/penkit-opti.webp";
 import {
   Container,
   DividerWithText,
   Loading,
   OauthButton,
   TextInput,
-} from "../../../components";
-import { InputErrorContainer } from "../../../components/common/inputs/input-errors/InputErrorContainer";
-import { Message } from "../../../components/common/message/Message";
-import { useLazyGetUserByEmailQuery } from "../../../features/api/userApi";
-import { setRegister } from "../../../features/registerSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { RootState } from "../../../store/store";
-import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/helperFunctions";
-import { isValidEmail } from "../../../utils/input-validators/registerValid";
-import { RegisterValues } from "../../../utils/types";
-import { Button2 } from "../../../components/ui/v2/button/Button2";
+} from "../../components";
+import { InputErrorContainer } from "../../components/common/inputs/input-errors/InputErrorContainer";
+import { Message } from "../../components/common/message/Message";
+import { useLazyGetUserByEmailQuery } from "../../features/api/userApi";
+import { setRegister } from "../../features/registerSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RootState } from "../../store/store";
+import { MessageTypes } from "../../utils/enums";
+import { getErrorMessage } from "../../utils/helperFunctions";
+import { isValidEmail } from "../../utils/input-validators/registerValid";
+import { RegisterValues } from "../../utils/types";
+import { Button2 } from "../../components/ui/v2/button/Button2";
 
 const Register = () => {
   const [fade, setFade] = useState(false);

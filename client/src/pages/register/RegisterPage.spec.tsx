@@ -4,10 +4,10 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as userApi from "../../../features/api/userApi";
-import * as registerSlice from "../../../features/registerSlice";
-import { store } from "../../../store/store";
-import Register from "./Register";
+import * as userApi from "../../features/api/userApi";
+import * as registerSlice from "../../features/registerSlice";
+import { store } from "../../store/store";
+import Register from "./RegisterPage";
 
 if (process.env.NODE_ENV === "test") {
   console.log = function () {};
@@ -33,7 +33,7 @@ vi.mock("react-router-dom", async () => {
 });
 
 // Mocking the useAppDispatch and useAppSelector hooks
-vi.mock("../../../store/hooks", () => ({
+vi.mock("../../store/hooks", () => ({
   useAppDispatch: () => vi.fn(),
   useAppSelector: () => ({ isAuthenticated: mockIsAuthenticated }),
 }));

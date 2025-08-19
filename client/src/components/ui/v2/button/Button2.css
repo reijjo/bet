@@ -39,8 +39,7 @@
   );
 
   &:hover {
-    background: var(--accent-100);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);
   }
 
   &:disabled {
@@ -61,10 +60,6 @@
   padding: 1.5rem 3rem;
   font-weight: 600;
   display: inherit;
-
-  &:hover {
-    box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);
-  }
 }
 
 .btn2-secondary {
