@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Error, Loading } from "../../components";
 import { useGetBetsQuery } from "../../features/api/betsApiSlice";
-import { logoutUser } from "../../features/authSlice";
+import { logoutUser } from "../../features/slices/authSlice";
 import { isModifyBetModalOpen } from "../../features/modalSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { getRowColor } from "../../utils/helperFunctions";
