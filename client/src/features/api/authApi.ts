@@ -1,13 +1,8 @@
 import {
   BasicApiResponse,
-  LoginUserApiResponse,
   RegisterUserApiResponse,
 } from "../../utils/api-response-types";
-import {
-  LoginValues,
-  SessionApiResponse,
-  TokenUpdate,
-} from "../../utils/types";
+import { SessionApiResponse, TokenUpdate } from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const authApiSlice = baseApi.injectEndpoints({
@@ -18,14 +13,6 @@ export const authApiSlice = baseApi.injectEndpoints({
         status: error.status,
         data: error.data,
       }),
-    }),
-    login: builder.mutation<LoginUserApiResponse, LoginValues>({
-      query: (credentials) => ({
-        url: "/auth/login",
-        method: "POST",
-        body: credentials,
-      }),
-      invalidatesTags: [{ type: "Session", id: "CURRENT" }],
     }),
     logout: builder.mutation<BasicApiResponse, void>({
       query: () => ({
@@ -80,7 +67,7 @@ export const authApiSlice = baseApi.injectEndpoints({
 export const {
   useVerifyQuery,
   useUpdateTokenMutation,
-  useLoginMutation,
+  // useLoginMutation,
   useLogoutMutation,
   useGetSessionUserQuery,
   useLazyGetSessionUserQuery,

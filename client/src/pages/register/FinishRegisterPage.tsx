@@ -5,7 +5,7 @@ import { FinishRegisterForm } from "../../features/register";
 const FinishRegisterPage = () => {
   return (
     <div className="register-page">
-      <div className="register-page-container">
+      <div className="register-page-container animate-fade-in">
         <div className="form-headers">
           <h3>Finish your account</h3>
           <h6>this is the last step</h6>
