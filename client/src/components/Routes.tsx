@@ -8,22 +8,20 @@ import { UnderCons } from "./common/fallback/UnderCons";
 import { AppLayout } from "./shared/index";
 
 const RegisterPage = lazy(() => import("../pages/register/RegisterPage"));
-const Login = lazy(() => import("../pages/login-register/Login"));
+const LoginPage = lazy(() => import("../pages/login/LoginPage"));
 const FinishRegister = lazy(
   () => import("../pages/register/FinishRegisterPage")
 );
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));
-const Verify = lazy(
-  () => import("../pages/login-register/verify-account/Verify")
-);
+const Verify = lazy(() => import("../pages/login/verify-account/Verify"));
 const Terms = lazy(() => import("../pages/gibberish/Terms"));
 const Privacy = lazy(() => import("../pages/gibberish/Privacy"));
 const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
 const Faq = lazy(() => import("../pages/gibberish/Faq"));
 const Support = lazy(() => import("../pages/gibberish/Support"));
-const Forgot = lazy(() => import("../pages/login-register/forgot/Forgot"));
+const Forgot = lazy(() => import("../pages/login/forgot/Forgot"));
 const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 
 const LoadingWrapper = () => (
@@ -48,7 +46,7 @@ export const Routing = () => (
         <Route path="/register/finish" element={<FinishRegister />} />
         <Route path="/register/:token" element={<Verify />} />
         <Route path="/forgot" element={<Forgot />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
         <Route path="/about" element={<UnderCons />} />

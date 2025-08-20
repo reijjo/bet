@@ -5,10 +5,11 @@ import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as authApi from "../../features/api/authApi";
+import * as loginApi from "../../features/login/api/loginApiSlice";
 import { loginUser } from "../../features/slices/authSlice";
 import { store } from "../../store/store";
 import { UserRoles } from "../../utils/enums";
-import Login from "./Login";
+import Login from "./LoginPage";
 
 const mockNavigate = vi.fn();
 let mockLocationState: { from: { pathname: string } } | undefined = {
@@ -42,7 +43,7 @@ describe("Login.tsx", () => {
     mockIsAuthenticated = false;
     mockLocationState = { from: { pathname: "/dash" } };
 
-    vi.spyOn(authApi, "useLoginMutation").mockReturnValue([
+    vi.spyOn(loginApi, "useLoginMutation").mockReturnValue([
       mockLogin,
       {
         isLoading: false,

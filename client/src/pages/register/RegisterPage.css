@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: minmax(300px, 1fr) 1fr;
   grid-template-rows: 1fr;
+  place-items: center;
 
   background: radial-gradient(var(--primary-500), transparent);
   overflow-y: hidden;
@@ -61,5 +62,20 @@
   & h6 {
     font-size: 0.875rem;
     color: var(--neutral-100);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInFromBottom 0.25s ease forwards;
+}
+
+@keyframes fadeInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

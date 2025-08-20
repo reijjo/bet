@@ -1,0 +1,19 @@
+.form-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.form-input-text {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin-bottom: 0.5rem;
+
+  & input {
+    border: 0.5px solid var(--primary-500);
+  }
+}
