@@ -10,6 +10,7 @@ export { Container2 } from "./ui/v2/container/Container2";
 export { LinkWithIcon } from "./common/LinkWithIcon";
 
 export { TextInput } from "./ui/inputs/TextInput";
+export { TextInput2 } from "./ui/v2/inputs/TextInput2";
 export { Select } from "./ui/inputs/Select";
 export { TextArea } from "./ui/inputs/TextArea";
 export { Checkbox } from "./ui/inputs/Checkbox";

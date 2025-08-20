@@ -21,7 +21,9 @@ const PrivacyPage = lazy(() => import("../pages/gibberish/PrivacyPage"));
 const FeedbackPage = lazy(() => import("../pages/gibberish/FeedbackPage"));
 const FaqPage = lazy(() => import("../pages/gibberish/FaqPage"));
 const SupportPage = lazy(() => import("../pages/gibberish/SupportPage"));
-const Forgot = lazy(() => import("../pages/login/forgot/Forgot"));
+const ForgotPwPage = lazy(
+  () => import("../pages/forgot-password/ForgotPwPage")
+);
 const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 
 const LoadingWrapper = () => (
@@ -45,7 +47,7 @@ export const Routing = () => (
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/register/finish" element={<FinishRegister />} />
         <Route path="/register/:token" element={<VerifyPage />} />
-        <Route path="/forgot" element={<Forgot />} />
+        <Route path="/forgot" element={<ForgotPwPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />

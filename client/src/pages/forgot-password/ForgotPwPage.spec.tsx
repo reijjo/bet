@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { store } from "../../../store/store";
+import { store } from "../../store/store";
 import { screen, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import Forgot from "./Forgot";
+import Forgot from "./ForgotPwPage";
 // import userEvent from "@testing-library/user-event";
 
 // const user = userEvent.setup();

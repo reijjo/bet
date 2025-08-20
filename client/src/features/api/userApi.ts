@@ -8,18 +8,7 @@ export const userApiSlice = baseApi.injectEndpoints({
     getUserByUsername: builder.query({
       query: (username) => `/users/find?username=${username}`,
     }),
-    forgotPassword: builder.mutation({
-      query: (email) => ({
-        url: `/users/forgot`,
-        method: "POST",
-        body: { email },
-      }),
-    }),
   }),
 });
 
-export const {
-  useGetAllUsersQuery,
-  useGetUserByUsernameQuery,
-  useForgotPasswordMutation,
-} = userApiSlice;
+export const { useGetAllUsersQuery, useGetUserByUsernameQuery } = userApiSlice;

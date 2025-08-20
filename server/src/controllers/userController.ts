@@ -10,6 +10,8 @@ import {
   isRegisterValuesValid,
   sendVerificationEmail,
 } from "./utils/createUserUtils";
+import { isEmail, isEmailValid } from "../utils/input-validators/email";
+import { sendForgetPasswordEmail } from "./utils/forgetPasswordUtils";
 
 export const getAllUsers = async (
   _req: Request,
@@ -156,4 +158,54 @@ export const updateUser = async (
     console.error("Update user error:", error);
     return next(new HttpError("Failed to update user", 500));
   }
+};
+
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { email } = req.body;
+
+  if (!email) {
+    return next(new HttpError("Email is required", 400));
+  }
+
+  const emailError = isEmailValid(email);
+  if (emailError) {
+    return next(new HttpError(emailError, 400));
+  }
+
+  try {
+    const user = await UserModel.findOne({ where: { email } });
+    if (!user) {
+      return next(new HttpError("Email not registered", 404));
+    }
+
+    // Extend token expiration (1 hour from now)
+    const tokenExpiration = new Date();
+    tokenExpiration.setHours(tokenExpiration.getHours() + 1);
+
+    await user.update({
+      resetTokenExpiration: tokenExpiration,
+    });
+
+    // Send reset link to email
+    if (process.env.NODE_ENV !== "test") {
+      await sendForgetPasswordEmail(email, user.resetToken as string);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `Reset link sent to '${email}'. Please check your inbox.`,
+      data: email,
+    });
+  } catch (error) {
+    console.error("Forgot password error:", error);
+    return next(
+      new HttpError("Failed to send link. Please try again later.", 500)
+    );
+  }
+
+  console.log("email", email);
 };

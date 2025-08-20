@@ -1,0 +1,11 @@
+.forgot-form {
+  width: min(95%, 20rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.forgot-form-group {
+  display: grid;
+  gap: 0.5rem;
+}
