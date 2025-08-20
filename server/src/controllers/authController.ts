@@ -83,7 +83,9 @@ export const refreshToken = async (
       resetTokenExpiration: tokenExpiration,
     });
 
-    await sendVerificationEmail(user.email, token);
+    if (process.env.NODE_ENV !== "test") {
+      await sendVerificationEmail(user.email, token);
+    }
 
     res.status(200).json({
       success: true,

@@ -3,6 +3,7 @@ import {
   getAllUsers,
   createUser,
   updateUser,
+  forgotPassword,
 } from "../controllers/userController";
 import express from "express";
 
@@ -14,3 +15,5 @@ userRouter.post("/", createUser);
 userRouter.patch("/:id", updateUser);
 
 userRouter.get("/find", getUserQuery);
+
+userRouter.post("/forgot", forgotPassword);
