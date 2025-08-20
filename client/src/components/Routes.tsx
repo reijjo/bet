@@ -15,12 +15,12 @@ const FinishRegister = lazy(
 const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));
-const Verify = lazy(() => import("../pages/login/verify-account/Verify"));
-const Terms = lazy(() => import("../pages/gibberish/Terms"));
-const Privacy = lazy(() => import("../pages/gibberish/Privacy"));
-const Feedback = lazy(() => import("../pages/gibberish/Feedback"));
-const Faq = lazy(() => import("../pages/gibberish/Faq"));
-const Support = lazy(() => import("../pages/gibberish/Support"));
+const VerifyPage = lazy(() => import("../pages/verify-account/VerifyPage"));
+const TermsPage = lazy(() => import("../pages/gibberish/TermsPage"));
+const PrivacyPage = lazy(() => import("../pages/gibberish/PrivacyPage"));
+const FeedbackPage = lazy(() => import("../pages/gibberish/FeedbackPage"));
+const FaqPage = lazy(() => import("../pages/gibberish/FaqPage"));
+const SupportPage = lazy(() => import("../pages/gibberish/SupportPage"));
 const Forgot = lazy(() => import("../pages/login/forgot/Forgot"));
 const HomePage = lazy(() => import("../pages/homepage/HomePage"));
 
@@ -44,17 +44,17 @@ export const Routing = () => (
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/register/finish" element={<FinishRegister />} />
-        <Route path="/register/:token" element={<Verify />} />
+        <Route path="/register/:token" element={<VerifyPage />} />
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/bank" element={<UnderCons />} />
         <Route path="/analytics" element={<UnderCons />} />
         <Route path="/about" element={<UnderCons />} />
-        <Route path="/gibberish/terms" element={<Terms />} />
-        <Route path="/gibberish/privacy" element={<Privacy />} />
-        <Route path="/gibberish/feedback" element={<Feedback />} />
-        <Route path="/gibberish/faq" element={<Faq />} />
-        <Route path="/gibberish/support" element={<Support />} />
+        <Route path="/gibberish/terms" element={<TermsPage />} />
+        <Route path="/gibberish/privacy" element={<PrivacyPage />} />
+        <Route path="/gibberish/feedback" element={<FeedbackPage />} />
+        <Route path="/gibberish/faq" element={<FaqPage />} />
+        <Route path="/gibberish/support" element={<SupportPage />} />
       </Route>
       <Route element={<ProtectedRoute />}>
         <Route path="/dash" element={<Dashboard />} />

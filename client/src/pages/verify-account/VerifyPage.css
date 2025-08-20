@@ -1,0 +1,16 @@
+.verify-page {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(255, 255, 255, 0.175),
+    transparent
+  );
+}
+
+.justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

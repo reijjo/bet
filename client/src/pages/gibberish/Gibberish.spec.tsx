@@ -1,14 +1,14 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import Terms from "./Terms";
-import Privacy from "./Privacy";
-import Feedback from "./Feedback";
+import Terms from "./TermsPage";
+import Privacy from "./PrivacyPage";
+import Feedback from "./FeedbackPage";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
-import Faq from "./Faq";
+import Faq from "./FaqPage";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import Support from "./Support";
+import Support from "./SupportPage";
 
 describe("Footer Links", () => {
   describe("Terms of Service", () => {

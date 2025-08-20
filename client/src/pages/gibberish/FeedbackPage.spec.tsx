@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as feedbackApi from "../../features/api/feedbackApi";
 import { store } from "../../store/store";
-import Feedback from "./Feedback";
+import Feedback from "./FeedbackPage";
 
 if (process.env.NODE_ENV === "test") {
   console.log = function () {};

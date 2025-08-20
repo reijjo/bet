@@ -1,12 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { NoAccount } from "./NoAccount";
-import { store } from "../../../store/store";
+import { NoAccount, TokenExpired } from "../../features/verify-account/";
+import { store } from "../../store/store";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
-import { TokenExpired } from "./TokenExpired";
-import { InvalidToken } from "./InvalidToken";
+import { InvalidToken } from "../../features/verify-account/components/InvalidToken";
 
 const user = userEvent.setup();
 const mockNavigate = vi.fn();
@@ -20,7 +19,7 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-vi.mock("../../../features/api/authApi", () => ({
+vi.mock("../../features/verify-account/api/verifyApiSlice", () => ({
   useUpdateTokenMutation: () => [
     mockUpdateToken,
     {
