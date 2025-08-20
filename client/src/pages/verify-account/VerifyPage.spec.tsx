@@ -1,13 +1,12 @@
 import { describe, expect, test, vi, afterEach } from "vitest";
-import * as authApi from "../../../features/api/authApi";
-import * as userApi from "../../../features/api/userApi";
+import * as verifyApi from "../../features/verify-account/api/verifyApiSlice";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "../../../store/store";
+import { store } from "../../store/store";
 import { MemoryRouter } from "react-router-dom";
-import Verify from "./Verify";
-import { verifyQueryResponse } from "../../../tests/mocks/api-responses/useVerifyQuery";
-import { UserRoles } from "../../../utils/enums";
+import Verify from "./VerifyPage";
+import { verifyQueryResponse } from "../../tests/mocks/api-responses/useVerifyQuery";
+import { UserRoles } from "../../utils/enums";
 
 const renderComponent = () => {
   render(
@@ -25,7 +24,7 @@ describe("Verify.tsx", () => {
   });
 
   test("renders Loading", () => {
-    vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+    vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
       data: null,
       isLoading: true,
       isError: false,
@@ -39,7 +38,7 @@ describe("Verify.tsx", () => {
   });
 
   test("renders NoAccount", () => {
-    vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+    vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
       data: null,
       isLoading: false,
       isError: true,
@@ -53,7 +52,7 @@ describe("Verify.tsx", () => {
   });
 
   test("renders InvalidToken", () => {
-    vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+    vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
       data: null,
       isLoading: false,
       isError: true,
@@ -67,7 +66,7 @@ describe("Verify.tsx", () => {
   });
 
   test("renders TokenExpired", () => {
-    vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+    vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
       data: null,
       isLoading: false,
       isError: true,
@@ -82,7 +81,7 @@ describe("Verify.tsx", () => {
 
   describe("VerifiedAccount", () => {
     test("renders VerifiedAccount", () => {
-      vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+      vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
         data: verifyQueryResponse,
         isLoading: false,
         isError: false,
@@ -107,7 +106,7 @@ describe("Verify.tsx", () => {
       };
 
       // Mock useUpdateUserMutation
-      vi.spyOn(userApi, "useUpdateUserMutation").mockReturnValue([
+      vi.spyOn(verifyApi, "useUpdateUserMutation").mockReturnValue([
         mockUpdateUser,
         {
           isLoading: false,
@@ -117,8 +116,8 @@ describe("Verify.tsx", () => {
         },
       ]);
 
-      // Mock useVerifyQuery to return successful data
-      vi.spyOn(authApi, "useVerifyQuery").mockReturnValue({
+      // Mock useVerifyUserQuery to return successful data
+      vi.spyOn(verifyApi, "useVerifyUserQuery").mockReturnValue({
         data: mockVerifyResponse,
         isLoading: false,
         isError: false,

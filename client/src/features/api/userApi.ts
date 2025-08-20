@@ -1,5 +1,3 @@
-import { MinimalUserResponse } from "../../utils/api-response-types";
-import { User } from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const userApiSlice = baseApi.injectEndpoints({
@@ -9,16 +7,6 @@ export const userApiSlice = baseApi.injectEndpoints({
     }),
     getUserByUsername: builder.query({
       query: (username) => `/users/find?username=${username}`,
-    }),
-    updateUser: builder.mutation<
-      MinimalUserResponse,
-      Partial<User> & Pick<User, "id">
-    >({
-      query: ({ id, ...patch }) => ({
-        url: `/users/${id}`,
-        method: "PATCH",
-        body: patch,
-      }),
     }),
     forgotPassword: builder.mutation({
       query: (email) => ({
@@ -33,6 +21,5 @@ export const userApiSlice = baseApi.injectEndpoints({
 export const {
   useGetAllUsersQuery,
   useGetUserByUsernameQuery,
-  useUpdateUserMutation,
   useForgotPasswordMutation,
 } = userApiSlice;

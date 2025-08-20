@@ -1,35 +1,15 @@
-import {
-  BasicApiResponse,
-  RegisterUserApiResponse,
-} from "../../utils/api-response-types";
-import { SessionApiResponse, TokenUpdate } from "../../utils/types";
+import { BasicApiResponse } from "../../utils/api-response-types";
+import { SessionApiResponse } from "../../utils/types";
 import { baseApi } from "./baseApi";
 
 export const authApiSlice = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    verify: builder.query<RegisterUserApiResponse, string>({
-      query: (token) => `/auth/register/${token}`,
-      transformErrorResponse: (error) => ({
-        status: error.status,
-        data: error.data,
-      }),
-    }),
     logout: builder.mutation<BasicApiResponse, void>({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
       }),
       invalidatesTags: [{ type: "Session", id: "CURRENT" }],
-    }),
-    updateToken: builder.mutation<BasicApiResponse, TokenUpdate>({
-      query: (patch) => {
-        console.log("token", patch.token);
-        return {
-          url: `/auth/register/${patch.token}`,
-          method: "PATCH",
-          body: patch,
-        };
-      },
     }),
     refreshSession: builder.mutation<BasicApiResponse, void>({
       query: () => ({
@@ -65,9 +45,6 @@ export const authApiSlice = baseApi.injectEndpoints({
 });
 
 export const {
-  useVerifyQuery,
-  useUpdateTokenMutation,
-  // useLoginMutation,
   useLogoutMutation,
   useGetSessionUserQuery,
   useLazyGetSessionUserQuery,

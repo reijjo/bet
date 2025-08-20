@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Gibberish.css";
 import { Questions } from "./Questions";
 
-const Faq = () => {
+const FaqPage = () => {
   return (
     <div className="gibberish-page">
       <div className="gibberish-content">
@@ -24,4 +24,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default FaqPage;
