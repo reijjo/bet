@@ -80,7 +80,7 @@ export const FinishRegisterForm = () => {
               )
             }
             type={isLoading ? MessageTypes.Info : message.type}
-            width="75%"
+            width="100%"
           />
         )}
         <Button2
