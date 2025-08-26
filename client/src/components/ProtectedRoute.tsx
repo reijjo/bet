@@ -38,7 +38,6 @@ export const ProtectedRoute = () => {
     };
 
     if (!isLoading) {
-      // Check for error first
       if (isError || errorStatus === 401) {
         console.log("Logging out due to error or 401");
         loggingOut();
