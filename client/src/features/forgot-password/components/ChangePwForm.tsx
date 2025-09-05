@@ -61,7 +61,7 @@ export const ChangePwForm = ({ data }: ChangePwFormProps) => {
           width="100%"
         />
         {formError && <Message type={MessageTypes.Error} message={formError} />}
-        {(isError || isLoading || pwData) && (
+        {(isError || pwData) && (
           <Message
             type={isError ? MessageTypes.Error : MessageTypes.Success}
             message={isError ? getErrorMessage(error) : pwData?.message}

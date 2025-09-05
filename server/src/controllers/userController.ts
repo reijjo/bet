@@ -155,7 +155,7 @@ export const updateUser = async (
     const updatedUser: User = await userToUpdate.update(updates);
     res.status(200).json({
       success: true,
-      message: "User updated successfully",
+      message: "User data updated successfully",
       data: updatedUser,
     });
   } catch (error) {
