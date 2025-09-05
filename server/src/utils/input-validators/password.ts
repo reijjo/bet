@@ -20,7 +20,7 @@ export const hasSpecialChar = (value: string): boolean => {
   return regex.test(value);
 };
 
-export const isPasswordValid = (password: string) => {
+export const isPasswordValid = (password: string, pw2?: string) => {
   if (!hasMinMaxLength(password.trim(), 8, 50)) {
     return "Password must be between 8 and 50 characters";
   }

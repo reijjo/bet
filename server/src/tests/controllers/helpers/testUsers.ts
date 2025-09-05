@@ -1,4 +1,4 @@
-import { UserRoles } from "../../../utils/enums";
+import { UserRoles } from "../../../utils/types/enums";
 
 export const testiukko = {
   username: "testiukko",

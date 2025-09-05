@@ -1,5 +1,5 @@
 import { sequelize } from "../utils/db/db";
-import type { FeedbackMessageAdmin } from "../utils/types";
+import type { FeedbackMessageAdmin } from "../utils/types/types";
 import { DataTypes, Model, type Optional } from "sequelize";
 
 export interface FeedbackCreation

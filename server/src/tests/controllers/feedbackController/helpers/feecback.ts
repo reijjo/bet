@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import app from "../../../../app";
-import type { FeedbackMessage } from "../../../../utils/types";
+import type { FeedbackMessage } from "../../../../utils/types/types";
 
 const api = supertest(app);
 

@@ -2,15 +2,15 @@ import bcryptjs from "bcryptjs";
 
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
-import { UserRoles } from "../utils/enums";
-import type { RegisterValues, User } from "../utils/types";
+import { UserRoles } from "../utils/types/enums";
+import type { RegisterValues, User } from "../utils/types/types";
 import { randomBytes } from "crypto";
 import type { NextFunction, Request, Response } from "express";
 import {
   isRegisterValuesValid,
   sendVerificationEmail,
 } from "./utils/createUserUtils";
-import { isEmail, isEmailValid } from "../utils/input-validators/email";
+import { isEmailValid } from "../utils/input-validators/email";
 import { sendForgetPasswordEmail } from "./utils/forgetPasswordUtils";
 
 export const getAllUsers = async (
@@ -148,6 +148,10 @@ export const updateUser = async (
       return next(new HttpError("User not found", 404));
     }
 
+    if (updates.password) {
+      updates.password = await bcryptjs.hash(updates.password, 10);
+    }
+
     const updatedUser: User = await userToUpdate.update(updates);
     res.status(200).json({
       success: true,
@@ -206,6 +210,22 @@ export const forgotPassword = async (
       new HttpError("Failed to send link. Please try again later.", 500)
     );
   }
+};
 
-  console.log("email", email);
+export const checkToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const user = req.userFromToken;
+
+  if (!user) {
+    return next(new HttpError("User not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "User found.",
+    data: user,
+  });
 };

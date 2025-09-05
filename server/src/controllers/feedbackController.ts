@@ -1,6 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import { FeedbackModel } from "../models/feedbackModel";
-import type { FeedbackMessage, FeedbackMessageAdmin } from "../utils/types";
+import type {
+  FeedbackMessage,
+  FeedbackMessageAdmin,
+} from "../utils/types/types";
 import { HttpError } from "../middleware/errorHandler";
 import { isFeedbackValid } from "./utils/feedbackUtils";
 

@@ -16,7 +16,7 @@ export const sendForgetPasswordEmail = async (to: string, token: string) => {
     process.env.NODE_ENV === "production" || Bun.env.NODE_ENV === "production"
       ? "https://tarpit.pages.dev"
       : FRONTEND_URL;
-  const verifyUrl = `${URL}/users/forgot/${token}`;
+  const verifyUrl = `${URL}/forgot/${token}`;
 
   console.log("VERIFY URL:", verifyUrl);
 

@@ -1,5 +1,5 @@
 import { sequelize } from "../utils/db/db";
-import { BetType } from "../utils/enums";
+import { BetType } from "../utils/types/enums";
 import { BetModel } from "./betModel";
 import { DataTypes, Model } from "sequelize";
 
@@ -71,7 +71,7 @@ BetDetailsModel.init(
     underscored: true,
     timestamps: true,
     modelName: "BetDetails",
-  },
+  }
 );
 
 export { BetDetailsModel };

@@ -9,7 +9,15 @@ export const forgotPwApiSlice = baseApi.injectEndpoints({
         body: { email },
       }),
     }),
+    checkToken: builder.query({
+      query: (token) => `/users/forgot/${token}`,
+      transformErrorResponse: (error) => ({
+        status: error.status,
+        data: error.data,
+      }),
+    }),
   }),
 });
 
-export const { useForgotPasswordMutation } = forgotPwApiSlice;
+export const { useForgotPasswordMutation, useCheckTokenQuery } =
+  forgotPwApiSlice;

@@ -1,6 +1,11 @@
 import { sequelize } from "../utils/db/db";
-import { BetStatus, BetType, Bookmaker, SportLeague } from "../utils/enums";
-import type { Bet } from "../utils/types";
+import {
+  BetStatus,
+  BetType,
+  Bookmaker,
+  SportLeague,
+} from "../utils/types/enums";
+import type { Bet } from "../utils/types/types";
 import { DataTypes, Model, type Optional } from "sequelize";
 
 export interface BetCreation extends Optional<Bet, "id"> {}
@@ -70,5 +75,5 @@ BetModel.init(
     underscored: true,
     timestamps: true,
     modelName: "Bet",
-  },
+  }
 );

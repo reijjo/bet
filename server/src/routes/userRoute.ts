@@ -4,8 +4,10 @@ import {
   createUser,
   updateUser,
   forgotPassword,
+  checkToken,
 } from "../controllers/userController";
 import express from "express";
+import { tokenVerification } from "../middleware/tokenVerification";
 
 export const userRouter = express.Router();
 
@@ -17,3 +19,4 @@ userRouter.patch("/:id", updateUser);
 userRouter.get("/find", getUserQuery);
 
 userRouter.post("/forgot", forgotPassword);
+userRouter.get("/forgot/:token", tokenVerification, checkToken);

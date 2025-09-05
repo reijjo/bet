@@ -1,9 +1,8 @@
 import supertest from "supertest";
 import app from "../../../app";
-import type { User } from "../../../utils/types";
+import type { User } from "../../../utils/types/types";
 import { UserModel } from "../../../models/userModel";
 import bcrypt from "bcryptjs";
-import { UserRoles } from "../../../utils/enums";
 
 const api = supertest(app);
 

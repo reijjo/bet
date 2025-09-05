@@ -3,9 +3,9 @@ import { BetDetailsModel, BetModel } from "../models";
 import type {
   CreateBetApiResponse,
   GetBetsApiResponse,
-} from "../utils/api-response-types";
+} from "../utils/types/api-response-types";
 import { sequelize } from "../utils/db/db";
-import type { BetDetails } from "../utils/types";
+import type { BetDetails } from "../utils/types/types";
 import type { NextFunction, Request, Response } from "express";
 
 //
@@ -14,7 +14,7 @@ import type { NextFunction, Request, Response } from "express";
 export const getBets = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   const userId = req.session.user?.id;
 
@@ -45,7 +45,7 @@ export const getBets = async (
 export const createBet = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   const transaction = await sequelize.transaction(); // Transactions are used to ensure that all operations are completed successfully before committing the changes to the database
 
@@ -91,7 +91,7 @@ export const createBet = async (
         sport,
         notes,
       },
-      { transaction },
+      { transaction }
     );
 
     // The map method is used to create a new array of bet details with the bet_id set to the id of the newly created bet
@@ -120,7 +120,7 @@ export const createBet = async (
 export const getBetById = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   try {
     const { id } = req.params;
@@ -130,7 +130,7 @@ export const getBetById = async (
       throw new HttpError(
         "Bet ID must be a number.",
         400,
-        "Don't mess with the ID.",
+        "Don't mess with the ID."
       );
     }
 
@@ -163,7 +163,7 @@ export const getBetById = async (
 export const updateBet = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ): Promise<void> => {
   const transaction = await sequelize.transaction();
 
@@ -184,7 +184,7 @@ export const updateBet = async (
       throw new HttpError(
         "Bet ID must be a number.",
         400,
-        "Don't mess with the ID.",
+        "Don't mess with the ID."
       );
     }
 
@@ -215,7 +215,7 @@ export const updateBet = async (
         sport,
         notes,
       },
-      { transaction },
+      { transaction }
     );
 
     if (betDetails && Array.isArray(betDetails)) {
@@ -265,7 +265,7 @@ export const updateBet = async (
 export const deleteBet = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const transaction = await sequelize.transaction();
 
@@ -276,7 +276,7 @@ export const deleteBet = async (
       throw new HttpError(
         "Bet ID must be a number.",
         400,
-        "Don't mess with the ID.",
+        "Don't mess with the ID."
       );
     }
 

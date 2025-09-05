@@ -2,11 +2,8 @@ import bcryptjs from "bcryptjs";
 
 import { HttpError } from "../middleware/errorHandler";
 import { UserModel } from "../models/userModel";
-import { UserRoles } from "../utils/enums";
-import { isPasswordValid } from "../utils/input-validators/password";
-import { isUsernameValid } from "../utils/input-validators/username";
-import type { LoginValues } from "../utils/types";
-import { randomBytes } from "crypto";
+import { UserRoles } from "../utils/types/enums";
+import type { LoginValues } from "../utils/types/types";
 import type { NextFunction, Request, Response } from "express";
 import { sendVerificationEmail } from "./utils/createUserUtils";
 
@@ -15,44 +12,17 @@ export const verifyAccount = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { token } = req.params;
-  const now = new Date().getTime();
+  const user = req.userFromToken;
 
-  if (token.length < 5) {
-    return next(new HttpError("Invalid token", 401));
+  if (!user) {
+    return next(new HttpError("User not found", 404));
   }
 
-  try {
-    const accountToFinish = await UserModel.findOne({
-      where: { resetToken: token },
-    });
-
-    if (!accountToFinish) {
-      return next(
-        new HttpError("No account found. Please register", 404, "test comment")
-      );
-    }
-
-    if (
-      accountToFinish.resetTokenExpiration &&
-      new Date(accountToFinish.resetTokenExpiration).getTime() < now
-    ) {
-      return next(
-        new HttpError(`${accountToFinish.email}`, 400, "Token expired")
-      );
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "Account verified! You can now log in with your credentials.",
-      data: accountToFinish,
-    });
-  } catch (error) {
-    console.error("Verification error:", error);
-    return next(
-      new HttpError("Failed to verify account. Please try again later.", 500)
-    );
-  }
+  res.status(200).json({
+    success: true,
+    message: "Account verified! You can now log in with your credentials.",
+    data: user,
+  });
 };
 
 export const refreshToken = async (

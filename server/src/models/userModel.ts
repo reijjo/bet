@@ -1,6 +1,6 @@
 import { sequelize } from "../utils/db/db";
-import { UserRoles, type UserRolesType } from "../utils/enums";
-import type { User } from "../utils/types";
+import { UserRoles, type UserRolesType } from "../utils/types/enums";
+import type { User } from "../utils/types/types";
 import { DataTypes, Model, type Optional } from "sequelize";
 
 export interface UserCreation
@@ -56,7 +56,7 @@ UserModel.init(
     underscored: true,
     timestamps: true,
     modelName: "User",
-  },
+  }
 );
 
 export { UserModel };
