@@ -30,7 +30,7 @@ describe("AUTH CONTROLLER - verifyAccount", () => {
     jest.restoreAllMocks();
   });
 
-  // Error cases
+  // ERROR CASES
   describe("error cases", () => {
     test("too short token", async () => {
       const res = await api.get("/api/auth/register/abc");
