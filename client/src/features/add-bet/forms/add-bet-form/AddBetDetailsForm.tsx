@@ -67,6 +67,7 @@ export const AddBetDetailsForm = ({
     }
 
     if (modifyIndex !== null) {
+      // Clear this stuff
       // Modify existing bet
       setMyBet((prev) => {
         const updatedBetDetails = [...prev.betDetails];
