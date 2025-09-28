@@ -2,12 +2,14 @@ import "./AddBetForm.css";
 
 import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
-import { Button } from "../../../../components/ui/button/Button";
-import { useAddBetForm } from "../../../../hooks/useAddBetForm";
-import { initialBetDetailValues } from "../../../../utils/defaults/defaults";
-import { scrollDown } from "../../../../utils/helperFunctions";
-import { validateBetDetailsInputs } from "../../../../utils/input-validators/inputValidators";
-import { Bet } from "../../../../utils/types";
+import { useAddBetForm } from "@hooks/useAddBetForm";
+import {
+  initialBetDetailValues,
+  scrollDown,
+  validateBetDetailsInputs,
+} from "@/utils";
+
+import { Bet } from "@utils/types";
 import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
 import {
   DateInput,
@@ -18,6 +20,7 @@ import {
   TypeInput,
   BetBuilderInput,
 } from "../../add-bet-inputs";
+import { Button2 } from "@/components";
 
 type AddBetFormProps = {
   myBet: Bet;
@@ -157,16 +160,16 @@ export const AddBetForm = ({
           disabled={disabled}
         />
         <div className="add-bet-buttons">
-          <Button
+          <Button2
             children="Continue"
             type="submit"
-            className="btn btn-filled"
+            className="btn2-cta"
             disabled={disabled}
           />
-          <Button
+          <Button2
             children="Cancel"
             type="button"
-            className="btn btn-outline"
+            className="btn2-outline"
             onClick={handleCancel}
             disabled={disabled}
           />

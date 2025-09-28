@@ -5,7 +5,7 @@
   margin: 24px auto 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--box-shadow);
   padding: 8px 16px 16px;
   backdrop-filter: blur(8px);
   background: var(--primary-700);

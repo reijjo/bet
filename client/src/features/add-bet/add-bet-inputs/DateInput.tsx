@@ -31,6 +31,7 @@ export const DateInput = ({
         name="date"
         onChange={handleBetInput}
         value={parseDate(details.date)}
+        // value={date}
         disabled={disabled}
       />
     </div>
