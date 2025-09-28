@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { initialBetValues } from "../../../../../utils/defaults/defaults";
-import { LimitedBetType } from "../../../../../utils/enums";
-import { AddBetForm } from "../../AddBetForm";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { LimitedBetType } from "@/utils/enums";
+import { AddBetForm } from "../../forms/add-bet-form/AddBetForm";
 
 describe("MatchInput", () => {
   const user = userEvent.setup();
@@ -22,7 +22,7 @@ describe("MatchInput", () => {
         modifyIndex={null}
         setModifyIndex={mockFn}
         disabled={false}
-      />,
+      />
     );
 
     const oddsInput = screen.getByLabelText(/odds/i);
@@ -33,7 +33,7 @@ describe("MatchInput", () => {
 
     const typeSelect = screen.getByLabelText(/bet type/i);
     const options = Array.from(typeSelect.querySelectorAll("option")).map(
-      (option) => option.value,
+      (option) => option.value
     );
 
     expect(options).toEqual(Object.values(LimitedBetType));
@@ -42,14 +42,14 @@ describe("MatchInput", () => {
         screen.getByRole("option", {
           name: LimitedBetType.Single,
         }) as HTMLOptionElement
-      ).selected,
+      ).selected
     ).toBe(true);
     expect(
       (
         screen.getByRole("option", {
           name: LimitedBetType.Over,
         }) as HTMLOptionElement
-      ).selected,
+      ).selected
     ).toBe(false);
 
     await user.selectOptions(typeSelect, LimitedBetType.Over);
@@ -59,7 +59,7 @@ describe("MatchInput", () => {
         screen.getByRole("option", {
           name: LimitedBetType.Over,
         }) as HTMLOptionElement
-      ).selected,
+      ).selected
     ).toBe(true);
 
     await user.click(screen.getByText("Continue"));
@@ -74,7 +74,7 @@ describe("MatchInput", () => {
         bet_type: LimitedBetType.Over,
         odds: "2.0",
         selection: "Test Selection",
-      }),
+      })
     );
   });
 

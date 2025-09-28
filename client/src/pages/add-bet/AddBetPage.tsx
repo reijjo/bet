@@ -1,10 +1,10 @@
-import "./AddBet.css";
+import "./AddBetPage.css";
 
 import { useAddBetForm } from "../../hooks/useAddBetForm";
-import { AddBetForm } from "./add-bet-form/AddBetForm";
+import { AddBetForm } from "../../features/add-bet/forms/add-bet-form/AddBetForm";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
 
-const AddBet = () => {
+const AddBetPage = () => {
   const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();
 
@@ -30,4 +30,4 @@ const AddBet = () => {
   );
 };
 
-export default AddBet;
+export default AddBetPage;

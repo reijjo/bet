@@ -12,7 +12,7 @@ const LoginPage = lazy(() => import("../pages/login/LoginPage"));
 const FinishRegister = lazy(
   () => import("../pages/register/FinishRegisterPage")
 );
-const AddBet = lazy(() => import("../pages/add-bet/AddBet"));
+const AddBetPage = lazy(() => import("../pages/add-bet/AddBetPage"));
 const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
 const Bets = lazy(() => import("../pages/bets/Bets"));
 const VerifyPage = lazy(() => import("../pages/verify-account/VerifyPage"));
@@ -65,7 +65,7 @@ export const Routing = () => (
       <Route element={<ProtectedRoute />}>
         <Route path="/dash" element={<Dashboard />} />
         <Route path="/bets" element={<Bets />} />
-        <Route path="/add-bet" element={<AddBet />} />
+        <Route path="/add-bet" element={<AddBetPage />} />
       </Route>
       <Route path="*" element={<UnderCons />} />
     </Routes>

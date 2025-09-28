@@ -1,8 +1,8 @@
 import "./DateInput.css";
 
-import { TextInput } from "../../../../components/index";
-import { useParsers } from "../../../../hooks/useParsers";
-import { BetInputProps } from "../../../../utils/types";
+import { TextInput } from "@/components/index";
+import { useParsers } from "@/hooks/useParsers";
+import { BetInputProps } from "@/utils/types";
 
 interface DateInputProps extends BetInputProps {
   gridRow?: string;

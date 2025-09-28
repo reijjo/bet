@@ -7,15 +7,15 @@ import { useAddBetForm } from "../../hooks/useAddBetForm";
 import { store } from "../../store/store";
 import { mockBet } from "../../tests/mocks/betMock";
 import { mockUseAddBetForm } from "../../tests/mocks/hooks/useAddBetFormMock";
-import AddBet from "./AddBet";
+import AddBetPage from "./AddBetPage";
 
 vi.mock("../../hooks/useAddBetForm", () => ({
   useAddBetForm: vi.fn(() => mockUseAddBetForm),
 }));
 
-describe("AddBet", () => {
+describe("AddBetPage", () => {
   it("renders AddBetForm by default", async () => {
-    render(<AddBet />);
+    render(<AddBetPage />);
     expect(screen.getByTestId("addbet-form")).toBeInTheDocument();
     expect(screen.queryByTestId("addstake")).not.toBeInTheDocument();
   });
@@ -29,9 +29,9 @@ describe("AddBet", () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <AddBet />
+          <AddBetPage />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
     expect(screen.getByTestId("add-stake")).toBeInTheDocument();
   });

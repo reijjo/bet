@@ -8,10 +8,10 @@ import {
   useState,
 } from "react";
 
-import { TextInputWithButton } from "../../../../components/ui/inputs/TextInputWithButton";
-import { BetDetails, BetInputProps } from "../../../../utils/types";
-import { BetSelection } from "../BetSelection";
-import { hasInputError } from "../add-bet-inputs/InputError";
+import { TextInputWithButton } from "@/components/ui/inputs/TextInputWithButton";
+import { BetDetails, BetInputProps } from "@/utils/types";
+import { BetSelection } from "../forms/add-bet-form/BetSelection";
+import { hasInputError } from "./InputError";
 
 interface BetbuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
@@ -22,7 +22,7 @@ interface BetbuilderInputProps extends BetInputProps {
   gridColumn?: string;
 }
 
-export const BetbuilderInput = ({
+export const BetBuilderInput = ({
   details,
   disabled,
   setDetails,

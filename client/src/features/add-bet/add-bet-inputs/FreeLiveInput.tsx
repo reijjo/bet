@@ -1,7 +1,7 @@
 import "./FreeLiveInput.css";
 
-import { Checkbox } from "../../../../components/index";
-import { BetInputProps } from "../../../../utils/types";
+import { Checkbox } from "@/components/index";
+import { BetInputProps } from "@/utils/types";
 
 interface FreeLiveInputProps extends BetInputProps {
   gridRow?: string;
