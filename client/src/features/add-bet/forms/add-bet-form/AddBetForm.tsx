@@ -160,19 +160,17 @@ export const AddBetForm = ({
           disabled={disabled}
         />
         <div className="add-bet-buttons">
+          <Button2 type="submit" className="btn2-cta" disabled={disabled}>
+            Continue
+          </Button2>
           <Button2
-            children="Continue"
-            type="submit"
-            className="btn2-cta"
-            disabled={disabled}
-          />
-          <Button2
-            children="Cancel"
             type="button"
             className="btn2-outline"
             onClick={handleCancel}
             disabled={disabled}
-          />
+          >
+            Cancel
+          </Button2>
         </div>
       </form>
     </div>

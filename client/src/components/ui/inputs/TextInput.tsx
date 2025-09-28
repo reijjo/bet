@@ -1,6 +1,12 @@
 import "./TextInput.css";
 
-import { InputHTMLAttributes, ReactNode, forwardRef, useState } from "react";
+import {
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useState,
+} from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,7 +22,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   backgroundColor?: string;
   errorStyle?: boolean;
   isPassword?: boolean;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }

@@ -1,6 +1,6 @@
 import "./DateInput.css";
 
-import { TextInput } from "@/components/index";
+import { TextInput } from "@/components";
 import { useParsers } from "@/hooks/useParsers";
 import { BetInputProps } from "@/utils/types";
 
@@ -31,7 +31,6 @@ export const DateInput = ({
         name="date"
         onChange={handleBetInput}
         value={parseDate(details.date)}
-        // value={date}
         disabled={disabled}
       />
     </div>
