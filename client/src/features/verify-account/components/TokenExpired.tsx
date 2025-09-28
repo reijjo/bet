@@ -1,6 +1,6 @@
 import { Button2, Message } from "../../../components";
 import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/helperFunctions";
+import { getErrorMessage } from "@utils/errors/error-helpers";
 import { useUpdateTokenMutation } from "../api/verifyApiSlice";
 
 interface TokenExpiredProps {
