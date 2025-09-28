@@ -1,6 +1,12 @@
 import "./TextInput.css";
 
-import { InputHTMLAttributes, ReactNode, forwardRef, useState } from "react";
+import {
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useState,
+} from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,6 +22,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   backgroundColor?: string;
   errorStyle?: boolean;
   isPassword?: boolean;
+  type?: HTMLInputTypeAttribute;
   handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
@@ -36,11 +43,14 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       isPassword = false,
       handleBlur,
       handleFocus,
+      type = "text",
       ...props
     },
     ref
   ) => {
     const [showPassword, setShowPassword] = useState(false);
+
+    const inputType = isPassword ? (showPassword ? "text" : "password") : type;
 
     return (
       <div className={className}>
@@ -59,7 +69,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             {...props}
             className={`${errorStyle && "input-error"}`}
             autoComplete="off"
-            type={isPassword && !showPassword ? "password" : "text"}
+            type={inputType}
             style={{
               height: height,
               width: width,

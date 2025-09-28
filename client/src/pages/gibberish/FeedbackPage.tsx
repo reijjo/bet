@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Button2 } from "../../components/ui/v2/button/Button2";
-import { TextArea2 } from "../../components/ui/v2/inputs/TextArea2";
-import { TextInput2 } from "../../components/ui/v2/inputs/TextInput2";
+import { Button2 } from "@components/ui/v2/button/Button2";
+import { TextArea2 } from "@components/ui/v2/inputs/TextArea2";
+import { TextInput2 } from "@components/ui/v2/inputs/TextInput2";
 import "./Gibberish.css";
-import { FeedbackMessage } from "../../utils/types";
-import { useAddFeedbackMutation } from "../../features/api/feedbackApi";
-import { getErrorMessage } from "../../utils/helperFunctions";
-import { validateAllFeedbackFields } from "../../utils/input-validators/feedbackValidators";
-import { parseServerErrorToFieldErrors } from "../../utils/input-validators/feedbackErrorParsers";
+import { FeedbackMessage } from "@utils/types";
+import { useAddFeedbackMutation } from "@features/api/feedbackApi";
+import { getErrorMessage } from "@utils/errors/error-helpers";
+import { validateAllFeedbackFields } from "@utils/input-validators/feedbackValidators";
+import { parseServerErrorToFieldErrors } from "@utils/input-validators/feedbackErrorParsers";
 
 const Feedback = () => {
   const initialFeedback: FeedbackMessage = {

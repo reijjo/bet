@@ -9,7 +9,7 @@ import {
   InvalidToken,
   TokenExpired,
 } from "../../features/verify-account";
-import { getErrorStatus } from "../../utils/helperFunctions";
+import { getErrorStatus } from "@utils/errors/error-helpers";
 import { RegisterUserApiResponse } from "../../utils/api-response-types";
 
 const ChangePwPage = () => {

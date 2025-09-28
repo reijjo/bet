@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as feedbackApi from "../../features/api/feedbackApi";
-import { store } from "../../store/store";
+import * as feedbackApi from "@features/api/feedbackApi";
+import { store } from "@store/store";
 import Feedback from "./FeedbackPage";
 
 if (process.env.NODE_ENV === "test") {

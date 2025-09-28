@@ -1,6 +1,6 @@
 import "./DateInput.css";
 
-import { TextInput } from "@/components/index";
+import { TextInput } from "@/components";
 import { useParsers } from "@/hooks/useParsers";
 import { BetInputProps } from "@/utils/types";
 
