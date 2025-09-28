@@ -8,12 +8,12 @@ import {
   useState,
 } from "react";
 
-import { TextInputWithButton } from "../../../../components/ui/inputs/TextInputWithButton";
-import { BetDetails, BetInputProps } from "../../../../utils/types";
-import { BetSelection } from "../BetSelection";
-import { hasInputError } from "../add-bet-inputs/InputError";
+import { TextInputWithButton } from "@/components/ui/inputs/TextInputWithButton";
+import { BetDetails, BetInputProps } from "@/utils/types";
+import { BetSelection } from "../forms";
+import { hasInputError } from "./InputError";
 
-interface BetbuilderInputProps extends BetInputProps {
+interface BetBuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
   error?: { [key: string]: string };
   handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -22,7 +22,7 @@ interface BetbuilderInputProps extends BetInputProps {
   gridColumn?: string;
 }
 
-export const BetbuilderInput = ({
+export const BetBuilderInput = ({
   details,
   disabled,
   setDetails,
@@ -31,7 +31,7 @@ export const BetbuilderInput = ({
   handleBlur,
   gridColumn,
   gridRow,
-}: BetbuilderInputProps) => {
+}: BetBuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
 
   const handleSelectionInput = (e: ChangeEvent<HTMLInputElement>) => {

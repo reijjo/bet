@@ -1,8 +1,8 @@
 import "./MatchInput.css";
 
-import { TextInput } from "../../../../components/ui/inputs/TextInput";
-import { BetInputProps } from "../../../../utils/types";
-import { hasInputError } from "../add-bet-inputs/InputError";
+import { TextInput } from "@/components/ui/inputs/TextInput";
+import { BetInputProps } from "@utils/types";
+import { hasInputError } from "./InputError";
 
 interface MatchInputProps extends BetInputProps {
   gridRow?: string;

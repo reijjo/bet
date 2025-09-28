@@ -2,9 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { initialBetValues } from "../../../../../utils/defaults/defaults";
-import { inputErrors } from "../../../../../utils/defaults/errors";
-import { AddBetForm } from "../../AddBetForm";
+import { initialBetValues } from "@/utils/defaults/defaults";
+import { inputErrors } from "@/utils/defaults/errors";
+import { AddBetForm } from "../../forms";
 
 const user = userEvent.setup();
 const mockFn = vi.fn();
@@ -18,7 +18,7 @@ beforeEach(() => {
       modifyIndex={null}
       setModifyIndex={mockFn}
       disabled={false}
-    />,
+    />
   );
 });
 

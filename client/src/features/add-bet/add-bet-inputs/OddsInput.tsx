@@ -2,9 +2,9 @@ import "./OddsInput.css";
 
 import { Dispatch, SetStateAction } from "react";
 
-import { TextInput } from "../../../../components/index";
-import { BetInputProps } from "../../../../utils/types";
-import { hasInputError } from "../add-bet-inputs/InputError";
+import { TextInput } from "@components/index";
+import { BetInputProps } from "@utils/types";
+import { hasInputError } from "./InputError";
 
 interface OddsInputProps extends BetInputProps {
   error?: { [key: string]: string };

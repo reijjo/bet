@@ -2,10 +2,10 @@ import "./SelectionInput.css";
 
 import { Dispatch, SetStateAction } from "react";
 
-import { TextInput } from "../../../../components/index";
-import { BetDetails, BetInputProps } from "../../../../utils/types";
-import { BetSelection } from "../BetSelection";
-import { hasInputError } from "../add-bet-inputs/InputError";
+import { TextInput } from "@/components/index";
+import { BetDetails, BetInputProps } from "@/utils/types";
+import { BetSelection } from "../forms/add-bet-form/BetSelection";
+import { hasInputError } from "./InputError";
 
 interface SelectionInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;

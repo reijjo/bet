@@ -2,22 +2,22 @@ import "./AddBetForm.css";
 
 import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
+import { Button } from "../../../../components/ui/button/Button";
+import { useAddBetForm } from "../../../../hooks/useAddBetForm";
+import { initialBetDetailValues } from "../../../../utils/defaults/defaults";
+import { scrollDown } from "../../../../utils/helperFunctions";
+import { validateBetDetailsInputs } from "../../../../utils/input-validators/inputValidators";
+import { Bet } from "../../../../utils/types";
+import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
 import {
-  BetbuilderInput,
   DateInput,
   FreeLiveInput,
   MatchInput,
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "../";
-import { Button } from "../../../components/ui/button/Button";
-import { useAddBetForm } from "../../../hooks/useAddBetForm";
-import { initialBetDetailValues } from "../../../utils/defaults/defaults";
-import { scrollDown } from "../../../utils/helperFunctions";
-import { validateBetDetailsInputs } from "../../../utils/input-validators/inputValidators";
-import { Bet } from "../../../utils/types";
-import { isBetBuilderType } from "../betUtils";
+  BetBuilderInput,
+} from "../../add-bet-inputs";
 
 type AddBetFormProps = {
   myBet: Bet;
@@ -122,7 +122,7 @@ export const AddBetForm = ({
           disabled={disabled}
         />
         {isBetBuilderType(addBetDetails.bet_type) ? (
-          <BetbuilderInput
+          <BetBuilderInput
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}

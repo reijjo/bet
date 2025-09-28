@@ -16,14 +16,14 @@ import {
 import { useAddBetForm } from "../../../hooks/useAddBetForm";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import {
-  BetbuilderInput,
+  BetBuilderInput,
   DateInput,
   FreeLiveInput,
   MatchInput,
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "../../../pages/add-bet";
+} from "@features/add-bet/add-bet-inputs";
 import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
 import { validateBetDetailsInputs } from "../../../utils/input-validators/inputValidators";
 import { Bet } from "../../../utils/types";
@@ -136,7 +136,7 @@ export const ModifyBetDetailsForm = ({
           gridRow={isTablet || isMobile ? "2 / 3" : "1 / 2"}
         />
         {isBetBuilderType(addBetDetails?.bet_type) ? (
-          <BetbuilderInput
+          <BetBuilderInput
             handleBetInput={handleBetInput}
             details={addBetDetails}
             setDetails={setAddBetDetails}
