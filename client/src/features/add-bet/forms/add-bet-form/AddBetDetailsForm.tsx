@@ -22,7 +22,7 @@ import {
 } from "../../add-bet-inputs";
 import { Button2 } from "@/components";
 
-type AddBetFormProps = {
+type AddBetDetailsFormProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
   modifyIndex: number | null;
@@ -30,13 +30,13 @@ type AddBetFormProps = {
   disabled: boolean;
 };
 
-export const AddBetForm = ({
+export const AddBetDetailsForm = ({
   myBet,
   setMyBet,
   modifyIndex,
   setModifyIndex,
   disabled,
-}: AddBetFormProps) => {
+}: AddBetDetailsFormProps) => {
   const {
     addBetDetails,
     setAddBetDetails,

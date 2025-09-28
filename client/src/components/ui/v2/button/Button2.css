@@ -20,7 +20,7 @@
     transform 0.25s ease;
 
   &:hover {
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
   }
 
   &:active {
@@ -29,7 +29,7 @@
 }
 
 .btn2-cta {
-  border: 1px solid var(--accent-300);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 
   background: linear-gradient(
     to bottom,
@@ -40,6 +40,7 @@
 
   &:hover {
     box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);
+    border: 1px solid rgba(0, 0, 0, 0.25);
   }
 
   &:disabled {
@@ -75,14 +76,14 @@
   background-color: rgba(255, 255, 255, 0.075);
   background: linear-gradient(
     to bottom right,
-    rgba(255, 255, 255, 0.175),
-    transparent,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.125),
     rgba(0, 0, 0, 0.175)
   );
   color: white;
 
   &:hover {
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   &:disabled {
