@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button2, Message, TextInput2 } from "../../../components";
 import { useForgotPasswordMutation } from "../api/forgotPwApiSlice";
 import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/errors/error-helpers";
+import { getErrorMessage } from "@utils/errors/error-helpers";
 
 export const ForgotPwForm = () => {
   const [email, setEmail] = useState<string>("");

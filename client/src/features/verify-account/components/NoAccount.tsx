@@ -1,7 +1,6 @@
 import "./VerifyComponents.css";
 
 import { useNavigate } from "react-router-dom";
-
 import { Button2 } from "../../../components";
 
 export const NoAccount = () => {

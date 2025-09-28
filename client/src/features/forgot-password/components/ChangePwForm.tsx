@@ -5,7 +5,7 @@ import { Button2, Message, TextInput2 } from "../../../components";
 import { RegisterUserApiResponse } from "../../../utils/api-response-types";
 import { useUpdateUserMutation } from "../../verify-account/api/verifyApiSlice";
 import { MessageTypes } from "../../../utils/enums";
-import { getErrorMessage } from "../../../utils/errors/error-helpers";
+import { getErrorMessage } from "@utils/errors/error-helpers";
 
 interface ChangePwFormProps {
   data: RegisterUserApiResponse;
