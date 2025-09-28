@@ -10,10 +10,10 @@ import {
 
 import { TextInputWithButton } from "@/components/ui/inputs/TextInputWithButton";
 import { BetDetails, BetInputProps } from "@/utils/types";
-import { BetSelection } from "../forms/add-bet-form/BetSelection";
+import { BetSelection } from "../forms";
 import { hasInputError } from "./InputError";
 
-interface BetbuilderInputProps extends BetInputProps {
+interface BetBuilderInputProps extends BetInputProps {
   setDetails: Dispatch<SetStateAction<BetDetails>>;
   error?: { [key: string]: string };
   handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ export const BetBuilderInput = ({
   handleBlur,
   gridColumn,
   gridRow,
-}: BetbuilderInputProps) => {
+}: BetBuilderInputProps) => {
   const [newSelection, setNewSelection] = useState("");
 
   const handleSelectionInput = (e: ChangeEvent<HTMLInputElement>) => {
