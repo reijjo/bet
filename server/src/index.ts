@@ -9,20 +9,20 @@ import { connectToDB } from "./utils/db/db";
 import { cyanBright, yellowBright } from "colorette";
 
 const { PORT } = config;
-let server: http.Server | httsp.Server;
+// let server: http.Server | httsp.Server;
 
-if (
-  Bun.env.NODE_ENV === "production" ||
-  process.env.NODE_ENV === "production"
-) {
-  const httpsOptions = {
-    key: fs.readFileSync("/etc/pki/tls/private/localhost.key"),
-    cert: fs.readFileSync("/etc/pki/tls/certs/localhost.crt"),
-  };
-  server = httsp.createServer(httpsOptions, app);
-} else {
-  server = http.createServer(app);
-}
+// if (
+//   Bun.env.NODE_ENV === "production" ||
+//   process.env.NODE_ENV === "production"
+// ) {
+//   const httpsOptions = {
+//     key: fs.readFileSync("/etc/pki/tls/private/localhost.key"),
+//     cert: fs.readFileSync("/etc/pki/tls/certs/localhost.crt"),
+//   };
+//   server = httsp.createServer(httpsOptions, app);
+// } else {
+let server = http.createServer(app);
+// }
 
 // const restartServer = () => {
 //   server.close(() => {
