@@ -17,7 +17,8 @@ const envVars = [
   "EMAIL_FROM",
   "GMAIL_APP_PASSWORD",
   "DB_TEST_NAME",
-  "DB_LOCAL_AZURE",
+  "AWS_RDS",
+  "AWS_EC2",
   "POSTGRES_DEPLOY_PASSWORD",
 ] as const;
 
@@ -47,7 +48,8 @@ const {
   EMAIL_FROM,
   GMAIL_APP_PASSWORD,
   DB_TEST_NAME,
-  DB_LOCAL_AZURE,
+  AWS_RDS,
+  AWS_EC2,
   POSTGRES_DEPLOY_PASSWORD,
 } = Bun.env;
 const DB_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL}:${DB_PORT}/${DB_NAME}`;
@@ -55,7 +57,7 @@ const DB_TEST_URL = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_LOCAL
 
 let DATABASE_URL = Bun.env.NODE_ENV === "test" ? DB_TEST_URL : DB_URL;
 if (Bun.env.NODE_ENV === "production") {
-  DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_DEPLOY_PASSWORD}@${DB_LOCAL_AZURE}:${DB_PORT}/${DB_NAME}`;
+  DATABASE_URL = `postgres://${POSTGRES_USER}:${POSTGRES_DEPLOY_PASSWORD}@${AWS_RDS}:${DB_PORT}/${DB_NAME}`;
 }
 
 export const config = {
@@ -75,8 +77,7 @@ export const config = {
   EMAIL_USER,
   EMAIL_PASS,
   FRONTEND_URL,
-  EMAIL_FROM,
-  GMAIL_APP_PASSWORD,
-  DB_LOCAL_AZURE,
+  AWS_RDS,
+  AWS_EC2,
   POSTGRES_DEPLOY_PASSWORD,
 };

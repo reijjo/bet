@@ -39,7 +39,7 @@ jobs:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.DB_TEST_NAME }}
-          DB_LOCAL_AZURE: ${{ secrets.DB_LOCAL_AZURE }}
+          DB_LOCAL_AZURE: ${{ secrets.AWS_RDS }}
         ports:
           - 5432:5432
         options: >-
@@ -77,5 +77,5 @@ jobs:
           EMAIL_PASS: ${{ secrets.POSTGRES_PASSWORD }}
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          DB_LOCAL_AZURE: ${{ secrets.DB_LOCAL_AZURE }}
+          DB_LOCAL_AZURE: ${{ secrets.AWS_RDS }}
           POSTGRES_DEPLOY_PASSWORD: ${{ secrets.POSTGRES_DEPLOY_PASSWORD }}
