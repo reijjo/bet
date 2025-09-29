@@ -45,7 +45,7 @@ export const startServer = async () => {
       console.log(yellowBright(`ENV = '${Bun.env.NODE_ENV}'`));
       console.log(
         cyanBright(
-          `Server running on port ${PORT} ${String.fromCodePoint(0x1f41f)}`
+          `Server running on port ${isDeployedPORT} ${String.fromCodePoint(0x1f41f)}`
         )
       );
     });
