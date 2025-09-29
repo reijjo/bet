@@ -45,8 +45,11 @@ export const connectToDB = async () => {
     } else {
       console.error(redBright("Unexpected error during startup: "), error);
     }
+    } else {
+      console.error(redBright("Unexpected error during startup: "), error);
+    }
 
-    process.exit(1);
+    throw error;
   }
 };
 
