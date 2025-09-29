@@ -1,4 +1,4 @@
-export { AddBetForm } from "../../features/add-bet/forms/add-bet-form/AddBetForm";
+export { AddBetDetailsForm } from "../../features/add-bet/forms/add-bet-form/AddBetDetailsForm";
 
 export { FinishBetForm } from "./finish-bet-form/FinishBetForm";
 export { BookmakerInput } from "./finish-bet-form/finish-bet-inputs/BookmakerInput";
