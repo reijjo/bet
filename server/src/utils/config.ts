@@ -20,6 +20,8 @@ const envVars = [
   "AWS_RDS",
   "AWS_EC2",
   "POSTGRES_DEPLOY_PASSWORD",
+  "EMAIL_FROM",
+  "GMAIL_APP_PASSWORD",
 ] as const;
 
 // Validates that env variables exists
@@ -80,4 +82,6 @@ export const config = {
   AWS_RDS,
   AWS_EC2,
   POSTGRES_DEPLOY_PASSWORD,
+  EMAIL_FROM,
+  GMAIL_APP_PASSWORD,
 };
