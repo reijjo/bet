@@ -8,14 +8,14 @@ beforeAll(async () => {
   await initializeDatabase();
 });
 
-afterAll(async () => {
-  console.log("Starting cleanup...");
-  console.log("environment:", process.env);
-  console.log("Node env:", process.env.NODE_ENV);
-  console.log("Bun env:", Bun.env.NODE_ENV);
+// afterAll(async () => {
+//   console.log("Starting cleanup...");
+//   console.log("environment:", process.env);
+//   console.log("Node env:", process.env.NODE_ENV);
+//   console.log("Bun env:", Bun.env.NODE_ENV);
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  await closeDBconnection();
+//   await new Promise((resolve) => setTimeout(resolve, 500));
+//   await closeDBconnection();
 
-  console.log("Cleanup completed");
-});
+//   console.log("Cleanup completed");
+// });
