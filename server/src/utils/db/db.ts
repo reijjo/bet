@@ -45,11 +45,7 @@ export const connectToDB = async () => {
     } else {
       console.error(redBright("Unexpected error during startup: "), error);
     }
-    } else {
-      console.error(redBright("Unexpected error during startup: "), error);
-    }
-
-    throw error;
+    process.exit(1);
   }
 };
 
@@ -62,6 +58,33 @@ export const closeDBconnection = async () => {
   }
 };
 
+// Use connection string approach for sessions
+// export const pgStore = new (PgSession(session))({
+//   conString: DATABASE_URL,
+//   tableName: "sessions",
+//   createTableIfMissing: true,
+// });
+// export const pgStore = new (PgSession(session))({
+//   conString: DATABASE_URL,
+//   tableName: "sessions",
+//   createTableIfMissing: true,
+//   ssl: isProduction
+//     ? {
+//         require: true,
+//         rejectUnauthorized: false,
+//       }
+//     : false,
+// });
+// const ConnectPgSimple = PgSession(session);
+
+// export const pgStore = new ConnectPgSimple({
+//   conObject: {
+//     connectionString: DATABASE_URL,
+//     ssl: isProduction ? { rejectUnauthorized: false } : false,
+//   },
+//   tableName: "sessions",
+//   createTableIfMissing: true,
+// });
 export const pgStore = new (PgSession(session))({
   conObject: {
     connectionString: DATABASE_URL,
