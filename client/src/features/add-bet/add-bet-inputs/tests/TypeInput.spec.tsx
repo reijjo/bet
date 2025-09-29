@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { initialBetValues } from "@utils/defaults/defaults";
 import { LimitedBetType } from "@/utils/enums";
-import { AddBetForm } from "../../forms/add-bet-form/AddBetForm";
+import { AddBetDetailsForm } from "../../forms/add-bet-form/AddBetDetailsForm";
 
 describe("MatchInput", () => {
   const user = userEvent.setup();
@@ -16,7 +16,7 @@ describe("MatchInput", () => {
     const initialBet = { ...initialBetValues, betDetails: [] };
 
     render(
-      <AddBetForm
+      <AddBetDetailsForm
         myBet={initialBet}
         setMyBet={mockSetMyBet}
         modifyIndex={null}
