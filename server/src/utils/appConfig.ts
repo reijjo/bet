@@ -2,7 +2,7 @@ import { config } from "../utils/config";
 import { pgStore } from "../utils/db/db";
 import { SESSION_LENGTH } from "./defaults";
 
-const { SESSION_SECRET } = config;
+const { SESSION_SECRET, AWS_EC2 } = config;
 
 export const corsOptions = {
   origin: [
@@ -10,6 +10,7 @@ export const corsOptions = {
     "http://localhost:4173",
     "https://blue-mud-099cac403.6.azurestaticapps.net",
     "https://tarpit.pages.dev",
+    AWS_EC2,
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
