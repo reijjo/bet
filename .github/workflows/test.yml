@@ -79,4 +79,5 @@ jobs:
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           AWS_RDS: ${{ secrets.AWS_RDS }}
+          AWS_EC2: ${{ secrets.AWS_EC2 }}
           POSTGRES_DEPLOY_PASSWORD: ${{ secrets.POSTGRES_DEPLOY_PASSWORD }}
