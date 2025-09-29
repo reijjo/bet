@@ -77,5 +77,5 @@ jobs:
           EMAIL_PASS: ${{ secrets.POSTGRES_PASSWORD }}
           FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          DB_LOCAL_AZURE: ${{ secrets.AWS_RDS }}
+          AWS_RDS: ${{ secrets.AWS_RDS }}
           POSTGRES_DEPLOY_PASSWORD: ${{ secrets.POSTGRES_DEPLOY_PASSWORD }}
