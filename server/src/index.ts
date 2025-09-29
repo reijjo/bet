@@ -31,16 +31,21 @@ if (
 //   });
 // };
 
+const isDeployedPORT =
+  Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production"
+    ? 80
+    : PORT;
+
 export const startServer = async () => {
   try {
     await connectToDB();
     await initializeDatabase();
 
-    server.listen(PORT, () => {
+    server.listen(isDeployedPORT, () => {
       console.log(yellowBright(`ENV = '${Bun.env.NODE_ENV}'`));
       console.log(
         cyanBright(
-          `Server running on port ${PORT} ${String.fromCodePoint(0x1f41f)}`
+          `Server running on port ${isDeployedPORT} ${String.fromCodePoint(0x1f41f)}`
         )
       );
     });
