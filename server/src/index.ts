@@ -1,6 +1,6 @@
 import * as http from "http";
-// import * as httsp from "https";
-// import * as fs from "fs";
+import * as httsp from "https";
+import * as fs from "fs";
 
 import app from "./app";
 import { initializeDatabase } from "./models";
@@ -9,20 +9,20 @@ import { connectToDB } from "./utils/db/db";
 import { cyanBright, yellowBright } from "colorette";
 
 const { PORT } = config;
-// let server: http.Server | httsp.Server;
+const isProduction =
+  Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
 
-// if (
-//   Bun.env.NODE_ENV === "production" ||
-//   process.env.NODE_ENV === "production"
-// ) {
-//   const httpsOptions = {
-//     key: fs.readFileSync("/etc/pki/tls/private/localhost.key"),
-//     cert: fs.readFileSync("/etc/pki/tls/certs/localhost.crt"),
-//   };
-//   server = httsp.createServer(httpsOptions, app);
-// } else {
-let server = http.createServer(app);
-// }
+let server: http.Server | httsp.Server;
+
+if (isProduction) {
+  const httpsOptions = {
+    key: fs.readFileSync("/etc/pki/tls/private/localhost.key"),
+    cert: fs.readFileSync("/etc/pki/tls/certs/localhost.crt"),
+  };
+  server = httsp.createServer(httpsOptions, app);
+} else {
+  server = http.createServer(app);
+}
 
 // const restartServer = () => {
 //   server.close(() => {
@@ -31,16 +31,18 @@ let server = http.createServer(app);
 //   });
 // };
 
+const appPort = isProduction ? 443 : PORT;
+
 export const startServer = async () => {
   try {
     await connectToDB();
     await initializeDatabase();
 
-    server.listen(PORT, () => {
+    server.listen(appPort, () => {
       console.log(yellowBright(`ENV = '${Bun.env.NODE_ENV}'`));
       console.log(
         cyanBright(
-          `Server running on port ${PORT} ${String.fromCodePoint(0x1f41f)}`
+          `Server running on port ${appPort} ${String.fromCodePoint(0x1f41f)}`
         )
       );
     });
