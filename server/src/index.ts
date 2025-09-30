@@ -31,18 +31,16 @@ if (isProduction) {
 //   });
 // };
 
-const appPort = isProduction ? 443 : PORT;
-
 export const startServer = async () => {
   try {
     await connectToDB();
     await initializeDatabase();
 
-    server.listen(appPort, () => {
+    server.listen(PORT, () => {
       console.log(yellowBright(`ENV = '${Bun.env.NODE_ENV}'`));
       console.log(
         cyanBright(
-          `Server running on port ${appPort} ${String.fromCodePoint(0x1f41f)}`
+          `Server running on port ${PORT} ${String.fromCodePoint(0x1f41f)}`
         )
       );
     });
