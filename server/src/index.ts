@@ -1,6 +1,4 @@
 import * as http from "http";
-import * as httsp from "https";
-import * as fs from "fs";
 
 import app from "./app";
 import { initializeDatabase } from "./models";
@@ -9,21 +7,10 @@ import { connectToDB } from "./utils/db/db";
 import { cyanBright, yellowBright } from "colorette";
 
 const { PORT } = config;
-const isProduction =
-  Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
+// const isProduction =
+//   Bun.env.NODE_ENV === "production" || process.env.NODE_ENV === "production";
 
-let server: http.Server | httsp.Server;
-
-if (isProduction) {
-  const httpsOptions = {
-    key: fs.readFileSync("/etc/pki/tls/private/localhost.key"),
-    cert: fs.readFileSync("/etc/pki/tls/certs/localhost.crt"),
-  };
-  server = httsp.createServer(httpsOptions, app);
-} else {
-  server = http.createServer(app);
-}
-
+let server = http.createServer(app);
 // const restartServer = () => {
 //   server.close(() => {
 //     server = http.createServer(app);
@@ -36,7 +23,7 @@ export const startServer = async () => {
     await connectToDB();
     await initializeDatabase();
 
-    server.listen(PORT, () => {
+    server.listen(Number(PORT), "0.0.0.0", () => {
       console.log(yellowBright(`ENV = '${Bun.env.NODE_ENV}'`));
       console.log(
         cyanBright(
