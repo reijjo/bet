@@ -10,7 +10,7 @@ export const corsOptions = {
     "http://localhost:4173",
     "https://blue-mud-099cac403.6.azurestaticapps.net",
     "https://tarpit.pages.dev",
-    AWS_EC2 as string,
+    "https://api.tarpits.uk",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
