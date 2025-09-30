@@ -10,7 +10,7 @@ import {
 } from "@/utils";
 
 import { Bet } from "@utils/types";
-import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
+import { isBetBuilderType } from "@pages/add-bet/betUtils";
 import {
   DateInput,
   FreeLiveInput,

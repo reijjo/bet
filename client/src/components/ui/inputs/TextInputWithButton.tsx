@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, SyntheticEvent } from "react";
+import { Button2 } from "../v2/button/Button2";
 
 interface TextInputWithButtonProps
   extends InputHTMLAttributes<HTMLInputElement> {
@@ -51,9 +52,9 @@ export const TextInputWithButton = ({
             backgroundColor: backgroundColor,
           }}
         />
-        <button className="btn btn-special" onClick={onClick}>
+        <Button2 className="btn2-outline" onClick={onClick}>
           {buttonText}
-        </button>
+        </Button2>
       </div>
     </div>
   );
