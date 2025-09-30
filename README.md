@@ -11,7 +11,7 @@ Place where you can track your bets
 Try it live <a href='https://tarpit.pages.dev/'>here</a>
 - Frontend is deployed with `Cloudfare pages`
 - Database is deployed in `AWS RDS`
-- Backend is deployed with `Render`
+- Backend is deployed with `AWC EC2`
 
 ### Locally
 Install `Docker` and `Bun`
