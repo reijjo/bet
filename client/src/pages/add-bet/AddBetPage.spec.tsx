@@ -3,13 +3,13 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { useAddBetForm } from "../../hooks/useAddBetForm";
+import { useAddBetForm } from "@features/add-bet/hooks/useAddBetForm";
 import { store } from "../../store/store";
 import { mockBet } from "../../tests/mocks/betMock";
 import { mockUseAddBetForm } from "../../tests/mocks/hooks/useAddBetFormMock";
 import AddBetPage from "./AddBetPage";
 
-vi.mock("../../hooks/useAddBetForm", () => ({
+vi.mock("@features/add-bet/hooks/useAddBetForm", () => ({
   useAddBetForm: vi.fn(() => mockUseAddBetForm),
 }));
 

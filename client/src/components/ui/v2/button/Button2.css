@@ -5,7 +5,7 @@
   border-radius: 2rem;
   cursor: pointer;
   font-family: "Montserrat", serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.875rem;
   text-transform: capitalize;
   /* letter-spacing: 0.5px; */
@@ -65,6 +65,7 @@
 
 .btn2-secondary {
   border: 1px solid var(--accent-300);
+  background: transparent;
 
   &:hover {
     box-shadow: 0 1rem 2rem rgba(254, 237, 70, 0.175);

@@ -1,7 +1,7 @@
 import "./AddBetPage.css";
 
-import { useAddBetForm } from "@hooks/useAddBetForm";
-import { AddBetDetailsForm } from "@/features/add-bet/forms/add-bet-form/AddBetDetailsForm";
+import { useAddBetForm } from "@/features/add-bet/hooks/useAddBetForm";
+import { AddBetDetailsForm } from "@/features/add-bet/components/forms/add-bet-form/AddBetDetailsForm";
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
 
 const AddBetPage = () => {

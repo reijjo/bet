@@ -5,10 +5,10 @@ import { Navigate, useLocation } from "react-router-dom";
 import {
   useGetSessionUserQuery,
   useLogoutMutation,
-} from "../features/api/authApi";
-import { loginUser, logoutUser } from "../features/slices/authSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { RootState } from "../store/store";
+} from "@features/api/authApi";
+import { loginUser, logoutUser } from "@features/slices/authSlice";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { RootState } from "@store/store";
 import { getErrorStatus } from "@utils/errors/error-helpers";
 import { Loading } from "./shared/fallback/loading/Loading";
 import { AppLayout } from "./shared/index";

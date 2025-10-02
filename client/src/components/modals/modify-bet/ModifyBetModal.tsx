@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useGetBetByIdQuery } from "../../../features/api/betsApiSlice";
-import { resetModal } from "../../../features/modalSlice";
-import { useAddBetForm } from "../../../hooks/useAddBetForm";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { initialBetValues } from "../../../utils/defaults/defaults";
-import { Bet } from "../../../utils/types";
-import { Error } from "../../common/fallback/Error";
-import { Loading } from "../../shared/fallback/loading/Loading";
+import { useGetBetByIdQuery } from "@features/api/betsApiSlice";
+import { resetModal } from "@features/modalSlice";
+import { useAddBetForm } from "@features/add-bet/hooks/useAddBetForm";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { Bet } from "@utils/types";
+import { Error } from "@components/common/fallback/Error";
+import { Loading } from "@components/shared/fallback/loading/Loading";
 import { ModifyBetDetailsForm } from "./ModifyBetDetailsForm";
 import { ModifyBetSlip } from "./modify-betslip/ModifyBetSlip";
 
