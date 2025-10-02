@@ -5,12 +5,6 @@ export {
 } from "./defaults/defaults";
 export { inputErrors } from "./defaults/errors";
 
-export {
-  getErrorMessage,
-  getErrorStatus,
-  errorTypeMessage,
-} from "./errors/error-helpers";
-
 export { parseServerErrorToFieldErrors } from "./input-validators/feedbackErrorParsers";
 export { validateAllFeedbackFields } from "./input-validators/feedbackValidators";
 export {

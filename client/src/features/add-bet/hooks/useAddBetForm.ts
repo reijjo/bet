@@ -1,18 +1,18 @@
 import { ChangeEvent, useState } from "react";
 
-import { getInputValue } from "../pages/add-bet/betUtils";
+import { getInputValue } from "@/pages/add-bet/betUtils";
 import {
   initialBetDetailValues,
   initialBetValues,
-} from "../utils/defaults/defaults";
-import { scrollToTop } from "../utils/helperFunctions";
-import { validateBetDetailsInputs } from "../utils/input-validators/inputValidators";
-import { Bet, BetDetails } from "../utils/types";
+} from "@/utils/defaults/defaults";
+import { scrollToTop } from "@/utils/helperFunctions";
+import { validateBetDetailsInputs } from "@/utils/input-validators/inputValidators";
+import { Bet, BetDetails } from "@utils/types";
 
 export const useAddBetForm = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);
   const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
-    initialBetDetailValues,
+    initialBetDetailValues
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [modifyIndex, setModifyIndex] = useState<number | null>(null);
@@ -29,7 +29,7 @@ export const useAddBetForm = () => {
 
   // Handles all types of bet inputs
   const handleBetInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
     const inputValue = getInputValue(type, checked, value);

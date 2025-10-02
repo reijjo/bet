@@ -13,7 +13,7 @@ import {
   useEditDetailsMutation,
   useGetDetailByIdQuery,
 } from "../../../features/api/detailsApiSlice";
-import { useAddBetForm } from "../../../hooks/useAddBetForm";
+import { useAddBetForm } from "@/features/add-bet/hooks/useAddBetForm";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import {
   BetBuilderInput,
@@ -23,7 +23,7 @@ import {
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "@features/add-bet/add-bet-inputs";
+} from "@/features/add-bet/components/add-bet-inputs";
 import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
 import { validateBetDetailsInputs } from "../../../utils/input-validators/inputValidators";
 import { Bet } from "../../../utils/types";

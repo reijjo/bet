@@ -1,8 +1,8 @@
-import "./AddBetForm.css";
+import "./AddBetDetailsForm.css";
 
 import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
-import { useAddBetForm } from "@hooks/useAddBetForm";
+import { useAddBetForm } from "@features/add-bet/hooks/useAddBetForm";
 import {
   initialBetDetailValues,
   scrollDown,
@@ -10,7 +10,7 @@ import {
 } from "@/utils";
 
 import { Bet } from "@utils/types";
-import { isBetBuilderType } from "@pages/add-bet/betUtils";
+import { isBetBuilderType } from "@/pages/add-bet/betUtils";
 import {
   DateInput,
   FreeLiveInput,
@@ -95,8 +95,6 @@ export const AddBetDetailsForm = ({
 
     scrollDown();
   };
-
-  // TODO: Add different input field for tulosveto and moniveto
 
   return (
     <div className="addbet-container">

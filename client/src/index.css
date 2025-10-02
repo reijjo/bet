@@ -259,4 +259,12 @@ a {
   --shadow-l-primary: 0px 4px 64px rgba(62, 59, 240, 0.5);
 
   --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 8px 36px rgba(0, 0, 0, 0.2);
+
+  /* Background */
+  --semi-transparent: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.125),
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.125)
+  );
 }
