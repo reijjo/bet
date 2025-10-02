@@ -180,3 +180,4 @@ dist
 
 # Other
 .prettierrc
+*.sh
