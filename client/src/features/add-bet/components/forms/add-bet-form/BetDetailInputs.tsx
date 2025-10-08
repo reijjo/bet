@@ -11,7 +11,7 @@ import {
 import { BetDetails } from "@/utils";
 import { Dispatch, SetStateAction, ChangeEvent, FocusEvent } from "react";
 
-type BetDetailInputs = {
+type BetDetailInputProps = {
   handleBetInput: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -39,7 +39,7 @@ export const BetDetailInputs = ({
   handleBlur,
   handleDetailsSelect,
   setAddBetDetails,
-}: BetDetailInputs) => {
+}: BetDetailInputProps) => {
   return (
     <>
       <MatchInput
