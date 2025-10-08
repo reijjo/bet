@@ -1,12 +1,12 @@
 import { BetStatus, BetType, Bookmaker, SportLeague } from "../enums";
+import { BetDetails } from "../types";
 
-export const initialBetDetailValues = {
+export const initialBetDetailValues: BetDetails = {
   home_team: "",
   away_team: "",
   selection: "",
   odds: "",
   date: new Date(),
-  notes: "",
   freebet: false,
   livebet: false,
   home_result: "",

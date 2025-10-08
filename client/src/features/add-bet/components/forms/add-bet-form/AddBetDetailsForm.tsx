@@ -10,17 +10,9 @@ import {
 } from "@/utils";
 
 import { Bet } from "@utils/types";
-import { isBetBuilderType } from "@/pages/add-bet/betUtils";
-import {
-  DateInput,
-  FreeLiveInput,
-  MatchInput,
-  OddsInput,
-  SelectionInput,
-  TypeInput,
-  BetBuilderInput,
-} from "../../add-bet-inputs";
+
 import { Button2 } from "@/components";
+import { BetDetailInputs } from "./BetDetailInputs";
 
 type AddBetDetailsFormProps = {
   myBet: Bet;
@@ -104,58 +96,16 @@ export const AddBetDetailsForm = ({
         data-testid="addbet-form"
         onSubmit={handleMyBet}
       >
-        <MatchInput
+        <BetDetailInputs
           handleBetInput={handleBetInput}
-          details={addBetDetails}
+          addBetDetails={addBetDetails}
           disabled={disabled}
-          error={errors}
+          setErrors={setErrors}
+          errors={errors}
           handleFocus={handleFocus}
           handleBlur={handleBlur}
-        />
-        <TypeInput
-          handleSelectChange={handleDetailsSelect}
-          details={addBetDetails}
-          disabled={disabled}
-        />
-        <FreeLiveInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          disabled={disabled}
-        />
-        {isBetBuilderType(addBetDetails.bet_type) ? (
-          <BetBuilderInput
-            handleBetInput={handleBetInput}
-            details={addBetDetails}
-            setDetails={setAddBetDetails}
-            disabled={disabled}
-            error={errors}
-            handleFocus={handleFocus}
-            handleBlur={handleBlur}
-          />
-        ) : (
-          <SelectionInput
-            handleBetInput={handleBetInput}
-            details={addBetDetails}
-            setDetails={setAddBetDetails}
-            disabled={disabled}
-            error={errors}
-            handleFocus={handleFocus}
-            handleBlur={handleBlur}
-          />
-        )}
-        <OddsInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          disabled={disabled}
-          error={errors}
-          setError={setErrors}
-          // handleFocus={handleFocus}
-          // handleBlur={handleBlur}
-        />
-        <DateInput
-          handleBetInput={handleBetInput}
-          details={addBetDetails}
-          disabled={disabled}
+          handleDetailsSelect={handleDetailsSelect}
+          setAddBetDetails={setAddBetDetails}
         />
         <div className="add-bet-buttons">
           <Button2 type="submit" className="btn2-cta" disabled={disabled}>
