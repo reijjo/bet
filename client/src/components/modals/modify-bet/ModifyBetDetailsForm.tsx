@@ -30,14 +30,14 @@ import { Bet } from "../../../utils/types";
 
 type ModifyBetFormProps = {
   setMyBet: Dispatch<SetStateAction<Bet>>;
-  modifyIndex: number | null;
-  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
+  modifyId: number | null;
+  setModifyId: Dispatch<React.SetStateAction<number | null>>;
   disabled: boolean;
 };
 
 export const ModifyBetDetailsForm = ({
-  modifyIndex,
-  setModifyIndex,
+  modifyId,
+  setModifyId,
   disabled,
 }: ModifyBetFormProps) => {
   const {
@@ -53,8 +53,8 @@ export const ModifyBetDetailsForm = ({
     isLoading,
     isError,
     error,
-  } = useGetDetailByIdQuery(modifyIndex as number, {
-    skip: modifyIndex === null,
+  } = useGetDetailByIdQuery(modifyId as number, {
+    skip: modifyId === null,
   });
   const [
     updateDetails,
@@ -64,15 +64,15 @@ export const ModifyBetDetailsForm = ({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    if (modifyIndex !== null && detailData) {
+    if (modifyId !== null && detailData) {
       setAddBetDetails(detailData);
     }
-  }, [modifyIndex, detailData, setAddBetDetails]);
+  }, [modifyId, detailData, setAddBetDetails]);
 
   const { isTablet, isMobile } = useScreenWidth();
 
   const handleCancel = () => {
-    setModifyIndex(null);
+    setModifyId(null);
   };
 
   // Updates the bet details
@@ -87,7 +87,7 @@ export const ModifyBetDetailsForm = ({
       return;
     }
 
-    if (modifyIndex !== null) {
+    if (modifyId !== null) {
       try {
         const updated = await updateDetails(addBetDetails).unwrap();
         setErrors({});
