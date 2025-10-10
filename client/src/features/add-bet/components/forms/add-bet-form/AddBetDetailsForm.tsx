@@ -3,11 +3,7 @@ import "./AddBetDetailsForm.css";
 import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
 import { useAddBetForm } from "@features/add-bet/hooks/useAddBetForm";
-import {
-  initialBetDetailValues,
-  scrollDown,
-  validateBetDetailsInputs,
-} from "@/utils";
+import { initialBetDetailValues, validateBetDetailsInputs } from "@/utils";
 
 import { Bet } from "@utils/types";
 
@@ -17,16 +13,16 @@ import { BetDetailInputs } from "./BetDetailInputs";
 type AddBetDetailsFormProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
-  modifyIndex: number | null;
-  setModifyIndex: Dispatch<SetStateAction<number | null>>;
+  modifyId: number | null;
+  setModifyId: Dispatch<SetStateAction<number | null>>;
   disabled: boolean;
 };
 
 export const AddBetDetailsForm = ({
   myBet,
   setMyBet,
-  modifyIndex,
-  setModifyIndex,
+  modifyId,
+  setModifyId,
   disabled,
 }: AddBetDetailsFormProps) => {
   const {
@@ -42,11 +38,13 @@ export const AddBetDetailsForm = ({
 
   // Checks what bet to modify
   useEffect(() => {
-    if (modifyIndex !== null) {
-      setAddBetDetails(myBet.betDetails[modifyIndex]);
+    if (modifyId !== null) {
+      const betToModify = myBet.betDetails.find((bet) => bet.id === modifyId);
+      if (betToModify) setAddBetDetails(betToModify);
     }
-  }, [setAddBetDetails, modifyIndex, myBet.betDetails]);
+  }, [setAddBetDetails, modifyId, myBet.betDetails]);
 
+  // Adds/modifies bet
   const handleMyBet = (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -58,24 +56,24 @@ export const AddBetDetailsForm = ({
       return;
     }
 
-    if (modifyIndex !== null) {
-      // Modify existing bet
-      setMyBet((prev) => {
-        const updatedBetDetails = [...prev.betDetails];
-        updatedBetDetails[modifyIndex] = addBetDetails;
-        return { ...prev, betDetails: updatedBetDetails };
-      });
-      setModifyIndex(null);
-    } else {
-      setMyBet((prev) => ({
-        ...prev,
-        betDetails: [...prev.betDetails, addBetDetails],
-      }));
-    }
+    const detailsToSave = {
+      ...addBetDetails,
+      id: addBetDetails.id || Date.now(),
+    };
+
+    setMyBet((prev) => ({
+      ...prev,
+      betDetails:
+        modifyId !== null
+          ? prev.betDetails.map((bet) =>
+              bet.id === modifyId ? detailsToSave : bet
+            )
+          : [...prev.betDetails, detailsToSave],
+    }));
 
     setErrors({});
     setAddBetDetails(initialBetDetailValues);
-    scrollDown();
+    setModifyId(null);
   };
 
   const handleCancel = () => {
@@ -83,13 +81,13 @@ export const AddBetDetailsForm = ({
       myBet.betDetails.pop();
     }
     setAddBetDetails(initialBetDetailValues);
-    setModifyIndex(null);
-
-    scrollDown();
+    setModifyId(null);
   };
 
+  console.log("modifyId", modifyId);
+
   return (
-    <div className="addbet-container">
+    <div className={`addbet-container ${disabled ? "hidden" : ""}`}>
       <h3 className="container-header">Add Bet</h3>
       <form
         className="addbet-form"

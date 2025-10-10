@@ -5,25 +5,28 @@ import { AddBetDetailsForm } from "@/features/add-bet/components/forms/add-bet-f
 import { AddStakeForm } from "./add-stake-form/AddStakeForm";
 
 const AddBetPage = () => {
-  const { modifyIndex, setModifyIndex, handleModifyBet, myBet, setMyBet } =
+  const { modifyId, setModifyId, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();
+
+  console.log("mybetdetails length", myBet.betDetails.length);
+  console.log("modifyID", modifyId);
 
   return (
     <div className="wrapper grid-row-2 addbet-page">
       <AddBetDetailsForm
         myBet={myBet}
         setMyBet={setMyBet}
-        modifyIndex={modifyIndex}
-        setModifyIndex={setModifyIndex}
-        disabled={myBet.betDetails.length > 0 && modifyIndex === null}
+        modifyId={modifyId}
+        setModifyId={setModifyId}
+        disabled={myBet.betDetails.length > 0 && modifyId === null}
       />
       {myBet.betDetails.length > 0 && (
         <AddStakeForm
           myBet={myBet}
           setMyBet={setMyBet}
           handleModifyBet={handleModifyBet}
-          modifyIndex={modifyIndex}
-          setModifyIndex={setModifyIndex}
+          modifyId={modifyId}
+          setModifyId={setModifyId}
         />
       )}
     </div>

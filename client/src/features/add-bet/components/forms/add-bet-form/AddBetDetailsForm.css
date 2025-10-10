@@ -8,11 +8,22 @@
   box-shadow: var(--box-shadow);
   padding: 8px 16px 16px;
   backdrop-filter: blur(8px);
-  background: var(--primary-700);
+  background: color-mix(in srgb, var(--primary-700) 75%, transparent);
 
   display: grid;
   grid-template-rows: max-content 1fr;
   gap: 8px;
+
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+}
+
+.addbet-container.hidden {
+  transform: translateX(-100vw);
+  pointer-events: none;
+  opacity: 0;
 }
 
 .addbet-form {

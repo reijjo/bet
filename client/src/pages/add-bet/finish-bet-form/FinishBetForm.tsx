@@ -25,15 +25,15 @@ import { getFinalBetType } from "../betUtils";
 type FinishBetFormProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
-  modifyIndex: number | null;
-  setModifyIndex: Dispatch<React.SetStateAction<number | null>>;
+  modifyId: number | null;
+  setModifyId: Dispatch<React.SetStateAction<number | null>>;
 };
 
 export const FinishBetForm = ({
   myBet,
   setMyBet,
-  modifyIndex,
-  setModifyIndex,
+  modifyId,
+  setModifyId,
 }: FinishBetFormProps) => {
   const [addStake, setAddStake] = useState(false);
   const [addNewBet, { isLoading }] = useAddNewBetMutation();
@@ -51,7 +51,7 @@ export const FinishBetForm = ({
 
   // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
   const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
     setMyBet((prev) => ({
@@ -83,8 +83,6 @@ export const FinishBetForm = ({
     });
   };
 
-  console.log("user", user);
-
   // Adds new bet to the list of bets
   const addBet = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -96,6 +94,7 @@ export const FinishBetForm = ({
       bet_final_type: finalType,
       bet_final_odds: finalOdds(myBet.betDetails),
       user_id: user?.id,
+      id: undefined,
     };
 
     try {
@@ -116,30 +115,30 @@ export const FinishBetForm = ({
       <SportInput
         onChange={handleSelectChange}
         value={myBet.sport}
-        disabled={addStake || modifyIndex !== null || isLoading}
+        disabled={addStake || modifyId !== null || isLoading}
       />
       <BookmakerInput
         onChange={handleSelectChange}
         value={myBet.bookmaker ?? Bookmaker.Unibet}
-        disabled={addStake || modifyIndex !== null || isLoading}
+        disabled={addStake || modifyId !== null || isLoading}
       />
       <TipperInput
         onChange={handleTextInput}
         value={myBet.tipper ?? user?.username}
-        disabled={addStake || modifyIndex !== null || isLoading}
+        disabled={addStake || modifyId !== null || isLoading}
       />
       <NotesInput
         onChange={handleTextInput}
         value={myBet.notes ?? ""}
-        disabled={addStake || modifyIndex !== null || isLoading}
+        disabled={addStake || modifyId !== null || isLoading}
       />
       <FinishBetButtons
         myBet={myBet}
         setMyBet={setMyBet}
         addStake={addStake}
         setAddStake={setAddStake}
-        modifyIndex={modifyIndex}
-        setModifyIndex={setModifyIndex}
+        modifyId={modifyId}
+        setModifyId={setModifyId}
         isLoading={isLoading}
       />
     </form>

@@ -12,7 +12,6 @@ type BetToStakeProps = {
 };
 
 export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
-
   return (
     <>
       <div className="finish-mybet-slip-headers">
@@ -25,8 +24,8 @@ export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
       </div>
       {myBet.betDetails
         .filter((bet) => bet.odds !== "")
-        .map((bet, index) => (
-          <div key={index} className="finish-mybet-slip">
+        .map((bet) => (
+          <div key={bet.id} className="finish-mybet-slip">
             <div className="mybet-slip-match">
               <p className="mybet-slip-hometeam">{bet.home_team}</p>
               <p className="mybet-slip-awayteam">{bet.away_team}</p>
@@ -44,7 +43,10 @@ export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
             </div>
             <div className="mybet-slip-odds">{Number(bet.odds).toFixed(2)}</div>
             <div className="mybet-slip-more">
-              <a className="mybet-edit" onClick={() => handleModifyBet(index)}>
+              <a
+                className="mybet-edit"
+                onClick={() => handleModifyBet(bet.id as number)}
+              >
                 <FontAwesomeIcon icon={faPenToSquare} />
               </a>
             </div>
