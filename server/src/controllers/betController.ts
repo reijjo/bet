@@ -108,6 +108,7 @@ export const createBet = async (
       .status(201)
       .json({ data: newBet, message: "Bet created." } as CreateBetApiResponse);
   } catch (error: unknown) {
+    console.log("error", error);
     // If an error occurs, the transaction is rolled back
     await transaction.rollback();
     next(error);

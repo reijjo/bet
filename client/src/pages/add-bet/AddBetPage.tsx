@@ -20,15 +20,13 @@ const AddBetPage = () => {
         setModifyId={setModifyId}
         disabled={myBet.betDetails.length > 0 && modifyId === null}
       />
-      {myBet.betDetails.length > 0 && (
-        <AddStakeForm
-          myBet={myBet}
-          setMyBet={setMyBet}
-          handleModifyBet={handleModifyBet}
-          modifyId={modifyId}
-          setModifyId={setModifyId}
-        />
-      )}
+      <AddStakeForm
+        myBet={myBet}
+        setMyBet={setMyBet}
+        handleModifyBet={handleModifyBet}
+        modifyId={modifyId}
+        setModifyId={setModifyId}
+      />
     </div>
   );
 };

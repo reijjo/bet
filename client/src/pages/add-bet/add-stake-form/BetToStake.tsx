@@ -43,12 +43,13 @@ export const BetToStake = ({ myBet, handleModifyBet }: BetToStakeProps) => {
             </div>
             <div className="mybet-slip-odds">{Number(bet.odds).toFixed(2)}</div>
             <div className="mybet-slip-more">
-              <a
+              <button
+                type="button"
                 className="mybet-edit"
                 onClick={() => handleModifyBet(bet.id as number)}
               >
                 <FontAwesomeIcon icon={faPenToSquare} />
-              </a>
+              </button>
             </div>
           </div>
         ))}

@@ -24,7 +24,8 @@ describe("AddBetPage", () => {
     vi.mocked(useAddBetForm).mockReturnValue({
       ...mockUseAddBetForm,
       myBet: mockBet,
-      modifyIndex: 0,
+      modifyId: 0,
+      setModifyId: vi.fn(),
     });
     render(
       <Provider store={store}>

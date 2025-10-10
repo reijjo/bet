@@ -88,13 +88,19 @@ export const FinishBetForm = ({
     e.preventDefault();
 
     const finalType = getFinalBetType(myBet.betDetails);
-    // TODO: ID comes from the backend and userId from logged user
+
+    const cleanedBetDetails = myBet.betDetails.map((detail) => {
+      const { id, ...cleanDetail } = detail;
+      void id; // Ignore the id
+      return cleanDetail;
+    });
+
     const betToSave = {
       ...myBet,
+      betDetails: cleanedBetDetails,
       bet_final_type: finalType,
       bet_final_odds: finalOdds(myBet.betDetails),
       user_id: user?.id,
-      id: undefined,
     };
 
     try {

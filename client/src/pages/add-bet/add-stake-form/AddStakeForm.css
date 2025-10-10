@@ -14,16 +14,17 @@
   grid-template-rows: max-content 1fr;
   gap: 8px;
 
-  transform: translateX(0);
-  opacity: 1;
+  transform: translateX(100vw);
+  opacity: 0;
   transition: all 0.5s ease-in-out;
   position: absolute;
+  pointer-events: none;
 }
 
-.addstake-container.hidden {
-  transform: translateX(100vw);
-  pointer-events: none;
-  opacity: 0.75;
+.addstake-container.visible {
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
 }
 
 #finish-my-bet {

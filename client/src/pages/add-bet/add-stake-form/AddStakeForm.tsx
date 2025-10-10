@@ -32,9 +32,12 @@ export const AddStakeForm = ({
 
   console.log("MY BET", myBet);
 
+  const visibleClass =
+    modifyId === null && myBet.betDetails.length > 0 ? "visible" : "";
+
   return (
     <div
-      className={`addstake-container ${modifyId !== null ? "hidden" : ""}`}
+      className={`addstake-container ${visibleClass}`}
       id="finish-my-bet"
       data-testid="add-stake"
     >

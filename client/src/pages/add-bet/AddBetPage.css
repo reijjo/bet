@@ -1,7 +1,7 @@
 .addbet-page {
   background: radial-gradient(var(--primary-500), transparent);
   display: flex;
-  /* overflow: hidden; */
+  overflow: hidden;
   width: 100%;
   position: relative;
   justify-content: center;
