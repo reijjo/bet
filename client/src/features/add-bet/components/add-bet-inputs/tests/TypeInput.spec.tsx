@@ -19,8 +19,8 @@ describe("MatchInput", () => {
       <AddBetDetailsForm
         myBet={initialBet}
         setMyBet={mockSetMyBet}
-        modifyIndex={null}
-        setModifyIndex={mockFn}
+        modifyId={null}
+        setModifyId={mockFn}
         disabled={false}
       />
     );

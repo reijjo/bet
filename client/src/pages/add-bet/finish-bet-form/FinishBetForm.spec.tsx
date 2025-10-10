@@ -21,16 +21,16 @@ describe("FinishBetForm", () => {
           <FinishBetForm
             myBet={initialBetValues}
             setMyBet={mockSetMyBet}
-            modifyIndex={null}
-            setModifyIndex={mockSetModifyIndex}
+            modifyId={null}
+            setModifyId={mockSetModifyIndex}
           />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     const sportInput = screen.getByLabelText(/sport/i) as HTMLSelectElement;
     const options = Array.from(sportInput.querySelectorAll("option")).map(
-      (option) => option.value,
+      (option) => option.value
     );
     const expectedValues = Object.values(SportLeague);
 
@@ -40,10 +40,10 @@ describe("FinishBetForm", () => {
 
     expect(
       (screen.getByRole("option", { name: "NBA" }) as HTMLOptionElement)
-        .selected,
+        .selected
     ).toBe(true);
     expect((screen.getByText(/nhl/i) as HTMLOptionElement).selected).toBe(
-      false,
+      false
     );
 
     // console.log("Before", sportInput.value);

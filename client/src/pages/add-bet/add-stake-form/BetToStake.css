@@ -22,7 +22,12 @@
 }
 
 .finish-mybet-slip {
-	@media screen and (max-width: 581px) {
-		font-size: var(--font-smaller);
-	}
+  @media screen and (max-width: 581px) {
+    font-size: var(--font-smaller);
+  }
+}
+
+.mybet-edit {
+  all: unset;
+  cursor: pointer;
 }

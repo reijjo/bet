@@ -14,25 +14,28 @@ type MyBetsProps = {
   myBet: Bet;
   setMyBet: Dispatch<SetStateAction<Bet>>;
   handleModifyBet: (index: number) => void;
-  modifyIndex: number | null;
-  setModifyIndex: Dispatch<SetStateAction<number | null>>;
+  modifyId: number | null;
+  setModifyId: Dispatch<SetStateAction<number | null>>;
 };
 
 export const AddStakeForm = ({
   myBet,
   setMyBet,
-  modifyIndex,
-  setModifyIndex,
+  modifyId,
+  setModifyId,
   handleModifyBet,
 }: MyBetsProps) => {
   const cancelBet = () => {
-    setModifyIndex(null);
+    setModifyId(null);
     setMyBet(initialBetValues);
   };
 
+  const visibleClass =
+    modifyId === null && myBet.betDetails.length > 0 ? "visible" : "";
+
   return (
     <div
-      className="addbet-container"
+      className={`addstake-container ${visibleClass}`}
       id="finish-my-bet"
       data-testid="add-stake"
     >
@@ -40,7 +43,7 @@ export const AddStakeForm = ({
         <h3 className="container-header">Add Stake</h3>
         <button
           className="mybets-close"
-          disabled={modifyIndex !== null}
+          disabled={modifyId !== null}
           data-testid="mybets-close"
         >
           <a onClick={cancelBet} title="Close">
@@ -53,8 +56,8 @@ export const AddStakeForm = ({
         <FinishBetForm
           myBet={myBet}
           setMyBet={setMyBet}
-          modifyIndex={modifyIndex}
-          setModifyIndex={setModifyIndex}
+          modifyId={modifyId}
+          setModifyId={setModifyId}
         />
       </div>
     </div>

@@ -15,16 +15,22 @@ vi.mock("@features/add-bet/hooks/useAddBetForm", () => ({
 
 describe("AddBetPage", () => {
   it("renders AddBetForm by default", async () => {
-    render(<AddBetPage />);
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <AddBetPage />
+        </MemoryRouter>
+      </Provider>
+    );
     expect(screen.getByTestId("addbet-form")).toBeInTheDocument();
-    expect(screen.queryByTestId("addstake")).not.toBeInTheDocument();
+    expect(screen.getByTestId("add-stake")).toBeInTheDocument();
   });
 
   it("renders AddStakeForm component", () => {
     vi.mocked(useAddBetForm).mockReturnValue({
       ...mockUseAddBetForm,
       myBet: mockBet,
-      modifyIndex: 0,
+      modifyId: 0,
     });
     render(
       <Provider store={store}>

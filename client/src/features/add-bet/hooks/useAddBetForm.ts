@@ -15,7 +15,7 @@ export const useAddBetForm = () => {
     initialBetDetailValues
   );
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [modifyIndex, setModifyIndex] = useState<number | null>(null);
+  const [modifyId, setModifyId] = useState<number | null>(null);
 
   const clearTeamErrors = () => {
     setErrors((prev) => {
@@ -86,8 +86,8 @@ export const useAddBetForm = () => {
     });
   };
 
-  const handleModifyBet = (index: number) => {
-    setModifyIndex(index);
+  const handleModifyBet = (id: number) => {
+    setModifyId(id);
     scrollToTop();
   };
 
@@ -134,8 +134,8 @@ export const useAddBetForm = () => {
     setErrors,
     handleBetInput,
     handleDetailsSelect,
-    modifyIndex,
-    setModifyIndex,
+    modifyId,
+    setModifyId,
     handleModifyBet,
     myBet,
     setMyBet,

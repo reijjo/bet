@@ -1,3 +1,32 @@
+.addstake-container {
+  width: min(100%, 850px);
+  height: max-content;
+
+  margin: 24px auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+  padding: 8px 16px 16px;
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--primary-700) 75%, transparent);
+
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  gap: 8px;
+
+  transform: translateX(100vw);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  pointer-events: none;
+}
+
+.addstake-container.visible {
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
+}
+
 #finish-my-bet {
   margin-bottom: 2rem;
 }

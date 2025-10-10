@@ -22,11 +22,11 @@ describe("AddStakeForm", () => {
             myBet={initialBetValues}
             setMyBet={mockSetMyBet}
             handleModifyBet={mockfn}
-            modifyIndex={null}
-            setModifyIndex={mockSetIndex}
+            modifyId={null}
+            setModifyId={mockSetIndex}
           />
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     );
 
     const closeBtn = screen.getByTestId("mybets-close");
