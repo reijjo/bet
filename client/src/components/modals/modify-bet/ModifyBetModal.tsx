@@ -20,7 +20,7 @@ export const ModifyBetModal = () => {
   const [myBet, setMyBet] = useState<Bet>(initialBetValues);
 
   const { id } = useAppSelector((state) => state.modal.isModifyBetModalOpen);
-  const { modifyIndex, setModifyIndex, handleModifyBet } = useAddBetForm();
+  const { modifyId, setModifyId, handleModifyBet } = useAddBetForm();
   const {
     data: fetchedBet,
     isLoading,
@@ -61,15 +61,15 @@ export const ModifyBetModal = () => {
           </a>
         </div>
       </div>
-      {modifyIndex !== null && (
+      {modifyId !== null && (
         <ModifyBetDetailsForm
           setMyBet={setMyBet}
-          modifyIndex={modifyIndex}
-          setModifyIndex={setModifyIndex}
-          disabled={myBet.betDetails.length > 0 && modifyIndex === null}
+          modifyId={modifyId}
+          setModifyId={setModifyId}
+          disabled={myBet.betDetails.length > 0 && modifyId === null}
         />
       )}
-      {myBet.betDetails.length > 0 && modifyIndex === null && (
+      {myBet.betDetails.length > 0 && modifyId === null && (
         <ModifyBetSlip
           myBet={myBet}
           setMyBet={setMyBet}

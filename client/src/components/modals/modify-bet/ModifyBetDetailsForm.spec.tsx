@@ -77,9 +77,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -92,9 +92,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -119,9 +119,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -146,9 +146,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -172,9 +172,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -200,9 +200,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -230,9 +230,9 @@ describe("ModifyBetDetailsForm", () => {
     render(
       <Provider store={testStore}>
         <ModifyBetDetailsForm
-          modifyIndex={mockBet.id as number}
+          modifyId={mockBet.id as number}
           setMyBet={mockSetMyBet}
-          setModifyIndex={mockSetModifyIndex}
+          setModifyId={mockSetModifyIndex}
           disabled={mockDisabled}
         />
       </Provider>
@@ -253,9 +253,9 @@ describe("ModifyBetDetailsForm", () => {
       <Provider store={testStore}>
         <MemoryRouter>
           <ModifyBetDetailsForm
-            modifyIndex={mockBet.id as number}
+            modifyId={mockBet.id as number}
             setMyBet={mockSetMyBet}
-            setModifyIndex={mockSetModifyIndex}
+            setModifyId={mockSetModifyIndex}
             disabled={mockDisabled}
           />
         </MemoryRouter>
