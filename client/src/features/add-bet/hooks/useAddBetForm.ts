@@ -86,8 +86,8 @@ export const useAddBetForm = () => {
     });
   };
 
-  const handleModifyBet = (index: number) => {
-    setModifyId(index);
+  const handleModifyBet = (id: number) => {
+    setModifyId(id);
     scrollToTop();
   };
 
