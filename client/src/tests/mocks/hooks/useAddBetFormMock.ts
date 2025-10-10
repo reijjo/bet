@@ -3,8 +3,8 @@ import { vi } from "vitest";
 import { mockBetDetail } from "../betDetailMock";
 
 export const mockUseAddBetForm = {
-  modifyIndex: null,
-  setModifyIndex: vi.fn(),
+  modifyId: null,
+  setModifyId: vi.fn(),
   handleModifyBet: vi.fn(),
   myBet: {
     betDetails: [],

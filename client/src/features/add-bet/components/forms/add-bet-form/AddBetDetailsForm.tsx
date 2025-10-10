@@ -84,8 +84,6 @@ export const AddBetDetailsForm = ({
     setModifyId(null);
   };
 
-  console.log("modifyId", modifyId);
-
   return (
     <div className={`addbet-container ${disabled ? "hidden" : ""}`}>
       <h3 className="container-header">Add Bet</h3>

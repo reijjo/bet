@@ -30,8 +30,6 @@ export const AddStakeForm = ({
     setMyBet(initialBetValues);
   };
 
-  console.log("MY BET", myBet);
-
   const visibleClass =
     modifyId === null && myBet.betDetails.length > 0 ? "visible" : "";
 

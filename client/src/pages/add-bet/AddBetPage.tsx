@@ -8,9 +8,6 @@ const AddBetPage = () => {
   const { modifyId, setModifyId, handleModifyBet, myBet, setMyBet } =
     useAddBetForm();
 
-  console.log("mybetdetails length", myBet.betDetails.length);
-  console.log("modifyID", modifyId);
-
   return (
     <div className="wrapper grid-row-2 addbet-page">
       <AddBetDetailsForm
