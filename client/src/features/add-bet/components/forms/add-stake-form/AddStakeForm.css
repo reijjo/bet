@@ -94,6 +94,7 @@
 .mybet-match,
 .mybet-slip-match {
   padding-left: 8px;
+  text-transform: uppercase;
 }
 
 .mybet-more,
@@ -106,13 +107,27 @@
   cursor: pointer;
 }
 
+.mybet-slip-selection {
+  & p {
+    max-width: 25ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .mybet-slip-selection {
     & p {
-      max-width: 15ch;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      max-width: 20ch;
     }
+  }
+
+  .mybet-slip-hometeam,
+  .mybet-slip-awayteam {
+    max-width: 25ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

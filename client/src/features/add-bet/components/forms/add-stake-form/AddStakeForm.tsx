@@ -5,10 +5,10 @@ import { Dispatch, SetStateAction } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { initialBetValues } from "../../../utils/defaults/defaults";
-import { Bet } from "../../../utils/types";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { Bet } from "@utils/types";
+import { BetToStake } from "@/features/add-bet/components/forms/add-stake-form/BetToStake";
 import { FinishBetForm } from "../finish-bet-form/FinishBetForm";
-import { BetToStake } from "../../../features/add-bet/components/BetToStake";
 
 type MyBetsProps = {
   myBet: Bet;

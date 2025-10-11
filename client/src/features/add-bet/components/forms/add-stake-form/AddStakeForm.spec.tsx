@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 
-import { store } from "../../../store/store";
-import { initialBetValues } from "../../../utils/defaults/defaults";
+import { store } from "@store/store";
+import { initialBetValues } from "@utils/defaults/defaults";
 import { AddStakeForm } from "./AddStakeForm";
 
 describe("AddStakeForm", () => {

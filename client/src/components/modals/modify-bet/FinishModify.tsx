@@ -7,23 +7,23 @@ import { Error } from "../../";
 import {
   useDeleteBetMutation,
   useEditBetMutation,
-} from "../../../features/api/betsApiSlice";
+} from "@features/api/betsApiSlice";
 import {
   closeConfirmModal,
   openConfirmModal,
   resetModal,
-} from "../../../features/modalSlice";
+} from "@features/modalSlice";
 import {
   BookmakerInput,
   NotesInput,
   SportInput,
   TipperInput,
-} from "../../../pages/add-bet";
+} from "@features/add-bet/components/forms/finish-bet-form/finish-bet-inputs";
 import { getFinalBetType } from "@utils/betUtils";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { RootState } from "../../../store/store";
-import { initialBetValues } from "../../../utils/defaults/defaults";
-import { Bet, BetDetails } from "../../../utils/types";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { RootState } from "@store/store";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { Bet, BetDetails } from "@utils/types";
 import { ModalConfirm } from "../confirm/ModalConfirm";
 import { StatusChange } from "./StatusChange";
 import { Result } from "./modify-betslip/ModifyBetSlip";

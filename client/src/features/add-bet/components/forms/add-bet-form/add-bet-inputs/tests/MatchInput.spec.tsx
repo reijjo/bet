@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi, afterEach } from "vitest";
 
 import { initialBetValues } from "@/utils/defaults/defaults";
 import { inputErrors } from "@utils/defaults/errors";
-import { AddBetDetailsForm } from "../../forms/add-bet-form/AddBetDetailsForm";
+import { AddBetDetailsForm } from "../../AddBetDetailsForm";
 
 const user = userEvent.setup();
 const mockFn = vi.fn();

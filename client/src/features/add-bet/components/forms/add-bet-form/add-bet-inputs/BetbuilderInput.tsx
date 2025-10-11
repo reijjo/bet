@@ -10,7 +10,7 @@ import {
 
 import { TextInputWithButton } from "@/components/ui/inputs/TextInputWithButton";
 import { BetDetails, BetInputProps } from "@/utils/types";
-import { BetSelection } from "../forms";
+import { BetSelection } from "../BetSelection";
 import { hasInputError } from "./InputError";
 
 interface BetBuilderInputProps extends BetInputProps {

@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { store } from "../../../store/store";
-import { initialBetValues } from "../../../utils/defaults/defaults";
-import { SportLeague } from "../../../utils/enums";
+import { store } from "@store/store";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { SportLeague } from "@utils/enums";
 import { FinishBetForm } from "./FinishBetForm";
 
 describe("FinishBetForm", () => {

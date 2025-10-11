@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { initialBetValues } from "@utils/defaults/defaults";
 import { LimitedBetType } from "@/utils/enums";
-import { AddBetDetailsForm } from "../../forms/add-bet-form/AddBetDetailsForm";
+import { AddBetDetailsForm } from "../../AddBetDetailsForm";
 
 describe("MatchInput", () => {
   const user = userEvent.setup();

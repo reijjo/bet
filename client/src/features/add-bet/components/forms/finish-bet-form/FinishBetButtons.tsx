@@ -8,11 +8,12 @@ import {
   useState,
 } from "react";
 
-import { Button, TextInput } from "../../components/";
-import { useBetCalculations } from "../../hooks/useBetCalculations";
-import { initialBetDetailValues } from "../../utils/defaults/defaults";
-import { scrollToTop } from "../../utils/helperFunctions";
-import { Bet } from "../../utils/types";
+import { TextInput } from "@components/ui/inputs/TextInput";
+import { Button2 } from "@/components";
+import { useBetCalculations } from "@hooks/useBetCalculations";
+import { initialBetDetailValues } from "@utils/defaults/defaults";
+import { scrollToTop } from "@utils/helperFunctions";
+import { Bet } from "@utils/types";
 
 type FinishBetButtonsProps = {
   myBet: Bet;
@@ -73,20 +74,22 @@ export const FinishBetButtons = ({
     <>
       {!addStake ? (
         <div className="finish-bet-buttons">
-          <Button
+          <Button2
             type="button"
             onClick={() => setAddStake(true)}
-            className="btn btn-filled"
-            children="Add Stake"
+            className="btn2-cta"
             disabled={modifyId !== null}
-          />
-          <Button
+          >
+            Add Stake
+          </Button2>
+          <Button2
             type="button"
             onClick={handleAddToParlay}
-            className="btn btn-outline"
-            children="Add to parley"
+            className="btn2-outline"
             disabled={modifyId !== null}
-          />
+          >
+            Add to parlay
+          </Button2>
         </div>
       ) : (
         <>
@@ -111,20 +114,19 @@ export const FinishBetButtons = ({
             </div>
           </div>
           <div className="submit-bet-buttons">
-            <Button
-              type="submit"
-              className="btn btn-filled"
-              children={isLoading ? "Adding..." : "Add Bet"}
-            />
-            <Button
+            <Button2 type="submit" className="btn2-cta">
+              {isLoading ? "Adding..." : "Add Bet"}
+            </Button2>
+            <Button2
               type="button"
               onClick={() => {
                 setAddStake(false);
                 setMyBet((bet) => ({ ...bet, stake: 0 }));
               }}
-              className="btn btn-outline"
-              children="Cancel"
-            />
+              className="btn2-outline"
+            >
+              Cancel
+            </Button2>
           </div>
         </>
       )}

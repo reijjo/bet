@@ -16,11 +16,11 @@ import {
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "@/features/add-bet/components/add-bet-inputs";
+} from "@features/add-bet/components/forms/add-bet-form/add-bet-inputs";
 import { isBetBuilderType } from "@utils/betUtils";
 import { validateBetDetailsInputs } from "@utils/input-validators/inputValidators";
 import { Bet } from "@utils/types";
-import { useAddBetDetails } from "@/features/add-bet/hooks/useAddBetDetails";
+import { useAddBetDetails } from "@features/add-bet/hooks/useAddBetDetails";
 
 type ModifyBetFormProps = {
   setMyBet: Dispatch<SetStateAction<Bet>>;

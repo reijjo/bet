@@ -1,7 +1,7 @@
 import "./BookmakerInput.css";
 
-import { Select } from "../../../../components/ui/inputs/Select";
-import { Bookmaker } from "../../../../utils/enums";
+import { Select } from "@components/ui/inputs/Select";
+import { Bookmaker } from "@utils/enums";
 
 type BookmakerInputProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

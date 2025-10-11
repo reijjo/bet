@@ -2,7 +2,7 @@ import "./AddBetPage.css";
 
 import { useAddBetForm } from "@/features/add-bet/hooks/useAddBetForm";
 import { AddBetDetailsForm } from "@/features/add-bet/components/forms/add-bet-form/AddBetDetailsForm";
-import { AddStakeForm } from "./add-stake-form/AddStakeForm";
+import { AddStakeForm } from "@features/add-bet/components/forms/add-stake-form/AddStakeForm";
 
 const AddBetPage = () => {
   const { modifyId, setModifyId, handleModifyBet, myBet, setMyBet } =
