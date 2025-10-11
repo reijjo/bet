@@ -72,17 +72,6 @@ export const createBet = async (
       throw new HttpError(isValidBet, 400);
     }
 
-    if (!stake) {
-      throw new HttpError('The "stake" field is required.', 400);
-    } else if (!bookmaker) {
-      throw new HttpError('The "bookmaker" field is required.', 400);
-    } else if (!status) {
-      throw new HttpError('The "status" field is required.', 400);
-    } else if (!bet_final_type) {
-      throw new HttpError('The "bet_final_type" field is required.', 400);
-    } else if (!sport) {
-      throw new HttpError('The "sport" field is required.', 400);
-    }
     // The create method is used to create a new bet in the database
     // Transaction in the end makes sure this operation is tied to the transaction
     const newBet = await BetModel.create(

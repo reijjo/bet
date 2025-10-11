@@ -2,7 +2,7 @@ import "./SelectionBetsTable.css";
 
 import { Fragment } from "react/jsx-runtime";
 
-import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 import { Bet } from "../../../utils/types";
 
 interface SelectionBetsTableProps {

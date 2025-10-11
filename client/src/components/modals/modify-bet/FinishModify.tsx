@@ -19,7 +19,7 @@ import {
   SportInput,
   TipperInput,
 } from "../../../pages/add-bet";
-import { getFinalBetType } from "../../../pages/add-bet/betUtils";
+import { getFinalBetType } from "@utils/betUtils";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { RootState } from "../../../store/store";
 import { initialBetValues } from "../../../utils/defaults/defaults";
@@ -50,12 +50,12 @@ export const FinishModify = ({
     { isLoading: isDeleting, isError: deleteError, error: deleteErrorDetails },
   ] = useDeleteBetMutation();
   const { isConfirmModalOpen } = useAppSelector(
-    (state: RootState) => state.modal,
+    (state: RootState) => state.modal
   );
   const dispatch = useAppDispatch();
 
   const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
     setMyBet((prev) => ({

@@ -2,7 +2,7 @@ import "./ModifyBet.css";
 
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
-import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 import { BetType } from "../../../../utils/enums";
 
 type Result = {
@@ -31,7 +31,7 @@ export const ModifyBetResultInputs = ({
 }: ModifyBetResultInputsProps) => {
   const handleResultChange = (
     event: ChangeEvent<HTMLInputElement>,
-    index: number,
+    index: number
   ) => {
     const { name, value } = event.target;
     setResult((prev) => ({
@@ -47,7 +47,7 @@ export const ModifyBetResultInputs = ({
   const handleBetbuilderResultChange = (
     event: ChangeEvent<HTMLInputElement>,
     betIndex: number,
-    selectionIndex: number,
+    selectionIndex: number
   ) => {
     const { value } = event.target;
     setResult((prev) => {

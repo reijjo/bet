@@ -20,7 +20,7 @@ import { Bookmaker } from "../../../utils/enums";
 import { scrollToTop } from "../../../utils/helperFunctions";
 import { Bet } from "../../../utils/types";
 import { FinishBetButtons } from "../FinishBetButtons";
-import { getFinalBetType } from "../betUtils";
+import { getFinalBetType } from "@utils/betUtils";
 
 type FinishBetFormProps = {
   myBet: Bet;

@@ -16,12 +16,12 @@ export const hasLength = (value: string) => {
 };
 
 export const hasMaxLength = (value: string, maxLength: number) => {
-  return value.trim().length <= maxLength;
+  return value?.trim().length <= maxLength;
 };
 
 export const isNumber = (value: string) => {
-  const invalidNumber = !isNaN(Number(value)) || Number(value) <= 0;
-  return invalidNumber;
+  const numericValue = Number(value);
+  return !Number.isNaN(numericValue) && numericValue > 0;
 };
 
 export const validSelection = (selection: string, betType: BetType) => {
