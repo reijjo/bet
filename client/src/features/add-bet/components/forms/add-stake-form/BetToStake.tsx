@@ -3,7 +3,7 @@ import "./BetToStake.css";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Bet } from "../../../utils/types";
+import { Bet } from "../../../../../utils/types";
 import { isBetBuilderType } from "@utils/betUtils";
 
 type BetToStakeProps = {

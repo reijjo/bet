@@ -11,16 +11,15 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-import { BookmakerInput, NotesInput, SportInput, TipperInput } from "..";
-import { useAddNewBetMutation } from "../../../features/api/betsApiSlice";
-import { useBetCalculations } from "../../../hooks/useBetCalculations";
-import { useAppSelector } from "../../../store/hooks";
-import { initialBetValues } from "../../../utils/defaults/defaults";
-import { Bookmaker } from "../../../utils/enums";
-import { scrollToTop } from "../../../utils/helperFunctions";
-import { Bet } from "../../../utils/types";
-import { FinishBetButtons } from "../FinishBetButtons";
+import { useAddNewBetMutation } from "@/features/api/betsApiSlice";
+import { useBetCalculations } from "@hooks/useBetCalculations";
+import { useAppSelector } from "@store/hooks";
+import { initialBetValues } from "@utils/defaults/defaults";
+import { scrollToTop } from "@utils/helperFunctions";
+import { Bet } from "@utils/types";
+import { FinishBetButtons } from "./FinishBetButtons";
 import { getFinalBetType } from "@utils/betUtils";
+import { FinishBetInputs } from "./FinishBetInputs";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -119,25 +118,13 @@ export const FinishBetForm = ({
 
   return (
     <form className="finishbet-form" onSubmit={addBet}>
-      <SportInput
-        onChange={handleSelectChange}
-        value={myBet.sport}
-        disabled={addStake || modifyId !== null || isLoading}
-      />
-      <BookmakerInput
-        onChange={handleSelectChange}
-        value={myBet.bookmaker ?? Bookmaker.Unibet}
-        disabled={addStake || modifyId !== null || isLoading}
-      />
-      <TipperInput
-        onChange={handleTextInput}
-        value={myBet.tipper ?? user?.username}
-        disabled={addStake || modifyId !== null || isLoading}
-      />
-      <NotesInput
-        onChange={handleTextInput}
-        value={myBet.notes ?? ""}
-        disabled={addStake || modifyId !== null || isLoading}
+      <FinishBetInputs
+        myBet={myBet}
+        addStake={addStake}
+        modifyId={modifyId}
+        handleSelectChange={handleSelectChange}
+        handleTextInput={handleTextInput}
+        user={user}
       />
       <FinishBetButtons
         myBet={myBet}

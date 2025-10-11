@@ -8,11 +8,12 @@ import {
   useState,
 } from "react";
 
-import { Button, TextInput } from "../../components/";
-import { useBetCalculations } from "../../hooks/useBetCalculations";
-import { initialBetDetailValues } from "../../utils/defaults/defaults";
-import { scrollToTop } from "../../utils/helperFunctions";
-import { Bet } from "../../utils/types";
+import { TextInput } from "@components/ui/inputs/TextInput";
+import { Button2 } from "@/components";
+import { useBetCalculations } from "@hooks/useBetCalculations";
+import { initialBetDetailValues } from "@utils/defaults/defaults";
+import { scrollToTop } from "@utils/helperFunctions";
+import { Bet } from "@utils/types";
 
 type FinishBetButtonsProps = {
   myBet: Bet;
@@ -73,17 +74,17 @@ export const FinishBetButtons = ({
     <>
       {!addStake ? (
         <div className="finish-bet-buttons">
-          <Button
+          <Button2
             type="button"
             onClick={() => setAddStake(true)}
-            className="btn btn-filled"
+            className="btn2-cta"
             children="Add Stake"
             disabled={modifyId !== null}
           />
-          <Button
+          <Button2
             type="button"
             onClick={handleAddToParlay}
-            className="btn btn-outline"
+            className="btn2-outline"
             children="Add to parley"
             disabled={modifyId !== null}
           />
@@ -111,12 +112,12 @@ export const FinishBetButtons = ({
             </div>
           </div>
           <div className="submit-bet-buttons">
-            <Button
+            <Button2
               type="submit"
               className="btn btn-filled"
               children={isLoading ? "Adding..." : "Add Bet"}
             />
-            <Button
+            <Button2
               type="button"
               onClick={() => {
                 setAddStake(false);

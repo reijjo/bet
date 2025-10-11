@@ -1,7 +1,7 @@
 import "./SportInput.css";
 
-import { Select } from "../../../../components";
-import { SportLeague } from "../../../../utils/enums";
+import { Select } from "@components/ui/inputs/Select";
+import { SportLeague } from "@utils/enums";
 
 type SportInputProps = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

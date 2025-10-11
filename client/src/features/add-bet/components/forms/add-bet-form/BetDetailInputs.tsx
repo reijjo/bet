@@ -7,7 +7,7 @@ import {
   OddsInput,
   SelectionInput,
   TypeInput,
-} from "../../add-bet-inputs";
+} from "./add-bet-inputs";
 import { BetDetails } from "@/utils";
 import { Dispatch, SetStateAction, ChangeEvent, FocusEvent } from "react";
 

@@ -1,6 +1,6 @@
 import "./TipperInput.css";
 
-import { TextInput } from "../../../../components/ui/inputs/TextInput";
+import { TextInput } from "@components/ui/inputs/TextInput";
 
 type TipperInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

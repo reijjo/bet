@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { initialBetValues } from "@/utils/defaults/defaults";
 import { inputErrors } from "@/utils/defaults/errors";
-import { AddBetDetailsForm } from "../../forms";
+import { AddBetDetailsForm } from "../../AddBetDetailsForm";
 
 const user = userEvent.setup();
 const mockFn = vi.fn();
@@ -14,8 +14,8 @@ beforeEach(() => {
     <AddBetDetailsForm
       myBet={initialBetValues}
       setMyBet={mockFn}
-      modifyIndex={null}
-      setModifyIndex={mockFn}
+      modifyId={null}
+      setModifyId={mockFn}
       disabled={false}
     />
   );
