@@ -35,9 +35,6 @@ export const FinishBetButtons = ({
   isLoading,
 }: FinishBetButtonsProps) => {
   const [potentialWin, setPotentialWin] = useState<string>("0.00");
-  // const allOdds = myBet.betDetails
-  //   .reduce((acc, bet) => acc * Number(bet.odds), 1)
-  //   .toFixed(2);
   const { finalOdds } = useBetCalculations();
 
   useEffect(() => {
@@ -69,6 +66,8 @@ export const FinishBetButtons = ({
     setModifyId(newBetDetail.id);
     scrollToTop();
   };
+
+  console.log("myBet", myBet);
 
   return (
     <>

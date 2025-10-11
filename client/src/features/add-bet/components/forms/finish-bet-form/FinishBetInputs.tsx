@@ -5,10 +5,11 @@ import {
   TipperInput,
   NotesInput,
 } from "./finish-bet-inputs";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 type FinishBetInputsProps = {
   myBet: Bet;
+  setMyBet: Dispatch<SetStateAction<Bet>>;
   addStake: boolean;
   modifyId: number | null;
   isLoading?: boolean;
@@ -19,6 +20,7 @@ type FinishBetInputsProps = {
 
 export const FinishBetInputs = ({
   myBet,
+  setMyBet,
   addStake,
   modifyId,
   isLoading,
@@ -28,8 +30,8 @@ export const FinishBetInputs = ({
 }: FinishBetInputsProps) => (
   <>
     <SportInput
-      onChange={handleSelectChange}
-      value={myBet.sport}
+      setMyBet={setMyBet}
+      value={myBet.sport || ""}
       disabled={addStake || modifyId !== null || isLoading}
     />
     <BookmakerInput

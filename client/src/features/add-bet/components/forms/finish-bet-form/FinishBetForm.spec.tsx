@@ -1,16 +1,15 @@
 import { render, screen, waitFor } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { store } from "@store/store";
 import { initialBetValues } from "@utils/defaults/defaults";
-import { SportLeague } from "@utils/enums";
 import { FinishBetForm } from "./FinishBetForm";
 
 describe("FinishBetForm", () => {
-  // const user = userEvent.setup();
+  const user = userEvent.setup();
   const mockSetMyBet = vi.fn();
   const mockSetModifyIndex = vi.fn();
 
@@ -28,47 +27,59 @@ describe("FinishBetForm", () => {
       </Provider>
     );
 
-    const sportInput = screen.getByLabelText(/sport/i) as HTMLSelectElement;
-    const options = Array.from(sportInput.querySelectorAll("option")).map(
-      (option) => option.value
-    );
-    const expectedValues = Object.values(SportLeague);
-
+    const sportInput = screen.getByLabelText(/sport/i) as HTMLInputElement;
     expect(sportInput).toBeInTheDocument();
-    expect(options).toEqual(expectedValues);
-    await waitFor(() => expect(sportInput).not.toBeDisabled());
+    expect(sportInput).not.toBeDisabled();
 
-    expect(
-      (screen.getByRole("option", { name: "NBA" }) as HTMLOptionElement)
-        .selected
-    ).toBe(true);
-    expect((screen.getByText(/nhl/i) as HTMLOptionElement).selected).toBe(
-      false
+    // Initial value should be set
+    expect(sportInput.value).toBe("NBA");
+
+    // Focus on input and type to show suggestions
+    await user.click(sportInput);
+    await user.clear(sportInput);
+    await user.type(sportInput, "NHL");
+
+    // Wait for NHL suggestion to appear
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /nhl/i })).toBeInTheDocument();
+    });
+
+    // Click on NHL suggestion
+    const nhlButton = screen.getByRole("button", { name: /nhl/i });
+    await user.click(nhlButton);
+
+    // Verify the callback was called with the new value
+    await waitFor(() => {
+      expect(mockSetMyBet).toHaveBeenCalled();
+    });
+
+    // Verify the input now shows NHL
+    expect(sportInput.value).toBe("NHL");
+  });
+
+  it("allows custom sport input", async () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <FinishBetForm
+            myBet={initialBetValues}
+            setMyBet={mockSetMyBet}
+            modifyId={null}
+            setModifyId={mockSetModifyIndex}
+          />
+        </MemoryRouter>
+      </Provider>
     );
 
-    // console.log("Before", sportInput.value);
+    const sportInput = screen.getByLabelText(/sport/i) as HTMLInputElement;
 
-    // await user.selectOptions(
-    //   screen.getByRole("combobox", { name: /sport/i }),
-    //   screen.getByRole("option", { name: SportLeague.NHL }),
-    // );
+    // Clear and type custom value
+    await user.clear(sportInput);
+    await user.type(sportInput, "CustomSport");
 
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // expect(sportInput).toHaveValue("NHL");
-
-    // console.log("After", sportInput.value);
-
-    // await waitFor(() => {
-    //   expect(sportInput).toHaveValue("NHL");
-    // expect((screen.getByText(/nhl/i) as HTMLOptionElement).selected).toBe(
-    //   true,
-    // );
-    // expect(
-    //   (screen.getByRole("option", { name: "NHL" }) as HTMLOptionElement)
-    //     .selected,
-    // ).toBe(true);
-    // });
+    // Verify the callback was called
+    expect(mockSetMyBet).toHaveBeenCalled();
+    expect(sportInput.value).toBe("CustomSport");
   });
 });
 

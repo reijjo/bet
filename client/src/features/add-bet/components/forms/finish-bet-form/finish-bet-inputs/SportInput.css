@@ -1,3 +1,7 @@
+.sport-input-container {
+  position: relative;
+}
+
 .sport-input {
   display: flex;
   flex-direction: column;
@@ -24,4 +28,35 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   } */
+}
+
+.sport-search {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  z-index: 1;
+  background-color: var(--primary-600);
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-xs);
+}
+
+.sport-list {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sport-name {
+  padding: 0.25rem 1rem;
+  font-size: var(--font-smaller);
 }
