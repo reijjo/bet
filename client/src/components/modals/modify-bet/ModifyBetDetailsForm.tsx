@@ -20,7 +20,7 @@ import {
 import { isBetBuilderType } from "@utils/betUtils";
 import { validateBetDetailsInputs } from "@utils/input-validators/inputValidators";
 import { Bet } from "@utils/types";
-import { useAddBetDetails } from "@/features/add-bet/hooks/useAddBetDetails";
+import { useAddBetDetails } from "@features/add-bet/hooks/useAddBetDetails";
 
 type ModifyBetFormProps = {
   setMyBet: Dispatch<SetStateAction<Bet>>;

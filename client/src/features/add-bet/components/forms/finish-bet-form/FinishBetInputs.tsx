@@ -39,7 +39,7 @@ export const FinishBetInputs = ({
     />
     <TipperInput
       onChange={handleTextInput}
-      value={myBet.tipper || String(user?.username)}
+      value={myBet.tipper || user?.username || ""}
       disabled={addStake || modifyId !== null || isLoading}
     />
     <NotesInput

@@ -125,6 +125,7 @@ export const FinishBetForm = ({
         handleSelectChange={handleSelectChange}
         handleTextInput={handleTextInput}
         user={user}
+        isLoading={isLoading}
       />
       <FinishBetButtons
         myBet={myBet}

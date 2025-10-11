@@ -78,16 +78,18 @@ export const FinishBetButtons = ({
             type="button"
             onClick={() => setAddStake(true)}
             className="btn2-cta"
-            children="Add Stake"
             disabled={modifyId !== null}
-          />
+          >
+            Add Stake
+          </Button2>
           <Button2
             type="button"
             onClick={handleAddToParlay}
             className="btn2-outline"
-            children="Add to parley"
             disabled={modifyId !== null}
-          />
+          >
+            Add to parlay
+          </Button2>
         </div>
       ) : (
         <>
@@ -112,20 +114,19 @@ export const FinishBetButtons = ({
             </div>
           </div>
           <div className="submit-bet-buttons">
-            <Button2
-              type="submit"
-              className="btn btn-filled"
-              children={isLoading ? "Adding..." : "Add Bet"}
-            />
+            <Button2 type="submit" className="btn2-cta">
+              {isLoading ? "Adding..." : "Add Bet"}
+            </Button2>
             <Button2
               type="button"
               onClick={() => {
                 setAddStake(false);
                 setMyBet((bet) => ({ ...bet, stake: 0 }));
               }}
-              className="btn btn-outline"
-              children="Cancel"
-            />
+              className="btn2-outline"
+            >
+              Cancel
+            </Button2>
           </div>
         </>
       )}
