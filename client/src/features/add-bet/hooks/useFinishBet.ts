@@ -8,9 +8,11 @@ export const useFinishBet = (setMyBet: Dispatch<SetStateAction<Bet>>) => {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
+    const parsedValue = type === "number" ? parseFloat(value) || 0 : value;
+
     setMyBet((prev) => ({
       ...prev,
-      [name]: type === "number" ? parseFloat(value) : value,
+      [name]: parsedValue,
     }));
   };
 

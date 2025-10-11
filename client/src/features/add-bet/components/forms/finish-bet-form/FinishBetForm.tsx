@@ -16,7 +16,7 @@ import {
 } from "@features/add-bet/components/forms";
 import { getFinalBetType } from "@utils/betUtils";
 import { useFinishBet } from "@features/add-bet/hooks/useFinishBet";
-import { BetType } from "@/utils";
+import { SportLeague } from "@utils";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -58,7 +58,7 @@ export const FinishBetForm = ({
       bet_final_type: finalType,
       bet_final_odds: finalOdds(myBet.betDetails),
       user_id: user?.id,
-      sport: myBet.sport ? myBet.sport : BetType.Other,
+      sport: myBet.sport ? myBet.sport : SportLeague.Other,
     };
 
     try {
@@ -70,8 +70,6 @@ export const FinishBetForm = ({
       console.error("Failed to add new bet", error);
     }
   };
-
-  // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend
 
   return (
     <form className="finishbet-form" onSubmit={addBet}>

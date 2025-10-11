@@ -67,8 +67,6 @@ export const FinishBetButtons = ({
     scrollToTop();
   };
 
-  console.log("myBet", myBet);
-
   return (
     <>
       {!addStake ? (

@@ -34,5 +34,5 @@
 
 .mybet-slip-match {
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: var(--font-smaller);
 }

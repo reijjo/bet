@@ -22,6 +22,10 @@ export const SportInput = ({ disabled, value, setMyBet }: SportInputProps) => {
   const [showSearch, setShowSearch] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setFindSport(value);
+  }, [value]);
+
   const liiga = ["Liiga"];
   const allSports = [...Object.values(SportLeague), ...liiga];
 
@@ -31,7 +35,6 @@ export const SportInput = ({ disabled, value, setMyBet }: SportInputProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    setFindSport(newValue);
     setMyBet((prevBet) => ({
       ...prevBet,
       sport: newValue,
@@ -80,10 +83,11 @@ export const SportInput = ({ disabled, value, setMyBet }: SportInputProps) => {
           placeholder="e.g. Premier League"
         />
       </div>
-      {showSearch && findSport.trim() && filteredSport.length > 0 && (
+      {showSearch && filteredSport.length > 0 && (
         <div className="sport-search">
           {filteredSport.map((sport) => (
             <button
+              type="button"
               key={sport}
               className="sport-list"
               onClick={() => handleSelectSuggestion(sport)}
