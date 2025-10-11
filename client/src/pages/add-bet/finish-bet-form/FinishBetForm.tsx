@@ -109,8 +109,9 @@ export const FinishBetForm = ({
       scrollToTop();
       navigate("/bets");
     } catch (error: unknown) {
-      console.error("Failes to add new bet", error);
+      console.error("Failed to add new bet", error);
     }
+    console.log("THE BET", betToSave);
   };
 
   // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend

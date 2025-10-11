@@ -39,6 +39,10 @@ export const validSelection = (selection: string, betType: BetType) => {
   if (!isBetBuilderType(betType) && !hasLength(selection)) {
     return inputErrors.selection;
   }
+
+  if (!hasMaxLength(selection, 30)) {
+    return inputErrors.isTooLongSelection;
+  }
   return "";
 };
 

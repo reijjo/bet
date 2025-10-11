@@ -7,6 +7,7 @@ import type {
 import { sequelize } from "../utils/db/db";
 import type { BetDetails } from "../utils/types/types";
 import type { NextFunction, Request, Response } from "express";
+import { isNewBetValid } from "./utils/createBetUtils";
 
 //
 // GET
@@ -65,6 +66,11 @@ export const createBet = async (
 
     console.log("USER ID", user_id);
     console.log("BET FINAL ODDS", bet_final_odds);
+
+    const isValidBet = isNewBetValid(req.body);
+    if (isValidBet) {
+      throw new HttpError(isValidBet, 400);
+    }
 
     if (!stake) {
       throw new HttpError('The "stake" field is required.', 400);

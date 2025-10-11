@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { initialBetValues } from "../../../utils/defaults/defaults";
 import { Bet } from "../../../utils/types";
 import { FinishBetForm } from "../finish-bet-form/FinishBetForm";
-import { BetToStake } from "./BetToStake";
+import { BetToStake } from "../../../features/add-bet/components/BetToStake";
 
 type MyBetsProps = {
   myBet: Bet;
