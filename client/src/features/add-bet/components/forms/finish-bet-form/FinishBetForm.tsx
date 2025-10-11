@@ -1,25 +1,22 @@
 import "./FinishBetForm.css";
 
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useAddNewBetMutation } from "@/features/api/betsApiSlice";
+import { useAddNewBetMutation } from "@features/api/betsApiSlice";
 import { useBetCalculations } from "@hooks/useBetCalculations";
 import { useAppSelector } from "@store/hooks";
 import { initialBetValues } from "@utils/defaults/defaults";
 import { scrollToTop } from "@utils/helperFunctions";
 import { Bet } from "@utils/types";
-import { FinishBetButtons } from "./FinishBetButtons";
+import {
+  FinishBetButtons,
+  FinishBetInputs,
+} from "@features/add-bet/components/forms";
 import { getFinalBetType } from "@utils/betUtils";
-import { FinishBetInputs } from "./FinishBetInputs";
+import { useFinishBet } from "@features/add-bet/hooks/useFinishBet";
+import { SportLeague } from "@utils";
 
 type FinishBetFormProps = {
   myBet: Bet;
@@ -34,53 +31,14 @@ export const FinishBetForm = ({
   modifyId,
   setModifyId,
 }: FinishBetFormProps) => {
-  const [addStake, setAddStake] = useState(false);
   const [addNewBet, { isLoading }] = useAddNewBetMutation();
 
+  const { addStake, setAddStake, handleTextInput, handleSelectChange } =
+    useFinishBet(setMyBet);
   const { finalOdds } = useBetCalculations();
 
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.auth.user);
-
-  useEffect(() => {
-    if (!myBet.tipper && user?.username) {
-      setMyBet((prev) => ({ ...prev, tipper: user.username as string }));
-    }
-  }, [myBet.tipper, user, setMyBet]);
-
-  // TODO: Move the handlers to useAddBetForm hook and combine the handlers there
-  const handleTextInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value, type } = e.target;
-    setMyBet((prev) => ({
-      ...prev,
-      [name]: type === "number" ? parseFloat(value) : value,
-    }));
-  };
-
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    if (!e) {
-      console.log("No event object received");
-      return;
-    }
-    if (!e.target) {
-      console.log("No event target");
-      return;
-    }
-
-    const value = e.target.value;
-
-    setMyBet((prevBet) => {
-      console.log("Previous bet:", prevBet);
-      const newBet = {
-        ...prevBet,
-        [e.target.name]: value,
-      };
-      console.log("New bet:", newBet);
-      return newBet;
-    });
-  };
 
   // Adds new bet to the list of bets
   const addBet = async (e: SyntheticEvent) => {
@@ -100,6 +58,7 @@ export const FinishBetForm = ({
       bet_final_type: finalType,
       bet_final_odds: finalOdds(myBet.betDetails),
       user_id: user?.id,
+      sport: myBet.sport ? myBet.sport : SportLeague.Other,
     };
 
     try {
@@ -110,16 +69,13 @@ export const FinishBetForm = ({
     } catch (error: unknown) {
       console.error("Failed to add new bet", error);
     }
-    console.log("THE BET", betToSave);
   };
-
-  // TODO: SportInput as a dataset?? Where you can add a sport / league that isnt in the list aka SPORTS/LEAGUE comes from backend
-  // TODO2: Tipper default value username
 
   return (
     <form className="finishbet-form" onSubmit={addBet}>
       <FinishBetInputs
         myBet={myBet}
+        setMyBet={setMyBet}
         addStake={addStake}
         modifyId={modifyId}
         handleSelectChange={handleSelectChange}

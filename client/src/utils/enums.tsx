@@ -1,16 +1,18 @@
-export enum SportLeague {
-  NFL = "NFL",
-  NBA = "NBA",
-  MLB = "MLB",
-  NHL = "NHL",
-  MLS = "MLS",
-  Soccer = "Soccer",
-  IceHockey = "Ice Hockey",
-  Basketball = "Basketball",
-  AmFootball = "American Football",
-  Mixed = "Mixed",
-  Other = "Other",
-}
+export const SportLeague = {
+  NFL: "NFL",
+  NBA: "NBA",
+  MLB: "MLB",
+  NHL: "NHL",
+  MLS: "MLS",
+  Soccer: "Soccer",
+  IceHockey: "Ice Hockey",
+  Basketball: "Basketball",
+  AmFootball: "American Football",
+  Mixed: "Mixed",
+  Other: "Other",
+} as const;
+
+export type SportLeagueType = (typeof SportLeague)[keyof typeof SportLeague];
 
 export enum BetStatus {
   Pending = "Pending",

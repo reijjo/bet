@@ -50,9 +50,9 @@ BetModel.init(
       type: DataTypes.STRING,
     },
     sport: {
-      type: DataTypes.ENUM(...Object.values(SportLeague)),
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: SportLeague.NBA,
+      defaultValue: SportLeague.Other,
     },
     status: {
       type: DataTypes.ENUM(...Object.values(BetStatus)),
