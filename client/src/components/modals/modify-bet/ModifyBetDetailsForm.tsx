@@ -1,20 +1,13 @@
 import "./ModifyBetDetailsForm.css";
 
-import {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
 import { Button, Error, Loading } from "../../";
 import {
   useEditDetailsMutation,
   useGetDetailByIdQuery,
-} from "../../../features/api/detailsApiSlice";
-import { useAddBetForm } from "@/features/add-bet/hooks/useAddBetForm";
-import { useScreenWidth } from "../../../hooks/useScreenWidth";
+} from "@features/api/detailsApiSlice";
+import { useScreenWidth } from "@hooks/useScreenWidth";
 import {
   BetBuilderInput,
   DateInput,
@@ -24,9 +17,10 @@ import {
   SelectionInput,
   TypeInput,
 } from "@/features/add-bet/components/add-bet-inputs";
-import { isBetBuilderType } from "../../../pages/add-bet/betUtils";
-import { validateBetDetailsInputs } from "../../../utils/input-validators/inputValidators";
-import { Bet } from "../../../utils/types";
+import { isBetBuilderType } from "@pages/add-bet/betUtils";
+import { validateBetDetailsInputs } from "@utils/input-validators/inputValidators";
+import { Bet } from "@utils/types";
+import { useAddBetDetails } from "@/features/add-bet/hooks/useAddBetDetails";
 
 type ModifyBetFormProps = {
   setMyBet: Dispatch<SetStateAction<Bet>>;
@@ -47,7 +41,9 @@ export const ModifyBetDetailsForm = ({
     setAddBetDetails,
     handleBlur,
     handleFocus,
-  } = useAddBetForm();
+    errors,
+    setErrors,
+  } = useAddBetDetails();
   const {
     data: detailData,
     isLoading,
@@ -60,8 +56,6 @@ export const ModifyBetDetailsForm = ({
     updateDetails,
     { isLoading: isUpdating, isError: isUpdateError, error: updateError },
   ] = useEditDetailsMutation();
-
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     if (modifyId !== null && detailData) {

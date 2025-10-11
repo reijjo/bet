@@ -5,7 +5,7 @@ import { BetDetails } from "../../utils/types";
 export const getInputValue = (
   type: string,
   checked: boolean,
-  value: string,
+  value: string
 ) => {
   if (type === "checkbox") {
     return checked;
@@ -14,30 +14,25 @@ export const getInputValue = (
 };
 
 export const getFinalBetType = (details: BetDetails[]): BetType => {
-  let finalType = BetType.Single;
-
   if (
     details.length === 1 ||
     (details.length > 1 && details[0].bet_type === BetType.Moniveto) ||
     (details.length > 1 && details[0].bet_type === BetType.Tuplaus)
   ) {
-    finalType = details[0].bet_type;
-  } else if (details.length === 2) {
-    finalType = BetType.Double;
-  } else if (details.length === 3) {
-    finalType = BetType.Treble;
-  } else if (details.length === 4) {
-    finalType = BetType.Parlayx4;
-  } else if (details.length > 4) {
-    finalType = BetType.BigParlay;
+    return details[0].bet_type;
   }
 
-  return finalType;
+  if (details.length === 2) return BetType.Double;
+  if (details.length === 3) return BetType.Treble;
+  if (details.length === 4) return BetType.Parlayx4;
+  if (details.length > 4) return BetType.BigParlay;
+
+  return BetType.Single;
 };
 
 // Checks if should use betbuilder input field
 export const isBetBuilderType = (betType: BetType) => {
   return Object.values(BetBuilderInputTypes).includes(
-    betType as (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes],
+    betType as (typeof BetBuilderInputTypes)[keyof typeof BetBuilderInputTypes]
   );
 };

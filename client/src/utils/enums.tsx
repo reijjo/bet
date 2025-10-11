@@ -29,35 +29,39 @@ export enum Bookmaker {
   Other = "Other",
 }
 
-export enum BetType {
-  Single = "Single",
-  Double = "Double",
-  Treble = "Treble",
-  Parlayx4 = "Parlay x4",
-  BigParlay = "Parlay x5+",
-  Over = "Over",
-  Under = "Under",
-  BetBuilder = "Bet Builder",
-  Other = "Other",
-  Btts = "Both Teams to Score",
-  Moniveto = "Moniveto",
-  Tulosveto = "Tulosveto",
-  Tuplaus = "Ladder Challenge",
-  Props = "Player Props",
-}
+export const BetType = {
+  Single: "Single",
+  Double: "Double",
+  Treble: "Treble",
+  Parlayx4: "Parlay x4",
+  BigParlay: "Parlay x5+",
+  Over: "Over",
+  Under: "Under",
+  BetBuilder: "Bet Builder",
+  Other: "Other",
+  Btts: "Both Teams to Score",
+  Moniveto: "Multiple Scores",
+  Tulosveto: "Correct Score",
+  Tuplaus: "Ladder Challenge",
+  Props: "Player Props",
+} as const;
 
-export enum LimitedBetType {
-  Single = "Single",
-  Over = "Over",
-  Under = "Under",
-  BetBuilder = "Bet Builder",
-  Btts = "Both Teams to Score",
-  Moniveto = "Multiple Scores",
-  Tulosveto = "Correct Score",
-  Tuplaus = "Ladder Challenge",
-  Props = "Player Props",
-  Other = "Other",
-}
+export type BetType = (typeof BetType)[keyof typeof BetType];
+
+export const LimitedBetType = {
+  Single: BetType.Single,
+  Over: BetType.Over,
+  Under: BetType.Under,
+  BetBuilder: BetType.BetBuilder,
+  Btts: BetType.Btts,
+  Tulosveto: BetType.Tulosveto,
+  Tuplaus: BetType.Tuplaus,
+  Props: BetType.Props,
+  Other: BetType.Other,
+} as const;
+
+export type LimitedBetType =
+  (typeof LimitedBetType)[keyof typeof LimitedBetType];
 
 export const BetBuilderInputTypes = {
   BetBuilder: "Bet Builder",

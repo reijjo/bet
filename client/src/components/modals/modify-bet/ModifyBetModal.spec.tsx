@@ -59,7 +59,9 @@ describe("ModifyBetModal", () => {
 
     render(
       <Provider store={testStore}>
-        <ModifyBetModal />
+        <MemoryRouter>
+          <ModifyBetModal />
+        </MemoryRouter>
       </Provider>
     );
 
