@@ -4,7 +4,7 @@ import {
   initialBetDetailValues,
   validateBetDetailsInputs,
 } from "@utils";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FocusEvent } from "react";
 
 export const useAddBetDetails = () => {
   const [addBetDetails, setAddBetDetails] = useState<BetDetails>(
@@ -26,7 +26,8 @@ export const useAddBetDetails = () => {
   const handleBetInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
+    const { name, value, type } = e.target;
+    const checked = "checked" in e.target ? e.target.checked : false;
     const inputValue = getInputValue(type, checked, value);
 
     setAddBetDetails((prev) => ({
@@ -81,7 +82,9 @@ export const useAddBetDetails = () => {
     });
   };
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = (
+    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name } = e.target;
 
     // Only clear errors on focus, don't validate
@@ -96,7 +99,9 @@ export const useAddBetDetails = () => {
     }
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (
+    e: FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
 
     // Validate on blur only if there's a value

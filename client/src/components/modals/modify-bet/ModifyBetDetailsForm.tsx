@@ -1,12 +1,6 @@
 import "./ModifyBetDetailsForm.css";
 
-import {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
 import { Button, Error, Loading } from "../../";
 import {
@@ -47,6 +41,8 @@ export const ModifyBetDetailsForm = ({
     setAddBetDetails,
     handleBlur,
     handleFocus,
+    errors,
+    setErrors,
   } = useAddBetDetails();
   const {
     data: detailData,
@@ -60,8 +56,6 @@ export const ModifyBetDetailsForm = ({
     updateDetails,
     { isLoading: isUpdating, isError: isUpdateError, error: updateError },
   ] = useEditDetailsMutation();
-
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     if (modifyId !== null && detailData) {
