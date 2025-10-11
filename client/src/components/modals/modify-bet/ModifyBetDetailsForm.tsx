@@ -17,7 +17,7 @@ import {
   SelectionInput,
   TypeInput,
 } from "@/features/add-bet/components/add-bet-inputs";
-import { isBetBuilderType } from "@pages/add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 import { validateBetDetailsInputs } from "@utils/input-validators/inputValidators";
 import { Bet } from "@utils/types";
 import { useAddBetDetails } from "@/features/add-bet/hooks/useAddBetDetails";

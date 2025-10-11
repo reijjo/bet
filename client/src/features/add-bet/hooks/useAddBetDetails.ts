@@ -1,4 +1,4 @@
-import { getInputValue } from "@/pages/add-bet/betUtils";
+import { getInputValue } from "@utils/betUtils";
 import {
   BetDetails,
   initialBetDetailValues,

@@ -6,7 +6,7 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useScreenWidth } from "../../../../hooks/useScreenWidth";
-import { isBetBuilderType } from "../../../../pages/add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 import { BetDetails } from "../../../../utils/types";
 
 type ModifyBetSelectionProps = {

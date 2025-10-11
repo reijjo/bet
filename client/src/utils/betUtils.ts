@@ -1,5 +1,5 @@
-import { BetBuilderInputTypes, BetType } from "../../utils/enums";
-import { BetDetails } from "../../utils/types";
+import { BetBuilderInputTypes, BetType } from "@utils/enums";
+import { BetDetails } from "@utils/types";
 
 // Checks the type of the input
 export const getInputValue = (

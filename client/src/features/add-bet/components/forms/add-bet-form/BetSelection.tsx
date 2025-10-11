@@ -6,7 +6,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { BetDetails } from "@utils/types";
-import { isBetBuilderType } from "@pages/add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 
 interface BetSelectionProps {
   details: BetDetails;

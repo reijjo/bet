@@ -3,7 +3,7 @@ import "./LatestSelections.css";
 import { Fragment } from "react/jsx-runtime";
 
 import { BetDetails } from "../../../../utils/types";
-import { isBetBuilderType } from "../../../add-bet/betUtils";
+import { isBetBuilderType } from "@utils/betUtils";
 
 type LatestSelectionsProps = {
   details: BetDetails[];

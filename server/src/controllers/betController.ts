@@ -7,6 +7,7 @@ import type {
 import { sequelize } from "../utils/db/db";
 import type { BetDetails } from "../utils/types/types";
 import type { NextFunction, Request, Response } from "express";
+import { isNewBetValid } from "./utils/createBetUtils";
 
 //
 // GET
@@ -66,17 +67,11 @@ export const createBet = async (
     console.log("USER ID", user_id);
     console.log("BET FINAL ODDS", bet_final_odds);
 
-    if (!stake) {
-      throw new HttpError('The "stake" field is required.', 400);
-    } else if (!bookmaker) {
-      throw new HttpError('The "bookmaker" field is required.', 400);
-    } else if (!status) {
-      throw new HttpError('The "status" field is required.', 400);
-    } else if (!bet_final_type) {
-      throw new HttpError('The "bet_final_type" field is required.', 400);
-    } else if (!sport) {
-      throw new HttpError('The "sport" field is required.', 400);
+    const isValidBet = isNewBetValid(req.body);
+    if (isValidBet) {
+      throw new HttpError(isValidBet, 400);
     }
+
     // The create method is used to create a new bet in the database
     // Transaction in the end makes sure this operation is tied to the transaction
     const newBet = await BetModel.create(
