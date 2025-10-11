@@ -14,8 +14,8 @@ beforeEach(() => {
     <AddBetDetailsForm
       myBet={initialBetValues}
       setMyBet={mockFn}
-      modifyIndex={null}
-      setModifyIndex={mockFn}
+      modifyId={null}
+      setModifyId={mockFn}
       disabled={false}
     />
   );

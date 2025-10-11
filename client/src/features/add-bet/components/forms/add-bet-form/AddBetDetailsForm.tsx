@@ -2,7 +2,7 @@ import "./AddBetDetailsForm.css";
 
 import { Dispatch, SetStateAction, SyntheticEvent, useEffect } from "react";
 
-import { useAddBetForm } from "@features/add-bet/hooks/useAddBetForm";
+import { useAddBetDetails } from "@features/add-bet/hooks/useAddBetDetails";
 import { initialBetDetailValues, validateBetDetailsInputs } from "@/utils";
 
 import { Bet } from "@utils/types";
@@ -34,7 +34,7 @@ export const AddBetDetailsForm = ({
     handleDetailsSelect,
     handleBlur,
     handleFocus,
-  } = useAddBetForm();
+  } = useAddBetDetails();
 
   // Checks what bet to modify
   useEffect(() => {
