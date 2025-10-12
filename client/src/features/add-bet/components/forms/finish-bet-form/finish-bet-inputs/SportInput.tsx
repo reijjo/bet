@@ -35,10 +35,22 @@ export const SportInput = ({ disabled, value, setMyBet }: SportInputProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
+
+    setFindSport(newValue);
     setMyBet((prevBet) => ({
       ...prevBet,
       sport: newValue,
     }));
+
+    const exactMatch = allSports.some(
+      (sport) => sport.toLowerCase() === newValue.toLowerCase()
+    );
+
+    if (exactMatch) {
+      setShowSearch(false);
+    } else {
+      setShowSearch(true);
+    }
   };
 
   const handleSelectSuggestion = (sport: string) => {

@@ -82,7 +82,7 @@ describe("FinishBetForm", () => {
 
     // Verify the callback was called
     expect(mockSetMyBet).toHaveBeenCalled();
-    expect(sportInput.value).toBe("NBA");
+    expect(sportInput.value).toBe("CustomSport");
   });
 });
 
