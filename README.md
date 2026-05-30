@@ -8,10 +8,11 @@ Place where you can track your bets
 
 ## How to use?
 
-Try it live <a href='https://tarpit.pages.dev/'>here</a>
+AWS free tier ended. Deploying again soon.
+(Try it live <a href='https://tarpit.pages.dev/'>here</a>
 - Frontend is deployed with `Cloudfare pages`
 - Database is deployed in `AWS RDS`
-- Backend is deployed with `AWS EC2`
+- Backend is deployed with `AWS EC2`)
 
 ### Locally
 Install `Docker` and `Bun`
