@@ -8,7 +8,7 @@ Place where you can track your bets
 
 ## How to use?
 
-AWS free tier ended. Deploying again soon.
+AWS free tier ended. Deploying again online soon.
 <!--Try it live <a href='https://tarpit.pages.dev/'>here</a>-->
 <!--- Frontend is deployed with `Cloudfare pages`
 - Database is deployed in `AWS RDS`
